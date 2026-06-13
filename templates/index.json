@@ -430,17 +430,6 @@
           },
           "blocks": {}
         },
-        "product_recommendation_quiz_v2_link_quiz_block_7QBdbN": {
-          "type": "shopify://apps/product-recommendation-quiz/blocks/v2-link-quiz-block/672f3d48-fd3b-4227-8778-c6e58c4f8a98",
-          "settings": {
-            "quiz_width": "90",
-            "quiz_height": "90",
-            "quiz_z_index": 100,
-            "popup_close_color": "#777777",
-            "show_list": true,
-            "quiz_id": "astLDP"
-          }
-        },
         "button_yaNPe4": {
           "type": "button",
           "name": "t:names.button",
@@ -460,7 +449,6 @@
       "block_order": [
         "text_aBgM4d",
         "text_TKpCHg",
-        "product_recommendation_quiz_v2_link_quiz_block_7QBdbN",
         "button_yaNPe4"
       ],
       "name": "t:names.rich_text_section",
@@ -956,15 +944,15 @@
         "filter_border_width": 1,
         "filter_font_size": 14,
         "filter_font_weight": "500",
-        "filter_text_color": "#071E85",
-        "filter_bg_color": "#FFFFFF",
-        "filter_border_color": "#071E85",
-        "filter_hover_text_color": "#071E85",
+        "filter_text_color": "#071e85",
+        "filter_bg_color": "#ffffff",
+        "filter_border_color": "#071e85",
+        "filter_hover_text_color": "#071e85",
         "filter_hover_bg_color": "#eef0ff",
-        "filter_hover_border_color": "#071E85",
+        "filter_hover_border_color": "#071e85",
         "filter_active_text_color": "#ffffff",
-        "filter_active_bg_color": "#071E85",
-        "filter_active_border_color": "#071E85",
+        "filter_active_bg_color": "#071e85",
+        "filter_active_border_color": "#071e85",
         "banner_overlay_opacity": 0
       }
     },
