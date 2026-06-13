@@ -949,7 +949,7 @@
         ],
         "filter_alignment": "flex-start",
         "filter_gap": 8,
-        "filter_margin_bottom": 20,
+        "filter_margin_bottom": 0,
         "filter_padding_x": 20,
         "filter_padding_y": 8,
         "filter_border_radius": 50,
