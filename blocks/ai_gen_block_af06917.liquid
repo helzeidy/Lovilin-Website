@@ -1,0 +1,558 @@
+{% doc %}
+  @prompt
+    Create a custom variant picker block for a product page that displays each variant as a styled card or button showing: the variant name, its price, a color swatch (if the variant has a color option), and a "Save X%" badge when the variant is on sale (comparing compare-at price to actual price). The selected variant should be visually highlighted. The design should be premium and consistent with a dark, bold brand palette. Make it responsive for both desktop and mobile.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-variant-picker-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-variant-picker__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax({{ block.settings.card_min_width }}px, 1fr));
+    gap: {{ block.settings.card_gap }}px;
+  }
+
+  .ai-variant-card-{{ ai_gen_id }} {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: {{ block.settings.card_padding }}px;
+    background-color: {{ block.settings.card_background }};
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ai-variant-card-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.card_hover_background }};
+    border-color: {{ block.settings.card_hover_border_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-variant-card-{{ ai_gen_id }}.selected {
+    background-color: {{ block.settings.selected_background }};
+    border-color: {{ block.settings.selected_border_color }};
+    border-width: {{ block.settings.selected_border_width }}px;
+  }
+
+  .ai-variant-card-{{ ai_gen_id }}.selected:hover {
+    background-color: {{ block.settings.selected_hover_background }};
+    border-color: {{ block.settings.selected_hover_border_color }};
+  }
+
+  .ai-variant-card__header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .ai-variant-card__name-{{ ai_gen_id }} {
+    font-size: {{ block.settings.variant_name_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.card_text_color }};
+    margin: 0;
+  }
+
+  .ai-variant-card-{{ ai_gen_id }}.selected .ai-variant-card__name-{{ ai_gen_id }} {
+    color: {{ block.settings.selected_text_color }};
+  }
+
+  .ai-variant-card__badge-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    background-color: {{ block.settings.badge_background }};
+    color: {{ block.settings.badge_text_color }};
+    font-size: {{ block.settings.badge_font_size }}px;
+    font-weight: 700;
+    border-radius: {{ block.settings.badge_border_radius }}px;
+    white-space: nowrap;
+  }
+
+  .ai-variant-card__price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.price_font_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.card_text_color }};
+    margin: 0;
+  }
+
+  .ai-variant-card-{{ ai_gen_id }}.selected .ai-variant-card__price-{{ ai_gen_id }} {
+    color: {{ block.settings.selected_text_color }};
+  }
+
+  .ai-variant-card__compare-price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.compare_price_font_size }}px;
+    color: {{ block.settings.compare_price_color }};
+    text-decoration: line-through;
+    margin-left: 6px;
+  }
+
+  .ai-variant-card__swatch-{{ ai_gen_id }} {
+    width: {{ block.settings.swatch_size }}px;
+    height: {{ block.settings.swatch_size }}px;
+    border-radius: {{ block.settings.swatch_border_radius }}px;
+    border: {{ block.settings.swatch_border_width }}px solid {{ block.settings.swatch_border_color }};
+    flex-shrink: 0;
+  }
+
+  .ai-variant-card__footer-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-variant-card__unavailable-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.unavailable_text_color }};
+    font-style: italic;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-variant-picker__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(auto-fill, minmax({{ block.settings.card_min_width_mobile }}px, 1fr));
+    }
+  }
+{% endstyle %}
+
+<variant-picker-{{ ai_gen_id }}
+  class="ai-variant-picker-{{ ai_gen_id }}"
+  data-product-id="{{ product.id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-variant-picker__grid-{{ ai_gen_id }}">
+    {% for variant in product.variants %}
+      {% liquid
+        assign has_compare_at_price = false
+        assign discount_percentage = 0
+
+        if variant.compare_at_price and variant.compare_at_price > variant.price
+          assign has_compare_at_price = true
+          assign price_diff = variant.compare_at_price | minus: variant.price
+          assign discount_percentage = price_diff | times: 100.0 | divided_by: variant.compare_at_price | round
+        endif
+
+        assign color_option = null
+        for option in variant.options
+          assign option_name = variant.option_names[forloop.index0] | downcase
+          if option_name contains 'color' or option_name contains 'colour'
+            assign color_option = option
+            break
+          endif
+        endfor
+
+        assign is_selected = false
+        if variant.id == product.selected_or_first_available_variant.id
+          assign is_selected = true
+        endif
+      %}
+
+      <div
+  class="ai-variant-card-{{ ai_gen_id }} {% if is_selected %}selected{% endif %}"
+  data-variant-id="{{ variant.id }}"
+  data-variant-available="{{ variant.available }}"
+>
+  <div class="ai-variant-card__header-{{ ai_gen_id }}">
+    <h3 class="ai-variant-card__name-{{ ai_gen_id }}">{{ variant.title }}</h3>
+  </div>
+
+  <div class="ai-variant-card__footer-{{ ai_gen_id }}">
+    {% if color_option and block.settings.show_color_swatch %}
+      <div
+        class="ai-variant-card__swatch-{{ ai_gen_id }}"
+        style="background-color: {{ color_option | downcase | replace: ' ', '' }};"
+      ></div>
+    {% endif %}
+
+    <div>
+      {% if variant.available %}
+        <p class="ai-variant-card__price-{{ ai_gen_id }}">
+          {{ variant.price | money }}
+        </p>
+        {% if has_compare_at_price and block.settings.show_sale_badge %}
+          <span class="ai-variant-card__badge-{{ ai_gen_id }}">
+            Save {{ discount_percentage }}%
+          </span>
+        {% endif %}
+      {% else %}
+        <p class="ai-variant-card__unavailable-{{ ai_gen_id }}">
+          {{ block.settings.unavailable_text }}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+</variant-picker-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class VariantPicker{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.productId = this.dataset.productId;
+      }
+
+      connectedCallback() {
+        this.cards = this.querySelectorAll('.ai-variant-card-{{ ai_gen_id }}');
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.cards.forEach((card) => {
+          card.addEventListener('click', () => {
+            const variantId = card.dataset.variantId;
+            const isAvailable = card.dataset.variantAvailable === 'true';
+
+            if (!isAvailable) {
+              return;
+            }
+
+            this.cards.forEach((c) => c.classList.remove('selected'));
+            card.classList.add('selected');
+
+            this.updateProductVariant(variantId);
+          });
+        });
+      }
+
+      updateProductVariant(variantId) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('variant', variantId);
+        window.history.replaceState({}, '', url);
+
+        const variantInput = document.querySelector('input[name="id"]');
+        if (variantInput) {
+          variantInput.value = variantId;
+          variantInput.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        document.dispatchEvent(new CustomEvent('variant:change', {
+          detail: { variantId: variantId }
+        }));
+      }
+    }
+
+    customElements.define('variant-picker-{{ ai_gen_id }}', VariantPicker{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Variant picker cards",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "card_min_width",
+      "label": "Card minimum width (desktop)",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "card_min_width_mobile",
+      "label": "Card minimum width (mobile)",
+      "min": 120,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Gap between cards",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card padding",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Border color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "card_hover_background",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_border_color",
+      "label": "Hover border color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "header",
+      "content": "Selected card style"
+    },
+    {
+      "type": "color",
+      "id": "selected_background",
+      "label": "Background",
+      "default": "#293274"
+    },
+    {
+      "type": "color",
+      "id": "selected_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "selected_border_color",
+      "label": "Border color",
+      "default": "#293274"
+    },
+    {
+      "type": "range",
+      "id": "selected_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "selected_hover_background",
+      "label": "Hover background",
+      "default": "#1a2158"
+    },
+    {
+      "type": "color",
+      "id": "selected_hover_border_color",
+      "label": "Hover border color",
+      "default": "#1a2158"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "variant_name_size",
+      "label": "Variant name size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "price_font_size",
+      "label": "Price size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "compare_price_font_size",
+      "label": "Compare price size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "color",
+      "id": "compare_price_color",
+      "label": "Compare price color",
+      "default": "#999999"
+    },
+    {
+      "type": "header",
+      "content": "Sale badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sale_badge",
+      "label": "Show sale badge",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Background",
+      "default": "#293274"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Color swatch"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_color_swatch",
+      "label": "Show color swatch",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "swatch_size",
+      "label": "Swatch size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "swatch_border_radius",
+      "label": "Swatch border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "swatch_border_color",
+      "label": "Swatch border color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "range",
+      "id": "swatch_border_width",
+      "label": "Swatch border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Unavailable variants"
+    },
+    {
+      "type": "text",
+      "id": "unavailable_text",
+      "label": "Unavailable text",
+      "default": "Out of stock"
+    },
+    {
+      "type": "color",
+      "id": "unavailable_text_color",
+      "label": "Text color",
+      "default": "#999999"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Variant picker cards"
+    }
+  ]
+}
+{% endschema %}

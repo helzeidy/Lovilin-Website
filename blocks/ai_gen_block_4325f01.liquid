@@ -1,0 +1,277 @@
+{% doc %}
+  @prompt
+    "Create a custom product collection text color block that: 1) Reads the current product's collections, 2) Allows merchants to map collection handles to specific text colors via theme editor settings (support at least 5 collection-to-color pairs), 3) Applies the matched color to a configurable text element (product title, badge, or description), 4) Falls back to a default color if no collection match is found, 5) Supports text case transformation (uppercase option), 6) Is responsive with separate width controls for desktop and mobile, 7) Includes padding controls for top, bottom, left, and right on both desktop and mobile, 8) Works on both desktop and mobile views with proper fit and fill for text."
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% liquid
+  assign matched_color = block.settings.default_color
+  assign collection_handle_1 = block.settings.collection_handle_1
+  assign collection_handle_2 = block.settings.collection_handle_2
+  assign collection_handle_3 = block.settings.collection_handle_3
+  assign collection_handle_4 = block.settings.collection_handle_4
+  assign collection_handle_5 = block.settings.collection_handle_5
+
+  for collection in product.collections
+    if collection.handle == collection_handle_1 and collection_handle_1 != blank
+      assign matched_color = block.settings.collection_color_1
+      break
+    elsif collection.handle == collection_handle_2 and collection_handle_2 != blank
+      assign matched_color = block.settings.collection_color_2
+      break
+    elsif collection.handle == collection_handle_3 and collection_handle_3 != blank
+      assign matched_color = block.settings.collection_color_3
+      break
+    elsif collection.handle == collection_handle_4 and collection_handle_4 != blank
+      assign matched_color = block.settings.collection_color_4
+      break
+    elsif collection.handle == collection_handle_5 and collection_handle_5 != blank
+      assign matched_color = block.settings.collection_color_5
+      break
+    endif
+  endfor
+%}
+
+{% style %}
+  .ai-collection-text-color-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-collection-text-color-content-{{ ai_gen_id }} {
+    color: {{ matched_color }};
+    {% if block.settings.text_transform_uppercase %}
+      text-transform: uppercase;
+    {% endif %}
+    margin: 0;
+    padding-top: {{ block.settings.padding_top_desktop }}px;
+    padding-bottom: {{ block.settings.padding_bottom_desktop }}px;
+    padding-left: {{ block.settings.padding_left_desktop }}px;
+    padding-right: {{ block.settings.padding_right_desktop }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-collection-text-color-content-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.padding_top_mobile }}px;
+      padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+      padding-left: {{ block.settings.padding_left_mobile }}px;
+      padding-right: {{ block.settings.padding_right_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-collection-text-color-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.text_element == 'title' %}
+    <h2 class="ai-collection-text-color-content-{{ ai_gen_id }}">{{ product.title }}</h2>
+  {% elsif block.settings.text_element == 'badge' %}
+    <span class="ai-collection-text-color-content-{{ ai_gen_id }}">{{ block.settings.badge_text }}</span>
+  {% elsif block.settings.text_element == 'description' %}
+    <div class="ai-collection-text-color-content-{{ ai_gen_id }}">{{ product.description | strip_html | truncate: 200 }}</div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Collection text color",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text element"
+    },
+    {
+      "type": "select",
+      "id": "text_element",
+      "label": "Element to display",
+      "options": [
+        {
+          "value": "title",
+          "label": "Product title"
+        },
+        {
+          "value": "badge",
+          "label": "Badge"
+        },
+        {
+          "value": "description",
+          "label": "Description"
+        }
+      ],
+      "default": "title"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Featured"
+    },
+    {
+      "type": "checkbox",
+      "id": "text_transform_uppercase",
+      "label": "Uppercase text",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Collection mapping"
+    },
+    {
+      "type": "paragraph",
+      "content": "Map collection handles to text colors. The first matching collection will be used."
+    },
+    {
+      "type": "text",
+      "id": "collection_handle_1",
+      "label": "Collection handle 1"
+    },
+    {
+      "type": "color",
+      "id": "collection_color_1",
+      "label": "Color 1",
+      "default": "#293274"
+    },
+    {
+      "type": "text",
+      "id": "collection_handle_2",
+      "label": "Collection handle 2"
+    },
+    {
+      "type": "color",
+      "id": "collection_color_2",
+      "label": "Color 2",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "collection_handle_3",
+      "label": "Collection handle 3"
+    },
+    {
+      "type": "color",
+      "id": "collection_color_3",
+      "label": "Color 3",
+      "default": "#1a2158"
+    },
+    {
+      "type": "text",
+      "id": "collection_handle_4",
+      "label": "Collection handle 4"
+    },
+    {
+      "type": "color",
+      "id": "collection_color_4",
+      "label": "Color 4",
+      "default": "#333333"
+    },
+    {
+      "type": "text",
+      "id": "collection_handle_5",
+      "label": "Collection handle 5"
+    },
+    {
+      "type": "color",
+      "id": "collection_color_5",
+      "label": "Color 5",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "default_color",
+      "label": "Default color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Desktop padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection text color"
+    }
+  ]
+}
+{% endschema %}
