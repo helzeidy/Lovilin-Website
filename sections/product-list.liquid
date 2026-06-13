@@ -146,9 +146,35 @@
         {% endfor %}
       </div>
       <style>
-        #filters-{{ section.id }} { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-        #filters-{{ section.id }} .product-list-filter-btn { padding: 8px 20px; border-radius: 50px; border: 1.5px solid var(--color-foreground); background: transparent; color: var(--color-foreground); cursor: pointer; font-size: 0.9rem; font-family: inherit; transition: background 0.2s, color 0.2s; }
-        #filters-{{ section.id }} .product-list-filter-btn.active { background: var(--color-foreground); color: var(--color-background); }
+        #filters-{{ section.id }} {
+          display: flex;
+          flex-wrap: wrap;
+          gap: {{ section.settings.filter_gap }}px;
+          margin-bottom: {{ section.settings.filter_margin_bottom }}px;
+          justify-content: {{ section.settings.filter_alignment }};
+        }
+        #filters-{{ section.id }} .product-list-filter-btn {
+          padding: {{ section.settings.filter_padding_y }}px {{ section.settings.filter_padding_x }}px;
+          border-radius: {{ section.settings.filter_border_radius }}px;
+          border: {{ section.settings.filter_border_width }}px solid {{ section.settings.filter_border_color }};
+          background: {{ section.settings.filter_bg_color }};
+          color: {{ section.settings.filter_text_color }};
+          cursor: pointer;
+          font-size: {{ section.settings.filter_font_size }}px;
+          font-weight: {{ section.settings.filter_font_weight }};
+          font-family: inherit;
+          transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        #filters-{{ section.id }} .product-list-filter-btn:hover {
+          background: {{ section.settings.filter_hover_bg_color }};
+          color: {{ section.settings.filter_hover_text_color }};
+          border-color: {{ section.settings.filter_hover_border_color }};
+        }
+        #filters-{{ section.id }} .product-list-filter-btn.active {
+          background: {{ section.settings.filter_active_bg_color }};
+          color: {{ section.settings.filter_active_text_color }};
+          border-color: {{ section.settings.filter_active_border_color }};
+        }
       </style>
       <script>
         (function() {
@@ -162,11 +188,14 @@
             btn.classList.add('active');
             var filter = btn.dataset.filter;
             sectionEl.querySelectorAll('.resource-list__item[data-collections]').forEach(function(item) {
-              if (filter === 'all' || item.dataset.collections.split(' ').indexOf(filter) !== -1) {
-                item.style.display = '';
-              } else {
-                item.style.display = 'none';
-              }
+              var match = filter === 'all' || item.dataset.collections.split(' ').indexOf(filter) !== -1;
+              // Hide the carousel slide wrapper if present, otherwise the item itself (grid)
+              var target = item.closest('.resource-list__slide') || item.closest('slideshow-slide') || item;
+              target.style.display = match ? '' : 'none';
+            });
+            // Reset any carousel back to the first visible card
+            sectionEl.querySelectorAll('slideshow-slides').forEach(function(track) {
+              track.scrollTo({ left: 0, behavior: 'smooth' });
             });
           });
         })();
@@ -610,6 +639,169 @@
   "id": "filter_collections",
   "label": "Filter collections",
   "limit": 8
+},
+{
+  "type": "header",
+  "content": "Filter Buttons — Layout"
+},
+{
+  "type": "select",
+  "id": "filter_alignment",
+  "label": "Alignment",
+  "options": [
+    { "value": "flex-start", "label": "Left" },
+    { "value": "center", "label": "Center" },
+    { "value": "flex-end", "label": "Right" }
+  ],
+  "default": "flex-start"
+},
+{
+  "type": "range",
+  "id": "filter_gap",
+  "label": "Gap between buttons",
+  "min": 0,
+  "max": 40,
+  "step": 1,
+  "unit": "px",
+  "default": 8
+},
+{
+  "type": "range",
+  "id": "filter_margin_bottom",
+  "label": "Space below buttons",
+  "min": 0,
+  "max": 80,
+  "step": 1,
+  "unit": "px",
+  "default": 20
+},
+{
+  "type": "range",
+  "id": "filter_padding_x",
+  "label": "Horizontal padding",
+  "min": 0,
+  "max": 60,
+  "step": 1,
+  "unit": "px",
+  "default": 20
+},
+{
+  "type": "range",
+  "id": "filter_padding_y",
+  "label": "Vertical padding",
+  "min": 0,
+  "max": 40,
+  "step": 1,
+  "unit": "px",
+  "default": 8
+},
+{
+  "type": "range",
+  "id": "filter_border_radius",
+  "label": "Border radius",
+  "min": 0,
+  "max": 50,
+  "step": 1,
+  "unit": "px",
+  "default": 50
+},
+{
+  "type": "range",
+  "id": "filter_border_width",
+  "label": "Border width",
+  "min": 0,
+  "max": 6,
+  "step": 1,
+  "unit": "px",
+  "default": 2
+},
+{
+  "type": "range",
+  "id": "filter_font_size",
+  "label": "Font size",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "unit": "px",
+  "default": 14
+},
+{
+  "type": "select",
+  "id": "filter_font_weight",
+  "label": "Font weight",
+  "options": [
+    { "value": "400", "label": "Normal" },
+    { "value": "500", "label": "Medium" },
+    { "value": "600", "label": "Semi bold" },
+    { "value": "700", "label": "Bold" }
+  ],
+  "default": "500"
+},
+{
+  "type": "header",
+  "content": "Filter Buttons — Default Colors"
+},
+{
+  "type": "color",
+  "id": "filter_text_color",
+  "label": "Text color",
+  "default": "#1a1a4b"
+},
+{
+  "type": "color",
+  "id": "filter_bg_color",
+  "label": "Background color",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "filter_border_color",
+  "label": "Border color",
+  "default": "#1a1a4b"
+},
+{
+  "type": "header",
+  "content": "Filter Buttons — Hover Colors"
+},
+{
+  "type": "color",
+  "id": "filter_hover_text_color",
+  "label": "Hover text color",
+  "default": "#1a1a4b"
+},
+{
+  "type": "color",
+  "id": "filter_hover_bg_color",
+  "label": "Hover background color",
+  "default": "#eef0ff"
+},
+{
+  "type": "color",
+  "id": "filter_hover_border_color",
+  "label": "Hover border color",
+  "default": "#1a1a4b"
+},
+{
+  "type": "header",
+  "content": "Filter Buttons — Selected Colors"
+},
+{
+  "type": "color",
+  "id": "filter_active_text_color",
+  "label": "Selected text color",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "filter_active_bg_color",
+  "label": "Selected background color",
+  "default": "#1a1a4b"
+},
+{
+  "type": "color",
+  "id": "filter_active_border_color",
+  "label": "Selected border color",
+  "default": "#1a1a4b"
 },
 {
   "type": "range",
