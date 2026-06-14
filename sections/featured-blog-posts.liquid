@@ -7,6 +7,7 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 
 <div
+  id="blog-{{ section.id }}"
   class="
     section
     section--{{ section.settings.section_width }}
@@ -20,6 +21,15 @@
     {%- render 'gap-style', value: section.settings.gap -%}
   "
 >
+  {% if section.settings.mobile_card_size_custom_enabled %}
+    <style>
+      @media (max-width: 749px) {
+        #blog-{{ section.id }} .resource-list__slide {
+          --mobile-card-size: {{ section.settings.mobile_card_size_custom }}cqw;
+        }
+      }
+    </style>
+  {% endif %}
   {% content_for 'block', id: 'static-blog-title', type: '_featured-blog-posts-title' %}
 
   {% if section.settings.blog != blank and section.settings.blog.articles_count > 0 %}
@@ -168,6 +178,23 @@
       ],
       "default": "60cqw",
       "visible_if": "{{ section.settings.layout_type == 'carousel' or section.settings.carousel_on_mobile == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_card_size_custom_enabled",
+      "label": "Use custom mobile card width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_size_custom",
+      "label": "Custom mobile card width",
+      "min": 30,
+      "max": 95,
+      "step": 1,
+      "unit": "%",
+      "default": 60,
+      "visible_if": "{{ section.settings.mobile_card_size_custom_enabled }}"
     },
     {
       "type": "range",
