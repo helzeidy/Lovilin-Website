@@ -151,16 +151,24 @@
           flex-wrap: nowrap;
           gap: {{ section.settings.filter_gap }}px;
           margin-bottom: {{ section.settings.filter_margin_bottom }}px;
-          justify-content: {{ section.settings.filter_alignment }};
+          justify-content: safe {{ section.settings.filter_alignment }};
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
           scroll-snap-type: x proximity;
           scrollbar-width: none;
           -ms-overflow-style: none;
-          padding-inline: {{ section.settings.filter_edge_padding }}px;
-          margin-inline: -{{ section.settings.filter_edge_padding }}px;
           scroll-padding-inline: {{ section.settings.filter_edge_padding }}px;
           padding-block: 4px;
+        }
+        /* On mobile, let the tab bar scroll edge-to-edge across the full screen */
+        @media (max-width: 749px) {
+          #filters-{{ section.id }} {
+            width: 100vw;
+            max-width: 100vw;
+            margin-inline: calc(50% - 50vw);
+            padding-inline: calc(var(--util-page-margin-offset, 16px) + {{ section.settings.filter_edge_padding }}px);
+            scroll-padding-inline: calc(var(--util-page-margin-offset, 16px) + {{ section.settings.filter_edge_padding }}px);
+          }
         }
         #filters-{{ section.id }}::-webkit-scrollbar { display: none; }
         #filters-{{ section.id }} .product-list-filter-btn {
