@@ -148,12 +148,25 @@
       <style>
         #filters-{{ section.id }} {
           display: flex;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
           gap: {{ section.settings.filter_gap }}px;
           margin-bottom: {{ section.settings.filter_margin_bottom }}px;
           justify-content: {{ section.settings.filter_alignment }};
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scroll-snap-type: x proximity;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          padding-inline: {{ section.settings.filter_edge_padding }}px;
+          margin-inline: -{{ section.settings.filter_edge_padding }}px;
+          scroll-padding-inline: {{ section.settings.filter_edge_padding }}px;
+          padding-block: 4px;
         }
+        #filters-{{ section.id }}::-webkit-scrollbar { display: none; }
         #filters-{{ section.id }} .product-list-filter-btn {
+          flex: 0 0 auto;
+          white-space: nowrap;
+          scroll-snap-align: start;
           padding: {{ section.settings.filter_padding_y }}px {{ section.settings.filter_padding_x }}px;
           border-radius: {{ section.settings.filter_border_radius }}px;
           border: {{ section.settings.filter_border_width }}px solid {{ section.settings.filter_border_color }};
@@ -674,6 +687,16 @@
   "step": 1,
   "unit": "px",
   "default": 20
+},
+{
+  "type": "range",
+  "id": "filter_edge_padding",
+  "label": "Edge spacing (scroll)",
+  "min": 0,
+  "max": 40,
+  "step": 1,
+  "unit": "px",
+  "default": 4
 },
 {
   "type": "range",
