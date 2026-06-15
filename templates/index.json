@@ -1416,7 +1416,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<h4>New arrivals</h4>",
+                        "text": "<h3>New arrivals</h3>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
