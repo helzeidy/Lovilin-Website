@@ -1006,6 +1006,7 @@
               "settings": {
                 "source": "uploaded",
                 "video": "shopify://files/videos/WhatsApp Video 2026-06-15 at 09.49.13.mp4",
+                "video_url": "",
                 "video_autoplay": true,
                 "video_loop": true,
                 "alt": "",
@@ -1073,7 +1074,7 @@
               "name": "t:names.group",
               "settings": {
                 "content_direction": "row",
-                "vertical_on_mobile": true,
+                "vertical_on_mobile": false,
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
@@ -1263,7 +1264,7 @@
               "name": "t:names.group",
               "settings": {
                 "content_direction": "row",
-                "vertical_on_mobile": true,
+                "vertical_on_mobile": false,
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
