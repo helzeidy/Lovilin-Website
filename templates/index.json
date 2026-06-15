@@ -2615,7 +2615,7 @@
         "mobile_card_size": "60cqw",
         "mobile_card_size_custom_enabled": true,
         "mobile_card_size_custom": 85,
-        "columns_gap": 8,
+        "columns_gap": 24,
         "rows_gap": 16,
         "icons_style": "arrow",
         "icons_shape": "none",
