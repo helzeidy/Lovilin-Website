@@ -338,138 +338,86 @@
     "marquee_dJxqKw": {
       "type": "marquee",
       "blocks": {
-        "text_BXhfkW": {
-          "type": "text",
+        "icon_dHzw6P": {
+          "type": "icon",
+          "name": "t:names.icon",
           "settings": {
-            "text": "<p>Certified Products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "paragraph",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/14001.2015.svg",
+            "width": 80,
+            "link": "",
+            "open_in_new_tab": false
           },
           "blocks": {}
         },
-        "text_dC94BG": {
-          "type": "text",
+        "icon_XtDG33": {
+          "type": "icon",
+          "name": "t:names.icon",
           "settings": {
-            "text": "<p>Certified Safe · 2000+ Saftey Checks</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "paragraph",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/9001.2015.svg",
+            "width": 80,
+            "link": "",
+            "open_in_new_tab": false
           },
           "blocks": {}
         },
-        "text_bmcqaK": {
-          "type": "text",
+        "icon_trVmH6": {
+          "type": "icon",
+          "name": "t:names.icon",
           "settings": {
-            "text": "<p>Third Party Tested</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "paragraph",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/45001.2018.svg",
+            "width": 80,
+            "link": "",
+            "open_in_new_tab": false
           },
           "blocks": {}
         },
-        "text_i8zAh6": {
-          "type": "text",
+        "icon_iEiA4M": {
+          "type": "icon",
+          "name": "t:names.icon",
           "settings": {
-            "text": "<p>Dermatologically Tested</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "paragraph",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/EOS.svg",
+            "width": 80,
+            "link": "",
+            "open_in_new_tab": false
           },
           "blocks": {}
         },
-        "text_Tmk8Db": {
-          "type": "text",
+        "icon_zcAUL3": {
+          "type": "icon",
+          "name": "t:names.icon",
           "settings": {
-            "text": "<p>Clinically-studied Ingredients</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "paragraph",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/NRC.svg",
+            "width": 80,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "icon_d6YFk9": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/EDA.svg",
+            "width": 80,
+            "link": "",
+            "open_in_new_tab": false
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "text_BXhfkW",
-        "text_dC94BG",
-        "text_bmcqaK",
-        "text_i8zAh6",
-        "text_Tmk8Db"
+        "icon_dHzw6P",
+        "icon_XtDG33",
+        "icon_trVmH6",
+        "icon_iEiA4M",
+        "icon_zcAUL3",
+        "icon_d6YFk9"
       ],
       "name": "t:names.marquee_section",
       "settings": {
@@ -477,7 +425,7 @@
         "color_scheme": "scheme-1",
         "padding-block-start": 24,
         "padding-block-end": 24,
-        "gap_between_elements": 24
+        "gap_between_elements": 80
       }
     },
     "product_list_fa6P9H": {
