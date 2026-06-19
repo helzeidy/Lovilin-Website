@@ -51,7 +51,7 @@
             "cert_label_weight": "400",
             "cert_uppercase": true,
             "cert_label_color": "#1a1a6e",
-            "cert_alignment": "space-between",
+            "cert_alignment": "center",
             "cert_gap": 12,
             "cert_gap_mobile": 8,
             "cert_strip_background": "#EBEBEB",
