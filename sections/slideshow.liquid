@@ -48,6 +48,8 @@
 
   if section.settings.slide_height == 'fullscreen'
     assign slideshow_class = slideshow_class | append: ' slideshow--fullscreen'
+  elsif section.settings.slide_height == 'custom_vh'
+    assign slideshow_class = slideshow_class | append: ' slideshow--custom-height'
   endif
 
   assign show_arrows = true
@@ -66,7 +68,7 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div
   class="slideshow-section spacing-style section {{ section_width_class }} color-{{ section.settings.color_scheme }} disable-section-top-offset"
-  style="{% render 'spacing-padding', settings: section.settings %}; --slideshow-gap: {{ section.settings.slideshow_gap }}px;{% if rounded_slide_corners %} --corner-radius: {{ section.settings.corner_radius }}px;{% endif %}"
+  style="{% render 'spacing-padding', settings: section.settings %}; --slideshow-gap: {{ section.settings.slideshow_gap }}px;{% if rounded_slide_corners %} --corner-radius: {{ section.settings.corner_radius }}px;{% endif %}{% if section.settings.slide_height == 'custom_vh' %} --slide-height-desktop: {{ section.settings.slide_height_vh }}svh; --slide-height-mobile: {{ section.settings.slide_height_vh_mobile }}svh;{% endif %}"
 >
   <h2 class="visually-hidden">{{ 'accessibility.slideshow' | t }}</h2>
   {% render 'slideshow',
@@ -86,6 +88,16 @@
 {% stylesheet %}
   .slideshow--fullscreen slideshow-slide {
     height: 100dvh;
+  }
+
+  .slideshow--custom-height slideshow-slide {
+    height: var(--slide-height-desktop, 60svh);
+  }
+
+  @media screen and (max-width: 749px) {
+    .slideshow--custom-height slideshow-slide {
+      height: var(--slide-height-mobile, var(--slide-height-desktop, 60svh));
+    }
   }
 
   .slideshow-section {
@@ -273,10 +285,36 @@
         {
           "value": "fullscreen",
           "label": "Full screen"
+        },
+        {
+          "value": "custom_vh",
+          "label": "Custom (% of screen)"
         }
       ],
       "default": "medium",
       "label": "t:settings.media_height"
+    },
+    {
+      "type": "range",
+      "id": "slide_height_vh",
+      "label": "Custom height (desktop)",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 60,
+      "visible_if": "{{ section.settings.slide_height == 'custom_vh' }}"
+    },
+    {
+      "type": "range",
+      "id": "slide_height_vh_mobile",
+      "label": "Custom height (mobile)",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 70,
+      "visible_if": "{{ section.settings.slide_height == 'custom_vh' }}"
     },
     {
       "type": "select",
