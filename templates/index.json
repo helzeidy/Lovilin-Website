@@ -220,7 +220,7 @@
         "corner_radius": 0,
         "slide_height": "custom_vh",
         "slide_height_vh": 60,
-        "slide_height_vh_mobile": 70,
+        "slide_height_vh_mobile": 60,
         "content_position": "on-media",
         "color_scheme": "",
         "icons_style": "arrows_large",
