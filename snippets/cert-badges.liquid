@@ -1,26 +1,84 @@
 {% comment %}
   Renders the per-product certification badge strip.
   Reads a list of "Certification Badge" metaobjects from the product metafield
-  custom.cert_badges (icon image + label). Used under the product image,
-  above the gallery thumbnails.
+  custom.cert_badges (icon image + label). Shown under the product image,
+  above the gallery thumbnails. Fully styleable via the params below
+  (wired to the Product media block settings).
 
   @param {object} [product] - product to read badges from; defaults to closest.product
+  @param {object} [settings] - the media gallery block settings object
 {% endcomment %}
 
 {%- liquid
   assign cb_product = product | default: closest.product
   assign cb_badges = cb_product.metafields.custom.cert_badges.value
+  assign s = settings
+
+  # Defaults (used if settings not provided)
+  assign cb_shape = s.cert_shape | default: 'circle'
+  assign cb_size = s.cert_size | default: 84
+  assign cb_size_mobile = s.cert_size_mobile | default: 60
+  assign cb_radius = s.cert_corner_radius | default: 16
+  assign cb_icon_pad = s.cert_icon_padding | default: 0
+  assign cb_shape_bg = s.cert_shape_background
+  assign cb_ring_width = s.cert_ring_width | default: 0
+  assign cb_ring_color = s.cert_ring_color | default: '#1a1a6e'
+  assign cb_gap = s.cert_gap | default: 12
+  assign cb_gap_mobile = s.cert_gap_mobile | default: 8
+  assign cb_align = s.cert_alignment | default: 'space-between'
+  assign cb_show_label = true
+  if s.cert_show_label == false
+    assign cb_show_label = false
+  endif
+  assign cb_label_size = s.cert_label_size | default: 12
+  assign cb_label_weight = s.cert_label_weight | default: '700'
+  assign cb_label_color = s.cert_label_color | default: '#1a1a6e'
+  assign cb_uppercase = true
+  if s.cert_uppercase == false
+    assign cb_uppercase = false
+  endif
+  assign cb_strip_bg = s.cert_strip_background
+  assign cb_strip_radius = s.cert_strip_radius | default: 0
+  assign cb_pad_top = s.cert_padding_top | default: 16
+  assign cb_pad_bottom = s.cert_padding_bottom | default: 4
+  assign cb_pad_left = s.cert_padding_left | default: 0
+  assign cb_pad_right = s.cert_padding_right | default: 0
+
+  if cb_shape == 'square'
+    assign cb_border_radius = cb_radius
+  else
+    assign cb_border_radius = 9999
+  endif
 -%}
 
 {%- if cb_badges != blank -%}
-  <div class="cert-badges">
+  <div
+    class="cert-badges"
+    style="
+      justify-content: {{ cb_align }};
+      gap: {{ cb_gap }}px;
+      padding: {{ cb_pad_top }}px {{ cb_pad_right }}px {{ cb_pad_bottom }}px {{ cb_pad_left }}px;
+      {% if cb_strip_bg != blank %}background-color: {{ cb_strip_bg }};{% endif %}
+      border-radius: {{ cb_strip_radius }}px;
+      --cb-size: {{ cb_size }}px;
+      --cb-size-mobile: {{ cb_size_mobile }}px;
+      --cb-radius: {{ cb_border_radius }}px;
+      --cb-pad: {{ cb_icon_pad }}px;
+      --cb-gap-mobile: {{ cb_gap_mobile }}px;
+      {% if cb_shape_bg != blank %}--cb-shape-bg: {{ cb_shape_bg }};{% endif %}
+      {% if cb_ring_width > 0 %}--cb-ring: {{ cb_ring_width }}px solid {{ cb_ring_color }};{% endif %}
+      --cb-label-size: {{ cb_label_size }}px;
+      --cb-label-weight: {{ cb_label_weight }};
+      --cb-label-color: {{ cb_label_color }};
+    "
+  >
     {%- for badge in cb_badges -%}
       {%- liquid
         assign cb_icon = badge.icon.value | default: badge.icon
         assign cb_label = badge.label.value | default: badge.label
       -%}
       <div class="cert-badge">
-        <div class="cert-badge__circle">
+        <div class="cert-badge__shape">
           {%- if cb_icon != blank -%}
             <img
               src="{{ cb_icon | image_url: width: 240 }}"
@@ -31,8 +89,8 @@
             >
           {%- endif -%}
         </div>
-        {%- if cb_label != blank -%}
-          <span class="cert-badge__label">{{ cb_label }}</span>
+        {%- if cb_show_label and cb_label != blank -%}
+          <span class="cert-badge__label {% if cb_uppercase %}cert-badge__label--upper{% endif %}">{{ cb_label }}</span>
         {%- endif -%}
       </div>
     {%- endfor -%}
@@ -42,11 +100,8 @@
     .cert-badges {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       align-items: flex-start;
-      gap: 12px;
       width: 100%;
-      padding: 16px 0 4px;
     }
     .cert-badge {
       display: flex;
@@ -54,36 +109,41 @@
       align-items: center;
       text-align: center;
       flex: 1 1 0;
-      min-width: 64px;
+      min-width: var(--cb-size-mobile);
       gap: 8px;
     }
-    .cert-badge__circle {
-      width: 84px;
-      height: 84px;
-      border-radius: 50%;
+    .cert-badge__shape {
+      width: var(--cb-size);
+      height: var(--cb-size);
+      border-radius: var(--cb-radius);
+      padding: var(--cb-pad);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      box-sizing: border-box;
+      background: var(--cb-shape-bg, transparent);
+      border: var(--cb-ring, none);
     }
-    .cert-badge__circle img {
+    .cert-badge__shape img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
     .cert-badge__label {
-      font-size: 12px;
-      font-weight: 700;
+      font-size: var(--cb-label-size);
+      font-weight: var(--cb-label-weight);
       line-height: 1.15;
       letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #1a1a6e;
+      color: var(--cb-label-color);
     }
+    .cert-badge__label--upper { text-transform: uppercase; }
     @media screen and (max-width: 749px) {
-      .cert-badges { gap: 8px; padding: 12px 0 4px; }
-      .cert-badge { min-width: 56px; }
-      .cert-badge__circle { width: 60px; height: 60px; }
-      .cert-badge__label { font-size: 10px; }
+      .cert-badges { gap: var(--cb-gap-mobile) !important; }
+      .cert-badge__shape {
+        width: var(--cb-size-mobile);
+        height: var(--cb-size-mobile);
+      }
     }
   {%- endstyle -%}
 {%- endif -%}

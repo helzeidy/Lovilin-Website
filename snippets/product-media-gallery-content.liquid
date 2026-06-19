@@ -400,7 +400,7 @@
 
     {% if sorted_media.size > 1 %}
       {% capture controls %}
-        {% render 'cert-badges', product: closest.product %}
+        {% render 'cert-badges', product: closest.product, settings: block_settings %}
         {% if render_slideshow_controls %}
           {%- render 'slideshow-controls',
             class: slideshow_controls_class,
@@ -446,7 +446,7 @@
     %}
 
     {% if sorted_media.size <= 1 %}
-      {% render 'cert-badges', product: closest.product %}
+      {% render 'cert-badges', product: closest.product, settings: block_settings %}
     {% endif %}
 
     {% if media_presentation == 'grid' %}

@@ -320,6 +320,210 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Certification badges"
+    },
+    {
+      "type": "paragraph",
+      "content": "Shown under the main image, above the thumbnails. Reads the product metafield custom.cert_badges."
+    },
+    {
+      "type": "select",
+      "id": "cert_shape",
+      "label": "Shape",
+      "options": [
+        { "value": "circle", "label": "Circle" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "circle"
+    },
+    {
+      "type": "range",
+      "id": "cert_corner_radius",
+      "label": "Corner radius (square)",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "cert_size",
+      "label": "Badge size (desktop)",
+      "min": 32,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 84
+    },
+    {
+      "type": "range",
+      "id": "cert_size_mobile",
+      "label": "Badge size (mobile)",
+      "min": 28,
+      "max": 140,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "cert_icon_padding",
+      "label": "Icon padding inside shape",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "cert_shape_background",
+      "label": "Shape background"
+    },
+    {
+      "type": "range",
+      "id": "cert_ring_width",
+      "label": "Shape border width",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "cert_ring_color",
+      "label": "Shape border color",
+      "default": "#1a1a6e"
+    },
+    {
+      "type": "checkbox",
+      "id": "cert_show_label",
+      "label": "Show label",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "cert_label_size",
+      "label": "Label size",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "cert_label_weight",
+      "label": "Label weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "checkbox",
+      "id": "cert_uppercase",
+      "label": "Uppercase label",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "cert_label_color",
+      "label": "Label color",
+      "default": "#1a1a6e"
+    },
+    {
+      "type": "select",
+      "id": "cert_alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "space-between", "label": "Space between" }
+      ],
+      "default": "space-between"
+    },
+    {
+      "type": "range",
+      "id": "cert_gap",
+      "label": "Gap between badges (desktop)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "cert_gap_mobile",
+      "label": "Gap between badges (mobile)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "cert_strip_background",
+      "label": "Strip background"
+    },
+    {
+      "type": "range",
+      "id": "cert_strip_radius",
+      "label": "Strip background radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "cert_padding_top",
+      "label": "Strip padding top",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "cert_padding_bottom",
+      "label": "Strip padding bottom",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "cert_padding_left",
+      "label": "Strip padding left",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "cert_padding_right",
+      "label": "Strip padding right",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 0
     }
   ],
   "presets": [
