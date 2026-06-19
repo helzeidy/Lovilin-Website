@@ -43,7 +43,7 @@
               "settings": {
                 "text": "<h1>For Everything They Touch.<br/>And What Touches Them.</h1>",
                 "width": "fit-content",
-                "max_width": "normal",
+                "max_width": "none",
                 "alignment": "left",
                 "type_preset": "h1",
                 "font": "var(--font-body--family)",
@@ -140,7 +140,7 @@
               "settings": {
                 "text": "<h1>It's not one product. <br/>It's a system.</h1>",
                 "width": "fit-content",
-                "max_width": "normal",
+                "max_width": "none",
                 "alignment": "left",
                 "type_preset": "h1",
                 "font": "var(--font-body--family)",
