@@ -68,6 +68,35 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "product_cert_badges_93UnFY": {
+              "type": "product-cert-badges",
+              "name": "Certification badges",
+              "settings": {
+                "metafield_namespace": "custom",
+                "metafield_key": "cert_badges",
+                "circle_size": 60,
+                "circle_size_mobile": 48,
+                "icon_size": 100,
+                "show_ring": false,
+                "ring_width": 1,
+                "ring_color": "#1a1a6e",
+                "circle_background": "#FFFFFF",
+                "label_size": 13,
+                "label_weight": "400",
+                "uppercase": false,
+                "label_color": "#1a1a6e",
+                "alignment": "space-between",
+                "gap": 16,
+                "gap_mobile": 10,
+                "background": "#FFFFFF",
+                "background_radius": 0,
+                "padding_block_start": 12,
+                "padding_block_end": 12,
+                "padding_inline_start": 0,
+                "padding_inline_end": 0
+              },
+              "blocks": {}
+            },
             "group_r4eahU": {
               "type": "group",
               "name": "t:names.group",
@@ -663,10 +692,6 @@
                 "group_6kWm6D"
               ]
             },
-            "cert_badges_lovilin": {
-              "type": "product-cert-badges",
-              "settings": {}
-            },
             "divider_VJhene": {
               "type": "_divider",
               "name": "t:names.divider",
@@ -783,9 +808,9 @@
             }
           },
           "block_order": [
+            "product_cert_badges_93UnFY",
             "group_r4eahU",
             "group_icgrde",
-            "cert_badges_lovilin",
             "divider_VJhene",
             "ai_gen_block_af06917_7HzMkC",
             "divider_ijVBhC",
