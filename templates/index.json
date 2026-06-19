@@ -3051,7 +3051,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/Frame_2.svg",
+                    "image": "shopify://shop_images/EDA.svg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "custom",
@@ -3074,7 +3074,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/Frame_1_f67d2f2b-5c0b-48df-bed1-0302603a10b7.svg",
+                    "image": "shopify://shop_images/NRC.svg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "custom",
@@ -3295,8 +3295,8 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000047",
+        "toggle_overlay": true,
+        "overlay_color": "#FFFFFF1F",
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 50,
