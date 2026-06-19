@@ -1,0 +1,89 @@
+{% comment %}
+  Renders the per-product certification badge strip.
+  Reads a list of "Certification Badge" metaobjects from the product metafield
+  custom.cert_badges (icon image + label). Used under the product image,
+  above the gallery thumbnails.
+
+  @param {object} [product] - product to read badges from; defaults to closest.product
+{% endcomment %}
+
+{%- liquid
+  assign cb_product = product | default: closest.product
+  assign cb_badges = cb_product.metafields.custom.cert_badges.value
+-%}
+
+{%- if cb_badges != blank -%}
+  <div class="cert-badges">
+    {%- for badge in cb_badges -%}
+      {%- liquid
+        assign cb_icon = badge.icon.value | default: badge.icon
+        assign cb_label = badge.label.value | default: badge.label
+      -%}
+      <div class="cert-badge">
+        <div class="cert-badge__circle">
+          {%- if cb_icon != blank -%}
+            <img
+              src="{{ cb_icon | image_url: width: 240 }}"
+              alt="{{ cb_label | escape }}"
+              width="240"
+              height="240"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </div>
+        {%- if cb_label != blank -%}
+          <span class="cert-badge__label">{{ cb_label }}</span>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- style -%}
+    .cert-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+      padding: 16px 0 4px;
+    }
+    .cert-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1 1 0;
+      min-width: 64px;
+      gap: 8px;
+    }
+    .cert-badge__circle {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .cert-badge__circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .cert-badge__label {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #1a1a6e;
+    }
+    @media screen and (max-width: 749px) {
+      .cert-badges { gap: 8px; padding: 12px 0 4px; }
+      .cert-badge { min-width: 56px; }
+      .cert-badge__circle { width: 60px; height: 60px; }
+      .cert-badge__label { font-size: 10px; }
+    }
+  {%- endstyle -%}
+{%- endif -%}
