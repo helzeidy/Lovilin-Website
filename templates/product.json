@@ -663,6 +663,10 @@
                 "group_6kWm6D"
               ]
             },
+            "cert_badges_lovilin": {
+              "type": "product-cert-badges",
+              "settings": {}
+            },
             "divider_VJhene": {
               "type": "_divider",
               "name": "t:names.divider",
@@ -781,6 +785,7 @@
           "block_order": [
             "group_r4eahU",
             "group_icgrde",
+            "cert_badges_lovilin",
             "divider_VJhene",
             "ai_gen_block_af06917_7HzMkC",
             "divider_ijVBhC",
