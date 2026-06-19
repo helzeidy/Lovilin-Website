@@ -189,7 +189,7 @@
               "type": "button",
               "settings": {
                 "label": "Explore System",
-                "link": "shopify://collections/all",
+                "link": "shopify://pages/our-system",
                 "open_in_new_tab": false,
                 "style_class": "button",
                 "width": "fit-content",
@@ -1997,7 +1997,7 @@
                       "type": "button",
                       "settings": {
                         "label": "Shop Baby Laundry",
-                        "link": "shopify://collections/stain-treatment",
+                        "link": "shopify://collections/fabric-care",
                         "open_in_new_tab": false,
                         "style_class": "button",
                         "width": "custom",
@@ -2253,7 +2253,7 @@
                       "type": "button",
                       "settings": {
                         "label": "Shop Bottle & Dish Cleanser",
-                        "link": "shopify://collections/stain-treatment",
+                        "link": "shopify://collections/feeding-hygiene",
                         "open_in_new_tab": false,
                         "style_class": "button",
                         "width": "custom",
@@ -2509,7 +2509,7 @@
                       "type": "button",
                       "settings": {
                         "label": "Shop Toy & Surface",
-                        "link": "shopify://collections/stain-treatment",
+                        "link": "shopify://collections/surface-disinfection",
                         "open_in_new_tab": false,
                         "style_class": "button",
                         "width": "custom",
@@ -5408,7 +5408,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Shop Now",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://products/antibacterial-toy-surface-cleaner",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
@@ -5623,7 +5623,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Shop Now",
-                    "link": "shopify://collections/all",
+                    "link": "shopify://products/antibacterial-bottle-dish-cleanser",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
