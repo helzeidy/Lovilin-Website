@@ -28,7 +28,7 @@
             "inherit_color_scheme": false,
             "color_scheme": "scheme-6",
             "toggle_overlay": true,
-            "overlay_color": "#00000026",
+            "overlay_color": "#00000040",
             "overlay_style": "solid",
             "gradient_direction": "to top",
             "padding-block-start": 48,
