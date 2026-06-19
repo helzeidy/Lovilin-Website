@@ -47,7 +47,7 @@
             "cert_ring_width": 0,
             "cert_ring_color": "#1a1a6e",
             "cert_show_label": true,
-            "cert_label_size": 8,
+            "cert_label_size": 10,
             "cert_label_weight": "400",
             "cert_uppercase": true,
             "cert_label_color": "#1a1a6e",
