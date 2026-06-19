@@ -520,8 +520,8 @@
                         "align_baseline": false,
                         "horizontal_alignment_flex_direction_column": "flex-start",
                         "vertical_alignment_flex_direction_column": "center",
-                        "gap": 12,
-                        "width": "fill",
+                        "gap": 24,
+                        "width": "fit-content",
                         "custom_width": 100,
                         "width_mobile": "fit-content",
                         "custom_width_mobile": 100,
@@ -555,7 +555,7 @@
                           "settings": {
                             "image": "{{ closest.product.metafields.custom.icon_1.value }}",
                             "link": "",
-                            "image_ratio": "adapt",
+                            "image_ratio": "square",
                             "width": "fill",
                             "custom_width": 100,
                             "width_mobile": "fill",
@@ -578,7 +578,7 @@
                           "settings": {
                             "image": "{{ closest.product.metafields.custom.icon_2.value }}",
                             "link": "",
-                            "image_ratio": "adapt",
+                            "image_ratio": "square",
                             "width": "fill",
                             "custom_width": 100,
                             "width_mobile": "fill",
@@ -601,7 +601,7 @@
                           "settings": {
                             "image": "{{ closest.product.metafields.custom.icon_3.value }}",
                             "link": "",
-                            "image_ratio": "adapt",
+                            "image_ratio": "square",
                             "width": "fill",
                             "custom_width": 100,
                             "width_mobile": "fill",
@@ -624,7 +624,7 @@
                           "settings": {
                             "image": "{{ closest.product.metafields.custom.icon_4.value }}",
                             "link": "",
-                            "image_ratio": "adapt",
+                            "image_ratio": "square",
                             "width": "fill",
                             "custom_width": 100,
                             "width_mobile": "fill",
