@@ -136,9 +136,9 @@
         "settings": {
           "background": "#ffffff",
           "foreground_heading": "#071e85",
-          "foreground": "#000000ed",
+          "foreground": "#071E85",
           "primary": "#071e85",
-          "primary_hover": "#000000",
+          "primary_hover": "#071E85",
           "border": "#efefef",
           "shadow": "#000000",
           "primary_button_background": "#071e85",
