@@ -245,6 +245,18 @@
       "default": "fit"
     },
     {
+      "type": "select",
+      "id": "custom_height_unit",
+      "label": "Height unit",
+      "options": [
+        { "value": "percent", "label": "% of parent" },
+        { "value": "svh", "label": "% of screen" },
+        { "value": "px", "label": "Pixels" }
+      ],
+      "default": "percent",
+      "visible_if": "{{ block.settings.height == 'custom' }}"
+    },
+    {
       "type": "range",
       "id": "custom_height",
       "label": "t:settings.custom_height",
@@ -253,7 +265,18 @@
       "step": 1,
       "unit": "%",
       "default": 100,
-      "visible_if": "{{ block.settings.height == 'custom' }}"
+      "visible_if": "{{ block.settings.height == 'custom' and block.settings.custom_height_unit != 'px' }}"
+    },
+    {
+      "type": "range",
+      "id": "custom_height_px",
+      "label": "Custom height (px)",
+      "min": 50,
+      "max": 1200,
+      "step": 10,
+      "unit": "px",
+      "default": 400,
+      "visible_if": "{{ block.settings.height == 'custom' and block.settings.custom_height_unit == 'px' }}"
     },
     {
       "type": "header",

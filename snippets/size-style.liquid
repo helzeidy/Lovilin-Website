@@ -14,8 +14,13 @@
 {%- endif -%}
 
 {%- if settings.height == 'custom' -%}
-  --size-style-height:
-  {{- settings.custom_height }}%;
+  {%- if settings.custom_height_unit == 'px' -%}
+    --size-style-height: {{ settings.custom_height_px }}px;
+  {%- elsif settings.custom_height_unit == 'svh' -%}
+    --size-style-height: {{ settings.custom_height }}svh;
+  {%- else -%}
+    --size-style-height: {{ settings.custom_height }}%;
+  {%- endif -%}
 {%- elsif settings.height == 'fill' -%}
   --size-style-height: 100%;
 {%- else -%}
