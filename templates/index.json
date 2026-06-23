@@ -17,7 +17,7 @@
           "settings": {
             "media_type_1": "image",
             "image_1": "shopify://shop_images/hero-banner_1.jpg",
-            "image_1_mobile": "shopify://shop_images/3_75648673-5a6e-47fb-8799-59a27e6fcc75.jpg",
+            "image_1_mobile": "shopify://shop_images/3_de50b0e7-97aa-4496-aca1-5a74024af061.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -205,6 +205,7 @@
           "settings": {
             "media_type_1": "image",
             "image_1": "shopify://shop_images/hero-products.jpg",
+            "image_1_mobile": "shopify://shop_images/4.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
