@@ -2979,13 +2979,13 @@
             "vertical_alignment": "center",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "space-between",
             "gap": 40,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fit",
+            "height": "fill",
             "custom_height": 100,
             "inherit_color_scheme": true,
             "color_scheme": "",
@@ -3004,8 +3004,8 @@
             "link": "shopify://products/instant-stain-remover",
             "open_in_new_tab": false,
             "placeholder": "",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -3017,7 +3017,7 @@
                 "content_direction": "row",
                 "vertical_on_mobile": false,
                 "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
+                "vertical_alignment": "flex-start",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
@@ -3045,7 +3045,7 @@
                 "open_in_new_tab": false,
                 "placeholder": "",
                 "padding-block-start": 0,
-                "padding-block-end": 100,
+                "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
@@ -3058,7 +3058,30 @@
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "custom",
-                    "custom_width": 10,
+                    "custom_width": 6,
+                    "width_mobile": "custom",
+                    "custom_width_mobile": 10,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "image_6MY4pG": {
+                  "type": "image",
+                  "name": "t:names.image",
+                  "settings": {
+                    "image": "shopify://shop_images/9001.2015_b6df5a62-f2b3-4efb-8c32-1dc5d433da69.svg",
+                    "link": "",
+                    "image_ratio": "adapt",
+                    "width": "custom",
+                    "custom_width": 6,
                     "width_mobile": "custom",
                     "custom_width_mobile": 10,
                     "height": "fit",
@@ -3081,7 +3104,30 @@
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "custom",
-                    "custom_width": 10,
+                    "custom_width": 6,
+                    "width_mobile": "custom",
+                    "custom_width_mobile": 10,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "image_mTWP48": {
+                  "type": "image",
+                  "name": "t:names.image",
+                  "settings": {
+                    "image": "shopify://shop_images/EOS.svg",
+                    "link": "",
+                    "image_ratio": "adapt",
+                    "width": "custom",
+                    "custom_width": 6,
                     "width_mobile": "custom",
                     "custom_width_mobile": 10,
                     "height": "fit",
@@ -3099,7 +3145,9 @@
               },
               "block_order": [
                 "image_Gz3UjB",
-                "image_A378Xd"
+                "image_6MY4pG",
+                "image_A378Xd",
+                "image_mTWP48"
               ]
             },
             "group_HVBBQV": {
@@ -3213,63 +3261,11 @@
                 "text_A4MiG3",
                 "button_rqWPfq"
               ]
-            },
-            "text_hhyVFA": {
-              "type": "text",
-              "settings": {
-                "text": "",
-                "width": "fit-content",
-                "max_width": "none",
-                "alignment": "left",
-                "type_preset": "h2",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_i9yJhr": {
-              "type": "text",
-              "settings": {
-                "text": "",
-                "width": "fit-content",
-                "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "group_fcdD8z",
-            "group_HVBBQV",
-            "text_hhyVFA",
-            "text_i9yJhr"
+            "group_HVBBQV"
           ]
         }
       },
@@ -3287,8 +3283,8 @@
         "vertical_alignment_flex_direction_column": "flex-end",
         "gap": 12,
         "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
+        "section_height": "custom",
+        "section_height_custom": 60,
         "color_scheme": "scheme-efbec1d3-6b0e-4add-b280-ae8ba3d95a70",
         "background_media": "image",
         "video_position": "cover",
@@ -3302,8 +3298,8 @@
         "overlay_color": "#ffffff1f",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 50,
-        "padding-block-end": 25
+        "padding-block-start": 24,
+        "padding-block-end": 24
       }
     },
     "blocks_DkVjCJ": {
@@ -5162,7 +5158,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/surface-cleaner.jpg",
+            "image": "shopify://shop_images/antibacterial-2.jpg",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -5377,7 +5373,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/dish-soap_8564a1ef-f5b6-425b-96de-17a84afe27bc.jpg",
+            "image": "shopify://shop_images/soap.jpg",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -5792,7 +5788,7 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
-                "image": "shopify://shop_images/we_certify_it.png",
+                "image": "shopify://shop_images/we-certify-it.jpg",
                 "link": "",
                 "image_ratio": "adapt",
                 "width": "fill",
@@ -6198,7 +6194,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Lovilin Club<br/></p>",
+            "text": "<h2>Lovilin Club<br/></h2>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
@@ -6371,9 +6367,9 @@
     "blocks_DkVjCJ",
     "blocks_VmeidB",
     "17805782049deef4d6",
-    "featured_blog_posts_ahe4p6",
     "section_JVaRXz",
     "section_BAmDmQ",
+    "featured_blog_posts_ahe4p6",
     "17810496337b006287",
     "media_with_content_MaRz4F",
     "media_with_content_f4z3xy",
