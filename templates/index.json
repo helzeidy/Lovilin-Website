@@ -3481,7 +3481,7 @@
         "overlay_color": "#ffffff61",
         "overlay_style": "gradient",
         "gradient_direction": "to bottom",
-        "padding-block-start": 24,
+        "padding-block-start": 48,
         "padding-block-end": 24
       }
     },
@@ -3707,7 +3707,7 @@
         "overlay_color": "#ffffff40",
         "overlay_style": "gradient",
         "gradient_direction": "to bottom",
-        "padding-block-start": 25,
+        "padding-block-start": 48,
         "padding-block-end": 25
       }
     },
