@@ -1918,13 +1918,13 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
                 "background_image": "shopify://shop_images/laundry_9430976d-25f7-44db-9292-1b06bafd060c.jpg",
-                "aspect_ratio": "adapt",
+                "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
                 "overlay_style": "gradient",
@@ -1937,19 +1937,6 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_TeteFj": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
                 "text_mUGAMf": {
                   "type": "text",
                   "settings": {
@@ -2159,7 +2146,6 @@
                 }
               },
               "block_order": [
-                "spacer_TeteFj",
                 "text_mUGAMf",
                 "group_rEKqGd"
               ]
@@ -2174,13 +2160,13 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
                 "background_image": "shopify://shop_images/dish-and-soap.jpg",
-                "aspect_ratio": "adapt",
+                "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
                 "overlay_style": "gradient",
@@ -2193,19 +2179,6 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_J8fJJW": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
                 "text_Bwztc6": {
                   "type": "text",
                   "settings": {
@@ -2415,7 +2388,6 @@
                 }
               },
               "block_order": [
-                "spacer_J8fJJW",
                 "text_Bwztc6",
                 "group_BAkrWx"
               ]
@@ -2430,13 +2402,13 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
                 "background_image": "shopify://shop_images/toy-and-surface.jpg",
-                "aspect_ratio": "adapt",
+                "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
                 "overlay_style": "gradient",
@@ -2449,19 +2421,6 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_dkBqRe": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
                 "text_yLKtwP": {
                   "type": "text",
                   "settings": {
@@ -2671,7 +2630,6 @@
                 }
               },
               "block_order": [
-                "spacer_dkBqRe",
                 "text_yLKtwP",
                 "group_nBiPbe"
               ]
@@ -2686,13 +2644,13 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
                 "background_image": "shopify://shop_images/stain-remover_d90391ab-4807-45ad-afd2-410af98849a6.jpg",
-                "aspect_ratio": "adapt",
+                "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
                 "overlay_style": "gradient",
@@ -2705,19 +2663,6 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_Wbmhk6": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
                 "text_6Th6hz": {
                   "type": "text",
                   "settings": {
@@ -2927,7 +2872,6 @@
                 }
               },
               "block_order": [
-                "spacer_Wbmhk6",
                 "text_6Th6hz",
                 "group_RFPqFA"
               ]
