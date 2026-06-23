@@ -1305,6 +1305,27 @@
           },
           "blocks": {}
         },
+        "menu_kmLApH": {
+          "type": "menu",
+          "name": "t:names.menu",
+          "settings": {
+            "menu": "services",
+            "heading": "SERVICES",
+            "menu_spacing": 12,
+            "show_as_accordion": false,
+            "accordion_icon": "caret",
+            "accordion_dividers": false,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "heading_preset": "",
+            "link_preset": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "menu_zeynTL": {
           "type": "menu",
           "name": "t:names.menu",
@@ -1351,6 +1372,7 @@
       "block_order": [
         "group_H6VpwJ",
         "menu_6tpTHQ",
+        "menu_kmLApH",
         "menu_zeynTL",
         "menu_zKNndD"
       ],
