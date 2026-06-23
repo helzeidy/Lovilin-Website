@@ -3427,8 +3427,8 @@
                       "name": "t:names.heading",
                       "settings": {
                         "text": "<h3>We Put Safety First.<br/>Every Detail. Every Time.</h3>",
-                        "width": "fit-content",
-                        "max_width": "normal",
+                        "width": "100%",
+                        "max_width": "none",
                         "alignment": "left",
                         "type_preset": "h3",
                         "font": "var(--font-body--family)",
@@ -3457,8 +3457,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Every Lovilin formula is built for real touchpoints—what your baby touches and what touches their skin—tested, certified, and designed to work without compromise.</p>",
-                    "width": "fit-content",
-                    "max_width": "narrow",
+                    "width": "100%",
+                    "max_width": "normal",
                     "alignment": "left",
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
@@ -3670,7 +3670,7 @@
                       "name": "t:names.heading",
                       "settings": {
                         "text": "<h3>Not all cleaning<br/>is the same.</h3>",
-                        "width": "fit-content",
+                        "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
                         "type_preset": "h3",
@@ -3700,8 +3700,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Baby bottles, fabrics, toys, and surfaces all carry different residues—protein, grease, bacteria. Standard cleaners aren’t built for that. <em><strong>Lovilin </strong></em>is.</p>",
-                    "width": "fit-content",
-                    "max_width": "narrow",
+                    "width": "100%",
+                    "max_width": "normal",
                     "alignment": "left",
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
@@ -5436,7 +5436,7 @@
                   "name": "t:names.heading",
                   "settings": {
                     "text": "<h3>The Gentlest-yet-Strongest Bottle & Dish Cleanser</h3>",
-                    "width": "fit-content",
+                    "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
                     "type_preset": "h3",
@@ -5461,8 +5461,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Built to break down stubborn milk film and feeding residue with a low-residue formula designed for bottles, pump parts, pacifiers, and everyday baby dishes.</p>",
-                    "width": "fit-content",
-                    "max_width": "narrow",
+                    "width": "100%",
+                    "max_width": "normal",
                     "alignment": "left",
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
