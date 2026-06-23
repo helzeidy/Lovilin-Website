@@ -82,7 +82,7 @@
                 "background_color": "#00000026",
                 "corner_radius": 0,
                 "padding-block-start": 0,
-                "padding-block-end": 20,
+                "padding-block-end": 8,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
@@ -138,9 +138,9 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>It's not one product. <br/>It's a system.</h2>",
+                "text": "<h2>It's not <br/>one product. <br/>It's a system.</h2>",
                 "width": "fit-content",
-                "max_width": "none",
+                "max_width": "narrow",
                 "alignment": "left",
                 "type_preset": "h2",
                 "font": "var(--font-body--family)",
@@ -179,7 +179,7 @@
                 "background_color": "#00000026",
                 "corner_radius": 0,
                 "padding-block-start": 0,
-                "padding-block-end": 20,
+                "padding-block-end": 8,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
