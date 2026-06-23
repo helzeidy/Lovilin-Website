@@ -1262,7 +1262,7 @@
         "icons_style": "arrow",
         "icons_shape": "none",
         "padding-block-start": 0,
-        "padding-block-end": 100
+        "padding-block-end": 48
       }
     },
     "product_list_HDkWaT": {
@@ -1695,8 +1695,8 @@
         "horizontal_alignment": "flex-start",
         "gap": 28,
         "color_scheme": "scheme-1",
-        "padding-block-start": 96,
-        "padding-block-end": 48,
+        "padding-block-start": 48,
+        "padding-block-end": 96,
         "banner_enabled": false,
         "banner_image": "shopify://shop_images/44.jpg",
         "banner_position": 4,
