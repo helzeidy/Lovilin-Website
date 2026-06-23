@@ -125,7 +125,7 @@
             "inherit_color_scheme": false,
             "color_scheme": "scheme-1",
             "toggle_overlay": true,
-            "overlay_color": "#FFFFFF1F",
+            "overlay_color": "#ffffff1f",
             "overlay_style": "solid",
             "gradient_direction": "to top",
             "padding-block-start": 48,
@@ -6254,7 +6254,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Lovilin Reward Club</h2>",
+            "text": "<p>Lovilin Club<br/></p>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
@@ -6280,7 +6280,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>More perks, more points, more ways to save</p>",
+            "text": "<p>More than a program, it’s a partnership.</p>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
