@@ -892,7 +892,7 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "flex-start",
                 "gap": 12,
                 "width": "fill",
                 "custom_width": 100,
