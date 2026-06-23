@@ -5189,7 +5189,7 @@
                 "text_WxLYqL": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Safe for the things little hands touch every day. <br/>Our NRC food-grade certified formula helps remove everyday residue and bacteria from toys, play areas, and baby-contact surfaces — without harsh leftover residue.</p>",
+                    "text": "<p>Safe for the things little hands touch every day. <br/><br/>Our NRC food-grade certified formula helps remove everyday residue and bacteria from toys, play areas, and baby-contact surfaces — without harsh leftover residue.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -5205,7 +5205,7 @@
                     "background_color": "#00000026",
                     "corner_radius": 0,
                     "padding-block-start": 0,
-                    "padding-block-end": 0,
+                    "padding-block-end": 16,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
                   },
@@ -5420,7 +5420,7 @@
                     "background_color": "#00000026",
                     "corner_radius": 0,
                     "padding-block-start": 0,
-                    "padding-block-end": 0,
+                    "padding-block-end": 16,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
                   },
