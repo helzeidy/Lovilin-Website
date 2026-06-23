@@ -17,6 +17,7 @@
           "settings": {
             "media_type_1": "image",
             "image_1": "shopify://shop_images/hero-banner_1.jpg",
+            "image_1_mobile": "shopify://shop_images/3_75648673-5a6e-47fb-8799-59a27e6fcc75.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -92,7 +93,7 @@
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 60,
+                    "custom_width_mobile": 100,
                     "height": "fit",
                     "custom_height": 100,
                     "inherit_color_scheme": true,
