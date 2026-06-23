@@ -281,6 +281,13 @@
       "visible_if": "{{ section.settings.background_media == 'image' }}"
     },
     {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Image (mobile)",
+      "info": "Optional. Shown on screens under 750px instead of the image above.",
+      "visible_if": "{{ section.settings.background_media == 'image' }}"
+    },
+    {
       "type": "select",
       "id": "background_image_position",
       "label": "t:settings.image_position",

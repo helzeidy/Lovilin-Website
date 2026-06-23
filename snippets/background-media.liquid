@@ -5,6 +5,7 @@
   @param {object} [background_video] - The background video
   @param {string} [background_video_position] - The background video position
   @param {object} [background_image] - The background image
+  @param {object} [background_image_mobile] - Optional image shown on mobile (under 750px) instead of background_image
   @param {string} [background_image_position] - The background image position
   @param {string} [placeholder] - The placeholder
   @param {object} [block] - The block object
@@ -103,11 +104,32 @@
           assign loading = 'eager'
         endif
       %}
-      {{
-        background_image
-        | image_url: width: 3840
-        | image_tag: sizes: sizes, widths: widths, loading: loading, fetchpriority: fetch_priority
-      }}
+      {%- if background_image_mobile != blank -%}
+        {%- capture mobile_srcset -%}
+          {{ background_image_mobile | image_url: width: 500 }} 500w,
+          {{ background_image_mobile | image_url: width: 750 }} 750w,
+          {{ background_image_mobile | image_url: width: 1100 }} 1100w,
+          {{ background_image_mobile | image_url: width: 1500 }} 1500w
+        {%- endcapture -%}
+        <picture>
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ mobile_srcset | strip_newlines }}"
+            sizes="100vw"
+          >
+          {{
+            background_image
+            | image_url: width: 3840
+            | image_tag: sizes: sizes, widths: widths, loading: loading, fetchpriority: fetch_priority
+          }}
+        </picture>
+      {%- else -%}
+        {{
+          background_image
+          | image_url: width: 3840
+          | image_tag: sizes: sizes, widths: widths, loading: loading, fetchpriority: fetch_priority
+        }}
+      {%- endif -%}
     {%- else -%}
       {%- assign placeholder_name = placeholder | default: 'hero-apparel-2' -%}
       {%- if placeholder_name == blank -%}
