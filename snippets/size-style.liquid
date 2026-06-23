@@ -27,6 +27,20 @@
   --size-style-height: {{ settings.height }};
 {%- endif -%}
 
+{%- if settings.height_mobile == 'custom' -%}
+  {%- if settings.custom_height_mobile_unit == 'px' -%}
+    --size-style-height-mobile: {{ settings.custom_height_mobile_px }}px;
+  {%- elsif settings.custom_height_mobile_unit == 'svh' -%}
+    --size-style-height-mobile: {{ settings.custom_height_mobile }}svh;
+  {%- else -%}
+    --size-style-height-mobile: {{ settings.custom_height_mobile }}%;
+  {%- endif -%}
+{%- elsif settings.height_mobile == 'fill' -%}
+  --size-style-height-mobile: 100%;
+{%- elsif settings.height_mobile == 'fit' -%}
+  --size-style-height-mobile: auto;
+{%- endif -%}
+
 {% if settings.width_mobile == 'custom' %}
   --size-style-width-mobile:
   {{- settings.custom_width_mobile }}%; --size-style-width-mobile-min:

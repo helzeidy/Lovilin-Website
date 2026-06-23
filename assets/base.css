@@ -3836,7 +3836,14 @@ fly-to-cart.fly-to-cart--sticky {
 
 .group-block--height-custom,
 .group-block--height-fill {
-  height: var(--size-style-height);
+  height: var(--size-style-height-mobile, var(--size-style-height));
+}
+
+@media screen and (min-width: 750px) {
+  .group-block--height-custom,
+  .group-block--height-fill {
+    height: var(--size-style-height);
+  }
 }
 
 /* Flex behavior for height variants */
@@ -3849,7 +3856,13 @@ fly-to-cart.fly-to-cart--sticky {
 }
 
 .layout-panel-flex--column > .group-block--height-custom {
-  flex-basis: var(--size-style-height);
+  flex-basis: var(--size-style-height-mobile, var(--size-style-height));
+}
+
+@media screen and (min-width: 750px) {
+  .layout-panel-flex--column > .group-block--height-custom {
+    flex-basis: var(--size-style-height);
+  }
 }
 
 text-component {
