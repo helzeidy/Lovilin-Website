@@ -664,7 +664,7 @@
           "settings": {
             "icon": "plus",
             "dividers": true,
-            "type_preset": "h5",
+            "type_preset": "paragraph",
             "inherit_color_scheme": true,
             "color_scheme": "",
             "border": "none",
