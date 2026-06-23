@@ -399,7 +399,7 @@
         "slideshow_gap": 12,
         "corner_radius": 0,
         "slide_height": "custom_vh",
-        "slide_height_vh": 60,
+        "slide_height_vh": 70,
         "slide_height_vh_mobile": 70,
         "content_position": "on-media",
         "color_scheme": "",
