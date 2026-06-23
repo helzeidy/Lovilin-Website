@@ -1603,7 +1603,7 @@
         "gap": 12,
         "section_width": "page-width",
         "section_height": "custom",
-        "section_height_custom": 16,
+        "section_height_custom": 20,
         "color_scheme": "",
         "background_media": "none",
         "video_position": "cover",
