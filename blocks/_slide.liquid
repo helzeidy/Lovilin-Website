@@ -58,11 +58,24 @@
       -%}
 
       {%- if block_settings.media_type_1 == 'image' -%}
-        {{
-          block_settings.image_1
-          | image_url: width: 3840
-          | image_tag: height: height, sizes: sizes, widths: widths, class: 'slide__image', loading: loading, fetchpriority: fetchpriority
-        }}
+        {%- if block_settings.image_1_mobile != blank -%}
+          {{
+            block_settings.image_1
+            | image_url: width: 3840
+            | image_tag: height: height, sizes: sizes, widths: widths, class: 'slide__image slide__image--desktop', loading: loading, fetchpriority: fetchpriority
+          }}
+          {{
+            block_settings.image_1_mobile
+            | image_url: width: 1600
+            | image_tag: sizes: '100vw', widths: '400, 600, 800, 1100, 1500', class: 'slide__image slide__image--mobile', loading: loading
+          }}
+        {%- else -%}
+          {{
+            block_settings.image_1
+            | image_url: width: 3840
+            | image_tag: height: height, sizes: sizes, widths: widths, class: 'slide__image', loading: loading, fetchpriority: fetchpriority
+          }}
+        {%- endif -%}
       {%- else -%}
         {%- if block_settings.video_1.preview_image -%}
 
@@ -182,6 +195,21 @@
   slideshow-slide .slide__image-container--rounded {
     border-radius: var(--corner-radius, 0);
   }
+
+  /* Desktop/mobile slide image swap */
+  .slide__image-container > .slide__image--mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .slide__image-container > .slide__image--desktop {
+      display: none;
+    }
+
+    .slide__image-container > .slide__image--mobile {
+      display: block;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -241,6 +269,13 @@
       "type": "image_picker",
       "id": "image_1",
       "label": "t:settings.image",
+      "visible_if": "{{ block.settings.media_type_1 == 'image' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_mobile",
+      "label": "Image (mobile)",
+      "info": "Optional. Shown on screens under 750px instead of the image above.",
       "visible_if": "{{ block.settings.media_type_1 == 'image' }}"
     },
     {
