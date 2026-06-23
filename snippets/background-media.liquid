@@ -105,24 +105,16 @@
         endif
       %}
       {%- if background_image_mobile != blank -%}
-        {%- capture mobile_srcset -%}
-          {{ background_image_mobile | image_url: width: 500 }} 500w,
-          {{ background_image_mobile | image_url: width: 750 }} 750w,
-          {{ background_image_mobile | image_url: width: 1100 }} 1100w,
-          {{ background_image_mobile | image_url: width: 1500 }} 1500w
-        {%- endcapture -%}
-        <picture>
-          <source
-            media="(max-width: 749px)"
-            srcset="{{ mobile_srcset | strip_newlines }}"
-            sizes="100vw"
-          >
-          {{
-            background_image
-            | image_url: width: 3840
-            | image_tag: sizes: sizes, widths: widths, loading: loading, fetchpriority: fetch_priority
-          }}
-        </picture>
+        {{
+          background_image
+          | image_url: width: 3840
+          | image_tag: sizes: sizes, widths: widths, loading: loading, fetchpriority: fetch_priority, class: 'bg-media-img bg-media-img--desktop'
+        }}
+        {{
+          background_image_mobile
+          | image_url: width: 1600
+          | image_tag: sizes: '100vw', widths: '400, 600, 800, 1100, 1500', loading: loading, class: 'bg-media-img bg-media-img--mobile'
+        }}
       {%- else -%}
         {{
           background_image
@@ -144,6 +136,21 @@
   @media (prefers-reduced-motion: reduce) {
     video-background-component video {
       display: none;
+    }
+  }
+
+  /* Desktop/mobile background image swap */
+  .bg-media-img--mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .background-image-container .bg-media-img--desktop {
+      display: none;
+    }
+
+    .background-image-container .bg-media-img--mobile {
+      display: block;
     }
   }
 {% endstylesheet %}
