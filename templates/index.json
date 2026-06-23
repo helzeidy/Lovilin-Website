@@ -1287,7 +1287,7 @@
                       "settings": {
                         "size": "pixel",
                         "percent_size": 100,
-                        "pixel_size": 80,
+                        "pixel_size": 100,
                         "custom_mobile_size": false,
                         "size_mobile": "percent",
                         "percent_size_mobile": 100,
@@ -1374,7 +1374,7 @@
                       "settings": {
                         "size": "pixel",
                         "percent_size": 100,
-                        "pixel_size": 80,
+                        "pixel_size": 100,
                         "custom_mobile_size": false,
                         "size_mobile": "percent",
                         "percent_size_mobile": 100,
@@ -1507,7 +1507,7 @@
                       "settings": {
                         "size": "pixel",
                         "percent_size": 100,
-                        "pixel_size": 80,
+                        "pixel_size": 100,
                         "custom_mobile_size": false,
                         "size_mobile": "percent",
                         "percent_size_mobile": 100,
@@ -1594,7 +1594,7 @@
                       "settings": {
                         "size": "pixel",
                         "percent_size": 100,
-                        "pixel_size": 80,
+                        "pixel_size": 100,
                         "custom_mobile_size": false,
                         "size_mobile": "percent",
                         "percent_size_mobile": 100,
