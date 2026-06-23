@@ -317,6 +317,24 @@
         endif
       endfor
 
+      comment
+        Per-size mobile overrides (screens under 750px).
+        Only emitted for sizes the merchant explicitly set in theme settings.
+      endcomment
+      assign mobile_overrides = ''
+      for font_size in font_sizes
+        assign mobile_setting = 'type_size_[font_size]_mobile' | replace: '[font_size]', font_size
+        assign mobile_value = settings[mobile_setting]
+        if mobile_value != blank
+          assign mobile_rem = mobile_value | times: 1 | divided_by: 16.0
+          assign mobile_overrides = mobile_overrides | append: '--font-size--' | append: font_size | append: ': ' | append: mobile_rem | append: 'rem;'
+        endif
+      endfor
+      if mobile_overrides != blank
+        assign mobile_media_query = '@media screen and (max-width: 749px) {' | append: mobile_overrides | append: '}'
+        echo mobile_media_query
+      endif
+
       assign type_presets = "paragraph, h1, h2, h3, h4, h5, h6" | split: ", "
 
       for preset_name in type_presets

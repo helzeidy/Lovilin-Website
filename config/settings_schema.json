@@ -1354,6 +1354,133 @@
           }
         ],
         "default": "none"
+      },
+      {
+        "type": "header",
+        "content": "Mobile font sizes"
+      },
+      {
+        "type": "paragraph",
+        "content": "Optional. Override font sizes on mobile (screens under 750px). Leave on \"Same as desktop\" to keep the desktop size."
+      },
+      {
+        "type": "select",
+        "id": "type_size_paragraph_mobile",
+        "label": "Paragraph (mobile)",
+        "options": [
+          { "value": "", "label": "Same as desktop" },
+          { "value": "10", "label": "10px" },
+          { "value": "12", "label": "12px" },
+          { "value": "14", "label": "14px" },
+          { "value": "16", "label": "16px" },
+          { "value": "18", "label": "18px" },
+          { "value": "20", "label": "20px" }
+        ],
+        "default": ""
+      },
+      {
+        "type": "select",
+        "id": "type_size_h1_mobile",
+        "label": "Heading H1 (mobile)",
+        "options": [
+          { "value": "", "label": "Same as desktop" },
+          { "value": "16", "label": "16px" },
+          { "value": "18", "label": "18px" },
+          { "value": "20", "label": "20px" },
+          { "value": "24", "label": "24px" },
+          { "value": "28", "label": "28px" },
+          { "value": "32", "label": "32px" },
+          { "value": "36", "label": "36px" },
+          { "value": "40", "label": "40px" },
+          { "value": "44", "label": "44px" },
+          { "value": "48", "label": "48px" },
+          { "value": "56", "label": "56px" },
+          { "value": "64", "label": "64px" }
+        ],
+        "default": ""
+      },
+      {
+        "type": "select",
+        "id": "type_size_h2_mobile",
+        "label": "Heading H2 (mobile)",
+        "options": [
+          { "value": "", "label": "Same as desktop" },
+          { "value": "14", "label": "14px" },
+          { "value": "16", "label": "16px" },
+          { "value": "18", "label": "18px" },
+          { "value": "20", "label": "20px" },
+          { "value": "24", "label": "24px" },
+          { "value": "28", "label": "28px" },
+          { "value": "32", "label": "32px" },
+          { "value": "36", "label": "36px" },
+          { "value": "40", "label": "40px" },
+          { "value": "48", "label": "48px" }
+        ],
+        "default": ""
+      },
+      {
+        "type": "select",
+        "id": "type_size_h3_mobile",
+        "label": "Heading H3 (mobile)",
+        "options": [
+          { "value": "", "label": "Same as desktop" },
+          { "value": "14", "label": "14px" },
+          { "value": "16", "label": "16px" },
+          { "value": "18", "label": "18px" },
+          { "value": "20", "label": "20px" },
+          { "value": "24", "label": "24px" },
+          { "value": "28", "label": "28px" },
+          { "value": "32", "label": "32px" },
+          { "value": "36", "label": "36px" }
+        ],
+        "default": ""
+      },
+      {
+        "type": "select",
+        "id": "type_size_h4_mobile",
+        "label": "Heading H4 (mobile)",
+        "options": [
+          { "value": "", "label": "Same as desktop" },
+          { "value": "12", "label": "12px" },
+          { "value": "14", "label": "14px" },
+          { "value": "16", "label": "16px" },
+          { "value": "18", "label": "18px" },
+          { "value": "20", "label": "20px" },
+          { "value": "24", "label": "24px" },
+          { "value": "28", "label": "28px" }
+        ],
+        "default": ""
+      },
+      {
+        "type": "select",
+        "id": "type_size_h5_mobile",
+        "label": "Heading H5 (mobile)",
+        "options": [
+          { "value": "", "label": "Same as desktop" },
+          { "value": "10", "label": "10px" },
+          { "value": "12", "label": "12px" },
+          { "value": "14", "label": "14px" },
+          { "value": "16", "label": "16px" },
+          { "value": "18", "label": "18px" },
+          { "value": "20", "label": "20px" },
+          { "value": "24", "label": "24px" }
+        ],
+        "default": ""
+      },
+      {
+        "type": "select",
+        "id": "type_size_h6_mobile",
+        "label": "Heading H6 (mobile)",
+        "options": [
+          { "value": "", "label": "Same as desktop" },
+          { "value": "10", "label": "10px" },
+          { "value": "12", "label": "12px" },
+          { "value": "14", "label": "14px" },
+          { "value": "16", "label": "16px" },
+          { "value": "18", "label": "18px" },
+          { "value": "20", "label": "20px" }
+        ],
+        "default": ""
       }
     ]
   },
