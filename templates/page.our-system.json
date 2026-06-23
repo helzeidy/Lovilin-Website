@@ -210,7 +210,7 @@
         "padding-block-end": 32
       }
     },
-    "carousel_xXPyhY": {
+    "carousel_PrKeGV": {
       "type": "carousel",
       "blocks": {
         "static-header": {
@@ -268,14 +268,14 @@
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
-            "border_radius": 32,
+            "border_radius": 24,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {
-            "card_aMYH6E": {
+            "card_qzHPYz": {
               "type": "_card",
               "name": "t:names.card",
               "settings": {
@@ -285,16 +285,16 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
-                "background_image": "shopify://shop_images/44.jpg",
+                "background_image": "shopify://shop_images/laundry_9430976d-25f7-44db-9292-1b06bafd060c.jpg",
                 "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
-                "overlay_style": "solid",
+                "overlay_style": "gradient",
                 "gradient_direction": "to top",
                 "link": "",
                 "open_in_new_tab": false,
@@ -304,20 +304,7 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_7twXfQ": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
-                "text_AK6XQ8": {
+                "text_p9yj9m": {
                   "type": "text",
                   "settings": {
                     "text": "<h1>1</h1>",
@@ -342,7 +329,7 @@
                   },
                   "blocks": {}
                 },
-                "group_ARyBYL": {
+                "group_pmenVg": {
                   "type": "group",
                   "name": "t:names.group",
                   "settings": {
@@ -382,7 +369,7 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {
-                    "group_LzEPBt": {
+                    "group_kFUV6F": {
                       "type": "group",
                       "name": "t:names.group",
                       "settings": {
@@ -422,7 +409,7 @@
                         "padding-inline-end": 0
                       },
                       "blocks": {
-                        "text_xP9UDT": {
+                        "text_kjErWd": {
                           "type": "text",
                           "settings": {
                             "text": "<h5>FABRIC CARE</h5>",
@@ -447,14 +434,14 @@
                           },
                           "blocks": {}
                         },
-                        "text_Mtt93J": {
+                        "text_Xw9dDX": {
                           "type": "text",
                           "settings": {
-                            "text": "<h3><strong>Baby Laundry Detergent</strong></h3>",
+                            "text": "<h4><strong>Baby Laundry Detergent</strong></h4>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
-                            "type_preset": "h3",
+                            "type_preset": "h4",
                             "font": "var(--font-body--family)",
                             "font_size": "1rem",
                             "line_height": "normal",
@@ -474,11 +461,11 @@
                         }
                       },
                       "block_order": [
-                        "text_xP9UDT",
-                        "text_Mtt93J"
+                        "text_kjErWd",
+                        "text_Xw9dDX"
                       ]
                     },
-                    "text_8mbn9d": {
+                    "text_iBba8E": {
                       "type": "text",
                       "settings": {
                         "text": "<p>Engineered to break down real baby stains—milk, spit-up, and mess—while staying uncompromisingly gentle on delicate skin.</p>",
@@ -503,7 +490,7 @@
                       },
                       "blocks": {}
                     },
-                    "button_TxCxMk": {
+                    "button_QF9kCG": {
                       "type": "button",
                       "settings": {
                         "label": "Shop Baby Laundry",
@@ -519,19 +506,18 @@
                     }
                   },
                   "block_order": [
-                    "group_LzEPBt",
-                    "text_8mbn9d",
-                    "button_TxCxMk"
+                    "group_kFUV6F",
+                    "text_iBba8E",
+                    "button_QF9kCG"
                   ]
                 }
               },
               "block_order": [
-                "spacer_7twXfQ",
-                "text_AK6XQ8",
-                "group_ARyBYL"
+                "text_p9yj9m",
+                "group_pmenVg"
               ]
             },
-            "card_RdDt8n": {
+            "card_TUGYhY": {
               "type": "_card",
               "name": "t:names.card",
               "settings": {
@@ -541,16 +527,16 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
-                "background_image": "shopify://shop_images/33.jpg",
+                "background_image": "shopify://shop_images/dish-and-soap.jpg",
                 "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
-                "overlay_style": "solid",
+                "overlay_style": "gradient",
                 "gradient_direction": "to top",
                 "link": "",
                 "open_in_new_tab": false,
@@ -560,20 +546,7 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_BVFaRx": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
-                "text_BjrRMy": {
+                "text_MzLhpr": {
                   "type": "text",
                   "settings": {
                     "text": "<h1>2</h1>",
@@ -598,7 +571,7 @@
                   },
                   "blocks": {}
                 },
-                "group_JR3p6a": {
+                "group_emrnez": {
                   "type": "group",
                   "name": "t:names.group",
                   "settings": {
@@ -638,7 +611,7 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {
-                    "group_ErkhMz": {
+                    "group_zj8dTA": {
                       "type": "group",
                       "name": "t:names.group",
                       "settings": {
@@ -678,7 +651,7 @@
                         "padding-inline-end": 0
                       },
                       "blocks": {
-                        "text_eBz8wL": {
+                        "text_KzEaQF": {
                           "type": "text",
                           "settings": {
                             "text": "<h5>FEEDING EQUIPMENT HYGIENE</h5>",
@@ -703,14 +676,14 @@
                           },
                           "blocks": {}
                         },
-                        "text_3gDJdq": {
+                        "text_W6jetn": {
                           "type": "text",
                           "settings": {
-                            "text": "<h3><strong>Antibacterial Bottle & Dish Cleanser</strong></h3>",
+                            "text": "<h4><strong>Antibacterial Bottle & Dish Cleanser</strong></h4>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
-                            "type_preset": "h3",
+                            "type_preset": "h4",
                             "font": "var(--font-body--family)",
                             "font_size": "1rem",
                             "line_height": "normal",
@@ -730,11 +703,11 @@
                         }
                       },
                       "block_order": [
-                        "text_eBz8wL",
-                        "text_3gDJdq"
+                        "text_KzEaQF",
+                        "text_W6jetn"
                       ]
                     },
-                    "text_akGC4q": {
+                    "text_pNbATX": {
                       "type": "text",
                       "settings": {
                         "text": "<p>Food-grade antibacterial protection for every surface your baby touches—no harsh chemicals, no compromise.</p>",
@@ -759,7 +732,7 @@
                       },
                       "blocks": {}
                     },
-                    "button_MBiAMb": {
+                    "button_qD7xra": {
                       "type": "button",
                       "settings": {
                         "label": "Shop Bottle & Dish Cleanser",
@@ -775,19 +748,18 @@
                     }
                   },
                   "block_order": [
-                    "group_ErkhMz",
-                    "text_akGC4q",
-                    "button_MBiAMb"
+                    "group_zj8dTA",
+                    "text_pNbATX",
+                    "button_qD7xra"
                   ]
                 }
               },
               "block_order": [
-                "spacer_BVFaRx",
-                "text_BjrRMy",
-                "group_JR3p6a"
+                "text_MzLhpr",
+                "group_emrnez"
               ]
             },
-            "card_YP6dCt": {
+            "card_Ti6xz4": {
               "type": "_card",
               "name": "t:names.card",
               "settings": {
@@ -797,16 +769,16 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
-                "background_image": "shopify://shop_images/22.jpg",
+                "background_image": "shopify://shop_images/toy-and-surface.jpg",
                 "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
-                "overlay_style": "solid",
+                "overlay_style": "gradient",
                 "gradient_direction": "to top",
                 "link": "",
                 "open_in_new_tab": false,
@@ -816,20 +788,7 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_7XeQV3": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
-                "text_eiHDHe": {
+                "text_a3Urd7": {
                   "type": "text",
                   "settings": {
                     "text": "<h1>3</h1>",
@@ -854,7 +813,7 @@
                   },
                   "blocks": {}
                 },
-                "group_6dWeHi": {
+                "group_36A6tf": {
                   "type": "group",
                   "name": "t:names.group",
                   "settings": {
@@ -894,7 +853,7 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {
-                    "group_MUN7mm": {
+                    "group_jLMhDd": {
                       "type": "group",
                       "name": "t:names.group",
                       "settings": {
@@ -934,7 +893,7 @@
                         "padding-inline-end": 0
                       },
                       "blocks": {
-                        "text_JpqDMk": {
+                        "text_pk7Fw7": {
                           "type": "text",
                           "settings": {
                             "text": "<h5>SURFACE DISINFECTION</h5>",
@@ -959,14 +918,14 @@
                           },
                           "blocks": {}
                         },
-                        "text_aAgtEV": {
+                        "text_QwxyWJ": {
                           "type": "text",
                           "settings": {
-                            "text": "<h3>Antibacterial Toy & Surface Cleaner</h3>",
+                            "text": "<h4>Antibacterial Toy & Surface Cleaner</h4>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
-                            "type_preset": "h3",
+                            "type_preset": "h4",
                             "font": "var(--font-body--family)",
                             "font_size": "1rem",
                             "line_height": "normal",
@@ -986,11 +945,11 @@
                         }
                       },
                       "block_order": [
-                        "text_JpqDMk",
-                        "text_aAgtEV"
+                        "text_pk7Fw7",
+                        "text_QwxyWJ"
                       ]
                     },
-                    "text_wyzVQY": {
+                    "text_xRDy6e": {
                       "type": "text",
                       "settings": {
                         "text": "<p>Food-grade antibacterial protection for every surface your baby touches—no harsh chemicals, no compromise.</p>",
@@ -1015,7 +974,7 @@
                       },
                       "blocks": {}
                     },
-                    "button_cWk46x": {
+                    "button_AgppMy": {
                       "type": "button",
                       "settings": {
                         "label": "Shop Toy & Surface",
@@ -1031,19 +990,18 @@
                     }
                   },
                   "block_order": [
-                    "group_MUN7mm",
-                    "text_wyzVQY",
-                    "button_cWk46x"
+                    "group_jLMhDd",
+                    "text_xRDy6e",
+                    "button_AgppMy"
                   ]
                 }
               },
               "block_order": [
-                "spacer_7XeQV3",
-                "text_eiHDHe",
-                "group_6dWeHi"
+                "text_a3Urd7",
+                "group_36A6tf"
               ]
             },
-            "card_ndTU7T": {
+            "card_aFqLfz": {
               "type": "_card",
               "name": "t:names.card",
               "settings": {
@@ -1053,16 +1011,16 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
-                "background_image": "shopify://shop_images/11.jpg",
+                "background_image": "shopify://shop_images/stain-remover_d90391ab-4807-45ad-afd2-410af98849a6.jpg",
                 "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
-                "overlay_style": "solid",
+                "overlay_style": "gradient",
                 "gradient_direction": "to top",
                 "link": "",
                 "open_in_new_tab": false,
@@ -1072,20 +1030,7 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_QBVNFA": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
-                "text_aD9M66": {
+                "text_C4XXEK": {
                   "type": "text",
                   "settings": {
                     "text": "<h1>4</h1>",
@@ -1110,7 +1055,7 @@
                   },
                   "blocks": {}
                 },
-                "group_wPAgj7": {
+                "group_jKHenL": {
                   "type": "group",
                   "name": "t:names.group",
                   "settings": {
@@ -1150,7 +1095,7 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {
-                    "group_xj7WPr": {
+                    "group_nBmWnW": {
                       "type": "group",
                       "name": "t:names.group",
                       "settings": {
@@ -1190,7 +1135,7 @@
                         "padding-inline-end": 0
                       },
                       "blocks": {
-                        "text_FJXNaK": {
+                        "text_NXaYw8": {
                           "type": "text",
                           "settings": {
                             "text": "<h5>STAIN TREATMENT</h5>",
@@ -1215,14 +1160,14 @@
                           },
                           "blocks": {}
                         },
-                        "text_9LVCXn": {
+                        "text_dVkxwd": {
                           "type": "text",
                           "settings": {
-                            "text": "<h3>Instant Stain Remover</h3>",
+                            "text": "<h4>Instant Stain Remover</h4>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
-                            "type_preset": "h3",
+                            "type_preset": "h4",
                             "font": "var(--font-body--family)",
                             "font_size": "1rem",
                             "line_height": "normal",
@@ -1242,11 +1187,11 @@
                         }
                       },
                       "block_order": [
-                        "text_FJXNaK",
-                        "text_9LVCXn"
+                        "text_NXaYw8",
+                        "text_dVkxwd"
                       ]
                     },
-                    "text_BBpDeY": {
+                    "text_PWrPwb": {
                       "type": "text",
                       "settings": {
                         "text": "<p>Breaks down stains at the source—so they don’t get a chance to set.</p>",
@@ -1271,7 +1216,7 @@
                       },
                       "blocks": {}
                     },
-                    "button_njdeW7": {
+                    "button_aKKVUm": {
                       "type": "button",
                       "settings": {
                         "label": "Shop Stain Remover",
@@ -1287,24 +1232,23 @@
                     }
                   },
                   "block_order": [
-                    "group_xj7WPr",
-                    "text_BBpDeY",
-                    "button_njdeW7"
+                    "group_nBmWnW",
+                    "text_PWrPwb",
+                    "button_aKKVUm"
                   ]
                 }
               },
               "block_order": [
-                "spacer_QBVNFA",
-                "text_aD9M66",
-                "group_wPAgj7"
+                "text_C4XXEK",
+                "group_jKHenL"
               ]
             }
           },
           "block_order": [
-            "card_aMYH6E",
-            "card_RdDt8n",
-            "card_YP6dCt",
-            "card_ndTU7T"
+            "card_qzHPYz",
+            "card_TUGYhY",
+            "card_Ti6xz4",
+            "card_aFqLfz"
           ]
         }
       },
@@ -1802,7 +1746,7 @@
   "order": [
     "main",
     "section_GFGcXD",
-    "carousel_xXPyhY",
+    "carousel_PrKeGV",
     "product_list_HDkWaT"
   ]
 }
