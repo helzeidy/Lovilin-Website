@@ -1258,9 +1258,9 @@
                 "custom_height_unit": "percent",
                 "custom_height": 100,
                 "custom_height_px": 400,
-                "height_mobile": "custom",
-                "custom_height_mobile_unit": "px",
-                "custom_height_mobile": 60,
+                "height_mobile": "",
+                "custom_height_mobile_unit": "svh",
+                "custom_height_mobile": 30,
                 "custom_height_mobile_px": 400,
                 "inherit_color_scheme": true,
                 "color_scheme": "",
@@ -1300,13 +1300,13 @@
                     "custom_width": 100,
                     "width_mobile": "fill",
                     "custom_width_mobile": 100,
-                    "height": "fill",
+                    "height": "custom",
                     "custom_height_unit": "percent",
                     "custom_height": 100,
                     "custom_height_px": 400,
                     "height_mobile": "custom",
-                    "custom_height_mobile_unit": "px",
-                    "custom_height_mobile": 60,
+                    "custom_height_mobile_unit": "svh",
+                    "custom_height_mobile": 25,
                     "custom_height_mobile_px": 400,
                     "inherit_color_scheme": true,
                     "color_scheme": "",
@@ -1331,20 +1331,6 @@
                     "padding-inline-end": 16
                   },
                   "blocks": {
-                    "spacer_MWEBDG": {
-                      "type": "spacer",
-                      "name": "t:names.spacer",
-                      "settings": {
-                        "size": "pixel",
-                        "percent_size": 100,
-                        "pixel_size": 100,
-                        "custom_mobile_size": false,
-                        "size_mobile": "percent",
-                        "percent_size_mobile": 100,
-                        "pixel_size_mobile": 120
-                      },
-                      "blocks": {}
-                    },
                     "text_MCyYeD": {
                       "type": "text",
                       "name": "t:names.heading",
@@ -1373,7 +1359,6 @@
                     }
                   },
                   "block_order": [
-                    "spacer_MWEBDG",
                     "text_MCyYeD"
                   ]
                 },
@@ -1393,13 +1378,13 @@
                     "custom_width": 100,
                     "width_mobile": "fill",
                     "custom_width_mobile": 100,
-                    "height": "fill",
+                    "height": "custom",
                     "custom_height_unit": "percent",
                     "custom_height": 100,
                     "custom_height_px": 400,
                     "height_mobile": "custom",
-                    "custom_height_mobile_unit": "px",
-                    "custom_height_mobile": 60,
+                    "custom_height_mobile_unit": "svh",
+                    "custom_height_mobile": 25,
                     "custom_height_mobile_px": 400,
                     "inherit_color_scheme": true,
                     "color_scheme": "",
@@ -1424,20 +1409,6 @@
                     "padding-inline-end": 16
                   },
                   "blocks": {
-                    "spacer_JGDjLj": {
-                      "type": "spacer",
-                      "name": "t:names.spacer",
-                      "settings": {
-                        "size": "pixel",
-                        "percent_size": 100,
-                        "pixel_size": 100,
-                        "custom_mobile_size": false,
-                        "size_mobile": "percent",
-                        "percent_size_mobile": 100,
-                        "pixel_size_mobile": 120
-                      },
-                      "blocks": {}
-                    },
                     "text_CQhWww": {
                       "type": "text",
                       "name": "t:names.heading",
@@ -1466,7 +1437,6 @@
                     }
                   },
                   "block_order": [
-                    "spacer_JGDjLj",
                     "text_CQhWww"
                   ]
                 }
@@ -1496,7 +1466,7 @@
                 "custom_height_unit": "percent",
                 "custom_height": 100,
                 "custom_height_px": 400,
-                "height_mobile": "custom",
+                "height_mobile": "",
                 "custom_height_mobile_unit": "px",
                 "custom_height_mobile": 60,
                 "custom_height_mobile_px": 400,
@@ -1538,13 +1508,13 @@
                     "custom_width": 100,
                     "width_mobile": "fill",
                     "custom_width_mobile": 100,
-                    "height": "fill",
+                    "height": "custom",
                     "custom_height_unit": "percent",
                     "custom_height": 100,
                     "custom_height_px": 400,
                     "height_mobile": "custom",
-                    "custom_height_mobile_unit": "px",
-                    "custom_height_mobile": 60,
+                    "custom_height_mobile_unit": "svh",
+                    "custom_height_mobile": 25,
                     "custom_height_mobile_px": 400,
                     "inherit_color_scheme": true,
                     "color_scheme": "",
@@ -1569,20 +1539,6 @@
                     "padding-inline-end": 16
                   },
                   "blocks": {
-                    "spacer_9YcB8T": {
-                      "type": "spacer",
-                      "name": "t:names.spacer",
-                      "settings": {
-                        "size": "pixel",
-                        "percent_size": 100,
-                        "pixel_size": 100,
-                        "custom_mobile_size": false,
-                        "size_mobile": "percent",
-                        "percent_size_mobile": 100,
-                        "pixel_size_mobile": 120
-                      },
-                      "blocks": {}
-                    },
                     "text_gQxDPY": {
                       "type": "text",
                       "name": "t:names.heading",
@@ -1611,7 +1567,6 @@
                     }
                   },
                   "block_order": [
-                    "spacer_9YcB8T",
                     "text_gQxDPY"
                   ]
                 },
@@ -1631,13 +1586,13 @@
                     "custom_width": 100,
                     "width_mobile": "fill",
                     "custom_width_mobile": 100,
-                    "height": "fill",
+                    "height": "custom",
                     "custom_height_unit": "percent",
                     "custom_height": 100,
                     "custom_height_px": 400,
                     "height_mobile": "custom",
-                    "custom_height_mobile_unit": "px",
-                    "custom_height_mobile": 60,
+                    "custom_height_mobile_unit": "svh",
+                    "custom_height_mobile": 25,
                     "custom_height_mobile_px": 400,
                     "inherit_color_scheme": true,
                     "color_scheme": "",
@@ -1662,20 +1617,6 @@
                     "padding-inline-end": 16
                   },
                   "blocks": {
-                    "spacer_jgEW9D": {
-                      "type": "spacer",
-                      "name": "t:names.spacer",
-                      "settings": {
-                        "size": "pixel",
-                        "percent_size": 100,
-                        "pixel_size": 100,
-                        "custom_mobile_size": false,
-                        "size_mobile": "percent",
-                        "percent_size_mobile": 100,
-                        "pixel_size_mobile": 120
-                      },
-                      "blocks": {}
-                    },
                     "text_hY7Lnq": {
                       "type": "text",
                       "name": "t:names.heading",
@@ -1704,7 +1645,6 @@
                     }
                   },
                   "block_order": [
-                    "spacer_jgEW9D",
                     "text_hY7Lnq"
                   ]
                 }
