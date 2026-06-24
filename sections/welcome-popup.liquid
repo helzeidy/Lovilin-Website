@@ -213,7 +213,16 @@
       font-size: var(--font-size--lg, 1.125rem);
     }
     @media screen and (max-width: 749px) {
-      .welcome-popup__image { display: none; }
+      .welcome-popup__body {
+        flex-direction: column;
+        flex-wrap: nowrap;
+      }
+      .welcome-popup__image {
+        flex: 0 0 auto;
+        width: 100%;
+        height: {{ section.settings.mobile_image_height }}px;
+        min-height: 0;
+      }
     }
   {%- endstyle -%}
 
@@ -427,6 +436,17 @@
       "step": 1,
       "unit": "%",
       "default": 92
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Image height (mobile)",
+      "info": "Image shows above the text on mobile.",
+      "min": 80,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 180
     },
     {
       "type": "header",
