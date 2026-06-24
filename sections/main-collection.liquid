@@ -49,8 +49,36 @@
     {% endif %}
 
     {% paginate collection.products by products_per_page %}
+      {% capture banner_card %}
+        {%- if section.settings.banner_enabled -%}
+          {%- assign overlay_opacity = section.settings.banner_overlay_opacity | divided_by: 100.0 -%}
+          {%- assign overlay_r = section.settings.banner_overlay_color | color_extract: 'red' -%}
+          {%- assign overlay_g = section.settings.banner_overlay_color | color_extract: 'green' -%}
+          {%- assign overlay_b = section.settings.banner_overlay_color | color_extract: 'blue' -%}
+          <li class="product-grid__item grid-banner-card" style="position: relative; overflow: hidden; border-radius: {{ section.settings.banner_border_radius }}px;">
+            {% if section.settings.banner_image %}
+              <img src="{{ section.settings.banner_image | image_url: width: 800 }}" alt="{{ section.settings.banner_heading | escape }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+            {% endif %}
+            <div style="position:relative; display:flex; flex-direction:column; justify-content:flex-end; min-height:340px; height:100%; padding:20px; background:linear-gradient(to top, rgba({{ overlay_r }}, {{ overlay_g }}, {{ overlay_b }}, {{ overlay_opacity }}), transparent);">
+              {% if section.settings.banner_heading != blank %}
+                <h3 style="color: {{ section.settings.banner_text_color }}; margin: 0 0 8px; font-size: {{ section.settings.banner_heading_size }}px; font-weight: {{ section.settings.banner_heading_weight }}; text-transform: {{ section.settings.banner_heading_case }}; line-height: 1.2;">{{ section.settings.banner_heading }}</h3>
+              {% endif %}
+              {% if section.settings.banner_subheading != blank %}
+                <p style="color: {{ section.settings.banner_text_color }}; margin: 0 0 12px; font-size: {{ section.settings.banner_description_size }}px; line-height: 1.5; opacity: 0.85;">{{ section.settings.banner_subheading }}</p>
+              {% endif %}
+              {% if section.settings.banner_button_label != blank %}
+                <a href="{{ section.settings.banner_button_url }}" style="display: inline-block; padding: 10px 20px; background: {{ section.settings.banner_button_color }}; color: #fff; text-decoration: none; border-radius: {{ section.settings.banner_button_border_radius }}px;">{{ section.settings.banner_button_label }}</a>
+              {% endif %}
+            </div>
+          </li>
+        {%- endif -%}
+      {% endcapture %}
+      {% assign banner_pos = section.settings.banner_position | plus: 0 %}
       {% capture children %}
         {% for product in collection.products %}
+          {% if section.settings.banner_enabled and forloop.index == banner_pos %}
+            {{ banner_card }}
+          {% endif %}
           <li
             id="{{ section.id }}-{{ product.id }}"
             class="product-grid__item product-grid__item--{{ forloop.index0 }}"
@@ -80,7 +108,9 @@
 {
   "name": "t:names.collection_container",
   "enabled_on": {
-    "templates": ["collection"]
+    "templates": [
+      "collection"
+    ]
   },
   "settings": [
     {
@@ -252,6 +282,160 @@
       "step": 1,
       "unit": "px",
       "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "banner_enabled",
+      "label": "Show banner",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image"
+    },
+    {
+      "type": "range",
+      "id": "banner_position",
+      "label": "Banner position (card number)",
+      "min": 1,
+      "max": 16,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "banner_border_radius",
+      "label": "Banner border radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "banner_heading",
+      "label": "Heading text",
+      "default": "Shop the Collection"
+    },
+    {
+      "type": "range",
+      "id": "banner_heading_size",
+      "label": "Heading size",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "banner_heading_weight",
+      "label": "Heading weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        },
+        {
+          "value": "800",
+          "label": "Extra bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "banner_heading_case",
+      "label": "Heading case",
+      "options": [
+        {
+          "value": "none",
+          "label": "Normal"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_subheading",
+      "label": "Description text"
+    },
+    {
+      "type": "range",
+      "id": "banner_description_size",
+      "label": "Description size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "text",
+      "id": "banner_button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "banner_button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "banner_button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "banner_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "banner_button_color",
+      "label": "Button color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "banner_overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "banner_overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 40
     }
   ],
   "presets": []
