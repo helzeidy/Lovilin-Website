@@ -804,8 +804,6 @@
     }
   },
   "platform_customizations": {
-    "custom_css": [
-      "@media (max-width: 749px) {/* H1 - main headings */ h1, .h1 {font-size: 32px; } /* H2 - section headings */ h2, .h2 {font-size: 28px; } /* H3 - sub-headings */ h3, .h3 {font-size: 24px; } /* H4 */ h4, .h4 {font-size: 20px; } /* H5 & H6 */ h5, .h5, h6, .h6 {font-size: 16px; } /* Body text */ body, p {font-size: 16px; } /* Small/caption text */ small, .caption {font-size: 14px; } /* Buttons */ .button, button {font-size: 15px; }}"
-    ]
+    "custom_css": []
   }
 }
