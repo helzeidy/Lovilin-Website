@@ -74,7 +74,7 @@
     "drawer_drop_shadow": true,
     "icon_stroke": "default",
     "input_border_width": 1,
-    "inputs_border_radius": 4,
+    "inputs_border_radius": 16,
     "popover_border_radius": 14,
     "popover_border": "none",
     "currency_code_enabled_product_pages": true,
@@ -90,7 +90,7 @@
     "variant_swatch_height": 34,
     "variant_swatch_radius": 32,
     "variant_button_border_width": 1,
-    "variant_button_radius": 16,
+    "variant_button_radius": 100,
     "variant_button_width": "equal-width-buttons",
     "sections": {
       "password-footer": {
