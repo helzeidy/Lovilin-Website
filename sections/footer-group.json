@@ -1586,7 +1586,19 @@
     "welcome_popup": {
       "type": "welcome-popup",
       "settings": {
-        "enabled": true
+        "enabled": true,
+        "image": "shopify://shop_images/Rectangle_a4b8743d-306e-4ed4-a965-0134a98d4d3f.jpg",
+        "title": "Get 5% OFF Your First Order",
+        "description": "<p>Create a Lovilin account and enjoy 5% off your first order today.</p>",
+        "placeholder": "Email address",
+        "button_label": "Claim My Discount",
+        "success_message": "Thanks for subscribing!",
+        "show_account_link": true,
+        "account_link_label": "Or create an account",
+        "frequency": "always",
+        "delay": 2,
+        "color_scheme": "",
+        "corner_radius": 24
       }
     }
   },
