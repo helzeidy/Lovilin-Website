@@ -1695,6 +1695,26 @@ zoom-dialog dialog {
   height: var(--icon-size-xs);
 }
 
+/* Product detail certification icons (icon_1–icon_4 metafields): uniform, larger,
+   centered, keeping each SVG's natural shape instead of squeezing to 1/4 width. */
+.image-block--image_cApyJA,
+.image-block--image_Q6Bhcr,
+.image-block--image_aqQff8,
+.image-block--image_bnfrxn {
+  justify-content: center;
+}
+
+.image-block--image_cApyJA .image-block__image,
+.image-block--image_Q6Bhcr .image-block__image,
+.image-block--image_aqQff8 .image-block__image,
+.image-block--image_bnfrxn .image-block__image {
+  height: 96px;
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
 /* Announcement bar navigation arrows — make them clearly visible */
 .announcement-bar__slider .slideshow-control .svg-wrapper,
 .announcement-bar__slider .slideshow-control .svg-wrapper > svg {
