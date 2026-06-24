@@ -35,6 +35,8 @@
         --wp-text-align: {{ section.settings.alignment }};
         --wp-align: {{ align_items }};
         --wp-body-size: var(--font-size--{{ section.settings.body_size }});
+        --wp-img-ratio-desktop: {{ section.settings.desktop_image_ratio }};
+        --wp-img-ratio-mobile: {{ section.settings.mobile_image_ratio }};
       "
     >
       <button
@@ -129,7 +131,7 @@
     }
     .welcome-popup__image {
       flex: 1 1 240px;
-      min-height: 200px;
+      align-self: stretch;
     }
     .welcome-popup__image img {
       width: 100%;
@@ -137,6 +139,15 @@
       object-fit: cover;
       display: block;
     }
+    {%- if section.settings.desktop_image_ratio != 'auto' -%}
+      .welcome-popup__image {
+        align-self: flex-start;
+        aspect-ratio: var(--wp-img-ratio-desktop);
+        height: auto;
+      }
+    {%- else -%}
+      .welcome-popup__image { min-height: 200px; }
+    {%- endif -%}
     .welcome-popup__content {
       flex: 1 1 300px;
       padding: clamp(24px, 4vw, 44px);
@@ -219,9 +230,15 @@
       }
       .welcome-popup__image {
         flex: 0 0 auto;
+        align-self: stretch;
         width: 100%;
-        height: {{ section.settings.mobile_image_height }}px;
         min-height: 0;
+        {%- if section.settings.mobile_image_ratio != 'auto' -%}
+          aspect-ratio: var(--wp-img-ratio-mobile);
+          height: auto;
+        {%- else -%}
+          height: {{ section.settings.mobile_image_height }}px;
+        {%- endif -%}
       }
     }
   {%- endstyle -%}
@@ -438,15 +455,43 @@
       "default": 92
     },
     {
+      "type": "select",
+      "id": "desktop_image_ratio",
+      "label": "Image ratio (desktop)",
+      "options": [
+        { "value": "auto", "label": "Fill (match text height)" },
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "4 / 5", "label": "Portrait (4:5)" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "16 / 9", "label": "Wide (16:9)" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_ratio",
+      "label": "Image ratio (mobile)",
+      "info": "Image shows above the text on mobile.",
+      "options": [
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "4 / 5", "label": "Portrait (4:5)" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "16 / 9", "label": "Wide (16:9)" },
+        { "value": "auto", "label": "Custom height" }
+      ],
+      "default": "1 / 1"
+    },
+    {
       "type": "range",
       "id": "mobile_image_height",
       "label": "Image height (mobile)",
-      "info": "Image shows above the text on mobile.",
+      "info": "Used when mobile image ratio is set to 'Custom height'.",
       "min": 80,
       "max": 400,
       "step": 10,
       "unit": "px",
-      "default": 180
+      "default": 180,
+      "visible_if": "{{ section.settings.mobile_image_ratio == 'auto' }}"
     },
     {
       "type": "header",
