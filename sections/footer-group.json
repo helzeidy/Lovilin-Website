@@ -1595,7 +1595,7 @@
         "success_message": "Thanks for subscribing!",
         "show_account_link": true,
         "account_link_label": "Or create an account",
-        "frequency": "always",
+        "frequency": "session",
         "delay": 2,
         "title_size": "h4",
         "body_size": "paragraph",
