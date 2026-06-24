@@ -873,6 +873,21 @@
     color: #fff;
     mix-blend-mode: difference;
     z-index: var(--layer-raised);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Keep the accessible label out of flow even when focused/active so the
+     close icon stays centered (the button already has an aria-label). */
+  .dialog-zoomed-gallery__close-button .visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
   }
 
   /* Mobile thumbnails styling */
