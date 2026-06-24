@@ -1602,6 +1602,9 @@
         "alignment": "center",
         "desktop_width": 700,
         "mobile_width": 92,
+        "desktop_image_ratio": "4 / 5",
+        "mobile_image_ratio": "1 / 1",
+        "mobile_image_height": 180,
         "color_scheme": "",
         "corner_radius": 24
       }
