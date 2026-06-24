@@ -1378,6 +1378,20 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
   background-color: var(--button-background-color);
 }
 
+/* "Buy it now" (dynamic checkout) uses secondary button colors */
+button.shopify-payment-button__button--unbranded {
+  --button-color: var(--color-secondary-button-text);
+  --button-background-color: var(--color-secondary-button-background);
+  --button-border-color: var(--color-secondary-button-border);
+  --button-border-width: var(--style-border-width-secondary);
+}
+
+button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
+  --button-color: var(--color-secondary-button-hover-text);
+  --button-background-color: var(--color-secondary-button-hover-background);
+  --button-border-color: var(--color-secondary-button-hover-border);
+}
+
 .button-unstyled {
   display: block;
   padding: 0;
