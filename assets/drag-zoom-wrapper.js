@@ -5,6 +5,8 @@ import { Component } from '@theme/component';
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 5;
 const DEFAULT_ZOOM = 1.5;
+// Scale the image opens at. 1x = fully fit; user can then double-tap/pinch to zoom in.
+const INITIAL_ZOOM = MIN_ZOOM;
 const DOUBLE_TAP_DELAY = 300;
 const DOUBLE_TAP_DISTANCE = 50;
 const DRAG_THRESHOLD = 10;
@@ -19,11 +21,11 @@ export class DragZoomWrapper extends Component {
   requiredRefs = ['image'];
   #controller = new AbortController();
   /** @type {number} */
-  #scale = DEFAULT_ZOOM;
+  #scale = INITIAL_ZOOM;
   /** @type {number} */
   #initialDistance = 0;
   /** @type {number} */
-  #startScale = DEFAULT_ZOOM;
+  #startScale = INITIAL_ZOOM;
   /** @type {Point} */
   #translate = { x: 0, y: 0 };
   /** @type {Point} */
@@ -450,9 +452,9 @@ export class DragZoomWrapper extends Component {
    * Called when zoom is exited/closed
    */
   #resetZoom = () => {
-    // Reset scale and translation to defaults
-    this.#scale = DEFAULT_ZOOM;
-    this.#startScale = DEFAULT_ZOOM;
+    // Reset scale and translation to defaults (fit) so it reopens fully fit
+    this.#scale = INITIAL_ZOOM;
+    this.#startScale = INITIAL_ZOOM;
     this.#translate.x = 0;
     this.#translate.y = 0;
 
