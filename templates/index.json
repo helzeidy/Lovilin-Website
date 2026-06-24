@@ -1608,7 +1608,7 @@
                     "overlay_color": "#ffffff70",
                     "overlay_style": "gradient",
                     "gradient_direction": "to top",
-                    "link": "",
+                    "link": "shopify://products/lovilin-gift-card",
                     "open_in_new_tab": false,
                     "placeholder": "",
                     "padding-block-start": 16,
