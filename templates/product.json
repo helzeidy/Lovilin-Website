@@ -872,24 +872,24 @@
         "loox_reviews_loox_card_carousel_section_943q9L": {
           "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
           "settings": {
-            "maxWidth": 1100,
-            "borderRadius": 8,
-            "itemsPerView": 4,
+            "maxWidth": 1600,
+            "borderRadius": 16,
+            "itemsPerView": 5,
             "mobileItemsPerView": 1,
             "maxNumberOfCharacters": 100,
             "imageRatio": "0.72",
-            "reviewerNameColor": "#000000",
-            "textColor": "#000000",
+            "reviewerNameColor": "#071E85",
+            "textColor": "#6172BF",
             "itemBackgroundColor": "#ffffff",
             "starsColor": "",
             "starsBackgroundColor": "#ffffff",
-            "arrows_backgroundColor": "#FFFFFF",
-            "arrows_iconColor": "#9A9A9A",
-            "shadow": "offset-dark",
-            "border_active": false,
-            "border_width": 2,
-            "border_color": "#000000",
-            "productIds": ""
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
+            "shadow": "none",
+            "border_active": true,
+            "border_width": 1,
+            "border_color": "#F1F2F4",
+            "productIds": "{{ closest.product }}"
           }
         }
       },
