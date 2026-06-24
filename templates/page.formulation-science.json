@@ -16,7 +16,8 @@
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
-            "image_1": "shopify://shop_images/Rectangle_a4b8743d-306e-4ed4-a965-0134a98d4d3f.jpg",
+            "image_1": "shopify://shop_images/formulation-2.jpg",
+            "image_1_mobile": "shopify://shop_images/1_390ff03e-53eb-4d43-a376-61b8368a3945.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
