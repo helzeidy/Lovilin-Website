@@ -1695,6 +1695,17 @@ zoom-dialog dialog {
   height: var(--icon-size-xs);
 }
 
+/* Announcement bar navigation arrows — make them clearly visible */
+.announcement-bar__slider .slideshow-control .svg-wrapper,
+.announcement-bar__slider .slideshow-control .svg-wrapper > svg {
+  width: 22px;
+  height: 22px;
+}
+
+.announcement-bar__slider .slideshow-control .icon-caret {
+  --icon-stroke-width: 2.5px;
+}
+
 /* Product media */
 .product-media {
   display: flex;
