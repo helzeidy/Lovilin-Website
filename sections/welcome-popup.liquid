@@ -8,6 +8,15 @@
     if form.posted_successfully?
       assign success = true
     endif
+
+    case section.settings.alignment
+      when 'left'
+        assign align_items = 'flex-start'
+      when 'right'
+        assign align_items = 'flex-end'
+      else
+        assign align_items = 'center'
+    endcase
   -%}
 
   <welcome-popup
@@ -20,6 +29,13 @@
       class="welcome-popup__dialog color-{{ section.settings.color_scheme }}"
       ref="dialog"
       aria-label="{{ section.settings.title | escape }}"
+      style="
+        --wp-desktop-width: {{ section.settings.desktop_width }}px;
+        --wp-mobile-width: {{ section.settings.mobile_width }}vw;
+        --wp-text-align: {{ section.settings.alignment }};
+        --wp-align: {{ align_items }};
+        --wp-body-size: var(--font-size--{{ section.settings.body_size }});
+      "
     >
       <button
         type="button"
@@ -41,7 +57,7 @@
 
         <div class="welcome-popup__content">
           {%- if section.settings.title != blank -%}
-            <h2 class="welcome-popup__title">{{ section.settings.title }}</h2>
+            <h2 class="welcome-popup__title {{ section.settings.title_size }}">{{ section.settings.title }}</h2>
           {%- endif -%}
           {%- if section.settings.description != blank -%}
             <div class="welcome-popup__description">{{ section.settings.description }}</div>
@@ -89,8 +105,8 @@
 
   {%- style -%}
     .welcome-popup__dialog {
-      width: min(680px, 92vw);
-      max-width: 92vw;
+      width: min(var(--wp-desktop-width, 680px), var(--wp-mobile-width, 92vw));
+      max-width: 96vw;
       padding: 0;
       border: none;
       border-radius: {{ section.settings.corner_radius }}px;
@@ -98,6 +114,11 @@
       color: var(--color-foreground);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
       overflow: hidden;
+    }
+    @media screen and (min-width: 750px) {
+      .welcome-popup__dialog {
+        width: var(--wp-desktop-width, 680px);
+      }
     }
     .welcome-popup__dialog::backdrop {
       background: rgba(0, 0, 0, 0.5);
@@ -123,6 +144,8 @@
       flex-direction: column;
       justify-content: center;
       gap: 14px;
+      text-align: var(--wp-text-align, center);
+      align-items: var(--wp-align, center);
     }
     .welcome-popup__title {
       margin: 0;
@@ -130,6 +153,14 @@
     .welcome-popup__description {
       margin: 0;
       opacity: 0.85;
+      font-size: var(--wp-body-size, var(--font-size--paragraph));
+    }
+    .welcome-popup__description > * {
+      font-size: inherit;
+    }
+    .welcome-popup__form,
+    .welcome-popup__field {
+      width: 100%;
     }
     .welcome-popup__form {
       margin-top: 6px;
@@ -328,6 +359,74 @@
       "step": 1,
       "unit": "s",
       "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "label": "Title size",
+      "info": "Uses the theme's heading typography.",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "select",
+      "id": "body_size",
+      "label": "Description size",
+      "info": "Uses the theme's typography sizes.",
+      "options": [
+        { "value": "paragraph", "label": "Paragraph" },
+        { "value": "h6", "label": "H6" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h4", "label": "H4" }
+      ],
+      "default": "paragraph"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Size"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width",
+      "label": "Width (desktop)",
+      "min": 320,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 680
+    },
+    {
+      "type": "range",
+      "id": "mobile_width",
+      "label": "Width (mobile)",
+      "info": "Percent of screen width.",
+      "min": 60,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 92
     },
     {
       "type": "header",
