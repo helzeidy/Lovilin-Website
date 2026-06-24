@@ -68,13 +68,39 @@ class StickyAddToCartComponent extends Component {
   /** @type {boolean} */
   #hiddenByBottom = false;
 
+  /** @type {HTMLElement | null} */
+  #ownerSection = null;
+
   connectedCallback() {
     super.connectedCallback();
+
+    // Cache the owning section before any relocation so form/variant lookups keep working.
+    if (!this.#ownerSection) {
+      this.#ownerSection = this.closest('.shopify-section');
+    }
+
+    // Relocate the bar to <body> so its position:fixed anchors to the viewport and is
+    // never trapped by an ancestor that establishes a containing block (e.g. a transform
+    // or container-type from page/product transitions). Moving re-triggers this callback,
+    // which then runs the real setup with the element living directly under <body>.
+    if (this.#ownerSection && this.parentElement !== document.body) {
+      // Re-arm the abort controller since the pending move will fire disconnectedCallback.
+      if (this.#abortController.signal.aborted) {
+        this.#abortController = new AbortController();
+      }
+      document.body.appendChild(this);
+      return;
+    }
+
+    // Re-arm after a disconnect (e.g. the relocation above) so listeners attach.
+    if (this.#abortController.signal.aborted) {
+      this.#abortController = new AbortController();
+    }
 
     this.#setupIntersectionObserver();
 
     const { signal } = this.#abortController;
-    const target = this.closest('.shopify-section');
+    const target = this.#ownerSection;
     target?.addEventListener(ThemeEvents.variantUpdate, this.#handleVariantUpdate, { signal });
     target?.addEventListener(ThemeEvents.variantSelected, this.#handleVariantSelected, { signal });
 
@@ -317,7 +343,7 @@ class StickyAddToCartComponent extends Component {
     const productId = this.dataset.productId;
     if (!productId) return null;
 
-    const sectionElement = this.closest('.shopify-section');
+    const sectionElement = this.#ownerSection ?? this.closest('.shopify-section');
     if (!sectionElement) return null;
 
     const sectionId = sectionElement.id.replace('shopify-section-', '');
