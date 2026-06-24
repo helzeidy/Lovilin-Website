@@ -1597,6 +1597,11 @@
         "account_link_label": "Or create an account",
         "frequency": "always",
         "delay": 2,
+        "title_size": "h4",
+        "body_size": "paragraph",
+        "alignment": "center",
+        "desktop_width": 700,
+        "mobile_width": 92,
         "color_scheme": "",
         "corner_radius": 24
       }
