@@ -1,0 +1,357 @@
+{%- comment -%}
+  Welcome popup — newsletter email capture shown once per session to new visitors.
+{%- endcomment -%}
+
+{%- if section.settings.enabled -%}
+  {%- liquid
+    assign success = false
+    if form.posted_successfully?
+      assign success = true
+    endif
+  -%}
+
+  <welcome-popup
+    class="welcome-popup"
+    data-delay="{{ section.settings.delay | times: 1000 }}"
+    data-frequency="{{ section.settings.frequency }}"
+    {% if success %}data-force-open="true"{% endif %}
+  >
+    <dialog
+      class="welcome-popup__dialog color-{{ section.settings.color_scheme }}"
+      ref="dialog"
+      aria-label="{{ section.settings.title | escape }}"
+    >
+      <button
+        type="button"
+        class="welcome-popup__close"
+        aria-label="{{ 'accessibility.close' | t | default: 'Close' }}"
+        ref="closeButton"
+      >
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">
+          <path d="M2 2 L14 14 M14 2 L2 14" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="welcome-popup__body">
+        {%- if section.settings.image != blank -%}
+          <div class="welcome-popup__image">
+            {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 400px, 90vw', widths: '300, 500, 800' }}
+          </div>
+        {%- endif -%}
+
+        <div class="welcome-popup__content">
+          {%- if section.settings.title != blank -%}
+            <h2 class="welcome-popup__title">{{ section.settings.title }}</h2>
+          {%- endif -%}
+          {%- if section.settings.description != blank -%}
+            <div class="welcome-popup__description">{{ section.settings.description }}</div>
+          {%- endif -%}
+
+          {%- if success -%}
+            <p class="welcome-popup__success">{{ section.settings.success_message }}</p>
+          {%- else -%}
+            {%- form 'customer', class: 'welcome-popup__form' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter, welcome-popup">
+              <input type="hidden" name="contact[accepts_marketing]" value="true">
+              <div class="welcome-popup__field">
+                <label class="visually-hidden" for="welcome-popup-email">{{ 'blocks.email_signup.label' | t | default: 'Email' }}</label>
+                <input
+                  id="welcome-popup-email"
+                  class="welcome-popup__input"
+                  type="email"
+                  name="contact[email]"
+                  required
+                  autocomplete="email"
+                  placeholder="{{ section.settings.placeholder }}"
+                >
+                <button type="submit" class="welcome-popup__button button">
+                  {{ section.settings.button_label }}
+                </button>
+              </div>
+              {%- if form.errors -%}
+                <p class="welcome-popup__error">
+                  {{ form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email }}
+                </p>
+              {%- endif -%}
+            {%- endform -%}
+
+            {%- if section.settings.show_account_link and shop.customer_accounts_enabled -%}
+              <a class="welcome-popup__account-link" href="{{ routes.account_register_url }}">
+                {{ section.settings.account_link_label }}
+              </a>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </dialog>
+  </welcome-popup>
+
+  {%- style -%}
+    .welcome-popup__dialog {
+      width: min(680px, 92vw);
+      max-width: 92vw;
+      padding: 0;
+      border: none;
+      border-radius: {{ section.settings.corner_radius }}px;
+      background-color: var(--color-background);
+      color: var(--color-foreground);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+    }
+    .welcome-popup__dialog::backdrop {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .welcome-popup__body {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .welcome-popup__image {
+      flex: 1 1 240px;
+      min-height: 200px;
+    }
+    .welcome-popup__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .welcome-popup__content {
+      flex: 1 1 300px;
+      padding: clamp(24px, 4vw, 44px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+    }
+    .welcome-popup__title {
+      margin: 0;
+    }
+    .welcome-popup__description {
+      margin: 0;
+      opacity: 0.85;
+    }
+    .welcome-popup__form {
+      margin-top: 6px;
+    }
+    .welcome-popup__field {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .welcome-popup__input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--color-border, rgba(0,0,0,0.2));
+      border-radius: var(--style-border-radius-buttons-primary, 6px);
+      font-size: var(--font-size--md, 1rem);
+    }
+    .welcome-popup__button {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+    .welcome-popup__close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+      color: #111;
+      cursor: pointer;
+    }
+    .welcome-popup__account-link {
+      font-size: var(--font-size--sm, 0.875rem);
+      text-align: center;
+      margin-top: 4px;
+    }
+    .welcome-popup__error {
+      color: var(--color-error, #c0392b);
+      font-size: var(--font-size--sm, 0.875rem);
+      margin: 8px 0 0;
+    }
+    .welcome-popup__success {
+      margin: 0;
+      font-size: var(--font-size--lg, 1.125rem);
+    }
+    @media screen and (max-width: 749px) {
+      .welcome-popup__image { display: none; }
+    }
+  {%- endstyle -%}
+
+  <script>
+    (function () {
+      class WelcomePopup extends HTMLElement {
+        connectedCallback() {
+          this.dialog = this.querySelector('[ref="dialog"]');
+          if (!this.dialog) return;
+          this.key = 'welcomePopupSeen';
+          this.frequency = this.dataset.frequency || 'session';
+
+          this.querySelector('[ref="closeButton"]')?.addEventListener('click', () => this.close());
+          this.dialog.addEventListener('click', (e) => {
+            if (e.target === this.dialog) this.close();
+          });
+
+          if (this.dataset.forceOpen === 'true') {
+            this.mark();
+            this.open();
+            return;
+          }
+          if (this.alreadySeen()) return;
+          const delay = parseInt(this.dataset.delay, 10) || 0;
+          window.setTimeout(() => this.open(), delay);
+        }
+        store() {
+          return this.frequency === 'session' ? window.sessionStorage : window.localStorage;
+        }
+        alreadySeen() {
+          if (this.frequency === 'always') return false;
+          try { return this.store().getItem(this.key) === '1'; } catch (e) { return false; }
+        }
+        mark() {
+          if (this.frequency === 'always') return;
+          try { this.store().setItem(this.key, '1'); } catch (e) {}
+        }
+        open() {
+          if (typeof this.dialog.showModal === 'function') {
+            this.dialog.showModal();
+          } else {
+            this.dialog.setAttribute('open', '');
+          }
+          this.mark();
+        }
+        close() {
+          if (typeof this.dialog.close === 'function') {
+            this.dialog.close();
+          } else {
+            this.dialog.removeAttribute('open');
+          }
+        }
+      }
+      if (!customElements.get('welcome-popup')) {
+        customElements.define('welcome-popup', WelcomePopup);
+      }
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Welcome popup",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable popup",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (optional)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Welcome to Lovilin"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Sign up to be the first to know about new products and offers.</p>"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email placeholder",
+      "default": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Sign up"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for subscribing!"
+    },
+    {
+      "type": "header",
+      "content": "Account link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account_link",
+      "label": "Show 'create an account' link",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "account_link_label",
+      "label": "Account link label",
+      "default": "Or create an account"
+    },
+    {
+      "type": "header",
+      "content": "Behavior"
+    },
+    {
+      "type": "select",
+      "id": "frequency",
+      "label": "Show frequency",
+      "options": [
+        { "value": "session", "label": "Once per session" },
+        { "value": "once", "label": "Once ever" },
+        { "value": "always", "label": "Every visit" }
+      ],
+      "default": "session"
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "label": "Delay before showing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "s",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "enabled_on": {
+    "groups": ["footer"]
+  }
+}
+{% endschema %}

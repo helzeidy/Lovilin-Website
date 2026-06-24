@@ -1582,6 +1582,12 @@
         "padding-block-start": 20,
         "padding-block-end": 20
       }
+    },
+    "welcome_popup": {
+      "type": "welcome-popup",
+      "settings": {
+        "enabled": true
+      }
     }
   },
   "order": [
@@ -1589,6 +1595,7 @@
     "section_paXhXi",
     "section_GXmH3w",
     "footer_m9NzUG",
-    "footer_utilities_jLGE8U"
+    "footer_utilities_jLGE8U",
+    "welcome_popup"
   ]
 }
