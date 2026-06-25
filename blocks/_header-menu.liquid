@@ -1028,6 +1028,18 @@
     },
     {
       "type": "range",
+      "id": "menu_carousel_peek",
+      "label": "Peek of next card (carousel)",
+      "info": "How much of the next card shows, hinting it scrolls.",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28,
+      "visible_if": "{{ block.settings.menu_products_layout == 'carousel' }}"
+    },
+    {
+      "type": "range",
       "id": "menu_products_gap",
       "label": "Gap between cards",
       "min": 0,

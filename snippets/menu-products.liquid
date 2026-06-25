@@ -48,6 +48,7 @@
       --mp-img-ratio: {{ img_ratio }};
       --mp-section-margin: {{ s.menu_products_margin_bottom | default: 16 }}px;
       --mp-img-width: {{ s.menu_card_image_width | default: 96 }}px;
+      --mp-peek: {{ s.menu_carousel_peek | default: 28 }}px;
     "
   >
     {%- if s.menu_products_heading != blank -%}
@@ -132,12 +133,13 @@
     grid-template-columns: repeat(var(--mp-columns, 2), minmax(0, 1fr));
   }
 
-  /* Carousel layout — horizontal scroll, swipeable */
+  /* Carousel layout — horizontal scroll, swipeable.
+     The --mp-peek amount is left over on the right so the next card peeks in. */
   .menu-products--carousel .menu-products__list {
     grid-auto-flow: column;
-    grid-auto-columns: calc((100% - (var(--mp-columns, 2) - 1) * var(--mp-gap, 12px)) / var(--mp-columns, 2));
+    grid-auto-columns: calc((100% - var(--mp-peek, 28px) - (var(--mp-columns, 2)) * var(--mp-gap, 12px)) / var(--mp-columns, 2));
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 4px;
