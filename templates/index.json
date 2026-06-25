@@ -5393,7 +5393,7 @@
                   "settings": {
                     "text": "<p>Safe for the things little hands touch every day. <br/><br/>Our NRC food-grade certified formula helps remove everyday residue and bacteria from toys, play areas, and baby-contact surfaces — without harsh leftover residue.</p>",
                     "width": "fit-content",
-                    "max_width": "narrow",
+                    "max_width": "normal",
                     "alignment": "left",
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
