@@ -735,7 +735,6 @@
             },
             "ai_gen_block_af06917_7HzMkC": {
               "type": "ai_gen_block_af06917",
-              "disabled": true,
               "settings": {
                 "desktop_width_percent": 100,
                 "card_min_width": 150,
