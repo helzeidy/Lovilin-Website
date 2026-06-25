@@ -1037,8 +1037,39 @@
       "default": 12
     },
     {
+      "type": "range",
+      "id": "menu_products_margin_bottom",
+      "label": "Space below products (before menu)",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
       "type": "header",
       "content": "Menu product card"
+    },
+    {
+      "type": "select",
+      "id": "menu_card_orientation",
+      "label": "Card orientation",
+      "options": [
+        { "value": "vertical", "label": "Vertical (image on top)" },
+        { "value": "horizontal", "label": "Horizontal (image on left)" }
+      ],
+      "default": "vertical"
+    },
+    {
+      "type": "range",
+      "id": "menu_card_image_width",
+      "label": "Image width (horizontal card)",
+      "min": 48,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 96,
+      "visible_if": "{{ block.settings.menu_card_orientation == 'horizontal' }}"
     },
     {
       "type": "checkbox",
@@ -1097,6 +1128,32 @@
       "step": 1,
       "unit": "px",
       "default": 12
+    },
+    {
+      "type": "range",
+      "id": "menu_card_padding",
+      "label": "Card padding",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "menu_card_border_width",
+      "label": "Card border width",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "menu_card_border_color",
+      "label": "Card border color",
+      "default": "#e5e5e5"
     },
     {
       "type": "color",

@@ -34,16 +34,20 @@
   <script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
   <div
-    class="menu-products menu-products--{{ s.menu_products_layout | default: 'carousel' }}"
+    class="menu-products menu-products--{{ s.menu_products_layout | default: 'carousel' }} menu-products--card-{{ s.menu_card_orientation | default: 'vertical' }}"
     style="
       --mp-columns: {{ s.menu_products_columns | default: 2 }};
       --mp-gap: {{ s.menu_products_gap | default: 12 }}px;
       --mp-card-bg: {{ s.menu_card_bg | default: 'transparent' }};
       --mp-card-radius: {{ s.menu_card_radius | default: 12 }}px;
+      --mp-card-padding: {{ s.menu_card_padding | default: 0 }}px;
+      --mp-border: {{ s.menu_card_border_width | default: 0 }}px solid {{ s.menu_card_border_color | default: 'transparent' }};
       --mp-title-color: {{ s.menu_card_title_color | default: 'inherit' }};
       --mp-price-color: {{ s.menu_card_price_color | default: 'inherit' }};
       --mp-btn-color: {{ s.menu_card_button_color | default: '#1a1a6e' }};
       --mp-img-ratio: {{ img_ratio }};
+      --mp-section-margin: {{ s.menu_products_margin_bottom | default: 16 }}px;
+      --mp-img-width: {{ s.menu_card_image_width | default: 96 }}px;
     "
   >
     {%- if s.menu_products_heading != blank -%}
@@ -109,6 +113,7 @@
 {% stylesheet %}
   .menu-products {
     padding: var(--drawer-content-block-padding, 10px) var(--drawer-inline-padding, 20px);
+    margin-bottom: var(--mp-section-margin, 16px);
   }
 
   .menu-products__heading {
@@ -144,8 +149,39 @@
     position: relative;
     background: var(--mp-card-bg, transparent);
     border-radius: var(--mp-card-radius, 12px);
+    border: var(--mp-border, none);
+    padding: var(--mp-card-padding, 0);
     overflow: hidden;
     height: 100%;
+  }
+
+  /* Horizontal card: image left, info right */
+  .menu-products--card-horizontal .menu-product-card__main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .menu-products--card-horizontal .menu-product-card__media {
+    flex: 0 0 var(--mp-img-width, 96px);
+    width: var(--mp-img-width, 96px);
+  }
+  .menu-products--card-horizontal .menu-product-card__info {
+    flex: 1 1 auto;
+    padding: 0;
+    justify-content: center;
+  }
+  /* In horizontal mode the add button sits inline, not floating */
+  .menu-products--card-horizontal .menu-product-card__form {
+    position: static;
+    margin-left: auto;
+    align-self: center;
+  }
+  .menu-products--card-horizontal .menu-product-card {
+    display: flex;
+    align-items: center;
+  }
+  .menu-products--card-horizontal .menu-product-card__main {
+    flex: 1 1 auto;
   }
 
   .menu-product-card__main {
