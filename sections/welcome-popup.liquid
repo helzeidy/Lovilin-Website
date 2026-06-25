@@ -67,6 +67,26 @@
 
           {%- if success -%}
             <p class="welcome-popup__success">{{ section.settings.success_message }}</p>
+            {%- if section.settings.discount_code != blank -%}
+              <div class="welcome-popup__discount">
+                {%- if section.settings.discount_intro != blank -%}
+                  <p class="welcome-popup__discount-intro">{{ section.settings.discount_intro }}</p>
+                {%- endif -%}
+                <button
+                  type="button"
+                  class="welcome-popup__code"
+                  ref="copyCode"
+                  data-code="{{ section.settings.discount_code | escape }}"
+                  aria-label="Copy discount code {{ section.settings.discount_code | escape }}"
+                >
+                  <span class="welcome-popup__code-value">{{ section.settings.discount_code }}</span>
+                  <span class="welcome-popup__code-action" ref="copyLabel">Copy</span>
+                </button>
+                {%- if section.settings.discount_help != blank -%}
+                  <p class="welcome-popup__discount-help">{{ section.settings.discount_help }}</p>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
           {%- else -%}
             {%- form 'customer', class: 'welcome-popup__form' -%}
               <input type="hidden" name="contact[tags]" value="newsletter, welcome-popup">
@@ -223,6 +243,51 @@
       margin: 0;
       font-size: var(--font-size--lg, 1.125rem);
     }
+    .welcome-popup__discount {
+      width: 100%;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: var(--wp-align, center);
+      gap: 8px;
+    }
+    .welcome-popup__discount-intro {
+      margin: 0;
+      font-size: var(--font-size--md, 1rem);
+      font-weight: 600;
+    }
+    .welcome-popup__code {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 2px dashed var(--color-foreground, #1a1a4b);
+      border-radius: var(--style-border-radius-buttons-primary, 8px);
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+    }
+    .welcome-popup__code-value {
+      font-size: var(--font-size--lg, 1.125rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--color-foreground, #1a1a4b);
+    }
+    .welcome-popup__code-action {
+      font-size: var(--font-size--sm, 0.8125rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--color-foreground, #1a1a4b);
+      color: var(--color-background, #fff);
+    }
+    .welcome-popup__discount-help {
+      margin: 0;
+      font-size: var(--font-size--sm, 0.875rem);
+      opacity: 0.75;
+    }
     @media screen and (max-width: 749px) {
       .welcome-popup__body {
         flex-direction: column;
@@ -256,6 +321,26 @@
           this.dialog.addEventListener('click', (e) => {
             if (e.target === this.dialog) this.close();
           });
+
+          const copyBtn = this.querySelector('[ref="copyCode"]');
+          if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+              const code = copyBtn.dataset.code || '';
+              const label = copyBtn.querySelector('[ref="copyLabel"]');
+              const done = () => {
+                if (label) {
+                  const original = label.textContent;
+                  label.textContent = 'Copied!';
+                  window.setTimeout(() => { label.textContent = original; }, 2000);
+                }
+              };
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(code).then(done).catch(done);
+              } else {
+                done();
+              }
+            });
+          }
 
           if (this.dataset.forceOpen === 'true') {
             this.mark();
@@ -344,6 +429,29 @@
       "id": "success_message",
       "label": "Success message",
       "default": "Thanks for subscribing!"
+    },
+    {
+      "type": "header",
+      "content": "Discount reward"
+    },
+    {
+      "type": "text",
+      "id": "discount_code",
+      "label": "Discount code",
+      "info": "Create this code in Discounts first (e.g. WELCOME5). It appears after the visitor signs up.",
+      "default": "WELCOME5"
+    },
+    {
+      "type": "text",
+      "id": "discount_intro",
+      "label": "Discount intro text",
+      "default": "Here's your 5% off code:"
+    },
+    {
+      "type": "text",
+      "id": "discount_help",
+      "label": "Discount help text",
+      "default": "Copy it and apply at checkout on your first order."
     },
     {
       "type": "header",
