@@ -8,8 +8,15 @@
 
 {%- liquid
   assign s = block_settings
-  assign count = s.menu_products_count | default: 4
-  assign products = s.menu_products
+
+  # Count how many product slots are filled
+  assign menu_products_filled = 0
+  for i in (1..8)
+    assign key = 'menu_product_' | append: i
+    if s[key] != blank
+      assign menu_products_filled = menu_products_filled | plus: 1
+    endif
+  endfor
 
   case s.menu_card_image_ratio
     when 'square'
@@ -23,7 +30,7 @@
   endcase
 -%}
 
-{%- if s.show_menu_products and products.count > 0 -%}
+{%- if s.show_menu_products and menu_products_filled > 0 -%}
   <script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
   <div
@@ -44,7 +51,10 @@
     {%- endif -%}
 
     <ul class="menu-products__list list-unstyled" role="list">
-      {%- for product in products limit: count -%}
+      {%- for i in (1..8) -%}
+        {%- assign menu_key = 'menu_product_' | append: i -%}
+        {%- assign product = s[menu_key] -%}
+        {%- if product == blank -%}{%- continue -%}{%- endif -%}
         {%- assign variant = product.selected_or_first_available_variant -%}
         <li class="menu-products__item">
           <div class="menu-product-card">
