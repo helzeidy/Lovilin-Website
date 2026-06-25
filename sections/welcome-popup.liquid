@@ -4,11 +4,6 @@
 
 {%- if section.settings.enabled -%}
   {%- liquid
-    assign success = false
-    if form.posted_successfully?
-      assign success = true
-    endif
-
     case section.settings.alignment
       when 'left'
         assign align_items = 'flex-start'
@@ -23,7 +18,6 @@
     class="welcome-popup"
     data-delay="{{ section.settings.delay | times: 1000 }}"
     data-frequency="{{ section.settings.frequency }}"
-    {% if success %}data-force-open="true"{% endif %}
   >
     <dialog
       class="welcome-popup__dialog color-{{ section.settings.color_scheme }}"
@@ -65,7 +59,7 @@
             <div class="welcome-popup__description">{{ section.settings.description }}</div>
           {%- endif -%}
 
-          {%- if success -%}
+          <div class="welcome-popup__success-panel" ref="successPanel" hidden>
             <p class="welcome-popup__success">{{ section.settings.success_message }}</p>
             {%- if section.settings.discount_code != blank -%}
               <div class="welcome-popup__discount">
@@ -87,7 +81,9 @@
                 {%- endif -%}
               </div>
             {%- endif -%}
-          {%- else -%}
+          </div>
+
+          <div class="welcome-popup__form-panel" ref="formPanel">
             {%- form 'customer', class: 'welcome-popup__form' -%}
               <input type="hidden" name="contact[tags]" value="newsletter, welcome-popup">
               <input type="hidden" name="contact[accepts_marketing]" value="true">
@@ -119,7 +115,7 @@
                 {{ section.settings.account_link_label }}
               </a>
             {%- endif -%}
-          {%- endif -%}
+          </div>
         </div>
       </div>
     </dialog>
@@ -342,7 +338,13 @@
             });
           }
 
-          if (this.dataset.forceOpen === 'true') {
+          // After a successful newsletter submit, Shopify reloads with ?customer_posted=true
+          const justSubscribed = new URLSearchParams(window.location.search).get('customer_posted') === 'true';
+          if (justSubscribed) {
+            const formPanel = this.querySelector('[ref="formPanel"]');
+            const successPanel = this.querySelector('[ref="successPanel"]');
+            if (formPanel) formPanel.hidden = true;
+            if (successPanel) successPanel.hidden = false;
             this.mark();
             this.open();
             return;
