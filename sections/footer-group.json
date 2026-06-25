@@ -1639,7 +1639,6 @@
     },
     "welcome_popup": {
       "type": "welcome-popup",
-      "disabled": true,
       "settings": {
         "enabled": true,
         "image": "shopify://shop_images/Rectangle_a4b8743d-306e-4ed4-a965-0134a98d4d3f.jpg",
@@ -1648,6 +1647,9 @@
         "placeholder": "Email address",
         "button_label": "Claim My Discount",
         "success_message": "Thanks for subscribing!",
+        "discount_code": "WELCOME5",
+        "discount_intro": "Here's your 5% off code:",
+        "discount_help": "Copy it and apply at checkout on your first order.",
         "show_account_link": true,
         "account_link_label": "Or create an account",
         "frequency": "session",
