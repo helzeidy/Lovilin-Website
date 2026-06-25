@@ -905,11 +905,17 @@
           "settings": {
             "show_sample_reviews": true,
             "reviews_selection": "all",
-            "products": [],
+            "products": [
+              "antibacterial-bottle-dish-cleanser",
+              "antibacterial-toy-surface-cleaner",
+              "baby-laundry-detergent",
+              "instant-stain-remover",
+              "one-complete-cleaning-system"
+            ],
             "star_rating": "all",
             "show_review_media": true,
             "display_order": "media_first",
-            "no_image_fallback": "review_text_only",
+            "no_image_fallback": "product_image",
             "max_reviews": 20,
             "review_length": "medium",
             "text_size": "medium",
