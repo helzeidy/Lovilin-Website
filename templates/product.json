@@ -735,6 +735,7 @@
             },
             "ai_gen_block_af06917_7HzMkC": {
               "type": "ai_gen_block_af06917",
+              "disabled": true,
               "settings": {
                 "desktop_width_percent": 100,
                 "card_min_width": 150,
@@ -878,8 +879,8 @@
             "mobileItemsPerView": 1,
             "maxNumberOfCharacters": 100,
             "imageRatio": "0.72",
-            "reviewerNameColor": "#071E85",
-            "textColor": "#6172BF",
+            "reviewerNameColor": "#071e85",
+            "textColor": "#6172bf",
             "itemBackgroundColor": "#ffffff",
             "starsColor": "",
             "starsBackgroundColor": "#ffffff",
@@ -888,7 +889,7 @@
             "shadow": "none",
             "border_active": true,
             "border_width": 1,
-            "border_color": "#F1F2F4",
+            "border_color": "#f1f2f4",
             "productIds": "{{ closest.product }}"
           }
         }
