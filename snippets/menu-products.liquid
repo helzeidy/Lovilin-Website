@@ -1,0 +1,199 @@
+{%- doc -%}
+  Renders a configurable product row inside the mobile menu drawer.
+  Manual product selection, carousel or grid layout, with image/title/price/
+  add-to-cart icon button (each toggleable).
+
+  @param {object} block_settings - The menu block settings
+{%- enddoc -%}
+
+{%- liquid
+  assign s = block_settings
+  assign count = s.menu_products_count | default: 4
+  assign products = s.menu_products
+
+  case s.menu_card_image_ratio
+    when 'square'
+      assign img_ratio = '1 / 1'
+    when 'portrait'
+      assign img_ratio = '4 / 5'
+    when 'landscape'
+      assign img_ratio = '4 / 3'
+    else
+      assign img_ratio = 'auto'
+  endcase
+-%}
+
+{%- if s.show_menu_products and products.count > 0 -%}
+  <script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+  <div
+    class="menu-products menu-products--{{ s.menu_products_layout | default: 'carousel' }}"
+    style="
+      --mp-columns: {{ s.menu_products_columns | default: 2 }};
+      --mp-gap: {{ s.menu_products_gap | default: 12 }}px;
+      --mp-card-bg: {{ s.menu_card_bg | default: 'transparent' }};
+      --mp-card-radius: {{ s.menu_card_radius | default: 12 }}px;
+      --mp-title-color: {{ s.menu_card_title_color | default: 'inherit' }};
+      --mp-price-color: {{ s.menu_card_price_color | default: 'inherit' }};
+      --mp-btn-color: {{ s.menu_card_button_color | default: '#1a1a6e' }};
+      --mp-img-ratio: {{ img_ratio }};
+    "
+  >
+    {%- if s.menu_products_heading != blank -%}
+      <h2 class="menu-products__heading {{ s.menu_products_heading_preset | default: 'h5' }}">{{ s.menu_products_heading }}</h2>
+    {%- endif -%}
+
+    <ul class="menu-products__list list-unstyled" role="list">
+      {%- for product in products limit: count -%}
+        {%- assign variant = product.selected_or_first_available_variant -%}
+        <li class="menu-products__item">
+          <div class="menu-product-card">
+            <a href="{{ product.url }}" class="menu-product-card__main">
+              {%- if s.menu_card_show_image -%}
+                <div class="menu-product-card__media">
+                  {%- if product.featured_media -%}
+                    {{ product.featured_media.preview_image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '160px', widths: '160, 240, 400', alt: product.title | escape }}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              <div class="menu-product-card__info">
+                {%- if s.menu_card_show_title -%}
+                  <span class="menu-product-card__title">{{ product.title }}</span>
+                {%- endif -%}
+                {%- if s.menu_card_show_price -%}
+                  <span class="menu-product-card__price">{{ product.price | money }}</span>
+                {%- endif -%}
+              </div>
+            </a>
+
+            {%- if s.menu_card_show_button and variant != blank -%}
+              <product-form-component
+                id="MenuProductForm-{{ product.id }}"
+                class="menu-product-card__form"
+                data-product-id="{{ product.id }}"
+              >
+                <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="id" value="{{ variant.id }}" ref="variantId">
+                  <add-to-cart-component>
+                    <button
+                      type="submit"
+                      ref="addToCartButton"
+                      class="menu-product-card__add"
+                      aria-label="{{ 'products.product.add_to_cart' | t }}"
+                      {% unless variant.available %}disabled{% endunless %}
+                    >
+                      <span class="svg-wrapper">{{- 'icon-add-to-cart.svg' | inline_asset_content -}}</span>
+                    </button>
+                  </add-to-cart-component>
+                  <div ref="liveRegion" class="visually-hidden" role="status"></div>
+                </form>
+              </product-form-component>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .menu-products {
+    padding: var(--drawer-content-block-padding, 10px) var(--drawer-inline-padding, 20px);
+  }
+
+  .menu-products__heading {
+    margin: 0 0 12px;
+  }
+
+  .menu-products__list {
+    display: grid;
+    gap: var(--mp-gap, 12px);
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Grid layout */
+  .menu-products--grid .menu-products__list {
+    grid-template-columns: repeat(var(--mp-columns, 2), minmax(0, 1fr));
+  }
+
+  /* Carousel layout — horizontal scroll, swipeable */
+  .menu-products--carousel .menu-products__list {
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - (var(--mp-columns, 2) - 1) * var(--mp-gap, 12px)) / var(--mp-columns, 2));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .menu-products--carousel .menu-products__list::-webkit-scrollbar { display: none; }
+  .menu-products--carousel .menu-products__item { scroll-snap-align: start; }
+
+  .menu-product-card {
+    position: relative;
+    background: var(--mp-card-bg, transparent);
+    border-radius: var(--mp-card-radius, 12px);
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .menu-product-card__main {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .menu-product-card__media {
+    width: 100%;
+    aspect-ratio: var(--mp-img-ratio, 1 / 1);
+    overflow: hidden;
+    border-radius: var(--mp-card-radius, 12px);
+    background: rgb(0 0 0 / 0.03);
+  }
+  .menu-product-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .menu-product-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 4px 0;
+  }
+  .menu-product-card__title {
+    font-size: var(--font-size--sm, 0.875rem);
+    line-height: 1.25;
+    color: var(--mp-title-color, inherit);
+  }
+  .menu-product-card__price {
+    font-size: var(--font-size--sm, 0.875rem);
+    font-weight: 600;
+    color: var(--mp-price-color, inherit);
+  }
+
+  .menu-product-card__form {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+  }
+  .menu-product-card__add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: var(--mp-btn-color, #1a1a6e);
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+  }
+  .menu-product-card__add[disabled] { opacity: 0.5; cursor: not-allowed; }
+  .menu-product-card__add .svg-wrapper { width: 18px; height: 18px; }
+  .menu-product-card__add svg { width: 100%; height: 100%; }
+{% endstylesheet %}

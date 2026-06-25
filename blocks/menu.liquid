@@ -347,6 +347,150 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Menu products"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_menu_products",
+      "label": "Show products in mobile menu",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "menu_products_heading",
+      "label": "Heading",
+      "default": "Shop"
+    },
+    {
+      "type": "select",
+      "id": "menu_products_heading_preset",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h5"
+    },
+    {
+      "type": "product_list",
+      "id": "menu_products",
+      "label": "Products",
+      "limit": 12
+    },
+    {
+      "type": "range",
+      "id": "menu_products_count",
+      "label": "Number of products to show",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "menu_products_layout",
+      "label": "Layout",
+      "options": [
+        { "value": "carousel", "label": "Carousel (swipe)" },
+        { "value": "grid", "label": "Grid" }
+      ],
+      "default": "carousel"
+    },
+    {
+      "type": "range",
+      "id": "menu_products_columns",
+      "label": "Columns / cards visible",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "menu_products_gap",
+      "label": "Gap between cards",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Menu product card"
+    },
+    {
+      "type": "checkbox",
+      "id": "menu_card_show_image",
+      "label": "Show image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "menu_card_show_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "menu_card_show_price",
+      "label": "Show price",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "menu_card_show_button",
+      "label": "Show add-to-cart button",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "menu_card_image_ratio",
+      "label": "Image ratio",
+      "options": [
+        { "value": "square", "label": "Square (1:1)" },
+        { "value": "portrait", "label": "Portrait (4:5)" },
+        { "value": "landscape", "label": "Landscape (4:3)" },
+        { "value": "adapt", "label": "Adapt to image" }
+      ],
+      "default": "square"
+    },
+    {
+      "type": "range",
+      "id": "menu_card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "menu_card_bg",
+      "label": "Card background"
+    },
+    {
+      "type": "color",
+      "id": "menu_card_title_color",
+      "label": "Title color"
+    },
+    {
+      "type": "color",
+      "id": "menu_card_price_color",
+      "label": "Price color"
+    },
+    {
+      "type": "color",
+      "id": "menu_card_button_color",
+      "label": "Add-to-cart button color",
+      "default": "#1a1a6e"
     }
   ],
   "presets": [
