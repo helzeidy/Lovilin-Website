@@ -4228,8 +4228,8 @@
                       "name": "t:names.heading",
                       "settings": {
                         "text": "<h4>Protein</h4>",
-                        "width": "100%",
-                        "max_width": "normal",
+                        "width": "fit-content",
+                        "max_width": "none",
                         "alignment": "left",
                         "type_preset": "h4",
                         "font": "var(--font-body--family)",
@@ -4254,8 +4254,8 @@
                       "name": "t:names.description",
                       "settings": {
                         "text": "<p>Breaks down milk protein films and stubborn residue.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
+                        "width": "fit-content",
+                        "max_width": "none",
                         "alignment": "left",
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
@@ -4407,7 +4407,7 @@
                       "name": "t:names.heading",
                       "settings": {
                         "text": "<h4>Residue</h4>",
-                        "width": "100%",
+                        "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
                         "type_preset": "h4",
@@ -4433,8 +4433,8 @@
                       "name": "t:names.description",
                       "settings": {
                         "text": "<p>Removes trapped dirt, oils, and buildup from fabrics.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
+                        "width": "fit-content",
+                        "max_width": "none",
                         "alignment": "left",
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
@@ -4692,8 +4692,8 @@
                       "name": "t:names.heading",
                       "settings": {
                         "text": "<h4>Bacteria</h4>",
-                        "width": "100%",
-                        "max_width": "normal",
+                        "width": "fit-content",
+                        "max_width": "none",
                         "alignment": "left",
                         "type_preset": "h4",
                         "font": "var(--font-body--family)",
@@ -4718,8 +4718,8 @@
                       "name": "t:names.description",
                       "settings": {
                         "text": "<p>Targets everyday bacteria on high-touch surfaces.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
+                        "width": "fit-content",
+                        "max_width": "none",
                         "alignment": "left",
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
@@ -4871,7 +4871,7 @@
                       "name": "t:names.heading",
                       "settings": {
                         "text": "<h4>Targeted Removal</h4>",
-                        "width": "100%",
+                        "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
                         "type_preset": "h4",
@@ -4897,8 +4897,8 @@
                       "name": "t:names.description",
                       "settings": {
                         "text": "<p>Tackles tough stains and messes at the source.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
+                        "width": "fit-content",
+                        "max_width": "none",
                         "alignment": "left",
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
