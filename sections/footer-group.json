@@ -1639,7 +1639,6 @@
     },
     "welcome_popup": {
       "type": "welcome-popup",
-      "disabled": true,
       "settings": {
         "enabled": true,
         "image": "shopify://shop_images/Rectangle_a4b8743d-306e-4ed4-a965-0134a98d4d3f.jpg",
