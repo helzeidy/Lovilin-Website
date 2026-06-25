@@ -103,11 +103,6 @@
     },
     "content_for_index": [],
     "blocks": {
-      "11532412952436166569": {
-        "type": "shopify://apps/loox-reviews/blocks/loox-inject/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
-        "disabled": false,
-        "settings": {}
-      },
       "6174324309569838175": {
         "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
         "disabled": false,
@@ -128,6 +123,11 @@
       },
       "2724325275511621162": {
         "type": "shopify://apps/kaching-subscriptions/blocks/app-embed-block/1fa39fd7-f6a3-4bbc-9383-7d91d27b44f5",
+        "disabled": true,
+        "settings": {}
+      },
+      "11532412952436166569": {
+        "type": "shopify://apps/loox-reviews/blocks/loox-inject/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
         "disabled": true,
         "settings": {}
       }
