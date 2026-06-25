@@ -61,10 +61,10 @@
             {% endif %}
             <div style="position:relative; display:flex; flex-direction:column; justify-content:flex-end; min-height:340px; height:100%; padding:20px; background:linear-gradient(to top, rgba({{ overlay_r }}, {{ overlay_g }}, {{ overlay_b }}, {{ overlay_opacity }}), transparent);">
               {% if section.settings.banner_heading != blank %}
-                <h3 style="color: {{ section.settings.banner_text_color }}; margin: 0 0 8px; font-size: {{ section.settings.banner_heading_size }}px; font-weight: {{ section.settings.banner_heading_weight }}; text-transform: {{ section.settings.banner_heading_case }}; line-height: 1.2;">{{ section.settings.banner_heading }}</h3>
+                <h3 class="{{ section.settings.banner_heading_preset }}" style="color: {{ section.settings.banner_text_color }}; margin: 0 0 8px;">{{ section.settings.banner_heading }}</h3>
               {% endif %}
               {% if section.settings.banner_subheading != blank %}
-                <p style="color: {{ section.settings.banner_text_color }}; margin: 0 0 12px; font-size: {{ section.settings.banner_description_size }}px; line-height: 1.5; opacity: 0.85;">{{ section.settings.banner_subheading }}</p>
+                <p class="{{ section.settings.banner_body_preset }}" style="color: {{ section.settings.banner_text_color }}; margin: 0 0 12px; opacity: 0.85;">{{ section.settings.banner_subheading }}</p>
               {% endif %}
               {% if section.settings.banner_button_label != blank %}
                 <a href="{{ section.settings.banner_button_url }}" style="display: inline-block; padding: 10px 20px; background: {{ section.settings.banner_button_color }}; color: #fff; text-decoration: none; border-radius: {{ section.settings.banner_button_border_radius }}px;">{{ section.settings.banner_button_label }}</a>
@@ -320,58 +320,36 @@
       "default": "Shop the Collection"
     },
     {
-      "type": "range",
-      "id": "banner_heading_size",
-      "label": "Heading size",
-      "min": 12,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
       "type": "select",
-      "id": "banner_heading_weight",
-      "label": "Heading weight",
+      "id": "banner_heading_preset",
+      "label": "Banner heading size",
       "options": [
         {
-          "value": "400",
-          "label": "Normal"
+          "value": "h1",
+          "label": "H1"
         },
         {
-          "value": "600",
-          "label": "Semi bold"
+          "value": "h2",
+          "label": "H2"
         },
         {
-          "value": "700",
-          "label": "Bold"
+          "value": "h3",
+          "label": "H3"
         },
         {
-          "value": "800",
-          "label": "Extra bold"
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
         }
       ],
-      "default": "700"
-    },
-    {
-      "type": "select",
-      "id": "banner_heading_case",
-      "label": "Heading case",
-      "options": [
-        {
-          "value": "none",
-          "label": "Normal"
-        },
-        {
-          "value": "uppercase",
-          "label": "Uppercase"
-        },
-        {
-          "value": "capitalize",
-          "label": "Capitalize"
-        }
-      ],
-      "default": "none"
+      "default": "h3"
     },
     {
       "type": "textarea",
@@ -379,14 +357,28 @@
       "label": "Description text"
     },
     {
-      "type": "range",
-      "id": "banner_description_size",
-      "label": "Description size",
-      "min": 10,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 14
+      "type": "select",
+      "id": "banner_body_preset",
+      "label": "Banner description size",
+      "options": [
+        {
+          "value": "paragraph",
+          "label": "Paragraph"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        }
+      ],
+      "default": "paragraph"
     },
     {
       "type": "text",
