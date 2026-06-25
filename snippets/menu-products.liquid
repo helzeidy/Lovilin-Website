@@ -134,7 +134,9 @@
   }
 
   /* Carousel layout — horizontal scroll, swipeable.
-     The --mp-peek amount is left over on the right so the next card peeks in. */
+     Full-bleed: the track extends to the drawer edges (negative margin cancels the
+     container padding) so cards scroll edge-to-edge instead of being clipped, while
+     the inline padding keeps the first/last card aligned with the content. */
   .menu-products--carousel .menu-products__list {
     grid-auto-flow: column;
     grid-auto-columns: calc((100% - var(--mp-peek, 28px) - (var(--mp-columns, 2)) * var(--mp-gap, 12px)) / var(--mp-columns, 2));
@@ -143,6 +145,9 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 4px;
+    margin-inline: calc(-1 * var(--drawer-inline-padding, 20px));
+    padding-inline: var(--drawer-inline-padding, 20px);
+    scroll-padding-inline: var(--drawer-inline-padding, 20px);
   }
   .menu-products--carousel .menu-products__list::-webkit-scrollbar { display: none; }
   .menu-products--carousel .menu-products__item { scroll-snap-align: start; }
