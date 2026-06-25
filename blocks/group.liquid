@@ -4,7 +4,43 @@
   {% content_for 'blocks' %}
 {% endcapture %}
 
-{% render 'group', children: children, settings: block.settings, shopify_attributes: block.shopify_attributes %}
+{%- liquid
+  assign mobile_class = ''
+  if block.settings.enable_mobile_layout
+    assign uid = block.id | replace: ':', '' | replace: '_', '' | replace: '-', ''
+    assign mobile_class = 'gmob-' | append: uid
+    assign mdir = block.settings.content_direction_mobile | default: 'column'
+    assign mh = block.settings.horizontal_alignment_mobile | default: 'flex-start'
+    assign mv = block.settings.vertical_alignment_mobile | default: 'center'
+    if mdir == 'row'
+      assign mjustify = mh
+      assign malign = mv
+    else
+      assign mjustify = mv
+      assign malign = mh
+    endif
+    # align-items does not support space-between; fall back to center
+    if malign == 'space-between'
+      assign malign = 'center'
+    endif
+  endif
+-%}
+
+{%- if block.settings.enable_mobile_layout -%}
+  <style>
+    @media screen and (max-width: 749px) {
+      .{{ mobile_class }} .layout-panel-flex {
+        flex-direction: {{ mdir }};
+        justify-content: {{ mjustify }};
+        align-items: {{ malign }};
+        flex-wrap: nowrap;
+        height: auto;
+      }
+    }
+  </style>
+{%- endif -%}
+
+{% render 'group', children: children, settings: block.settings, shopify_attributes: block.shopify_attributes, class: mobile_class %}
 
 {% schema %}
 {
@@ -47,7 +83,7 @@
       "id": "vertical_on_mobile",
       "label": "t:settings.vertical_on_mobile",
       "default": true,
-      "visible_if": "{{ block.settings.content_direction == 'row' }}"
+      "visible_if": "{{ block.settings.content_direction == 'row' and block.settings.enable_mobile_layout == false }}"
     },
     {
       "type": "select",
@@ -157,6 +193,54 @@
       "step": 1,
       "unit": "px",
       "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_layout",
+      "label": "Use different layout on mobile",
+      "info": "Overrides direction, alignment and position on screens under 750px.",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "content_direction_mobile",
+      "label": "Direction (mobile)",
+      "options": [
+        { "value": "column", "label": "Vertical" },
+        { "value": "row", "label": "Horizontal" }
+      ],
+      "default": "column",
+      "visible_if": "{{ block.settings.enable_mobile_layout }}"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment_mobile",
+      "label": "Alignment (mobile)",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" },
+        { "value": "space-between", "label": "Space between" }
+      ],
+      "default": "flex-start",
+      "visible_if": "{{ block.settings.enable_mobile_layout }}"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment_mobile",
+      "label": "Position (mobile)",
+      "options": [
+        { "value": "flex-start", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Bottom" },
+        { "value": "space-between", "label": "Space between" }
+      ],
+      "default": "center",
+      "visible_if": "{{ block.settings.enable_mobile_layout }}"
     },
     {
       "type": "header",
