@@ -60,6 +60,19 @@
       "visible_if": "{{ block.settings.width == '100%' }}"
     },
     {
+      "type": "select",
+      "id": "alignment_mobile",
+      "label": "Alignment (mobile)",
+      "info": "Optional. Overrides text alignment on screens under 750px.",
+      "options": [
+        { "value": "", "label": "Same as desktop" },
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": ""
+    },
+    {
       "type": "header",
       "content": "t:content.typography"
     },

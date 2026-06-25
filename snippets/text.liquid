@@ -83,6 +83,31 @@
   endif
 %}
 
+{%- if block_settings.alignment_mobile != blank -%}
+  {%- liquid
+    case block_settings.alignment_mobile
+      when 'center'
+        assign m_flex = 'center'
+        assign m_margin = 'auto'
+      when 'right'
+        assign m_flex = 'flex-end'
+        assign m_margin = 'auto 0'
+      else
+        assign m_flex = 'flex-start'
+        assign m_margin = '0 auto'
+    endcase
+  -%}
+  <style>
+    @media screen and (max-width: 749px) {
+      .text-block--{{ block.id }} { align-items: {{ m_flex }}; }
+      .text-block--{{ block.id }} > * {
+        text-align: {{ block_settings.alignment_mobile }};
+        margin-inline: {{ m_margin }};
+      }
+    }
+  </style>
+{%- endif -%}
+
 {% if fallback_text != blank and visible_text == blank %}
   <div {{ attributes | strip_newlines | strip }}>
     {{ fallback_text }}
