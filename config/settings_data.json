@@ -138,7 +138,7 @@
       },
       "4015264832934714879": {
         "type": "shopify://apps/sendwill-email-popups/blocks/app/a5670cf8-5705-4b01-ad9e-447033feae26",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "enable_gdpr_mode": false,
           "enable_cwtracks_listener": false
