@@ -3823,7 +3823,7 @@
         "image_BygPyQ": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2_48832bb3-2e69-4767-9364-0f70a6f724fd.jpg",
+            "image": "shopify://shop_images/we_certify_it.png",
             "link": "",
             "image_ratio": "square",
             "width": "fill",
@@ -6134,7 +6134,7 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 96,
-        "padding-block-end": 48
+        "padding-block-end": 96
       }
     },
     "section_zAK87R": {
@@ -6390,7 +6390,7 @@
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-dc6651a2-630d-45fb-aec8-3392eb5f8d99",
         "background_media": "none",
         "video_position": "cover",
         "background_image_position": "cover",
@@ -6402,7 +6402,7 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 48,
+        "padding-block-start": 96,
         "padding-block-end": 96
       }
     },
