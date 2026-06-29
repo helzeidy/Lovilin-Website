@@ -14,5 +14,21 @@
       "adding_to_cart": "يتم الاضافة...",
       "added_to_cart": "أضيفت إلى السلة"
     }
+  },
+  "shopify": {
+    "sentence": {
+      "two_words_connector": "و",
+      "last_word_connector": ", و"
+    },
+    "checkout": {
+      "general": {
+        "page_title": "الدفع",
+        "error_page_title": "خطأ",
+        "skip_to_content": "التخطي للمحتوى",
+        "continue_button_label": "استمر",
+        "complete_purchase_button_label": "أكمل الطلب",
+        "pay_now_button_label": "ادفع الآن"
+      }
+    }
   }
 }
