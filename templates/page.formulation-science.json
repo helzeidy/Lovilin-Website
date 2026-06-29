@@ -4193,7 +4193,7 @@
                       "type": "product-card-horizontal",
                       "name": "Product card (horizontal)",
                       "settings": {
-                        "product": "antibacterial-bottle-dish-cleanser",
+                        "product": "instant-stain-remover",
                         "show_description": false,
                         "description_length": 120,
                         "show_price": true,
