@@ -64,7 +64,8 @@
   .ai-horizontal-product-card__image-{{ ai_gen_id }} {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: {{ block.settings.image_fit }};
+    object-position: center;
   }
 
   .ai-horizontal-product-card__image-placeholder-{{ ai_gen_id }} {
@@ -92,6 +93,7 @@
   }
 
   .ai-horizontal-product-card__title-{{ ai_gen_id }} {
+    font-family: {{ block.settings.title_font }};
     font-size: {{ block.settings.desktop_text_size }}px;
     color: {{ title_color }};
     margin: 0 0 {{ block.settings.title_margin }}px;
@@ -99,6 +101,7 @@
   }
 
   .ai-horizontal-product-card__description-{{ ai_gen_id }} {
+    font-family: {{ block.settings.body_font }};
     font-size: {{ block.settings.description_size }}px;
     color: {{ description_color }};
     margin: 0 0 {{ block.settings.description_margin }}px;
@@ -106,6 +109,7 @@
   }
 
   .ai-horizontal-product-card__price-{{ ai_gen_id }} {
+    font-family: {{ block.settings.body_font }};
     font-size: {{ block.settings.price_size }}px;
     color: {{ price_color }};
     font-weight: {{ block.settings.price_weight }};
@@ -339,6 +343,17 @@
       "default": "1 / 1"
     },
     {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "info": "Fit shows the whole product centered. Fill crops the image to fill the container.",
+      "options": [
+        { "value": "contain", "label": "Fit (show whole product)" },
+        { "value": "cover", "label": "Fill (crop to fill)" }
+      ],
+      "default": "contain"
+    },
+    {
       "type": "range",
       "id": "content_padding",
       "label": "Content padding",
@@ -361,6 +376,30 @@
     {
       "type": "header",
       "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "title_font",
+      "label": "Title font",
+      "options": [
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "select",
+      "id": "body_font",
+      "label": "Text & price font",
+      "options": [
+        { "value": "var(--font-body--family)", "label": "Body" },
+        { "value": "var(--font-subheading--family)", "label": "Subheading" },
+        { "value": "var(--font-heading--family)", "label": "Heading" },
+        { "value": "var(--font-accent--family)", "label": "Accent" }
+      ],
+      "default": "var(--font-body--family)"
     },
     {
       "type": "range",
