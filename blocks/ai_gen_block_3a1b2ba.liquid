@@ -8,6 +8,28 @@
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
+{%- liquid
+  assign bg_color = block.settings.background_color
+  assign title_color = block.settings.title_color
+  assign description_color = block.settings.description_color
+  assign price_color = block.settings.price_color
+  assign button_background = block.settings.button_background
+  assign button_text_color = block.settings.button_text_color
+  assign button_hover_background = block.settings.button_hover_background
+  assign button_hover_text_color = block.settings.button_hover_text_color
+
+  if block.settings.use_theme_colors
+    assign bg_color = 'var(--color-background)'
+    assign title_color = 'var(--color-foreground)'
+    assign description_color = 'var(--color-foreground)'
+    assign price_color = 'var(--color-foreground)'
+    assign button_background = 'var(--color-primary, var(--color-foreground))'
+    assign button_text_color = 'var(--color-background)'
+    assign button_hover_background = 'var(--color-foreground)'
+    assign button_hover_text_color = 'var(--color-background)'
+  endif
+-%}
+
 {% style %}
   .ai-horizontal-product-card-{{ ai_gen_id }} {
     display: block;
@@ -22,7 +44,7 @@
   .ai-horizontal-product-card__container-{{ ai_gen_id }} {
     display: flex;
     gap: {{ block.settings.gap }}px;
-    background-color: {{ block.settings.background_color }};
+    background-color: {{ bg_color }};
     border-radius: {{ block.settings.border_radius }}px;
     overflow: hidden;
     height: 100%;
@@ -32,6 +54,11 @@
     flex: 0 0 {{ block.settings.image_width }}%;
     position: relative;
     overflow: hidden;
+    {% if block.settings.image_aspect_ratio != 'original' %}
+      aspect-ratio: {{ block.settings.image_aspect_ratio }};
+      align-self: flex-start;
+      height: auto;
+    {% endif %}
   }
 
   .ai-horizontal-product-card__image-{{ ai_gen_id }} {
@@ -66,21 +93,21 @@
 
   .ai-horizontal-product-card__title-{{ ai_gen_id }} {
     font-size: {{ block.settings.desktop_text_size }}px;
-    color: {{ block.settings.title_color }};
+    color: {{ title_color }};
     margin: 0 0 {{ block.settings.title_margin }}px;
     font-weight: {{ block.settings.title_weight }};
   }
 
   .ai-horizontal-product-card__description-{{ ai_gen_id }} {
     font-size: {{ block.settings.description_size }}px;
-    color: {{ block.settings.description_color }};
+    color: {{ description_color }};
     margin: 0 0 {{ block.settings.description_margin }}px;
     line-height: 1.5;
   }
 
   .ai-horizontal-product-card__price-{{ ai_gen_id }} {
     font-size: {{ block.settings.price_size }}px;
-    color: {{ block.settings.price_color }};
+    color: {{ price_color }};
     font-weight: {{ block.settings.price_weight }};
     margin: 0 0 {{ block.settings.price_margin }}px;
   }
@@ -88,8 +115,8 @@
   .ai-horizontal-product-card__button-{{ ai_gen_id }} {
     display: inline-block;
     padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
-    background-color: {{ block.settings.button_background }};
-    color: {{ block.settings.button_text_color }};
+    background-color: {{ button_background }};
+    color: {{ button_text_color }};
     text-decoration: none;
     border-radius: {{ block.settings.button_border_radius }}px;
     text-align: center;
@@ -100,8 +127,8 @@
   }
 
   .ai-horizontal-product-card__button-{{ ai_gen_id }}:hover {
-    background-color: {{ block.settings.button_hover_background }};
-    color: {{ block.settings.button_hover_text_color }};
+    background-color: {{ button_hover_background }};
+    color: {{ button_hover_text_color }};
   }
 
   @media screen and (max-width: 767px) {
@@ -120,7 +147,7 @@
   }
 {% endstyle %}
 
-<div class="ai-horizontal-product-card-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+<div class="ai-horizontal-product-card-{{ ai_gen_id }}{% if block.settings.use_theme_colors %} color-{{ block.settings.color_scheme }}{% endif %}" {{ block.shopify_attributes }}>
   <div class="ai-horizontal-product-card__container-{{ ai_gen_id }}">
     <div class="ai-horizontal-product-card__image-wrapper-{{ ai_gen_id }}">
       {% if block.settings.product %}
@@ -298,6 +325,20 @@
       "default": 40
     },
     {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        { "value": "original", "label": "Fill card height" },
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "4 / 5", "label": "Portrait (4:5)" },
+        { "value": "3 / 4", "label": "Portrait (3:4)" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "16 / 9", "label": "Wide (16:9)" }
+      ],
+      "default": "1 / 1"
+    },
+    {
       "type": "range",
       "id": "content_padding",
       "label": "Content padding",
@@ -444,28 +485,46 @@
       "content": "Colors"
     },
     {
+      "type": "checkbox",
+      "id": "use_theme_colors",
+      "label": "Match theme colors",
+      "info": "Use the theme's color scheme for background, text and button instead of the custom colors below.",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1",
+      "visible_if": "{{ block.settings.use_theme_colors }}"
+    },
+    {
       "type": "color",
       "id": "background_color",
       "label": "Background",
-      "default": "#ffffff"
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "title_color",
       "label": "Title",
-      "default": "#000000"
+      "default": "#000000",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "description_color",
       "label": "Description",
-      "default": "#666666"
+      "default": "#666666",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "price_color",
       "label": "Price",
-      "default": "#000000"
+      "default": "#000000",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "header",
@@ -515,25 +574,29 @@
       "type": "color",
       "id": "button_background",
       "label": "Button background",
-      "default": "#071e85"
+      "default": "#071e85",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "button_text_color",
       "label": "Button text",
-      "default": "#ffffff"
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "button_hover_background",
       "label": "Button hover background",
-      "default": "#1a2158"
+      "default": "#1a2158",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "button_hover_text_color",
       "label": "Button hover text",
-      "default": "#ffffff"
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     }
   ],
   "presets": [
