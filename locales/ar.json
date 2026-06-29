@@ -22,7 +22,15 @@
         "authenticate_purchase_button_label": "المصادقة على الدفع",
         "edit_link_label": "تعديل",
         "all_rights_reserved": "جميع الحقوق محفوظة %{shop_name}",
-        "print_policies_link_label": "اطبع"
+        "print_policies_link_label": "اطبع",
+        "cart": "عربة التسوق",
+        "close_modal_label": "إغلاق",
+        "close_notice_label": "إغلاق",
+        "expand_notice_label": "عرض المزيد",
+        "continue_to_shipping_method": "المتابعة إلى الشحن",
+        "continue_to_payment_method": "المتابعة إلى الدفع",
+        "continue_to_review": "مراجعة الطلب",
+        "back_to_cart": "العودة إلى عربة التسوق"
       }
     }
   }
