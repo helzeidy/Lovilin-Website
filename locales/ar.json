@@ -30,7 +30,14 @@
         "continue_to_shipping_method": "المتابعة إلى الشحن",
         "continue_to_payment_method": "المتابعة إلى الدفع",
         "continue_to_review": "مراجعة الطلب",
-        "back_to_cart": "العودة إلى عربة التسوق"
+        "back_to_cart": "العودة إلى عربة التسوق",
+        "errors": {
+          "merchandise": {
+            "merchandise_variant_not_found": "لم يتم العثور على متغير المنتج.",
+            "merchandise_not_applicable": "لا يمكن شراء هذا الإصدار من المنتج.",
+            "mixed_currencies": "تحتوي عملية الدفع على بنود بعملات مختلفة."
+          }
+        }
       }
     }
   }
