@@ -13,19 +13,38 @@
   %}
 {% endcapture %}
 
-{%- if block_settings.link != blank -%}
-  <a
-    href="{{ block_settings.link }}"
-    class="text-inherit"
-    {% if block_settings.open_in_new_tab %}
-      target="_blank" rel="noopener"
-    {% endif %}
-  >
+{% capture icon_content %}
+  {%- if block_settings.link != blank -%}
+    <a
+      href="{{ block_settings.link }}"
+      class="text-inherit"
+      {% if block_settings.open_in_new_tab %}
+        target="_blank" rel="noopener"
+      {% endif %}
+    >
+      {{ icon }}
+    </a>
+  {%- else -%}
     {{ icon }}
-  </a>
+  {%- endif -%}
+{% endcapture %}
+
+{%- if block_settings.icon_alignment != blank -%}
+  <div class="icon-block__align" style="justify-content: {{ block_settings.icon_alignment }};">
+    {{ icon_content }}
+  </div>
 {%- else -%}
-  {{ icon }}
+  {{ icon_content }}
 {%- endif -%}
+
+{% style %}
+  {% if block_settings.icon_border_radius and block_settings.icon_border_radius > 0 %}
+    .icon-block-{{ block.id }} {
+      border-radius: {{ block_settings.icon_border_radius }}px;
+      overflow: hidden;
+    }
+  {% endif %}
+{% endstyle %}
 
 {% stylesheet %}
   .icon-block {
@@ -35,6 +54,18 @@
 
   .icon-block__media {
     height: auto;
+  }
+
+  /* When an alignment is chosen, let the block fill its container so the icon
+     can be positioned left/center/right. Untouched blocks keep their size. */
+  .icon-block:has(.icon-block__align) {
+    width: 100%;
+    display: block;
+  }
+
+  .icon-block__align {
+    display: flex;
+    width: 100%;
   }
 {% endstylesheet %}
 
@@ -301,6 +332,29 @@
       "step": 2,
       "unit": "px",
       "default": 24
+    },
+    {
+      "type": "select",
+      "id": "icon_alignment",
+      "label": "Alignment / position",
+      "info": "Aligns the icon within its space. Default keeps the original size.",
+      "options": [
+        { "value": "", "label": "Default" },
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "range",
+      "id": "icon_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "url",
