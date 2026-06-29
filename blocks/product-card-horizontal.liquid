@@ -1,0 +1,472 @@
+{%- doc -%}
+  Horizontal product card — image beside content (title, description, price, button).
+  Inherits the theme's typography (font presets) and colors (color scheme), with a
+  mobile-only layout direction control.
+{%- enddoc -%}
+
+{%- liquid
+  assign uid = block.id | replace: '_', '' | replace: '-', '' | downcase
+  assign product = block.settings.product
+  assign tp = block.settings.title_preset
+  assign pp = block.settings.price_preset
+
+  case block.settings.mobile_layout
+    when 'image_top'
+      assign mobile_direction = 'column'
+    when 'image_bottom'
+      assign mobile_direction = 'column-reverse'
+    else
+      assign mobile_direction = 'row'
+  endcase
+-%}
+
+{% style %}
+  .lov-pcard-{{ uid }} {
+    display: block;
+    width: 100%;
+    max-width: {{ block.settings.max_width }}px;
+  }
+
+  .lov-pcard-{{ uid }} .lov-pcard__inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: {{ block.settings.gap }}px;
+    background-color: var(--color-background);
+    border-radius: {{ block.settings.border_radius }}px;
+    {% if block.settings.border_width > 0 %}
+      border: {{ block.settings.border_width }}px solid var(--color-border, rgba(0, 0, 0, 0.1));
+    {% endif %}
+    padding: {{ block.settings.padding }}px;
+    overflow: hidden;
+  }
+
+  .lov-pcard-{{ uid }} .lov-pcard__media {
+    flex: 0 0 {{ block.settings.image_width }}%;
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    {% if block.settings.image_aspect_ratio != 'original' %}
+      aspect-ratio: {{ block.settings.image_aspect_ratio }};
+    {% endif %}
+  }
+
+  .lov-pcard-{{ uid }} .lov-pcard__media img,
+  .lov-pcard-{{ uid }} .lov-pcard__media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ block.settings.image_fit }};
+    object-position: center;
+    display: block;
+  }
+
+  .lov-pcard-{{ uid }} .lov-pcard__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: {{ block.settings.content_gap }}px;
+    text-align: left;
+  }
+
+  .lov-pcard-{{ uid }} .lov-pcard__title {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-{{ tp }}--family);
+    font-size: var(--font-{{ tp }}--size);
+    font-weight: var(--font-{{ tp }}--weight);
+    line-height: var(--font-{{ tp }}--line-height);
+    letter-spacing: var(--font-{{ tp }}--letter-spacing);
+    text-transform: var(--font-{{ tp }}--case);
+  }
+
+  .lov-pcard-{{ uid }} .lov-pcard__description {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-body--family);
+    font-size: var(--font-paragraph--size, 1rem);
+    line-height: 1.5;
+    opacity: 0.85;
+  }
+
+  .lov-pcard-{{ uid }} .lov-pcard__price {
+    color: var(--color-foreground);
+    font-family: var(--font-{{ pp }}--family);
+    font-size: var(--font-{{ pp }}--size);
+    font-weight: var(--font-{{ pp }}--weight);
+  }
+
+  .lov-pcard-{{ uid }} .lov-pcard__button {
+    display: inline-block;
+    width: {% if block.settings.button_full_width %}100%{% else %}auto{% endif %};
+    text-align: center;
+    padding: {{ block.settings.button_padding_y }}px {{ block.settings.button_padding_x }}px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    background-color: var(--color-primary-button-background, var(--color-foreground));
+    color: var(--color-primary-button-text, var(--color-background));
+    font-family: var(--font-body--family);
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .lov-pcard-{{ uid }} .lov-pcard__button:hover {
+    background-color: var(--color-primary-button-hover-background, var(--color-primary-hover, var(--color-foreground)));
+    color: var(--color-primary-button-hover-text, var(--color-primary-button-text, var(--color-background)));
+  }
+
+  @media screen and (max-width: 749px) {
+    .lov-pcard-{{ uid }} .lov-pcard__inner {
+      flex-direction: {{ mobile_direction }};
+      {% if mobile_direction != 'row' %}align-items: stretch;{% endif %}
+    }
+    {% if mobile_direction != 'row' %}
+      .lov-pcard-{{ uid }} .lov-pcard__media {
+        flex: 0 0 auto;
+        width: 100%;
+      }
+      .lov-pcard-{{ uid }} .lov-pcard__content {
+        align-items: {{ block.settings.mobile_alignment }};
+        text-align: {{ block.settings.mobile_alignment | replace: 'flex-start', 'left' | replace: 'flex-end', 'right' }};
+      }
+      .lov-pcard-{{ uid }} .lov-pcard__button {
+        width: {% if block.settings.button_full_width %}100%{% else %}auto{% endif %};
+      }
+    {% endif %}
+  }
+{% endstyle %}
+
+<div class="lov-pcard-{{ uid }} color-{{ block.settings.color_scheme }}" {{ block.shopify_attributes }}>
+  <div class="lov-pcard__inner">
+    <div class="lov-pcard__media">
+      {%- if product != blank and product.featured_image != blank -%}
+        <img
+          src="{{ product.featured_image | image_url: width: 800 }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          width="800"
+          height="800"
+          loading="lazy"
+        >
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {%- endif -%}
+    </div>
+
+    <div class="lov-pcard__content">
+      <h3 class="lov-pcard__title">
+        {%- if product != blank -%}{{ product.title }}{%- else -%}Product title{%- endif -%}
+      </h3>
+
+      {%- if block.settings.show_description -%}
+        <p class="lov-pcard__description">
+          {%- if product != blank and product.description != blank -%}
+            {{ product.description | strip_html | truncate: block.settings.description_length }}
+          {%- else -%}
+            Product description goes here. It is automatically pulled from the selected product.
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+
+      {%- if block.settings.show_price -%}
+        <div class="lov-pcard__price">
+          {%- if product != blank -%}{{ product.price | money }}{%- else -%}{{ 9900 | money }}{%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if block.settings.show_button -%}
+        <a class="lov-pcard__button" href="{{ product.url | default: '#' }}">
+          {{ block.settings.button_text }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product card (horizontal)",
+  "tag": null,
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "description_length",
+      "label": "Description length",
+      "min": 40,
+      "max": 300,
+      "step": 10,
+      "unit": "char",
+      "default": 120,
+      "visible_if": "{{ block.settings.show_description }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show price",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button label",
+      "default": "View product"
+    },
+    {
+      "type": "header",
+      "content": "Typography (theme presets)"
+    },
+    {
+      "type": "select",
+      "id": "title_preset",
+      "label": "Title style",
+      "info": "Uses the theme's heading typography.",
+      "options": [
+        { "value": "h1", "label": "Heading 1" },
+        { "value": "h2", "label": "Heading 2" },
+        { "value": "h3", "label": "Heading 3" },
+        { "value": "h4", "label": "Heading 4" },
+        { "value": "h5", "label": "Heading 5" },
+        { "value": "h6", "label": "Heading 6" }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "select",
+      "id": "price_preset",
+      "label": "Price style",
+      "options": [
+        { "value": "h3", "label": "Heading 3" },
+        { "value": "h4", "label": "Heading 4" },
+        { "value": "h5", "label": "Heading 5" },
+        { "value": "h6", "label": "Heading 6" }
+      ],
+      "default": "h5"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Image width (desktop)",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "unit": "%",
+      "default": 38
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        { "value": "original", "label": "Original" },
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "4 / 5", "label": "Portrait (4:5)" },
+        { "value": "3 / 4", "label": "Portrait (3:4)" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "16 / 9", "label": "Wide (16:9)" }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "info": "Fit shows the whole product centered. Fill crops to fill the container.",
+      "options": [
+        { "value": "contain", "label": "Fit (show whole product)" },
+        { "value": "cover", "label": "Fill (crop)" }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Direction (mobile)",
+      "info": "Only affects screens under 750px. Desktop stays side by side.",
+      "options": [
+        { "value": "side_by_side", "label": "Side by side" },
+        { "value": "image_top", "label": "Stacked — image on top" },
+        { "value": "image_bottom", "label": "Stacked — image on bottom" }
+      ],
+      "default": "image_top"
+    },
+    {
+      "type": "select",
+      "id": "mobile_alignment",
+      "label": "Content alignment (mobile, stacked)",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "flex-start",
+      "visible_if": "{{ block.settings.mobile_layout != 'side_by_side' }}"
+    },
+    {
+      "type": "header",
+      "content": "Card layout"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max card width",
+      "min": 300,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 650
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap (image / content)",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "Gap between text items",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Card padding",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Card border width",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_full_width",
+      "label": "Full width button",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "button_padding_y",
+      "label": "Button vertical padding",
+      "min": 6,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_x",
+      "label": "Button horizontal padding",
+      "min": 8,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button corner radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product card (horizontal)"
+    }
+  ]
+}
+{% endschema %}
