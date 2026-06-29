@@ -5686,7 +5686,7 @@
                             "vertical_alignment_mobile": "center",
                             "width": "custom",
                             "custom_width": 20,
-                            "width_mobile": "fit-content",
+                            "width_mobile": "fill",
                             "custom_width_mobile": 100,
                             "height": "custom",
                             "custom_height_unit": "px",
