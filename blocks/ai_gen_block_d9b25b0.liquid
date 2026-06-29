@@ -54,6 +54,33 @@
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
 {%- liquid
+  # Resolve effective colors: theme palette when "use_theme_colors" is on, otherwise the custom pickers
+  assign card_bg = block.settings.card_bg_color
+  assign content_bg = block.settings.content_bg_color
+  assign card_border = block.settings.card_border_color
+  assign title_color = block.settings.title_color
+  assign price_color = block.settings.price_color
+  assign badge_bg = block.settings.badge_bg_color
+  assign badge_text = block.settings.badge_text_color
+  assign button_bg = block.settings.button_bg_color
+  assign button_text = block.settings.button_text_color
+  assign button_hover = block.settings.button_hover_color
+
+  if block.settings.use_theme_colors
+    assign card_bg = 'var(--color-background)'
+    assign content_bg = 'var(--color-background)'
+    assign card_border = 'var(--color-border, rgba(0, 0, 0, 0.12))'
+    assign title_color = 'var(--color-foreground)'
+    assign price_color = 'var(--color-foreground)'
+    assign badge_bg = 'var(--color-primary, var(--color-foreground))'
+    assign badge_text = 'var(--color-background)'
+    assign button_bg = 'var(--color-primary, var(--color-foreground))'
+    assign button_text = 'var(--color-background)'
+    assign button_hover = 'var(--color-foreground)'
+  endif
+-%}
+
+{%- liquid
   case block.settings.title_type
     when 'h1'
       assign title_size_desktop = '2.5rem'
@@ -169,8 +196,8 @@
   .ai-horizontal-card__container-{{ ai_gen_id }} {
     display: flex;
     flex-direction: row;
-    background-color: {{ block.settings.card_bg_color }};
-    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    background-color: {{ card_bg }};
+    border: {{ block.settings.card_border_width }}px solid {{ card_border }};
     border-radius: {{ block.settings.card_border_radius }}px;
     padding: 0;
     gap: {{ block.settings.content_gap }}px;
@@ -185,6 +212,11 @@
     width: {{ block.settings.image_width_percent }}%;
     position: relative;
     overflow: hidden;
+    {% if block.settings.image_aspect_ratio != 'original' %}
+      aspect-ratio: {{ block.settings.image_aspect_ratio }};
+      align-self: flex-start;
+      height: auto;
+    {% endif %}
   }
 
   .ai-horizontal-card__image-{{ ai_gen_id }} {
@@ -199,8 +231,8 @@
     position: absolute;
     top: 12px;
     left: 12px;
-    background-color: {{ block.settings.badge_bg_color }};
-    color: {{ block.settings.badge_text_color }};
+    background-color: {{ badge_bg }};
+    color: {{ badge_text }};
     padding: 6px 12px;
     border-radius: {{ block.settings.badge_border_radius }}px;
     font-family: var(--font-body-family);
@@ -215,7 +247,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background-color: {{ block.settings.content_bg_color }};
+    background-color: {{ content_bg }};
     padding-top: {{ block.settings.padding_top }}px;
     padding-right: {{ block.settings.padding_right }}px;
     padding-bottom: {{ block.settings.padding_bottom }}px;
@@ -228,7 +260,7 @@
     font-style: var(--font-heading-style);
     font-weight: var(--font-heading-weight);
     font-size: {{ eyebrow_size_desktop }};
-    color: {{ block.settings.title_color }};
+    color: {{ title_color }};
     opacity: 0.7;
     margin: 0;
     text-transform: uppercase;
@@ -241,7 +273,7 @@
     font-style: var(--font-heading-style);
     font-weight: var(--font-heading-weight);
     font-size: {{ title_size_desktop }};
-    color: {{ block.settings.title_color }};
+    color: {{ title_color }};
     margin: 0;
     line-height: 1.3;
   }
@@ -252,7 +284,7 @@
     font-style: var(--font-body-style);
     font-weight: var(--font-body-weight);
     font-size: {{ desc_size_desktop }};
-    color: {{ block.settings.title_color }};
+    color: {{ title_color }};
     opacity: 0.6;
     margin: 0;
   }
@@ -268,13 +300,13 @@
     font-family: var(--font-body-family);
     font-weight: var(--font-body-weight-bold, 700);
     font-size: {{ price_size_desktop }};
-    color: {{ block.settings.price_color }};
+    color: {{ price_color }};
   }
 
   .ai-horizontal-card__compare-price-{{ ai_gen_id }} {
     font-family: var(--font-body-family);
     font-size: {{ price_size_desktop }};
-    color: {{ block.settings.price_color }};
+    color: {{ price_color }};
     opacity: 0.5;
     text-decoration: line-through;
   }
@@ -286,7 +318,7 @@
     font-weight: var(--font-body-weight);
     font-size: {{ desc_size_desktop }};
     line-height: 1.6;
-    color: {{ block.settings.title_color }};
+    color: {{ title_color }};
     opacity: 0.8;
     margin: 0;
   }
@@ -295,7 +327,7 @@
   .ai-horizontal-card__sku-{{ ai_gen_id }} {
     font-family: var(--font-body-family);
     font-size: 0.75rem;
-    color: {{ block.settings.title_color }};
+    color: {{ title_color }};
     opacity: 0.5;
   }
 
@@ -306,13 +338,13 @@
     gap: 4px;
     font-family: var(--font-body-family);
     font-size: {{ desc_size_desktop }};
-    color: {{ block.settings.badge_bg_color }};
+    color: {{ badge_bg }};
   }
 
   /* Divider */
   .ai-horizontal-card__divider-{{ ai_gen_id }} {
     width: 1px;
-    background-color: {{ block.settings.card_border_color }};
+    background-color: {{ card_border }};
     align-self: stretch;
   }
 
@@ -326,8 +358,8 @@
   .ai-horizontal-card__button-{{ ai_gen_id }} {
     flex: 1;
     padding: 12px 20px;
-    background-color: {{ block.settings.button_bg_color }};
-    color: {{ block.settings.button_text_color }};
+    background-color: {{ button_bg }};
+    color: {{ button_text }};
     border: none;
     border-radius: {{ block.settings.button_border_radius }}px;
     font-family: var(--font-body-family);
@@ -341,25 +373,25 @@
   }
 
   .ai-horizontal-card__button-{{ ai_gen_id }}:hover {
-    background-color: {{ block.settings.button_hover_color }};
+    background-color: {{ button_hover }};
   }
 
   .ai-horizontal-card__button--secondary-{{ ai_gen_id }} {
     background-color: transparent;
-    border: 1px solid {{ block.settings.button_bg_color }};
-    color: {{ block.settings.button_bg_color }};
+    border: 1px solid {{ button_bg }};
+    color: {{ button_bg }};
   }
 
   .ai-horizontal-card__button--secondary-{{ ai_gen_id }}:hover {
-    background-color: {{ block.settings.button_bg_color }};
-    color: {{ block.settings.button_text_color }};
+    background-color: {{ button_bg }};
+    color: {{ button_text }};
   }
 
   /* Footer note */
   .ai-horizontal-card__footer-note-{{ ai_gen_id }} {
     font-family: var(--font-body-family);
     font-size: {{ note_size_desktop }};
-    color: {{ block.settings.title_color }};
+    color: {{ title_color }};
     opacity: 0.6;
     margin: 0;
     font-style: italic;
@@ -441,7 +473,7 @@
   }
 {% endstyle %}
 
-<horizontal-product-card-{{ ai_gen_id }} class="ai-horizontal-card-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+<horizontal-product-card-{{ ai_gen_id }} class="ai-horizontal-card-{{ ai_gen_id }}{% if block.settings.use_theme_colors %} color-{{ block.settings.color_scheme }}{% endif %}" {{ block.shopify_attributes }}>
   <div class="ai-horizontal-card__container-{{ ai_gen_id }}">
     {% if block.settings.show_image %}
       <div class="ai-horizontal-card__image-wrapper-{{ ai_gen_id }}">
@@ -804,6 +836,20 @@
       "default": 40
     },
     {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        { "value": "original", "label": "Fill card height" },
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "4 / 5", "label": "Portrait (4:5)" },
+        { "value": "3 / 4", "label": "Portrait (3:4)" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "16 / 9", "label": "Wide (16:9)" }
+      ],
+      "default": "1 / 1"
+    },
+    {
       "type": "range",
       "id": "card_border_radius",
       "label": "Card border radius",
@@ -982,16 +1028,32 @@
       "content": "Colors"
     },
     {
+      "type": "checkbox",
+      "id": "use_theme_colors",
+      "label": "Match theme colors",
+      "info": "Use the theme's color scheme for background, text, badge and button instead of the custom colors below.",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1",
+      "visible_if": "{{ block.settings.use_theme_colors }}"
+    },
+    {
       "type": "color",
       "id": "card_bg_color",
       "label": "Card background",
-      "default": "#1a1a1a"
+      "default": "#1a1a1a",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "card_border_color",
       "label": "Card border",
-      "default": "#333333"
+      "default": "#333333",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "range",
@@ -1007,49 +1069,57 @@
       "type": "color",
       "id": "content_bg_color",
       "label": "Content area background",
-      "default": "#1a1a1a"
+      "default": "#1a1a1a",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "title_color",
       "label": "Title color",
-      "default": "#ffffff"
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "price_color",
       "label": "Price color",
-      "default": "#ffffff"
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "badge_bg_color",
       "label": "Badge background",
-      "default": "#071e85"
+      "default": "#071e85",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "badge_text_color",
       "label": "Badge text",
-      "default": "#ffffff"
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "button_bg_color",
       "label": "Button background",
-      "default": "#071e85"
+      "default": "#071e85",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "button_text_color",
       "label": "Button text",
-      "default": "#ffffff"
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     },
     {
       "type": "color",
       "id": "button_hover_color",
       "label": "Button hover background",
-      "default": "#0d1746"
+      "default": "#0d1746",
+      "visible_if": "{{ block.settings.use_theme_colors == false }}"
     }
   ],
   "presets": [
