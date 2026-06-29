@@ -102,8 +102,17 @@
     justify-content: var(--horizontal-alignment, 'inline-start');
   }
 
-  .image-block--height-fill .image-block__image {
+  .image-block--height-fill .image-block__image,
+  .image-block--height-custom .image-block__image,
+  .image-block--height-fill .placeholder-image,
+  .image-block--height-custom .placeholder-image {
     height: 100%;
+  }
+
+  /* When a fixed height is set, let it win over the aspect ratio */
+  .image-block--height-custom .image-block__image,
+  .image-block--height-fill .image-block__image {
+    aspect-ratio: auto;
   }
 
   .image-block__image {
@@ -229,10 +238,94 @@
         {
           "value": "fill",
           "label": "t:options.fill"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
         }
       ],
-      "default": "fit",
-      "visible_if": "{{ block.settings.image_ratio == 'adapt' }}"
+      "default": "fit"
+    },
+    {
+      "type": "select",
+      "id": "custom_height_unit",
+      "label": "Height unit",
+      "options": [
+        { "value": "percent", "label": "% of parent" },
+        { "value": "svh", "label": "% of screen" },
+        { "value": "px", "label": "Pixels" }
+      ],
+      "default": "px",
+      "visible_if": "{{ block.settings.height == 'custom' }}"
+    },
+    {
+      "type": "range",
+      "id": "custom_height",
+      "label": "t:settings.custom_height",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.height == 'custom' and block.settings.custom_height_unit != 'px' }}"
+    },
+    {
+      "type": "range",
+      "id": "custom_height_px",
+      "label": "Custom height (px)",
+      "min": 50,
+      "max": 1050,
+      "step": 10,
+      "unit": "px",
+      "default": 400,
+      "visible_if": "{{ block.settings.height == 'custom' and block.settings.custom_height_unit == 'px' }}"
+    },
+    {
+      "type": "select",
+      "id": "height_mobile",
+      "label": "Height (mobile)",
+      "info": "Optional. Overrides the height on screens under 750px.",
+      "options": [
+        { "value": "", "label": "Same as desktop" },
+        { "value": "fit", "label": "t:options.fit_content" },
+        { "value": "fill", "label": "t:options.fill" },
+        { "value": "custom", "label": "t:options.custom" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "select",
+      "id": "custom_height_mobile_unit",
+      "label": "Height unit (mobile)",
+      "options": [
+        { "value": "percent", "label": "% of parent" },
+        { "value": "svh", "label": "% of screen" },
+        { "value": "px", "label": "Pixels" }
+      ],
+      "default": "px",
+      "visible_if": "{{ block.settings.height_mobile == 'custom' }}"
+    },
+    {
+      "type": "range",
+      "id": "custom_height_mobile",
+      "label": "Custom height (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 60,
+      "visible_if": "{{ block.settings.height_mobile == 'custom' and block.settings.custom_height_mobile_unit != 'px' }}"
+    },
+    {
+      "type": "range",
+      "id": "custom_height_mobile_px",
+      "label": "Custom height mobile (px)",
+      "min": 50,
+      "max": 1050,
+      "step": 10,
+      "unit": "px",
+      "default": 300,
+      "visible_if": "{{ block.settings.height_mobile == 'custom' and block.settings.custom_height_mobile_unit == 'px' }}"
     },
     {
       "type": "header",
