@@ -4,6 +4,7 @@
     class="shopify-design-mode"
   {% endif %}
   lang="{{ request.locale.iso_code }}"
+  {% if request.locale.iso_code == 'ar' %}dir="rtl" class="rtl-layout"{% else %}dir="ltr"{% endif %}
 >
   <script src="https://unpkg.com/lottie-web/build/player/lottie.min.js" defer></script>
 
