@@ -142,6 +142,20 @@
         "settings": {
           "social_font": "enable"
         }
+      },
+      "12075128526103414267": {
+        "type": "shopify://apps/bundlex/blocks/volume-discount-embed/c017a4b2-071a-4809-a2c2-1c5768f46bb9",
+        "disabled": false,
+        "settings": {
+          "hide_quantity": false,
+          "custom_placement_selector": "",
+          "add_to_cart_button_selector": "",
+          "quantity_container_selector": "",
+          "quantity_input_selector": "",
+          "variants_container_selector": "",
+          "product_form_selector": "",
+          "custom_css": ""
+        }
       }
     },
     "color_schemes": {
