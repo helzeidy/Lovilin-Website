@@ -147,6 +147,8 @@
                     "icon": "price_tag",
                     "image_upload": "{{ closest.product.metafields.custom.icon.value }}",
                     "width": 24,
+                    "icon_alignment": "",
+                    "icon_border_radius": 0,
                     "link": "",
                     "open_in_new_tab": false
                   },
@@ -879,6 +881,38 @@
               },
               "block_order": []
             },
+            "ai_gen_block_39c14a5_ztCf9z": {
+              "type": "ai_gen_block_39c14a5",
+              "settings": {
+                "heading": "Guaranteed Safe Checkout",
+                "show_icon_1": true,
+                "icon_1": "shopify://shop_images/visa.png",
+                "icon_1_alt": "Visa",
+                "show_icon_2": true,
+                "icon_2": "shopify://shop_images/51b91583c4ebe113f7ee706aec3b6d8c.png",
+                "icon_2_alt": "Mastercard",
+                "show_icon_3": true,
+                "icon_3": "shopify://shop_images/meeza.png",
+                "icon_3_alt": "Meeza",
+                "show_icon_4": false,
+                "icon_4_alt": "Payment method",
+                "show_icon_5": false,
+                "icon_5_alt": "Payment method",
+                "show_icon_6": false,
+                "icon_6_alt": "Payment method",
+                "desktop_width_percent": 100,
+                "padding": 20,
+                "border_radius": 8,
+                "background_color": "#f5f5f5",
+                "text_color": "#000000",
+                "heading_size": 16,
+                "spacing": 15,
+                "icon_size": 50,
+                "icon_spacing": 15,
+                "icon_opacity": 85
+              },
+              "blocks": {}
+            },
             "tabs_studio_product_tabs_block_y7YmaL": {
               "type": "shopify://apps/tabs-studio/blocks/product_tabs_block/19980fb9-f2ca-4ada-ad36-c0364c3318b8",
               "settings": {
@@ -902,6 +936,7 @@
             "ai_gen_block_af06917_7HzMkC",
             "divider_ijVBhC",
             "buy_buttons_eYQEYi",
+            "ai_gen_block_39c14a5_ztCf9z",
             "tabs_studio_product_tabs_block_y7YmaL"
           ]
         }
