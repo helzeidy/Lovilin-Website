@@ -1,6 +1,438 @@
+{% doc %}
+  @prompt
+    guaranteed safe checkout widget with visa mastercard and meeza , give me an option to input the icons 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-safe-checkout-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    text-align: center;
+  }
+
+  .ai-safe-checkout__heading-{{ ai_gen_id }} {
+    margin: 0 0 {{ block.settings.spacing }}px;
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    font-weight: 600;
+  }
+
+  .ai-safe-checkout__icons-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: {{ block.settings.icon_spacing }}px;
+    flex-wrap: wrap;
+  }
+
+  .ai-safe-checkout__icon-wrapper-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: auto;
+    opacity: {{ block.settings.icon_opacity | divided_by: 100.0 }};
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-safe-checkout__icon-wrapper-{{ ai_gen_id }}:hover {
+    opacity: 1;
+  }
+
+  .ai-safe-checkout__icon-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-safe-checkout__icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.icon_size | times: 0.66 }}px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #999;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-safe-checkout-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-safe-checkout__heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+
+    .ai-safe-checkout__icon-wrapper-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size | times: 0.8 }}px;
+    }
+
+    .ai-safe-checkout__icon-placeholder-{{ ai_gen_id }} {
+      height: {{ block.settings.icon_size | times: 0.53 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-safe-checkout-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.heading != blank %}
+    <div class="ai-safe-checkout__heading-{{ ai_gen_id }}">
+      {{ block.settings.heading }}
+    </div>
+  {% endif %}
+
+  <div class="ai-safe-checkout__icons-{{ ai_gen_id }}">
+    {% if block.settings.show_icon_1 %}
+      <div class="ai-safe-checkout__icon-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.icon_1 != blank %}
+          <img
+            src="{{ block.settings.icon_1 | image_url: width: 200 }}"
+            alt="{{ block.settings.icon_1_alt | escape }}"
+            loading="lazy"
+            width="200"
+            height="auto"
+          >
+        {% else %}
+          <div class="ai-safe-checkout__icon-placeholder-{{ ai_gen_id }}">Icon 1</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_icon_2 %}
+      <div class="ai-safe-checkout__icon-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.icon_2 != blank %}
+          <img
+            src="{{ block.settings.icon_2 | image_url: width: 200 }}"
+            alt="{{ block.settings.icon_2_alt | escape }}"
+            loading="lazy"
+            width="200"
+            height="auto"
+          >
+        {% else %}
+          <div class="ai-safe-checkout__icon-placeholder-{{ ai_gen_id }}">Icon 2</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_icon_3 %}
+      <div class="ai-safe-checkout__icon-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.icon_3 != blank %}
+          <img
+            src="{{ block.settings.icon_3 | image_url: width: 200 }}"
+            alt="{{ block.settings.icon_3_alt | escape }}"
+            loading="lazy"
+            width="200"
+            height="auto"
+          >
+        {% else %}
+          <div class="ai-safe-checkout__icon-placeholder-{{ ai_gen_id }}">Icon 3</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_icon_4 %}
+      <div class="ai-safe-checkout__icon-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.icon_4 != blank %}
+          <img
+            src="{{ block.settings.icon_4 | image_url: width: 200 }}"
+            alt="{{ block.settings.icon_4_alt | escape }}"
+            loading="lazy"
+            width="200"
+            height="auto"
+          >
+        {% else %}
+          <div class="ai-safe-checkout__icon-placeholder-{{ ai_gen_id }}">Icon 4</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_icon_5 %}
+      <div class="ai-safe-checkout__icon-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.icon_5 != blank %}
+          <img
+            src="{{ block.settings.icon_5 | image_url: width: 200 }}"
+            alt="{{ block.settings.icon_5_alt | escape }}"
+            loading="lazy"
+            width="200"
+            height="auto"
+          >
+        {% else %}
+          <div class="ai-safe-checkout__icon-placeholder-{{ ai_gen_id }}">Icon 5</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_icon_6 %}
+      <div class="ai-safe-checkout__icon-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.icon_6 != blank %}
+          <img
+            src="{{ block.settings.icon_6 | image_url: width: 200 }}"
+            alt="{{ block.settings.icon_6_alt | escape }}"
+            loading="lazy"
+            width="200"
+            height="auto"
+          >
+        {% else %}
+          <div class="ai-safe-checkout__icon-placeholder-{{ ai_gen_id }}">Icon 6</div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Safe checkout",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Guaranteed Safe Checkout"
+    },
+    {
+      "type": "header",
+      "content": "Icon 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon_1",
+      "label": "Show icon 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_1",
+      "label": "Icon image"
+    },
+    {
+      "type": "text",
+      "id": "icon_1_alt",
+      "label": "Icon alt text",
+      "default": "Visa"
+    },
+    {
+      "type": "header",
+      "content": "Icon 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon_2",
+      "label": "Show icon 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_2",
+      "label": "Icon image"
+    },
+    {
+      "type": "text",
+      "id": "icon_2_alt",
+      "label": "Icon alt text",
+      "default": "Mastercard"
+    },
+    {
+      "type": "header",
+      "content": "Icon 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon_3",
+      "label": "Show icon 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_3",
+      "label": "Icon image"
+    },
+    {
+      "type": "text",
+      "id": "icon_3_alt",
+      "label": "Icon alt text",
+      "default": "Meeza"
+    },
+    {
+      "type": "header",
+      "content": "Icon 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon_4",
+      "label": "Show icon 4",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_4",
+      "label": "Icon image"
+    },
+    {
+      "type": "text",
+      "id": "icon_4_alt",
+      "label": "Icon alt text",
+      "default": "Payment method"
+    },
+    {
+      "type": "header",
+      "content": "Icon 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon_5",
+      "label": "Show icon 5",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_5",
+      "label": "Icon image"
+    },
+    {
+      "type": "text",
+      "id": "icon_5_alt",
+      "label": "Icon alt text",
+      "default": "Payment method"
+    },
+    {
+      "type": "header",
+      "content": "Icon 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon_6",
+      "label": "Show icon 6",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_6",
+      "label": "Icon image"
+    },
+    {
+      "type": "text",
+      "id": "icon_6_alt",
+      "label": "Icon alt text",
+      "default": "Payment method"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Spacing below",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Payment icons"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Icon spacing",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "icon_opacity",
+      "label": "Icon opacity",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 85
+    }
+  ],
+  "presets": [
+    {
+      "name": "Safe checkout"
+    }
+  ]
+}
 {% endschema %}
