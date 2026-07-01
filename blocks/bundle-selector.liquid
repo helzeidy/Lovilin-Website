@@ -2,8 +2,10 @@
   Bundle / pack selector.
   Shows the current product plus the products listed in its
   custom.bundle_products metafield as selectable cards (styled like the variant
-  picker). Selecting a card and pressing "Add to cart" adds that product's
-  variant to the cart. Bundle products stay hidden elsewhere on the site.
+  picker). Selecting a card updates which product/variant gets added to the cart.
+
+  By default it drives the theme's existing Add to cart / Buy it now buttons
+  (recommended). Optionally it can render its own button instead.
 {%- enddoc -%}
 
 {%- liquid
@@ -16,98 +18,85 @@
   assign key = block.settings.metafield_key | default: 'bundle_products'
   assign bundles = product.metafields[ns][key].value
   assign uid = block.id | replace: '_', '' | downcase
+  assign use_theme_button = true
+  if block.settings.use_theme_button == false
+    assign use_theme_button = false
+  endif
 -%}
 
 {%- if product != blank -%}
-  <script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
+  {%- unless use_theme_button -%}
+    <script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
+  {%- endunless -%}
 
-  <div class="bundle-selector" data-bundle-selector="{{ uid }}" {{ block.shopify_attributes }}>
+  <div
+    class="bundle-selector"
+    data-bundle-selector="{{ uid }}"
+    data-use-theme="{{ use_theme_button }}"
+    {{ block.shopify_attributes }}
+  >
     {%- if block.settings.heading != blank -%}
       <span class="bundle-selector__heading {{ block.settings.heading_preset | default: 'h6' }}">{{ block.settings.heading }}</span>
     {%- endif -%}
 
-    <product-form-component id="BundleForm-{{ uid }}" class="bundle-selector__form-wrap">
-      <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="" ref="variantId" data-bundle-variant-input>
-
-        <div class="bundle-selector__options">
-          {%- liquid
-            assign base_variant = product.selected_or_first_available_variant
-          -%}
-          {%- comment -%} Base product (e.g. 1 pack) {%- endcomment -%}
-          <label class="bundle-option">
-            <input
-              type="radio"
-              name="bundle-{{ uid }}"
-              value="{{ base_variant.id }}"
-              class="bundle-option__input"
-              checked
-            >
-            <span class="bundle-option__body">
-              <span class="bundle-option__label">{{ block.settings.base_label | default: product.title }}</span>
-              {%- if block.settings.base_sublabel != blank -%}
-                <span class="bundle-option__sublabel">{{ block.settings.base_sublabel }}</span>
-              {%- endif -%}
-              {%- if block.settings.show_price -%}
-                <span class="bundle-option__price">{{ base_variant.price | money }}</span>
-              {%- endif -%}
-            </span>
-          </label>
-
-          {%- comment -%} Bundle products {%- endcomment -%}
-          {%- if bundles != blank -%}
-            {%- for bundle in bundles -%}
-              {%- liquid
-                assign b_variant = bundle.selected_or_first_available_variant
-                assign b_label = bundle.metafields.custom.pack_label | default: bundle.title
-                assign b_sub = bundle.metafields.custom.pack_sublabel
-              -%}
-              {%- if b_variant != blank -%}
-                <label class="bundle-option{% unless b_variant.available %} bundle-option--soldout{% endunless %}">
-                  <input
-                    type="radio"
-                    name="bundle-{{ uid }}"
-                    value="{{ b_variant.id }}"
-                    class="bundle-option__input"
-                    {% unless b_variant.available %}disabled{% endunless %}
-                  >
-                  <span class="bundle-option__body">
-                    <span class="bundle-option__label">{{ b_label }}</span>
-                    {%- if b_sub != blank -%}
-                      <span class="bundle-option__sublabel">{{ b_sub }}</span>
-                    {%- endif -%}
-                    {%- if block.settings.show_price -%}
-                      <span class="bundle-option__price">{{ b_variant.price | money }}</span>
-                    {%- endif -%}
-                  </span>
-                </label>
-              {%- endif -%}
-            {%- endfor -%}
+    <div class="bundle-selector__options">
+      {%- assign base_variant = product.selected_or_first_available_variant -%}
+      <label class="bundle-option">
+        <input type="radio" name="bundle-{{ uid }}" value="{{ base_variant.id }}" class="bundle-option__input" checked>
+        <span class="bundle-option__body">
+          <span class="bundle-option__label">{{ block.settings.base_label | default: product.title }}</span>
+          {%- if block.settings.base_sublabel != blank -%}
+            <span class="bundle-option__sublabel">{{ block.settings.base_sublabel }}</span>
           {%- endif -%}
-        </div>
+          {%- if block.settings.show_price -%}
+            <span class="bundle-option__price">{{ base_variant.price | money }}</span>
+          {%- endif -%}
+        </span>
+      </label>
 
-        {%- if block.settings.show_button -%}
+      {%- if bundles != blank -%}
+        {%- for bundle in bundles -%}
+          {%- liquid
+            assign b_variant = bundle.selected_or_first_available_variant
+            assign b_label = bundle.metafields.custom.pack_label | default: bundle.title
+            assign b_sub = bundle.metafields.custom.pack_sublabel
+          -%}
+          {%- if b_variant != blank -%}
+            <label class="bundle-option{% unless b_variant.available %} bundle-option--soldout{% endunless %}">
+              <input type="radio" name="bundle-{{ uid }}" value="{{ b_variant.id }}" class="bundle-option__input" {% unless b_variant.available %}disabled{% endunless %}>
+              <span class="bundle-option__body">
+                <span class="bundle-option__label">{{ b_label }}</span>
+                {%- if b_sub != blank -%}
+                  <span class="bundle-option__sublabel">{{ b_sub }}</span>
+                {%- endif -%}
+                {%- if block.settings.show_price -%}
+                  <span class="bundle-option__price">{{ b_variant.price | money }}</span>
+                {%- endif -%}
+              </span>
+            </label>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    {%- unless use_theme_button -%}
+      <product-form-component id="BundleForm-{{ uid }}" class="bundle-selector__form-wrap">
+        <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{{ base_variant.id }}" ref="variantId" data-bundle-variant-input>
           <add-to-cart-component class="bundle-selector__atc">
             <button type="submit" ref="addToCartButton" class="button bundle-selector__button">
               {{ block.settings.add_to_cart_text | default: 'Add to cart' }}
             </button>
           </add-to-cart-component>
-        {%- endif -%}
-
-        <div ref="liveRegion" class="visually-hidden" role="status"></div>
-      </form>
-    </product-form-component>
+          <div ref="liveRegion" class="visually-hidden" role="status"></div>
+        </form>
+      </product-form-component>
+    {%- endunless -%}
   </div>
 
   {%- style -%}
-    .bundle-selector {
-      display: block;
-      width: 100%;
-    }
-    .bundle-selector__heading {
-      display: block;
-      margin-bottom: 10px;
-    }
+    .bundle-selector { display: block; width: 100%; }
+    .bundle-selector__heading { display: block; margin-bottom: 10px; }
     .bundle-selector__options {
       display: grid;
       grid-template-columns: repeat({{ block.settings.columns | default: 2 }}, minmax(0, 1fr));
@@ -123,36 +112,16 @@
       padding: {{ block.settings.card_padding | default: 16 }}px;
       transition: border-color .15s ease, background-color .15s ease;
     }
-    .bundle-option__input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
+    .bundle-option__input { position: absolute; opacity: 0; pointer-events: none; }
     .bundle-option:has(.bundle-option__input:checked) {
       border-color: {{ block.settings.selected_border_color | default: '#1a1a6e' }};
       background: {{ block.settings.selected_bg | default: '#eeeefb' }};
     }
-    .bundle-option__body {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .bundle-option__label {
-      font-weight: 600;
-      color: {{ block.settings.label_color | default: '#1a1a6e' }};
-    }
-    .bundle-option__sublabel {
-      font-size: var(--font-size--xs, 0.8125rem);
-      opacity: 0.7;
-    }
-    .bundle-option__price {
-      font-weight: 600;
-      color: {{ block.settings.price_color | default: '#1a1a6e' }};
-    }
-    .bundle-option--soldout {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    .bundle-option__body { display: flex; flex-direction: column; gap: 4px; }
+    .bundle-option__label { font-weight: 600; color: {{ block.settings.label_color | default: '#1a1a6e' }}; }
+    .bundle-option__sublabel { font-size: var(--font-size--xs, 0.8125rem); opacity: 0.7; }
+    .bundle-option__price { font-weight: 600; color: {{ block.settings.price_color | default: '#1a1a6e' }}; }
+    .bundle-option--soldout { opacity: 0.5; cursor: not-allowed; }
     .bundle-selector__button {
       width: 100%;
       margin-top: {{ block.settings.button_gap | default: 16 }}px;
@@ -164,13 +133,30 @@
     (function () {
       var root = document.querySelector('[data-bundle-selector="{{ uid }}"]');
       if (!root) return;
-      var hidden = root.querySelector('[data-bundle-variant-input]');
+      var useTheme = root.getAttribute('data-use-theme') === 'true';
       var radios = root.querySelectorAll('.bundle-option__input');
-      function sync() {
-        radios.forEach(function (r) { if (r.checked) hidden.value = r.value; });
+
+      function targetInput() {
+        if (!useTheme) {
+          return root.querySelector('[data-bundle-variant-input]');
+        }
+        // Drive the theme's own product form (the existing Add to cart / Buy it now)
+        var section = root.closest('.shopify-section') || document;
+        var form = section.querySelector('product-form-component form') ||
+                   section.querySelector('form[action*="/cart/add"]');
+        return form ? form.querySelector('input[name="id"]') : null;
       }
+
+      function sync() {
+        var input = targetInput();
+        if (!input) return;
+        radios.forEach(function (r) { if (r.checked) input.value = r.value; });
+      }
+
       radios.forEach(function (r) { r.addEventListener('change', sync); });
+      // Set the initial selection once the theme form is present
       sync();
+      document.addEventListener('DOMContentLoaded', sync);
     })();
   </script>
 {%- endif -%}
@@ -183,6 +169,13 @@
     {
       "type": "paragraph",
       "content": "Shows this product plus the products in its custom.bundle_products metafield as selectable packs. Add a 'custom.bundle_products' product-list metafield to the main product, and optionally 'custom.pack_label' text metafields on each bundle product."
+    },
+    {
+      "type": "checkbox",
+      "id": "use_theme_button",
+      "label": "Use the theme's Add to cart / Buy it now",
+      "info": "On: the existing buttons add the selected pack (recommended; remove the block's own button). Off: this block shows its own Add to cart.",
+      "default": true
     },
     {
       "type": "text",
@@ -206,7 +199,6 @@
       "type": "text",
       "id": "base_label",
       "label": "Base product label",
-      "info": "Label for this product (e.g. \"1 Bottle\").",
       "default": "1 Bottle"
     },
     {
@@ -222,13 +214,7 @@
     },
     {
       "type": "header",
-      "content": "Add to cart"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_button",
-      "label": "Show add-to-cart button",
-      "default": true
+      "content": "Own button (only if not using theme buttons)"
     },
     {
       "type": "text",
