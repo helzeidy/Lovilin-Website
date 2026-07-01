@@ -45,6 +45,7 @@
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
+                "alignment_mobile": "",
                 "type_preset": "h1",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -70,6 +71,7 @@
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
+                "alignment_mobile": "",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -106,6 +108,8 @@
         "slideshow_gap": 18,
         "corner_radius": 20,
         "slide_height": "small",
+        "slide_height_vh": 60,
+        "slide_height_vh_mobile": 70,
         "content_position": "below-media",
         "color_scheme": "",
         "icons_style": "arrows_large",
@@ -128,6 +132,7 @@
             "width": "100%",
             "max_width": "none",
             "alignment": "left",
+            "alignment_mobile": "",
             "type_preset": "paragraph",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
@@ -159,7 +164,7 @@
         "padding-block-end": 80
       }
     },
-    "carousel_xXPyhY": {
+    "carousel_AQb7aX": {
       "type": "carousel",
       "blocks": {
         "static-header": {
@@ -176,12 +181,22 @@
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 12,
+            "enable_mobile_layout": false,
+            "content_direction_mobile": "column",
+            "horizontal_alignment_mobile": "flex-start",
+            "vertical_alignment_mobile": "center",
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
+            "custom_height_unit": "percent",
             "custom_height": 100,
+            "custom_height_px": 400,
+            "height_mobile": "",
+            "custom_height_mobile_unit": "svh",
+            "custom_height_mobile": 60,
+            "custom_height_mobile_px": 300,
             "inherit_color_scheme": true,
             "color_scheme": "",
             "background_media": "none",
@@ -217,14 +232,14 @@
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
-            "border_radius": 32,
+            "border_radius": 24,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {
-            "card_aMYH6E": {
+            "card_FPcMCk": {
               "type": "_card",
               "name": "t:names.card",
               "settings": {
@@ -234,16 +249,16 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
-                "background_image": "shopify://shop_images/44.jpg",
+                "background_image": "shopify://shop_images/laundry_9430976d-25f7-44db-9292-1b06bafd060c.jpg",
                 "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
-                "overlay_style": "solid",
+                "overlay_style": "gradient",
                 "gradient_direction": "to top",
                 "link": "",
                 "open_in_new_tab": false,
@@ -253,26 +268,14 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_7twXfQ": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
-                "text_AK6XQ8": {
+                "text_xQEEDd": {
                   "type": "text",
                   "settings": {
                     "text": "<h1>1</h1>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
+                    "alignment_mobile": "",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
                     "font_size": "11.5rem",
@@ -291,7 +294,7 @@
                   },
                   "blocks": {}
                 },
-                "group_ARyBYL": {
+                "group_nqXVwA": {
                   "type": "group",
                   "name": "t:names.group",
                   "settings": {
@@ -303,12 +306,22 @@
                     "horizontal_alignment_flex_direction_column": "flex-start",
                     "vertical_alignment_flex_direction_column": "center",
                     "gap": 20,
+                    "enable_mobile_layout": false,
+                    "content_direction_mobile": "column",
+                    "horizontal_alignment_mobile": "flex-start",
+                    "vertical_alignment_mobile": "center",
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
                     "custom_width_mobile": 100,
                     "height": "fit",
+                    "custom_height_unit": "percent",
                     "custom_height": 100,
+                    "custom_height_px": 400,
+                    "height_mobile": "",
+                    "custom_height_mobile_unit": "svh",
+                    "custom_height_mobile": 60,
+                    "custom_height_mobile_px": 300,
                     "inherit_color_scheme": true,
                     "color_scheme": "",
                     "background_media": "none",
@@ -331,7 +344,7 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {
-                    "group_LzEPBt": {
+                    "group_Qgq9aw": {
                       "type": "group",
                       "name": "t:names.group",
                       "settings": {
@@ -343,12 +356,22 @@
                         "horizontal_alignment_flex_direction_column": "flex-start",
                         "vertical_alignment_flex_direction_column": "center",
                         "gap": 8,
+                        "enable_mobile_layout": false,
+                        "content_direction_mobile": "column",
+                        "horizontal_alignment_mobile": "flex-start",
+                        "vertical_alignment_mobile": "center",
                         "width": "fill",
                         "custom_width": 100,
                         "width_mobile": "fill",
                         "custom_width_mobile": 100,
                         "height": "fit",
+                        "custom_height_unit": "percent",
                         "custom_height": 100,
+                        "custom_height_px": 400,
+                        "height_mobile": "",
+                        "custom_height_mobile_unit": "svh",
+                        "custom_height_mobile": 60,
+                        "custom_height_mobile_px": 300,
                         "inherit_color_scheme": true,
                         "color_scheme": "",
                         "background_media": "none",
@@ -371,13 +394,14 @@
                         "padding-inline-end": 0
                       },
                       "blocks": {
-                        "text_xP9UDT": {
+                        "text_bYG4Rh": {
                           "type": "text",
                           "settings": {
                             "text": "<h5>FABRIC CARE</h5>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
+                            "alignment_mobile": "",
                             "type_preset": "h5",
                             "font": "var(--font-heading--family)",
                             "font_size": "7.5rem",
@@ -396,14 +420,15 @@
                           },
                           "blocks": {}
                         },
-                        "text_Mtt93J": {
+                        "text_GiP3eE": {
                           "type": "text",
                           "settings": {
-                            "text": "<h3><strong>Baby Laundry Detergent</strong></h3>",
+                            "text": "<h4><strong>Baby Laundry Detergent</strong></h4>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
-                            "type_preset": "h3",
+                            "alignment_mobile": "",
+                            "type_preset": "h4",
                             "font": "var(--font-body--family)",
                             "font_size": "1rem",
                             "line_height": "normal",
@@ -423,17 +448,18 @@
                         }
                       },
                       "block_order": [
-                        "text_xP9UDT",
-                        "text_Mtt93J"
+                        "text_bYG4Rh",
+                        "text_GiP3eE"
                       ]
                     },
-                    "text_8mbn9d": {
+                    "text_YQYF3K": {
                       "type": "text",
                       "settings": {
                         "text": "<p>Engineered to break down real baby stains—milk, spit-up, and mess—while staying uncompromisingly gentle on delicate skin.</p>",
                         "width": "100%",
                         "max_width": "none",
                         "alignment": "left",
+                        "alignment_mobile": "",
                         "type_preset": "paragraph",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -452,7 +478,7 @@
                       },
                       "blocks": {}
                     },
-                    "button_TxCxMk": {
+                    "button_VgyLGP": {
                       "type": "button",
                       "settings": {
                         "label": "Shop Baby Laundry",
@@ -468,19 +494,18 @@
                     }
                   },
                   "block_order": [
-                    "group_LzEPBt",
-                    "text_8mbn9d",
-                    "button_TxCxMk"
+                    "group_Qgq9aw",
+                    "text_YQYF3K",
+                    "button_VgyLGP"
                   ]
                 }
               },
               "block_order": [
-                "spacer_7twXfQ",
-                "text_AK6XQ8",
-                "group_ARyBYL"
+                "text_xQEEDd",
+                "group_nqXVwA"
               ]
             },
-            "card_RdDt8n": {
+            "card_TjfPVX": {
               "type": "_card",
               "name": "t:names.card",
               "settings": {
@@ -490,16 +515,16 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
-                "background_image": "shopify://shop_images/33.jpg",
+                "background_image": "shopify://shop_images/dish-and-soap.jpg",
                 "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
-                "overlay_style": "solid",
+                "overlay_style": "gradient",
                 "gradient_direction": "to top",
                 "link": "",
                 "open_in_new_tab": false,
@@ -509,26 +534,14 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_BVFaRx": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
-                "text_BjrRMy": {
+                "text_9KUbwE": {
                   "type": "text",
                   "settings": {
                     "text": "<h1>2</h1>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
+                    "alignment_mobile": "",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
                     "font_size": "11.5rem",
@@ -547,7 +560,7 @@
                   },
                   "blocks": {}
                 },
-                "group_JR3p6a": {
+                "group_8MqAJm": {
                   "type": "group",
                   "name": "t:names.group",
                   "settings": {
@@ -559,12 +572,22 @@
                     "horizontal_alignment_flex_direction_column": "flex-start",
                     "vertical_alignment_flex_direction_column": "center",
                     "gap": 20,
+                    "enable_mobile_layout": false,
+                    "content_direction_mobile": "column",
+                    "horizontal_alignment_mobile": "flex-start",
+                    "vertical_alignment_mobile": "center",
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
                     "custom_width_mobile": 100,
                     "height": "fit",
+                    "custom_height_unit": "percent",
                     "custom_height": 100,
+                    "custom_height_px": 400,
+                    "height_mobile": "",
+                    "custom_height_mobile_unit": "svh",
+                    "custom_height_mobile": 60,
+                    "custom_height_mobile_px": 300,
                     "inherit_color_scheme": true,
                     "color_scheme": "",
                     "background_media": "none",
@@ -587,7 +610,7 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {
-                    "group_ErkhMz": {
+                    "group_3HffwP": {
                       "type": "group",
                       "name": "t:names.group",
                       "settings": {
@@ -599,12 +622,22 @@
                         "horizontal_alignment_flex_direction_column": "flex-start",
                         "vertical_alignment_flex_direction_column": "center",
                         "gap": 8,
+                        "enable_mobile_layout": false,
+                        "content_direction_mobile": "column",
+                        "horizontal_alignment_mobile": "flex-start",
+                        "vertical_alignment_mobile": "center",
                         "width": "fill",
                         "custom_width": 100,
                         "width_mobile": "fill",
                         "custom_width_mobile": 100,
                         "height": "fit",
+                        "custom_height_unit": "percent",
                         "custom_height": 100,
+                        "custom_height_px": 400,
+                        "height_mobile": "",
+                        "custom_height_mobile_unit": "svh",
+                        "custom_height_mobile": 60,
+                        "custom_height_mobile_px": 300,
                         "inherit_color_scheme": true,
                         "color_scheme": "",
                         "background_media": "none",
@@ -627,13 +660,14 @@
                         "padding-inline-end": 0
                       },
                       "blocks": {
-                        "text_eBz8wL": {
+                        "text_xHYzkx": {
                           "type": "text",
                           "settings": {
                             "text": "<h5>FEEDING EQUIPMENT HYGIENE</h5>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
+                            "alignment_mobile": "",
                             "type_preset": "h5",
                             "font": "var(--font-heading--family)",
                             "font_size": "7.5rem",
@@ -652,14 +686,15 @@
                           },
                           "blocks": {}
                         },
-                        "text_3gDJdq": {
+                        "text_bE7jzg": {
                           "type": "text",
                           "settings": {
-                            "text": "<h3><strong>Antibacterial Bottle & Dish Cleanser</strong></h3>",
+                            "text": "<h4><strong>Antibacterial Bottle & Dish Cleanser</strong></h4>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
-                            "type_preset": "h3",
+                            "alignment_mobile": "",
+                            "type_preset": "h4",
                             "font": "var(--font-body--family)",
                             "font_size": "1rem",
                             "line_height": "normal",
@@ -679,17 +714,18 @@
                         }
                       },
                       "block_order": [
-                        "text_eBz8wL",
-                        "text_3gDJdq"
+                        "text_xHYzkx",
+                        "text_bE7jzg"
                       ]
                     },
-                    "text_akGC4q": {
+                    "text_Lraeqj": {
                       "type": "text",
                       "settings": {
                         "text": "<p>Food-grade antibacterial protection for every surface your baby touches—no harsh chemicals, no compromise.</p>",
                         "width": "100%",
                         "max_width": "none",
                         "alignment": "left",
+                        "alignment_mobile": "",
                         "type_preset": "paragraph",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -708,7 +744,7 @@
                       },
                       "blocks": {}
                     },
-                    "button_MBiAMb": {
+                    "button_kEcAdX": {
                       "type": "button",
                       "settings": {
                         "label": "Shop Bottle & Dish Cleanser",
@@ -724,19 +760,18 @@
                     }
                   },
                   "block_order": [
-                    "group_ErkhMz",
-                    "text_akGC4q",
-                    "button_MBiAMb"
+                    "group_3HffwP",
+                    "text_Lraeqj",
+                    "button_kEcAdX"
                   ]
                 }
               },
               "block_order": [
-                "spacer_BVFaRx",
-                "text_BjrRMy",
-                "group_JR3p6a"
+                "text_9KUbwE",
+                "group_8MqAJm"
               ]
             },
-            "card_YP6dCt": {
+            "card_GGQRVH": {
               "type": "_card",
               "name": "t:names.card",
               "settings": {
@@ -746,16 +781,16 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
-                "background_image": "shopify://shop_images/22.jpg",
+                "background_image": "shopify://shop_images/toy-and-surface.jpg",
                 "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
-                "overlay_style": "solid",
+                "overlay_style": "gradient",
                 "gradient_direction": "to top",
                 "link": "",
                 "open_in_new_tab": false,
@@ -765,26 +800,14 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_7XeQV3": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
-                "text_eiHDHe": {
+                "text_8RTYgA": {
                   "type": "text",
                   "settings": {
                     "text": "<h1>3</h1>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
+                    "alignment_mobile": "",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
                     "font_size": "11.5rem",
@@ -803,7 +826,7 @@
                   },
                   "blocks": {}
                 },
-                "group_6dWeHi": {
+                "group_Ktb6iT": {
                   "type": "group",
                   "name": "t:names.group",
                   "settings": {
@@ -815,12 +838,22 @@
                     "horizontal_alignment_flex_direction_column": "flex-start",
                     "vertical_alignment_flex_direction_column": "center",
                     "gap": 20,
+                    "enable_mobile_layout": false,
+                    "content_direction_mobile": "column",
+                    "horizontal_alignment_mobile": "flex-start",
+                    "vertical_alignment_mobile": "center",
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
                     "custom_width_mobile": 100,
                     "height": "fit",
+                    "custom_height_unit": "percent",
                     "custom_height": 100,
+                    "custom_height_px": 400,
+                    "height_mobile": "",
+                    "custom_height_mobile_unit": "svh",
+                    "custom_height_mobile": 60,
+                    "custom_height_mobile_px": 300,
                     "inherit_color_scheme": true,
                     "color_scheme": "",
                     "background_media": "none",
@@ -843,7 +876,7 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {
-                    "group_MUN7mm": {
+                    "group_qtaRi9": {
                       "type": "group",
                       "name": "t:names.group",
                       "settings": {
@@ -855,12 +888,22 @@
                         "horizontal_alignment_flex_direction_column": "flex-start",
                         "vertical_alignment_flex_direction_column": "center",
                         "gap": 8,
+                        "enable_mobile_layout": false,
+                        "content_direction_mobile": "column",
+                        "horizontal_alignment_mobile": "flex-start",
+                        "vertical_alignment_mobile": "center",
                         "width": "fill",
                         "custom_width": 100,
                         "width_mobile": "fill",
                         "custom_width_mobile": 100,
                         "height": "fit",
+                        "custom_height_unit": "percent",
                         "custom_height": 100,
+                        "custom_height_px": 400,
+                        "height_mobile": "",
+                        "custom_height_mobile_unit": "svh",
+                        "custom_height_mobile": 60,
+                        "custom_height_mobile_px": 300,
                         "inherit_color_scheme": true,
                         "color_scheme": "",
                         "background_media": "none",
@@ -883,13 +926,14 @@
                         "padding-inline-end": 0
                       },
                       "blocks": {
-                        "text_JpqDMk": {
+                        "text_PEKTX7": {
                           "type": "text",
                           "settings": {
                             "text": "<h5>SURFACE DISINFECTION</h5>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
+                            "alignment_mobile": "",
                             "type_preset": "h5",
                             "font": "var(--font-heading--family)",
                             "font_size": "7.5rem",
@@ -908,14 +952,15 @@
                           },
                           "blocks": {}
                         },
-                        "text_aAgtEV": {
+                        "text_73QAcJ": {
                           "type": "text",
                           "settings": {
-                            "text": "<h3>Antibacterial Toy & Surface Cleaner</h3>",
+                            "text": "<h4>Antibacterial Toy & Surface Cleaner</h4>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
-                            "type_preset": "h3",
+                            "alignment_mobile": "",
+                            "type_preset": "h4",
                             "font": "var(--font-body--family)",
                             "font_size": "1rem",
                             "line_height": "normal",
@@ -935,17 +980,18 @@
                         }
                       },
                       "block_order": [
-                        "text_JpqDMk",
-                        "text_aAgtEV"
+                        "text_PEKTX7",
+                        "text_73QAcJ"
                       ]
                     },
-                    "text_wyzVQY": {
+                    "text_hFUpg4": {
                       "type": "text",
                       "settings": {
                         "text": "<p>Food-grade antibacterial protection for every surface your baby touches—no harsh chemicals, no compromise.</p>",
                         "width": "100%",
                         "max_width": "none",
                         "alignment": "left",
+                        "alignment_mobile": "",
                         "type_preset": "paragraph",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -964,7 +1010,7 @@
                       },
                       "blocks": {}
                     },
-                    "button_cWk46x": {
+                    "button_L33aan": {
                       "type": "button",
                       "settings": {
                         "label": "Shop Toy & Surface",
@@ -980,19 +1026,18 @@
                     }
                   },
                   "block_order": [
-                    "group_MUN7mm",
-                    "text_wyzVQY",
-                    "button_cWk46x"
+                    "group_qtaRi9",
+                    "text_hFUpg4",
+                    "button_L33aan"
                   ]
                 }
               },
               "block_order": [
-                "spacer_7XeQV3",
-                "text_eiHDHe",
-                "group_6dWeHi"
+                "text_8RTYgA",
+                "group_Ktb6iT"
               ]
             },
-            "card_ndTU7T": {
+            "card_bbPQiX": {
               "type": "_card",
               "name": "t:names.card",
               "settings": {
@@ -1002,16 +1047,16 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "space-between",
+                "vertical_alignment_flex_direction_column": "flex-end",
                 "gap": 16,
                 "inherit_color_scheme": true,
                 "color_scheme": "scheme-6",
                 "background_media": "image",
-                "background_image": "shopify://shop_images/11.jpg",
+                "background_image": "shopify://shop_images/stain-remover_d90391ab-4807-45ad-afd2-410af98849a6.jpg",
                 "aspect_ratio": "portrait",
                 "toggle_overlay": true,
                 "overlay_color": "#00000026",
-                "overlay_style": "solid",
+                "overlay_style": "gradient",
                 "gradient_direction": "to top",
                 "link": "",
                 "open_in_new_tab": false,
@@ -1021,26 +1066,14 @@
                 "padding-inline-end": 20
               },
               "blocks": {
-                "spacer_QBVNFA": {
-                  "type": "spacer",
-                  "settings": {
-                    "size": "pixel",
-                    "percent_size": 100,
-                    "pixel_size": 200,
-                    "custom_mobile_size": false,
-                    "size_mobile": "pixel",
-                    "percent_size_mobile": 100,
-                    "pixel_size_mobile": 200
-                  },
-                  "blocks": {}
-                },
-                "text_aD9M66": {
+                "text_W3UiFP": {
                   "type": "text",
                   "settings": {
                     "text": "<h1>4</h1>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
+                    "alignment_mobile": "",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
                     "font_size": "11.5rem",
@@ -1059,7 +1092,7 @@
                   },
                   "blocks": {}
                 },
-                "group_wPAgj7": {
+                "group_eJ6R8y": {
                   "type": "group",
                   "name": "t:names.group",
                   "settings": {
@@ -1071,12 +1104,22 @@
                     "horizontal_alignment_flex_direction_column": "flex-start",
                     "vertical_alignment_flex_direction_column": "center",
                     "gap": 20,
+                    "enable_mobile_layout": false,
+                    "content_direction_mobile": "column",
+                    "horizontal_alignment_mobile": "flex-start",
+                    "vertical_alignment_mobile": "center",
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
                     "custom_width_mobile": 100,
                     "height": "fit",
+                    "custom_height_unit": "percent",
                     "custom_height": 100,
+                    "custom_height_px": 400,
+                    "height_mobile": "",
+                    "custom_height_mobile_unit": "svh",
+                    "custom_height_mobile": 60,
+                    "custom_height_mobile_px": 300,
                     "inherit_color_scheme": true,
                     "color_scheme": "",
                     "background_media": "none",
@@ -1099,7 +1142,7 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {
-                    "group_xj7WPr": {
+                    "group_egkEqQ": {
                       "type": "group",
                       "name": "t:names.group",
                       "settings": {
@@ -1111,12 +1154,22 @@
                         "horizontal_alignment_flex_direction_column": "flex-start",
                         "vertical_alignment_flex_direction_column": "center",
                         "gap": 8,
+                        "enable_mobile_layout": false,
+                        "content_direction_mobile": "column",
+                        "horizontal_alignment_mobile": "flex-start",
+                        "vertical_alignment_mobile": "center",
                         "width": "fill",
                         "custom_width": 100,
                         "width_mobile": "fill",
                         "custom_width_mobile": 100,
                         "height": "fit",
+                        "custom_height_unit": "percent",
                         "custom_height": 100,
+                        "custom_height_px": 400,
+                        "height_mobile": "",
+                        "custom_height_mobile_unit": "svh",
+                        "custom_height_mobile": 60,
+                        "custom_height_mobile_px": 300,
                         "inherit_color_scheme": true,
                         "color_scheme": "",
                         "background_media": "none",
@@ -1139,13 +1192,14 @@
                         "padding-inline-end": 0
                       },
                       "blocks": {
-                        "text_FJXNaK": {
+                        "text_RfKe8h": {
                           "type": "text",
                           "settings": {
                             "text": "<h5>STAIN TREATMENT</h5>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
+                            "alignment_mobile": "",
                             "type_preset": "h5",
                             "font": "var(--font-heading--family)",
                             "font_size": "7.5rem",
@@ -1164,14 +1218,15 @@
                           },
                           "blocks": {}
                         },
-                        "text_9LVCXn": {
+                        "text_jyyGPh": {
                           "type": "text",
                           "settings": {
-                            "text": "<h3>Instant Stain Remover</h3>",
+                            "text": "<h4>Instant Stain Remover</h4>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
-                            "type_preset": "h3",
+                            "alignment_mobile": "",
+                            "type_preset": "h4",
                             "font": "var(--font-body--family)",
                             "font_size": "1rem",
                             "line_height": "normal",
@@ -1191,17 +1246,18 @@
                         }
                       },
                       "block_order": [
-                        "text_FJXNaK",
-                        "text_9LVCXn"
+                        "text_RfKe8h",
+                        "text_jyyGPh"
                       ]
                     },
-                    "text_BBpDeY": {
+                    "text_NXF9gW": {
                       "type": "text",
                       "settings": {
                         "text": "<p>Breaks down stains at the source—so they don’t get a chance to set.</p>",
                         "width": "100%",
                         "max_width": "none",
                         "alignment": "left",
+                        "alignment_mobile": "",
                         "type_preset": "paragraph",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -1220,7 +1276,7 @@
                       },
                       "blocks": {}
                     },
-                    "button_njdeW7": {
+                    "button_8UhaXQ": {
                       "type": "button",
                       "settings": {
                         "label": "Shop Stain Remover",
@@ -1236,24 +1292,23 @@
                     }
                   },
                   "block_order": [
-                    "group_xj7WPr",
-                    "text_BBpDeY",
-                    "button_njdeW7"
+                    "group_egkEqQ",
+                    "text_NXF9gW",
+                    "button_8UhaXQ"
                   ]
                 }
               },
               "block_order": [
-                "spacer_QBVNFA",
-                "text_aD9M66",
-                "group_wPAgj7"
+                "text_W3UiFP",
+                "group_eJ6R8y"
               ]
             }
           },
           "block_order": [
-            "card_aMYH6E",
-            "card_RdDt8n",
-            "card_YP6dCt",
-            "card_ndTU7T"
+            "card_FPcMCk",
+            "card_TjfPVX",
+            "card_GGQRVH",
+            "card_bbPQiX"
           ]
         }
       },
@@ -1263,7 +1318,7 @@
         "mobile_columns": "1",
         "section_width": "page-width",
         "columns_gap": 12,
-        "color_scheme": "scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7",
+        "color_scheme": "scheme-6",
         "icons_style": "arrow",
         "icons_shape": "none",
         "padding-block-start": 0,
@@ -1274,6 +1329,6 @@
   "order": [
     "slideshow_VdQXea",
     "main",
-    "carousel_xXPyhY"
+    "carousel_AQb7aX"
   ]
 }
