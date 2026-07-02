@@ -27,6 +27,20 @@
     max-width: {{ block.settings.max_width }}px;
     /* The color scheme class paints a background; keep it off the square outer wrapper */
     background-color: transparent;
+    position: relative;
+  }
+
+  /* Whole-card link: covers the card and navigates to the product.
+     The button stays above it (still clickable, keeps its hover state). */
+  .lov-pcard-{{ uid }} .lov-pcard__cardlink {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .lov-pcard-{{ uid }} .lov-pcard__button {
+    position: relative;
+    z-index: 2;
   }
 
   .lov-pcard-{{ uid }} .lov-pcard__inner {
@@ -142,6 +156,9 @@
 {% endstyle %}
 
 <div class="lov-pcard-{{ uid }} color-{{ block.settings.color_scheme }}" {{ block.shopify_attributes }}>
+  {%- if product != blank -%}
+    <a class="lov-pcard__cardlink" href="{{ product.url }}" aria-label="{{ product.title | escape }}"></a>
+  {%- endif -%}
   <div class="lov-pcard__inner">
     <div class="lov-pcard__media">
       {%- if product != blank and product.featured_image != blank -%}
