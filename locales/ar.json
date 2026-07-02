@@ -368,7 +368,67 @@
         "vault_for_payment_later": {
           "pay_button_label": "تقديم طلب",
           "notice": "لن يتم تحصيل الرسوم منك الآن. من خلال الاستمرار في الدفع، فإنك توافق على تحصيل الرسوم من طريقة الدفع الخاصة بك عند معالجة طلبك."
-        }
+        },
+        "network_card_payment_options": "اختر شبكة بطاقة",
+        "network_card_persistence_description": "سيتم حفظ الشبكة المحددة مع طريقة الدفع الخاصة بك للمعاملات المستقبلية.",
+        "amazon_payments_label": "أمازون باي",
+        "amazon_payments_login_hint": "سيُطلب منك تسجيل الدخول باستخدام أمازون.",
+        "amazon_payments_logout": "تسجيل الخروج من Amazon Pay",
+        "amazon_payments_failed_mfa_challenge": "تعذر استخدام طريقة الدفع المختارة. يُرجى تحديد طريقة مختلفة، أو التواصل مع المصرف الذي تتعامل معه، أو الجهة المصدرة لبطاقتك.",
+        "amazon_payments_abandoned_mfa_challenge": "تعذر إتمام عملية الدفع. يرجى تجربة طريقة دفع مختلفة أو الاتصال بالمصرف الذي تتعامل معه أو جهة إصدار البطاقة.",
+        "amazon_payments_could_not_enqueue_authorize": "حدثت مشكلة أثناء معالجة دفعتك. يرجى إعادة المحاولة أو استخدام طريقة دفع مختلفة.",
+        "title": "الدفع",
+        "amount_left_to_pay_label": "تاريخ استحقاق الدفع:",
+        "discount_button_action_label": "تطبيق رمز الخصم",
+        "discount_codes_removed_summary": {
+          "one": "تمت إزالة رمز الخصم %{count}",
+          "other": "تم حذف %{count} رمز خصم"
+        },
+        "discount_codes_modified_summary": {
+          "one": "تم تعديل رمز الخصم %{count}.",
+          "other": "تم تعديل %{count} من رموز الخصم"
+        },
+        "discount_codes_removed_or_modified_summary": {
+          "one": "تمت إزالة أو تعديل رمز خصم واحد",
+          "other": "تمت إزالة أو تعديل %{count} من أكواد الخصم"
+        },
+        "discount_show_more_warnings": {
+          "one": "عرض %{count} أخرى",
+          "other": "عرض %{count} أخرى"
+        },
+        "gift_card_code_label": "رمز بطاقة الهدايا",
+        "apply_gift_card_button_label": "تقديم",
+        "gift_card_balance_label": "الرصيد:",
+        "supported_card_brands_more_label": "والمزيد…",
+        "detected_card_brand": "اكتشفت ماركة البطاقة: {brand}",
+        "credit_card_vaulting_sign_in_banner_title": "احفظ بطاقتك الائتمانية",
+        "credit_card_vaulting_sign_in_banner_info": "قم بتسجيل الدخول أو إنشاء حساب لحفظ بطاقتك الائتمانية للمشتريات المستقبلية.",
+        "credit_card_vaulting_sign_in_banner_button_label": "تسجيل الدخول",
+        "ftd_vault_credit_card_label": "احفظ بطاقة الائتمان هذه في حسابي لعملية دفع أسرع",
+        "card_number_label": "رقم البطاقة",
+        "card_number_placeholder": "رقم البطاقة",
+        "bogus_test_checkout": {
+          "description": "أدخل 1 كرقم للبطاقة لمشاهدة عملية دفع ناجحة، مع أي تاريخ انتهاء صلاحية مستقبلي وأي رمز أمان مكون من 3 أرقام."
+        },
+        "card_pay_with": "الدفع بواسطة:",
+        "card_security_notice": "جميع المعاملات آمنة ومشفرة.",
+        "card_security_vault_notice": "نحتاج تفاصيلك للدفعات المستقبلية. جميع المعاملات آمنة ومشفرة.",
+        "card_information_notice": "جميع المعاملات آمنة ومشفرة. لا يتم تخزين معلومات بطاقة الائتمان أبدًا.",
+        "name_on_card_label": "الاسم على البطاقة",
+        "name_on_card_placeholder": "الاسم على البطاقة",
+        "card_nickname_label": "الاسم المستعار (اختياري)",
+        "card_expired": "انتهت صلاحيته",
+        "card_expiry_label": "تاريخ الانتهاء (شهر / سنة)",
+        "card_expiry_placeholder": "تاريخ الانتهاء (شهر / سنة)",
+        "credit_card_start_month": "شهر البدء",
+        "credit_card_start_year": "سنة البدء",
+        "delete_customer_mandate_modal_title": "هل تريد إزالة بطاقة الدفع هذه؟",
+        "delete_customer_mandate_modal_body": "إذا قمت بإزالة هذه البطاقة، ستحتاج إلى إضافتها مرة أخرى قبل استخدامها للدفع.",
+        "delete_customer_mandate_modal_confirm": "إزالة البطاقة",
+        "delete_customer_mandate_modal_cancel": "إلغاء",
+        "card_verification_value_label": "الرمز الأمني",
+        "card_verification_value_placeholder": "الرمز الأمني",
+        "card_verification_confirm": "لأغراض التحقق، أدخل رمز الأمان لبطاقتك."
       },
       "billing": {
         "billing_address_title": "فاتورة إلى",
@@ -597,6 +657,58 @@
       },
       "clipboard": {
         "copied": "تم النسخ"
+      },
+      "shipping": {
+        "split_shipping_more_shipping_options": "المزيد من خيارات الشحن",
+        "split_shipping_shipment_number": "الشحنة رقم %{number}",
+        "split_shipping_merchandise_quantity_label_inline_primary": "الكمية: %{quantity}",
+        "split_shipping_merchandise_quantity_label_inline": "%{merchandise_title} × %{quantity}",
+        "split_shipping_option_free": "شحن مجاني",
+        "split_shipping_option_lowest_price": "أقل سعر",
+        "split_shipping_option_fastest": "الأسرع",
+        "split_shipping_option_recommended": "موصى به",
+        "split_shipping_option_custom": "مخصص",
+        "add_shipping_address": "أضف عنوان الشحن",
+        "add_new_delivery_address": "إضافة عنوان توصيل جديد",
+        "choose_new_address": "اختر عنوانًا جديدًا"
+      },
+      "localized_fields": {
+        "additional_information": {
+          "title": "معلومات إضافية",
+          "shipping_credential_kr": "الرمز الجمركي الشخصي",
+          "shipping_credential_cn": "رقم هوية المقيم",
+          "tax_credential_it": "الرقم الضريبي (اختياري)",
+          "tax_email_it": "PEC (اختياري)",
+          "tax_credential_cl": "روث",
+          "shipping_credential_cl": "روث",
+          "tax_credential_co": "رقم الهوية/الرقم الضريبي",
+          "tax_credential_type_co": "نوع الهوية",
+          "shipping_credential_co": "رقم الهوية/الرقم الضريبي",
+          "shipping_credential_type_co": "نوع الهوية",
+          "tax_credential_cr": "رقم الهوية/RUT",
+          "shipping_credential_cr": "رقم الهوية/RUT",
+          "tax_credential_ec": "مدير/وحدة تنظيمية/ضريبة القيمة المضافة",
+          "shipping_credential_ec": "مدير/وحدة تنظيمية/ضريبة القيمة المضافة",
+          "tax_credential_gt": "رقم التعريف الضريبي/رقم ضريبة القيمة المضافة",
+          "shipping_credential_gt": "رقم التعريف الضريبي/رقم ضريبة القيمة المضافة",
+          "tax_credential_my": "رقم التعريف الضريبي/رقم التسجيل",
+          "shipping_credential_my": "رقم التعريف الضريبي/رقم التسجيل",
+          "shipping_credential_mx": "التعليق لطلب التعليقات",
+          "tax_credential_mx": "التعليق لطلب التعليقات",
+          "tax_credential_type_mx": "النظام الضريبي",
+          "tax_credential_use_mx": "استخدام CFDI",
+          "tax_credential_py": "مدير/وحدة تنظيمية/ضريبة القيمة المضافة",
+          "shipping_credential_py": "مدير/وحدة تنظيمية/ضريبة القيمة المضافة",
+          "tax_credential_pe": "وثيقة الهوية الوطنية/سجل دافعي الضرائب/شهادة التسجيل",
+          "shipping_credential_pe": "وثيقة الهوية الوطنية/سجل دافعي الضرائب/شهادة التسجيل",
+          "tax_credential_pt": "الرقم الضريبي/رقم تعريف دافع الضريبة (NIF/IVA)",
+          "shipping_credential_pt": "الرقم الضريبي/رقم تعريف دافع الضريبة (NIF/IVA)",
+          "tax_credential_es": "وثيقة الهوية الوطنية/رقم تعريف دافع الضرائب",
+          "shipping_credential_es": "وثيقة الهوية الوطنية/رقم تعريف دافع الضرائب",
+          "shipping_credential_tw": "رقم الهوية الوطنية/ضريبة القيمة المضافة",
+          "tax_credential_tr": "رقم هوية الجمهورية التركية/ضريبة القيمة المضافة",
+          "shipping_credential_tr": "رقم هوية الجمهورية التركية/ضريبة القيمة المضافة"
+        }
       }
     },
     "sentence": {
