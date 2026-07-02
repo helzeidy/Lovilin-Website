@@ -1162,6 +1162,130 @@
     "see_items": {
       "one": "انظر {{ count }} عنصر",
       "other": "شاهد {{ count }} عناصر"
+    },
+    "show_filters": "عامل تصفية",
+    "show_less": "عرض أقل",
+    "show_more": "أظهر المزيد",
+    "sign_in_options": "خيارات تسجيل الدخول الأخرى",
+    "view_in_your_space": "عرض في مساحتك",
+    "view_all": "عرض الكل",
+    "more": "المزيد",
+    "zoom": "زووم",
+    "zoom_media": "تكبير الوسائط {{ index }}",
+    "close_dialog": "إغلاق الحوار",
+    "reset": "إعادة ضبط",
+    "enter_using_password": "ادخل باستخدام كلمة المرور",
+    "sign_up": "سجل",
+    "submit": "إرسال",
+    "view_store_information": "عرض معلومات المتجر",
+    "sort": "فرز"
+  },
+  "blocks": {
+    "contact_form": {
+      "name": "الاسم",
+      "email": "بريد إلكتروني",
+      "phone": "هاتف",
+      "comment": "تعليق",
+      "post_success": "نشكرك على تواصلك معنا. سنعاود الاتصال بك في أقرب وقت ممكن.",
+      "error_heading": "الرجاء تعديل ما يلي:"
+    },
+    "email_signup": {
+      "label": "بريد إلكتروني",
+      "placeholder": "عنوان البريد الإلكتروني",
+      "success": "شكراً لاشتراكك!"
+    },
+    "filter": "عامل تصفية",
+    "load_video": "تحميل الفيديو: {{ description }}",
+    "sold_out": "نفد المخزون",
+    "payment_methods": "طرق الدفع",
+    "slider_label": "شريط التمرير"
+  },
+  "blogs": {
+    "article": {
+      "comments_heading": {
+        "one": "{{ count }} تعليق",
+        "other": "{{ count }} تعليقات"
+      }
+    },
+    "comment_form": {
+      "email": "بريد إلكتروني",
+      "error": "فشل نشر التعليق، يرجى معالجة ما يلي:",
+      "heading": "اترك تعليقًا",
+      "message": "رسالة",
+      "moderated": "يرجى ملاحظة أنه يجب الموافقة على التعليقات قبل نشرها.",
+      "name": "الاسم",
+      "post": "انشر تعليقًا",
+      "success_moderated": "تم نشر التعليق، بانتظار المراجعة",
+      "success": "تم نشر التعليق"
     }
+  },
+  "content": {
+    "cancel": "إلغاء",
+    "discount": "خصم",
+    "account_title": "حساب",
+    "terms_and_policies": "الشروط والسياسات",
+    "account_title_personalized": "مرحباً {{ first_name }}",
+    "account_orders": "الطلبات",
+    "account_profile": "الملف الشخصي",
+    "cart_estimated_total": "المجموع التقديري",
+    "cart_title": "عربة التسوق",
+    "cart_subtotal": "المجموع الفرعي",
+    "cart_total": "إجمالي سلة التسوق",
+    "checkout": "شاهد هذا",
+    "collection_placeholder": "عنوان المجموعة",
+    "discount_code": "رمز الخصم",
+    "shipping_discount_error": "تظهر خصومات الشحن عند إتمام عملية الشراء بعد إضافة العنوان",
+    "discount_code_error": "لا يمكن تطبيق رمز الخصم على سلة مشترياتك",
+    "discounts": "الخصومات",
+    "duties_and_taxes_included": "الرسوم والضرائب مشمولة.",
+    "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "الرسوم والضرائب مشمولة. يتم احتساب الخصومات و<a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">الشحن</a> عند الدفع.",
+    "duties_and_taxes_included_shipping_at_checkout_with_policy_without_discounts_html": "الرسوم والضرائب مشمولة. تحسب تكلفة الشحن عند إتمام الطلب.",
+    "duties_and_taxes_included_shipping_at_checkout_without_policy": "الرسوم والضرائب مشمولة. سيتم احتساب الخصومات والشحن عند إتمام الشراء.",
+    "duties_and_taxes_included_shipping_at_checkout_without_policy_without_discounts": "الرسوم والضرائب مشمولة. تحسب تكلفة الشحن عند إتمام الطلب.",
+    "duties_included": "الواجبات المتضمنة.",
+    "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "الرسوم متضمنة. يتم احتساب الضرائب والخصومات و<a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">الشحن</a> عند الدفع.",
+    "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_without_discounts_html": "الرسوم مشمولة. تحسب تكلفة الشحن عند إتمام الشراء.",
+    "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "الرسوم مشمولة. تُحسب الضرائب والخصومات وتكاليف الشحن عند إتمام الشراء.",
+    "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy_without_discounts": "الرسوم مشمولة. تحسب تكلفة الشحن عند إتمام الشراء.",
+    "featured_products": "منتجات مميزة",
+    "filters": "فلاتر",
+    "grid_view": {
+      "default_view": "افتراضي",
+      "grid_fieldset": "شبكة الأعمدة",
+      "single_item": "أعزب",
+      "zoom_out": "صغّر"
+    },
+    "inventory_low_stock_show_count": {
+      "one": "{{ count }} متبقية",
+      "other": "{{ count }} متبقية"
+    },
+    "inventory_low_stock": "مخزون قليل",
+    "inventory_in_stock": "متوفر بالمخزون",
+    "inventory_out_of_stock": "نفد المخزون",
+    "item_count": {
+      "one": "{{ count }} عنصر",
+      "other": "{{ count }} عنصر"
+    },
+    "item_count_cutoff": "أكثر من {{ count }} عنصر",
+    "language": "اللغة",
+    "localization_region_and_language": "المنطقة واللغة",
+    "no_products_found": "لا توجد منتجات.",
+    "no_results_found": "لا توجد نتائج مطابقة",
+    "page_placeholder_title": "عنوان الصفحة",
+    "page_placeholder_content": "حدد صفحة لعرض محتواها.",
+    "pagination": {
+      "nav_label": "ترقيم الصفحات",
+      "previous": "السابق",
+      "next": "التالي",
+      "page": "صفحة {{ page }}"
+    },
+    "pickup_available_at_html": "الاستلام متاح في <b>{{ location }}</b>",
+    "pickup_available_in": "الاستلام متاح، {{ pickup_time }}",
+    "pickup_not_available": "الاستلام غير متوفر حاليًا",
+    "powered_by": "سيعمل هذا المتجر بواسطة",
+    "price": "السعر",
+    "price_compare_at": "سعر المقارنة",
+    "price_from": "من {{ price }}",
+    "price_regular": "السعر الاعتيادي"
   }
 }
