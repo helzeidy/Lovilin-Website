@@ -103,11 +103,6 @@
     },
     "content_for_index": [],
     "blocks": {
-      "6174324309569838175": {
-        "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
-        "disabled": false,
-        "settings": {}
-      },
       "2950567246721570496": {
         "type": "shopify://apps/tabs-studio/blocks/global_embed_block/19980fb9-f2ca-4ada-ad36-c0364c3318b8",
         "disabled": false,
@@ -123,11 +118,6 @@
       },
       "2724325275511621162": {
         "type": "shopify://apps/kaching-subscriptions/blocks/app-embed-block/1fa39fd7-f6a3-4bbc-9383-7d91d27b44f5",
-        "disabled": true,
-        "settings": {}
-      },
-      "11532412952436166569": {
-        "type": "shopify://apps/loox-reviews/blocks/loox-inject/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
         "disabled": true,
         "settings": {}
       },
@@ -156,6 +146,11 @@
           "product_form_selector": "",
           "custom_css": ""
         }
+      },
+      "6174324309569838175": {
+        "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
+        "disabled": true,
+        "settings": {}
       }
     },
     "color_schemes": {
@@ -476,7 +471,7 @@
           "background": "#ffffff",
           "foreground_heading": "#071e85",
           "foreground": "#071e85",
-          "primary": "#FFFFFF",
+          "primary": "#ffffff",
           "primary_hover": "#071e85",
           "border": "#efefef",
           "shadow": "#000000",
@@ -553,13 +548,13 @@
         "settings": {
           "background": "#faf8fc",
           "foreground_heading": "#071e85",
-          "foreground": "#071E85",
-          "primary": "#071E85",
+          "foreground": "#071e85",
+          "primary": "#071e85",
           "primary_hover": "#ffffff",
           "border": "#ffffff",
           "shadow": "#000000",
           "primary_button_background": "#071e85",
-          "primary_button_text": "#FFFFFF",
+          "primary_button_text": "#ffffff",
           "primary_button_border": "#2932744f",
           "primary_button_hover_background": "#1a2158",
           "primary_button_hover_text": "#ffffff",
