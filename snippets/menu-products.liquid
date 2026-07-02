@@ -179,7 +179,7 @@
   }
   /* In horizontal mode the add button sits inline, not floating */
   .menu-products--card-horizontal .menu-product-card__form {
-    position: static;
+    position: relative;
     margin-left: auto;
     align-self: center;
   }
@@ -195,6 +195,15 @@
     display: block;
     text-decoration: none;
     color: inherit;
+  }
+
+  /* Make the whole card clickable (navigates to the product) via a stretched link,
+     while the add-to-cart button stays on top and clickable. */
+  .menu-product-card__main::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 
   .menu-product-card__media {
@@ -232,6 +241,7 @@
     position: absolute;
     bottom: 8px;
     right: 8px;
+    z-index: 2;
   }
   .menu-product-card__add {
     display: inline-flex;
