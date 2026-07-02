@@ -3135,8 +3135,15 @@ label:has(input[type='checkbox']:disabled) {
 }
 
 .quantity-selector svg {
-  width: var(--icon-size-xs);
-  height: var(--icon-size-xs);
+  width: 24px;
+  height: 24px;
+}
+
+/* Larger, clearly visible cart-drawer close (x) icon */
+.cart-drawer__close-button .svg-wrapper,
+.cart-drawer__close-button svg {
+  width: 24px;
+  height: 24px;
 }
 
 :is(.quantity-minus, .quantity-plus):active .svg-wrapper {
