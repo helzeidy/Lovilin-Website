@@ -3134,16 +3134,37 @@ label:has(input[type='checkbox']:disabled) {
   transition: transform var(--animation-speed) var(--animation-easing);
 }
 
+/* Quantity +/- icons: wrapper and svg matched at 24px, centered, no clipping */
+.quantity-selector .svg-wrapper,
 .quantity-selector svg {
   width: 24px;
   height: 24px;
+  overflow: visible;
+}
+
+.quantity-selector :is(.quantity-minus, .quantity-plus) {
+  padding: 0;
+}
+
+.quantity-selector .svg-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
 
 /* Larger, clearly visible cart-drawer close (x) icon */
+.cart-drawer__close-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .cart-drawer__close-button .svg-wrapper,
 .cart-drawer__close-button svg {
   width: 24px;
   height: 24px;
+  overflow: visible;
 }
 
 :is(.quantity-minus, .quantity-plus):active .svg-wrapper {
