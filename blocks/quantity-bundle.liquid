@@ -1,0 +1,250 @@
+{%- doc -%}
+  Quantity pack selector.
+  Shows cards (e.g. 1 / 2 / 3 bottles). Selecting a card sets the add-to-cart
+  quantity to that many of the CURRENT product. Cards display the discounted
+  price for reference; the real discount is applied at checkout by a Shopify
+  automatic discount (quantity-based). No separate bundle products needed.
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  if request.visual_preview_mode and product == blank
+    assign product = collections.all.products.first
+  endif
+  assign uid = block.id | replace: '_', '' | downcase
+  assign use_theme_button = true
+  if block.settings.use_theme_button == false
+    assign use_theme_button = false
+  endif
+  assign base_variant = product.selected_or_first_available_variant
+-%}
+
+{%- if product != blank -%}
+  {%- unless use_theme_button -%}
+    <script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
+  {%- endunless -%}
+
+  <div class="qty-bundle" data-qty-bundle="{{ uid }}" data-use-theme="{{ use_theme_button }}" {{ block.shopify_attributes }}>
+    {%- if block.settings.heading != blank -%}
+      <span class="qty-bundle__heading {{ block.settings.heading_preset | default: 'h6' }}">{{ block.settings.heading }}</span>
+    {%- endif -%}
+
+    <div class="qty-bundle__options">
+      {%- for i in (1..4) -%}
+        {%- liquid
+          assign enabled_key = 'pack_' | append: i | append: '_enabled'
+          assign qty_key = 'pack_' | append: i | append: '_qty'
+          assign label_key = 'pack_' | append: i | append: '_label'
+          assign disc_key = 'pack_' | append: i | append: '_discount'
+          assign enabled = block.settings[enabled_key]
+          assign qty = block.settings[qty_key] | default: 1
+          assign label = block.settings[label_key]
+          assign disc = block.settings[disc_key] | default: 0
+
+          assign line_total = product.price | times: qty
+          assign factor = 100 | minus: disc
+          assign discounted = line_total | times: factor | divided_by: 100.0 | round
+        -%}
+        {%- if enabled and label != blank -%}
+          <label class="qty-option">
+            <input type="radio" name="qtybundle-{{ uid }}" value="{{ qty }}" class="qty-option__input"{% if forloop.first %} checked{% endif %}>
+            <span class="qty-option__body">
+              <span class="qty-option__label">{{ label }}</span>
+              {%- if disc > 0 -%}
+                <span class="qty-option__save">{{ 'products.product.save' | t | default: 'Save' }} {{ disc }}%</span>
+              {%- endif -%}
+              {%- if block.settings.show_price -%}
+                <span class="qty-option__price">
+                  {{ discounted | money }}
+                  {%- if disc > 0 and block.settings.show_compare -%}
+                    <s class="qty-option__compare">{{ line_total | money }}</s>
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+            </span>
+          </label>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- unless use_theme_button -%}
+      <product-form-component id="QtyBundleForm-{{ uid }}" class="qty-bundle__form-wrap">
+        <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{{ base_variant.id }}" ref="variantId">
+          <input type="hidden" name="quantity" value="1" data-qty-bundle-qty>
+          <add-to-cart-component>
+            <button type="submit" ref="addToCartButton" class="button qty-bundle__button">
+              {{ block.settings.add_to_cart_text | default: 'Add to cart' }}
+            </button>
+          </add-to-cart-component>
+          <div ref="liveRegion" class="visually-hidden" role="status"></div>
+        </form>
+      </product-form-component>
+    {%- endunless -%}
+  </div>
+
+  {%- style -%}
+    .qty-bundle { display: block; width: 100%; }
+    .qty-bundle__heading { display: block; margin-bottom: 10px; }
+    .qty-bundle__options {
+      display: grid;
+      grid-template-columns: repeat({{ block.settings.columns | default: 3 }}, minmax(0, 1fr));
+      gap: {{ block.settings.gap | default: 10 }}px;
+    }
+    .qty-option {
+      position: relative;
+      display: block;
+      cursor: pointer;
+      border: {{ block.settings.border_width | default: 1 }}px solid {{ block.settings.border_color | default: '#e0e0e0' }};
+      border-radius: {{ block.settings.card_radius | default: 12 }}px;
+      background: {{ block.settings.card_bg | default: '#ffffff' }};
+      padding: {{ block.settings.card_padding | default: 14 }}px;
+      transition: border-color .15s ease, background-color .15s ease;
+    }
+    .qty-option__input { position: absolute; opacity: 0; pointer-events: none; }
+    .qty-option:has(.qty-option__input:checked) {
+      border-color: {{ block.settings.selected_border_color | default: '#1a1a6e' }};
+      background: {{ block.settings.selected_bg | default: '#eeeefb' }};
+    }
+    .qty-option__body { display: flex; flex-direction: column; gap: 3px; }
+    .qty-option__label { font-weight: 600; color: {{ block.settings.label_color | default: '#1a1a6e' }}; }
+    .qty-option__save {
+      font-size: var(--font-size--xs, 0.8125rem);
+      color: {{ block.settings.save_color | default: '#1a1a6e' }};
+      opacity: 0.85;
+    }
+    .qty-option__price { font-weight: 600; color: {{ block.settings.price_color | default: '#1a1a6e' }}; }
+    .qty-option__compare { opacity: 0.6; font-weight: 400; margin-left: 6px; }
+    .qty-bundle__button { width: 100%; margin-top: 16px; justify-content: center; }
+  {%- endstyle -%}
+
+  <script>
+    (function () {
+      var root = document.querySelector('[data-qty-bundle="{{ uid }}"]');
+      if (!root) return;
+      var useTheme = root.getAttribute('data-use-theme') === 'true';
+      var radios = root.querySelectorAll('.qty-option__input');
+
+      function form() {
+        if (!useTheme) return root.querySelector('form');
+        var section = root.closest('.shopify-section') || document;
+        return section.querySelector('product-form-component form') ||
+               section.querySelector('form[action*="/cart/add"]');
+      }
+
+      function setQty(n) {
+        var f = form();
+        if (!f) return;
+        var qi = f.querySelector('input[name="quantity"]');
+        if (!qi) {
+          qi = document.createElement('input');
+          qi.type = 'hidden';
+          qi.name = 'quantity';
+          f.appendChild(qi);
+        }
+        qi.value = n;
+        qi.dispatchEvent(new Event('input', { bubbles: true }));
+        qi.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      function sync() {
+        radios.forEach(function (r) { if (r.checked) setQty(r.value); });
+      }
+      radios.forEach(function (r) { r.addEventListener('change', sync); });
+      sync();
+      document.addEventListener('DOMContentLoaded', sync);
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Quantity packs",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Cards that add N quantity of THIS product. Set up matching Shopify automatic discounts (quantity-based) so the discount applies at checkout. Prices shown here are for display."
+    },
+    {
+      "type": "checkbox",
+      "id": "use_theme_button",
+      "label": "Use the theme's Add to cart / Buy it now",
+      "info": "On (recommended): the existing buttons add the selected quantity. Off: this block shows its own button.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Choose your pack"
+    },
+    {
+      "type": "select",
+      "id": "heading_preset",
+      "label": "Heading size",
+      "options": [
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "paragraph", "label": "Paragraph" }
+      ],
+      "default": "h6"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show price on cards",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare",
+      "label": "Show original price struck through",
+      "default": false
+    },
+    { "type": "header", "content": "Pack 1" },
+    { "type": "checkbox", "id": "pack_1_enabled", "label": "Enable", "default": true },
+    { "type": "text", "id": "pack_1_label", "label": "Label", "default": "1 Bottle" },
+    { "type": "range", "id": "pack_1_qty", "label": "Quantity", "min": 1, "max": 12, "step": 1, "default": 1 },
+    { "type": "range", "id": "pack_1_discount", "label": "Discount %", "min": 0, "max": 50, "step": 0.5, "unit": "%", "default": 0 },
+    { "type": "header", "content": "Pack 2" },
+    { "type": "checkbox", "id": "pack_2_enabled", "label": "Enable", "default": true },
+    { "type": "text", "id": "pack_2_label", "label": "Label", "default": "2 Bottles" },
+    { "type": "range", "id": "pack_2_qty", "label": "Quantity", "min": 1, "max": 12, "step": 1, "default": 2 },
+    { "type": "range", "id": "pack_2_discount", "label": "Discount %", "min": 0, "max": 50, "step": 0.5, "unit": "%", "default": 2.5 },
+    { "type": "header", "content": "Pack 3" },
+    { "type": "checkbox", "id": "pack_3_enabled", "label": "Enable", "default": true },
+    { "type": "text", "id": "pack_3_label", "label": "Label", "default": "3 Bottles" },
+    { "type": "range", "id": "pack_3_qty", "label": "Quantity", "min": 1, "max": 12, "step": 1, "default": 3 },
+    { "type": "range", "id": "pack_3_discount", "label": "Discount %", "min": 0, "max": 50, "step": 0.5, "unit": "%", "default": 5 },
+    { "type": "header", "content": "Pack 4 (optional)" },
+    { "type": "checkbox", "id": "pack_4_enabled", "label": "Enable", "default": false },
+    { "type": "text", "id": "pack_4_label", "label": "Label", "default": "4 Bottles" },
+    { "type": "range", "id": "pack_4_qty", "label": "Quantity", "min": 1, "max": 12, "step": 1, "default": 4 },
+    { "type": "range", "id": "pack_4_discount", "label": "Discount %", "min": 0, "max": 50, "step": 0.5, "unit": "%", "default": 7.5 },
+    { "type": "header", "content": "Own button (only if not using theme buttons)" },
+    { "type": "text", "id": "add_to_cart_text", "label": "Button text", "default": "Add to cart" },
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "columns", "label": "Columns", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "gap", "label": "Gap between cards", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 10 },
+    { "type": "range", "id": "card_padding", "label": "Card padding", "min": 4, "max": 32, "step": 1, "unit": "px", "default": 14 },
+    { "type": "range", "id": "card_radius", "label": "Card corner radius", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 12 },
+    { "type": "range", "id": "border_width", "label": "Card border width", "min": 0, "max": 6, "step": 1, "unit": "px", "default": 1 },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "card_bg", "label": "Card background", "default": "#ffffff" },
+    { "type": "color", "id": "border_color", "label": "Card border", "default": "#e0e0e0" },
+    { "type": "color", "id": "selected_bg", "label": "Selected background", "default": "#eeeefb" },
+    { "type": "color", "id": "selected_border_color", "label": "Selected border", "default": "#1a1a6e" },
+    { "type": "color", "id": "label_color", "label": "Label color", "default": "#1a1a6e" },
+    { "type": "color", "id": "price_color", "label": "Price color", "default": "#1a1a6e" },
+    { "type": "color", "id": "save_color", "label": "Save badge color", "default": "#1a1a6e" }
+  ],
+  "presets": [
+    {
+      "name": "Quantity packs",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
