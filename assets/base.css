@@ -4300,7 +4300,7 @@ product-recommendations:has([data-has-recommendations='false']) {
   }
 }
 .button {
-  padding: 8px 20px !important;
+  padding: 8px 12px !important;
 }
 
 @media screen and (max-width: 749px) {
