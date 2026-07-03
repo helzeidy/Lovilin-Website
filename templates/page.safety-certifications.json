@@ -16,8 +16,8 @@
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
-            "image_1": "shopify://shop_images/we-certify-it.jpg",
-            "image_1_mobile": "shopify://shop_images/we-certify-it.jpg",
+            "image_1": "shopify://shop_images/Desktop.jpg",
+            "image_1_mobile": "shopify://shop_images/Desktop.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
