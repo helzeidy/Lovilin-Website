@@ -11,9 +11,9 @@
 {% endcapture %}
 
 <div
-  class="video-block video-block--pos-{{ block_settings.mute_button_position | default: 'bottom-right' }}"
+  class="video-block size-style video-block--pos-{{ block_settings.mute_button_position | default: 'bottom-right' }}"
   data-video-block="{{ uid }}"
-  {%- if block_settings.border_radius > 0 %} style="border-radius: {{ block_settings.border_radius }}px; overflow: hidden;"{% endif %}
+  style="--size-style-width: {{ block_settings.custom_width }}%; --size-style-width-mobile: {{ block_settings.custom_width_mobile }}%;{% if block_settings.border_radius > 0 %} border-radius: {{ block_settings.border_radius }}px; overflow: hidden;{% endif %}"
 >
   {% if block_settings.source == 'uploaded' %}
     {% render 'video',
