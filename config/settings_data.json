@@ -144,13 +144,6 @@
         "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
         "disabled": true,
         "settings": {}
-      },
-      "16548475241908962911": {
-        "type": "shopify://apps/oxi-social-login/blocks/social-login-embed/24ad60bc-8f09-42fa-807e-e5eda0fdae17",
-        "disabled": false,
-        "settings": {
-          "enabled_on_page": "all"
-        }
       }
     },
     "color_schemes": {
