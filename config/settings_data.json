@@ -151,6 +151,11 @@
         "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
         "disabled": true,
         "settings": {}
+      },
+      "8529531577560427644": {
+        "type": "shopify://apps/otp/blocks/otp-plus/47f9f75c-53b3-4e16-ba66-80a88d275a5b",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
