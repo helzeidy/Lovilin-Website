@@ -1,6 +1,7 @@
 
 
 {% assign block_settings = block.settings %}
+{% assign uid = block.id | replace: '_', '' | downcase %}
 
 {% capture video_style %}
   {%  render 'spacing-style', settings: block_settings %}
@@ -9,33 +10,127 @@
    --size-style-aspect-ratio: {% if block_settings.source == 'uploaded' %}{{ block_settings.video.aspect_ratio | default: 'auto' }}{% elsif block_settings.cover_image == blank %}{{ block_settings.aspect_ratio }}{% else %}auto{% endif %};
 {% endcapture %}
 
-{% if block_settings.source == 'uploaded' %}
-  {% render 'video',
-    video: block_settings.video,
-    video_class: 'spacing-style size-style border-style',
-    video_loop: block_settings.video_loop,
-    video_style: video_style,
-    video_preview_image: block_settings.video.preview_image,
-    additional_attributes: block.shopify_attributes
-  %}
-{% else %}
-  {% render 'video',
-    video_from_url: true,
-    video: block_settings.video_url.id,
-    video_class: 'spacing-style size-style border-style',
-    video_type: block_settings.video_url.type,
-    video_style: video_style,
-    video_alt: block_settings.alt,
-    video_preview_image: block_settings.cover_image,
-    additional_attributes: block.shopify_attributes
-  %}
-{% endif %}
+<div class="video-block video-block--pos-{{ block_settings.mute_button_position | default: 'bottom-right' }}" data-video-block="{{ uid }}">
+  {% if block_settings.source == 'uploaded' %}
+    {% render 'video',
+      video: block_settings.video,
+      video_class: 'spacing-style size-style border-style',
+      video_loop: block_settings.video_loop,
+      video_style: video_style,
+      video_preview_image: block_settings.video.preview_image,
+      disable_controls: block_settings.hide_controls,
+      additional_attributes: block.shopify_attributes
+    %}
+  {% else %}
+    {% render 'video',
+      video_from_url: true,
+      video: block_settings.video_url.id,
+      video_class: 'spacing-style size-style border-style',
+      video_type: block_settings.video_url.type,
+      video_style: video_style,
+      video_alt: block_settings.alt,
+      video_preview_image: block_settings.cover_image,
+      disable_controls: block_settings.hide_controls,
+      additional_attributes: block.shopify_attributes
+    %}
+  {% endif %}
+
+  {%- if block_settings.show_mute_button -%}
+    <button type="button" class="video-block__mute" data-video-mute aria-label="{{ 'accessibility.toggle_sound' | t | default: 'Toggle sound' }}">
+      <span class="video-block__mute-ic video-block__mute-ic--muted" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      </span>
+      <span class="video-block__mute-ic video-block__mute-ic--on" aria-hidden="true" hidden>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </span>
+    </button>
+  {%- endif -%}
+</div>
 
 {% stylesheet %}
   .placeholder-video {
     aspect-ratio: 5 / 3;
   }
+
+  .video-block {
+    position: relative;
+    display: block;
+  }
+
+  .video-block__mute {
+    position: absolute;
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+
+  .video-block__mute:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .video-block--pos-bottom-right .video-block__mute { bottom: 12px; right: 12px; }
+  .video-block--pos-bottom-left .video-block__mute { bottom: 12px; left: 12px; }
+  .video-block--pos-top-right .video-block__mute { top: 12px; right: 12px; }
+  .video-block--pos-top-left .video-block__mute { top: 12px; left: 12px; }
+
+  .video-block__mute-ic {
+    display: inline-flex;
+  }
+  .video-block__mute-ic[hidden] {
+    display: none;
+  }
 {% endstylesheet %}
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-video-block="{{ uid }}"]');
+    if (!root) return;
+    var btn = root.querySelector('[data-video-mute]');
+    if (!btn) return;
+    var muted = root.querySelector('.video-block__mute-ic--muted');
+    var on = root.querySelector('.video-block__mute-ic--on');
+
+    function findVideo() {
+      return root.querySelector('video');
+    }
+
+    function render(isMuted) {
+      if (muted) muted.hidden = !isMuted;
+      if (on) on.hidden = isMuted;
+    }
+
+    btn.addEventListener('click', function () {
+      var video = findVideo();
+      if (!video) return;
+      video.muted = !video.muted;
+      // Some browsers pause on unmute; make sure it keeps playing
+      if (!video.muted && video.paused) {
+        video.play().catch(function () {});
+      }
+      render(video.muted);
+    });
+
+    // Initialise the icon to match the video's starting (muted) state
+    var v = findVideo();
+    render(v ? v.muted : true);
+    // Re-check once media is ready (deferred-media may swap the element in)
+    document.addEventListener('DOMContentLoaded', function () {
+      var vv = findVideo();
+      render(vv ? vv.muted : true);
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -84,6 +179,37 @@
       "id": "video_loop",
       "label": "t:settings.video_loop",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Controls"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_controls",
+      "label": "Hide native video controls",
+      "info": "Removes the browser's play/pause, timeline, fullscreen and menu bar.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mute_button",
+      "label": "Show mute / unmute button",
+      "info": "Always-visible sound toggle. Autoplaying video always starts muted.",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "mute_button_position",
+      "label": "Mute button position",
+      "options": [
+        { "value": "bottom-right", "label": "Bottom right" },
+        { "value": "bottom-left", "label": "Bottom left" },
+        { "value": "top-right", "label": "Top right" },
+        { "value": "top-left", "label": "Top left" }
+      ],
+      "default": "bottom-right",
+      "visible_if": "{{ block.settings.show_mute_button }}"
     },
     {
       "type": "image_picker",
