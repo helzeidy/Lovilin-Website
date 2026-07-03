@@ -656,7 +656,8 @@
         }
       },
       "clipboard": {
-        "copied": "تم النسخ"
+        "copied": "تم النسخ",
+        "failed_to_copy": "فشل النسخ"
       },
       "shipping": {
         "split_shipping_more_shipping_options": "المزيد من خيارات الشحن",
@@ -709,6 +710,151 @@
           "tax_credential_tr": "رقم هوية الجمهورية التركية/ضريبة القيمة المضافة",
           "shipping_credential_tr": "رقم هوية الجمهورية التركية/ضريبة القيمة المضافة"
         }
+      },
+      "discount_errors": {
+        "generic_error": "لم نتمكن من معالجة طلبك لأن رمز الخصم الخاص بك غير متاح حاليًا. يرجى مراجعة إجمالي طلبك والمحاولة مرة أخرى."
+      },
+      "b2b_errors": {
+        "lost_b2b_purchasing_permissions": "لم يعد لديك إذن لتقديم طلبات B2B. %{logout_url} لتقديم طلب شخصي بدلاً من ذلك.",
+        "log_out_link_text": "تسجيل الخروج",
+        "lost_permissions_subtitle": "لم يعد لديك إذن لتقديم طلبات B2B. سجّل الخروج لتقديم طلب شخصي.",
+        "lost_permissions_title": "لا توجد أذونات للموقع"
+      },
+      "shop_pay_external": {
+        "title": "الدفع بـ Shop Pay",
+        "errors": {
+          "problem_loading": "حدثت مشكلة في تحميل Shop Pay",
+          "try_again_later": "تحقق من اتصالك، أو أغلق هذه النافذة وحاول مرة أخرى بعد لحظات.",
+          "checkout_has_expired": "انتهت صلاحية عملية الدفع الخاصة بك. أغلق هذه النافذة وحاول إتمام الدفع مرة أخرى من {{shopName}}."
+        },
+        "return_to_store": "العودة إلى {{shopName}}",
+        "return_to_store_simple": "العودة إلى المتجر"
+      },
+      "wallets": {
+        "return_to_store": "العودة إلى المتجر",
+        "return_to_checkout": "العودة إلى صفحة الدفع",
+        "redirect_hint": "سيُطلب منك تسجيل الدخول باستخدام {{walletName}}.",
+        "logged_in": "متصل بـ {{email}}",
+        "shipping_line_label": "الشحن",
+        "payment_in_progress_title": "الدفع قيد المعالجة",
+        "payment_in_progress_body": "جارٍ معالجة دفعتك. سيكتمل طلبك قريبًا.",
+        "call_to_action": "ادفع باستخدام {{walletName}}",
+        "place_order": "تقديم طلب",
+        "redirection_notice": "سيتم تحويلك إلى {{walletName}} لإتمام عملية الشراء",
+        "recovery_notice": "توجد مشكلة في تفاصيل طلبك. حدّث معلوماتك لإتمام عملية الدفع.",
+        "errors": {
+          "unavailable": {
+            "title": "{{walletName}} غير متاح",
+            "description": "{{walletName}} غير متاح. استخدم طريقة دفع مختلفة أو أعد المحاولة لاحقًا.",
+            "instructions": "حدثت مشكلة في {{walletName}}. الرجاء العودة إلى المتجر للمحاولة مرة أخرى أو الدفع بطريقة مختلفة.",
+            "unavailable_for_country": "{{walletName}} غير متوفر في {{countryName}}. الرجاء اختيار طريقة دفع أخرى لإتمام عملية الشراء"
+          },
+          "unavailable_terminal": {
+            "instructions": "{{walletName}} غير متاح حاليًا لطلبك. لمتابعة عملية الشراء، يرجى اختيار طريقة دفع أخرى."
+          },
+          "subscription_review_required": "يتضمن طلبك اشتراكاً. يجب عليك مراجعة الشروط أدناه قبل إتمام طلبك.",
+          "generic": "حدثت مشكلة مع {{walletName}}. حاول مرة أخرى أو استخدم طريقة دفع مختلفة.",
+          "discount_code": "لا يمكن تطبيق رمز الخصم هذا. يُرجى مراجعة الرمز والمحاولة مرة أخرى.",
+          "terminal": "حدثت مشكلة في {{walletName}}. الرجاء استخدام طريقة دفع أخرى.",
+          "detour": {
+            "stock_problems": "بعض العناصر لم تعد متاحة. أغلق {{walletName}} وحاول مرة أخرى.",
+            "price_change": "<span dir=\"rtl\">تغيرت بعض أسعار العناصر. أغلق {{walletName}} لمراجعة طلبك والمحاولة مرة أخرى.</span>",
+            "queue": "<p dir=\"rtl\">لقد تم وضعك في قائمة الانتظار للمغادرة. أغلق {{walletName}} للمتابعة.</p>",
+            "currency_change": "لا يمكنك استخدام عنوان مختلف مع {{walletName}}. استخدم العنوان الأصلي، أو جرب طريقة دفع مختلفة."
+          },
+          "unsupported": {
+            "address": "لا يمكن للتاجر التوصيل إلى هذا العنوان",
+            "wallet_is_unavailable": "{{walletName}} لا يمكن استخدامه مع هذا العنوان. حدد عنوانًا مختلفًا أو أغلق {{walletName}} لإتمام عملية الشراء",
+            "postal_code": "هذا الموقع غير مدعوم"
+          },
+          "outdated": {
+            "shipping_method": "لقد تغيرت خيارات الشحن لطلبك. يرجى مراجعة اختيارك.",
+            "payment_terms": "لقد تغيرت شروط الدفع. راجع طلبك"
+          },
+          "invalid": {
+            "shipping_address": "أدخل عنوان شحن صحيحًا",
+            "billing_address": "أدخل عنوان فوترة صالحًا",
+            "shipping_option": "اختر خيار شحن صالحًا",
+            "email": "أدخل بريدًا إلكترونيًا صحيحًا",
+            "zone": "أدخل ولاية / مقاطعة صالحة",
+            "billing_zone": "أدخل ولاية/مقاطعة عنوان الفوترة الصالحة",
+            "emirate": "أدخل إمارة صالحة",
+            "postal_code": "أدخل رمزًا بريديًا صالحًا",
+            "phone": "أدخل رقم هاتف صحيحًا",
+            "billing_phone": "أدخل رقم هاتف صالحًا لعنوان الفوترة",
+            "reduction_code": "أدخل رمز خصم صالح أو بطاقة هدية",
+            "billing_must_match_shipping": "يجب أن يطابق عنوان الشحن",
+            "billing_zip": "أدخل رمزًا بريديًا صالحًا لعنوان الفاتورة"
+          },
+          "missing": {
+            "first_name": "أدخل الاسم الأول",
+            "billing_first_name": "أدخل الاسم الأول لعنوان الفواتير",
+            "last_name": "أدخل اسم العائلة",
+            "address1": "أدخل عنوانًا",
+            "billing_address1": "أدخل عنوان الفوترة",
+            "address2": "أدخل شقة، جناح، إلخ.",
+            "billing_address2": "أدخل رقم الشقة في عنوان الفاتورة، أو الجناح، وما إلى ذلك.",
+            "city": "ادخل المدينة",
+            "billing_city": "أدخل مدينة عنوان الفاتورة",
+            "province": "اختر ولاية / مقاطعة",
+            "billing_province": "حدد ولاية/مقاطعة عنوان الفاتورة",
+            "country": "اختر الدولة/المنطقة",
+            "zip": "أدخل الرمز البريدي",
+            "billing_zip": "أدخل الرمز البريدي لعنوان الفواتير",
+            "phone": "أدخل رقم الهاتف",
+            "contact_info": "أدخل معلومات الاتصال"
+          },
+          "formatting": {
+            "name_contains_emojis": "احذف الإيموجي من اسمك",
+            "postal_code_contains_emoji": "احذف الرموز التعبيرية من الرمز البريدي الخاص بك",
+            "first_name_too_long": "الاسم الأول يحتوي على عدد كبير جدًا من الأحرف",
+            "last_name_too_long": "اسم العائلة يحتوي على عدد كبير جدًا من الحروف",
+            "address_too_long": "سطر العنوان طويل جداً"
+          },
+          "select_different_shipping_address_to_resolve_errors": "عنوان الشحن الخاص بك غير صالح. اختر عنوانًا مختلفًا أو استخدم عنوانًا جديدًا.",
+          "processing_error_checkout_as_guest": "حدثت مشكلة أثناء معالجة دفعتك. أعد المحاولة أو {{checkout_as_guest_link}}."
+        },
+        "scrim": {
+          "continue_purchase_in_window": "أكمل عملية الشراء في نافذة {{walletName}}",
+          "and_return_to_checkout": "والعودة إلى صفحة الدفع",
+          "cancel": "إلغاء"
+        }
+      },
+      "note": {
+        "length_exceeds_maximum": "قلل حجم الملاحظة إلى 5000 حرف أو أقل."
+      },
+      "offsite_payment_failed": {
+        "title": "فشلت عملية الدفع خارج الموقع",
+        "payment_not_processed_title": "فشلت عملية الدفع",
+        "payment_not_processed_text": "حاول مسح رمز الاستجابة السريعة (QR) مرة أخرى. إذا استمر عدم عمله، فأبلغ موظفينا وحاول استخدام طريقة دفع مختلفة.",
+        "payment_link_expired_title": "انتهت صلاحية رابط الدفع",
+        "payment_link_expired_text": "حاول مسح رمز الاستجابة السريعة مرة أخرى."
+      },
+      "one": {
+        "errors": {
+          "merchandise": {
+            "gift_card_price_must_be_greater_than_zero": "يجب أن يكون سعر بطاقة الهدايا أكبر من 0.",
+            "gift_card_price_must_not_exceed_limit": "يجب ألا يتجاوز سعر بطاقة الهدايا %{gift_card_limit}.",
+            "subtotal_limit_reached": "تم الوصول إلى الحد الأقصى لعدد بنود الفاتورة.",
+            "signature_mismatch": "عدم تطابق توقيع السلع للسطر %{stable_id}."
+          }
+        }
+      },
+      "remote": {
+        "errors": {
+          "only_remote_merchandise_lines": "لا يحتوي سلة الشراء إلا على بضائع بعيدة. يلزم إعادة التوجيه إلى المتجر البعيد لإتمام عملية الشراء.",
+          "currency_mismatch": "لا يمكن إضافة هذا العنصر إلى سلة التسوق الخاصة بك لأنه من متجر يستخدم عملة مختلفة.",
+          "currency_mismatch_removal": "تمت إزالة عنصر من سلة التسوق الخاصة بك لأنه من متجر يستخدم عملة مختلفة.",
+          "max_remote_shops_exceeded": "لا يمكن إضافة هذا المنتج لأن سلة التسوق الخاصة بك تحتوي بالفعل على الحد الأقصى من المتاجر الأخرى."
+        }
+      },
+      "units": {
+        "milligram": "ملغم",
+        "kilogram": "كجم",
+        "milliliter": "مل",
+        "centiliter": "نكل",
+        "cubic_meter": "م³",
+        "millimeter": "ملم"
       }
     },
     "sentence": {
