@@ -1645,13 +1645,100 @@
         "company_location_title": "الموقع",
         "shipping_address_title": "عنوان الشحن",
         "shipping_address_map_title": "خريطة Google تعرض موقع عنوان الشحن: %{address}",
-        "payment_method_title": "طريقة الدفع"
+        "payment_method_title": "طريقة الدفع",
+        "fulfillment": {
+          "description_label": "الوصف",
+          "quantity_label": "الكمية"
+        },
+        "order_updates_description_missing": "لا تتلقى تحديثات الشحن.",
+        "order_updates_subscribe_to_email_notifications": "تلقَّ تحديثات الشحن عبر البريد الإلكتروني",
+        "order_updates_subscribe_to_email_or_phone_notifications": "احصل على تحديثات الشحن عبر البريد الإلكتروني أو الرسائل النصية",
+        "order_updates_subscribe_to_phone_notifications": "تلقّ تحديثات الشحن عبر الرسائل النصية",
+        "order_updates_submit_subscription": "إرسال",
+        "track_shipment": "تتبع الشحنة",
+        "other_options": "خيارات أخرى",
+        "delivery_information_label": "معلومات التسليم:",
+        "gift_card_sent_confirmation": "بطاقات الهدايا المرسلة",
+        "qr_code": {
+          "send_link_to_phone": "أو أرسل رابطًا إلى هاتفك",
+          "title": "تتبّع على هاتفك"
+        },
+        "shop_qr_with_sms_upsell": {
+          "qr_code": {
+            "title": "امسح بهاتفك"
+          },
+          "sms": {
+            "title": "أو أرسل رابطًا إلى هاتفك"
+          }
+        },
+        "view_business_customer_account": "عرض الحساب",
+        "breadcrumbs_submitted": "تم التقديم",
+        "breadcrumbs_in_review": "قيد المراجعة",
+        "breadcrumbs_confirmed": "تم التأكيد",
+        "missing_shipping_address_banner": {
+          "title": "لا يحتوي الطلب على عنوان شحن",
+          "text_html": "%{contact_us} لإضافة عنوانك",
+          "contact_us": "اتصل بنا"
+        },
+        "first_payment_complete": "تم الدفع الأول بنجاح",
+        "in_store_purchase": "الشراء من المتجر",
+        "company_location_section_title": "الشركة والموقع",
+        "thank_you_ready_for_picked_up": "تم استلام طلبك من %{address}.",
+        "ready_for_delivery": "جاهز للتسليم",
+        "order_updates_subscribe_to_email_notifications_failed": "لا يمكننا تخزين هذا البريد الإلكتروني للتحديثات. حاول مرة أخرى أو استخدم بريدًا إلكترونيًا آخر.",
+        "order_updates_subscribe_to_email_notifications_email_already_exists": "البريد الإلكتروني الذي أدخلته موجود بالفعل.",
+        "subscriptions_management": {
+          "title": "اشتراك",
+          "description": "توجه إلى حسابك لعرض اشتراكاتك وإدارتها.",
+          "button_label": "إدارة اشتراكك"
+        },
+        "manage_order_label": "إدارة طلبك",
+        "gift_card_confirmation_by_text_typ": {
+          "one": "ستتلقى رسالة نصية تتضمن بطاقة الهدايا الخاصة بك خلال بضع دقائق.",
+          "other": "ستتلقى رسالة نصية تتضمن بطاقات الهدايا الخاصة بك في غضون بضع دقائق."
+        },
+        "gift_card_confirmation_by_email_typ": {
+          "one": "ستتلقى بريدًا إلكترونيًا يحتوي على بطاقة الهدية الخاصة بك في غضون دقائق قليلة.",
+          "other": "ستتلقى بريدًا إلكترونيًا يتضمن بطاقات الهدايا الخاصة بك في غضون دقائق قليلة."
+        },
+        "gift_card_email_title": {
+          "one": "أُرسلت بطاقة الهديّة عبر البريد الإلكتروني.",
+          "other": "أُرسلت بطاقات الهدايا عبر البريد الإلكتروني"
+        },
+        "gift_card_text_title": {
+          "one": "تم إرسال بطاقة الهدية برسالة نصية",
+          "other": "تم إرسال بطاقات الهدايا عن طريق الرسائل النصية"
+        },
+        "resend_gift_cards_by_email": "أعد إرسال البريد الإلكتروني",
+        "resend_gift_cards_by_text": "أعد إرسال الرسالة النصية",
+        "gift_card_resent_confirmation": {
+          "one": "تمت إعادة إرسال بطاقة الهدايا.",
+          "other": "تم إعادة إرسال بطاقات الهدايا."
+        },
+        "gift_card_resend_failure": {
+          "one": "حدثت مشكلة في إعادة إرسال بطاقة الهدية الخاصة بك. يُرجى المحاولة مرة أخرى أو الاتصال بنا.",
+          "other": "حدثت مشكلة في إعادة إرسال بطاقات الهدايا الخاصة بك. حاول مرة أخرى أو اتصل بنا."
+        },
+        "vat_invoices": {
+          "title": "فواتير ضريبة القيمة المضافة"
+        },
+        "verify_shop_account_title": "تحقق من حسابك في Shop",
+        "verify_shop_account_message": "تم حفظ معلوماتك باستخدام Shop، تحقق من حسابك لاستخدامها تلقائيًا في ملايين المتاجر.",
+        "verify_shop_account_cta": "التحقق من حسابك",
+        "verify_shop_account_confirmation": "تم حفظ تفاصيل الدفع",
+        "announcement": {
+          "close": "إغلاق",
+          "expand": "توسيع",
+          "collapse": "انهيار"
+        }
       },
       "marketing": {
         "sms": {
           "disclaimer": {
             "description_html": "بالتسجيل عبر الرسائل النصية، أنت توافق على استلام رسائل تسويقية آلية متكررة، بما في ذلك رسائل تذكير بسلة التسوق، على رقم الهاتف المقدم. الموافقة ليست شرطًا للشراء. أرسل STOP لإلغاء الاشتراك. أرسل HELP للحصول على المساعدة. يختلف تكرار الرسائل. قد يتم تطبيق رسوم الرسائل والبيانات. اطلع على %{privacy_policy_link} و %{terms_of_service_link}.",
-            "description_transactional_html": "قد تتلقى رسائل نصية متعلقة بتأكيد الطلب وتحديثات الشحن. أرسل \"STOP\" لإلغاء الاشتراك. أرسل \"HELP\" للمساعدة. يختلف تكرار الرسائل. قد تُطبق رسوم الرسائل والبيانات. اطلع على %{privacy_policy_modal_link} و %{terms_of_service_modal_link}."
+            "description_transactional_html": "قد تتلقى رسائل نصية متعلقة بتأكيد الطلب وتحديثات الشحن. أرسل \"STOP\" لإلغاء الاشتراك. أرسل \"HELP\" للمساعدة. يختلف تكرار الرسائل. قد تُطبق رسوم الرسائل والبيانات. اطلع على %{privacy_policy_modal_link} و %{terms_of_service_modal_link}.",
+            "privacy_policy": "سياسة الخصوصية",
+            "terms_of_service": "شروط الخدمة"
           },
           "mobile_phone_number": "رقم الهاتف المحمول",
           "get_offers_by_text": "احصل على عروض عبر الرسائل النصية"
@@ -1660,7 +1747,15 @@
           "title": "لقد ألغيت اشتراكك",
           "description": "لن تتلقى بعد الآن أي تذكيرات بشأن عربة التسوق منّا."
         },
-        "accept_shop_pay_marketing_checkbox_label": "سجّلني للحصول على الأخبار والعروض من هذا المتجر"
+        "accept_shop_pay_marketing_checkbox_label": "سجّلني للحصول على الأخبار والعروض من هذا المتجر",
+        "accept_marketing_checkbox_label": "أرسل لي عبر البريد الإلكتروني آخر الأخبار والعروض",
+        "post_accept_marketing_checkbox_label": "أنت مشترك في استلام أخبار وعروض البريد الإلكتروني",
+        "pending_accept_marketing_checkbox_label": "يرجى التحقق من بريدك الإلكتروني لتأكيد اشتراكك في الأخبار والعروض",
+        "accept_sms_checkbox_label": "أرسل لي رسالة نصية بشأن الأخبار والعروض",
+        "disclaimer": {
+          "privacy_policy": "سياسة الخصوصية",
+          "terms_of_service": "شروط الخدمة"
+        }
       },
       "shop_policies": {
         "policy_label": "السياسة",
@@ -2206,6 +2301,55 @@
         "unavailable_address_country": "الشحن غير متوفر في البلد الذي اخترته. استخدم عنوانًا مختلفًا للمتابعة",
         "unavailable_selected_address": "الشحن غير متاح للعنوان المحدد",
         "unavailable_selected_address_for_region": "الشحن غير متاح لـ {{region}}. يرجى اختيار عنوان مختلف للمتابعة"
+      },
+      "vaulted": {
+        "change_button": "تغيير"
+      },
+      "review": {
+        "title": "مراجعة",
+        "review_title": "أكمل طلبك",
+        "review_and_confirm_title": "مراجعة وتأكيد",
+        "checkout_as_guest": "الدفع كضيف",
+        "account_more_actions": "إجراءات إضافية لهذا الحساب",
+        "checkout_a_different_way": "جرّب طريقة مختلفة",
+        "blocks": {
+          "contact_method_title": "جهات الاتصال",
+          "billing_address_title": "الفواتير",
+          "shipping_address_title": "شحن إلى",
+          "shipping_method_title": "طريقة الشحن",
+          "payment_method_title": "طريقة الدفع",
+          "change_link_label": "تغيير",
+          "change_contact_method_link_label": "تغيير معلومات الاتصال",
+          "change_billing_address_link_label": "تغيير عنوان الفوترة",
+          "change_company_location_link_label": "تغيير موقع الشركة",
+          "change_shipping_address_link_label": "تغيير عنوان الشحن",
+          "change_shipping_method_link_label": "تغيير طريقة الشحن",
+          "change_payment_method_link_label": "تغيير طريقة الدفع",
+          "pick_up_in_store_shipping_method_html": "الاستلام من المتجر · %{location_name}",
+          "purchase_order_number_title": "رقم أمر الشراء",
+          "change_purchase_order_number_label": "تغيير رقم أمر الشراء",
+          "change_delivery_method_link_label": "تغيير طريقة التوصيل",
+          "no_address": "(لا يوجد عنوان)",
+          "no_purchase_order_number": "(لا يوجد رقم أمر شراء)",
+          "due_after_order_reviewed_html": "مستحق بعد مراجعة الطلب",
+          "review_title_free_order": "راجع طلبك وأكمله",
+          "payment_method_saved_company_location": "حفظ البطاقة لهذا الموقع",
+          "company_location": "موقع الشركة",
+          "pickup_items_at": {
+            "one": "استلام %{count} عنصر في",
+            "other": "التقاط %{count} عنصر في"
+          },
+          "ship_items_to": {
+            "one": "شحن %{count} قطعة إلى",
+            "other": "شحن %{count} قطعة إلى"
+          }
+        },
+        "block_title": "راجع معلوماتك",
+        "item_header": {
+          "change_value": "تغيير القيمة",
+          "section": "قسم",
+          "value": "قيمة"
+        }
       }
     },
     "sentence": {
