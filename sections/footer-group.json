@@ -1757,6 +1757,62 @@
               },
               "blocks": {}
             },
+            "icon_PrDKpk": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "none",
+                "image_upload": "shopify://shop_images/Payment_method_icon-1.png",
+                "width": 48,
+                "icon_alignment": "",
+                "icon_border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
+            "icon_3rHYT9": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "none",
+                "image_upload": "shopify://shop_images/Payment_method_icon-2.png",
+                "width": 48,
+                "icon_alignment": "",
+                "icon_border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
+            "icon_d4Ygim": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "none",
+                "image_upload": "shopify://shop_images/Payment_method_icon_af82403c-d6cc-4579-8456-e463b9f8cc55.png",
+                "width": 48,
+                "icon_alignment": "",
+                "icon_border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
+            "icon_8kUhNT": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "none",
+                "image_upload": "shopify://shop_images/Payment_method_icon-3.png",
+                "width": 48,
+                "icon_alignment": "",
+                "icon_border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
             "icon_tp8mzh": {
               "type": "icon",
               "name": "t:names.icon",
@@ -1838,6 +1894,10 @@
             "icon_pmWaNh",
             "icon_mkTnKU",
             "icon_q7d6zE",
+            "icon_PrDKpk",
+            "icon_3rHYT9",
+            "icon_d4Ygim",
+            "icon_8kUhNT",
             "icon_tp8mzh",
             "icon_RDK7ej",
             "icon_mNmUaj",
