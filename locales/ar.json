@@ -279,8 +279,57 @@
         "dates": {
           "weekdays": {
             "monday": "الاثنين",
-            "tuesday": "الثلاثاء"
+            "tuesday": "الثلاثاء",
+            "wednesday": "الأربعاء",
+            "thursday": "الخميس",
+            "friday": "الجمعة",
+            "saturday": "السبت",
+            "sunday": "الأحد"
+          },
+          "weekdays_abbreviation": {
+            "monday": "مو",
+            "tuesday": "أنت",
+            "wednesday": "نحن",
+            "thursday": "الخميس",
+            "friday": "موافق",
+            "saturday": "سا",
+            "sunday": "سو"
+          },
+          "months": {
+            "january": "يناير",
+            "february": "فبراير",
+            "march": "مارس",
+            "april": "أبريل",
+            "may": "مايو/أيار",
+            "june": "يونيو",
+            "july": "يوليو",
+            "august": "أغسطس",
+            "september": "سبتمبر",
+            "october": "أكتوبر",
+            "november": "نوفمبر",
+            "december": "ديسمبر"
           }
+        },
+        "datepicker": {
+          "show_previous_month": "إظهار الشهر السابق، {{month}} {{year}}",
+          "show_next_month": "عرض الشهر القادم، {{month}} {{year}}",
+          "range_start": "بداية المدى",
+          "in_range": "ضمن النطاق",
+          "range_end": "نهاية النطاق"
+        },
+        "map": {
+          "cluster_title": {
+            "one": "مجموعة من {{number}} علامة",
+            "other": "مجموعة من {{number}} علامات"
+          }
+        },
+        "sheet": {
+          "expand": "توسيع"
+        },
+        "dropzone": {
+          "add_file": "إضافة ملف",
+          "invalid_file_type": "نوع الملف غير مدعوم",
+          "dragged_over": "اسحب الملف للتحميل"
         }
       },
       "payment": {
@@ -1011,6 +1060,83 @@
             "billing": "الفواتير"
           }
         }
+      },
+      "embed": {
+        "header": {
+          "review_order": "راجع طلبك"
+        },
+        "shipping": {
+          "shipping_options": "اطلع على جميع خيارات الشحن"
+        },
+        "payment": {
+          "payment_options": "عرض جميع خيارات الدفع"
+        }
+      },
+      "payment_collection": {
+        "cancelled": "هذه الدفعة لم تعد مطلوبة. تفضل بزيارة صفحة الطلب للاطلاع على التفاصيل.",
+        "paid": "تم تقديم هذه الدفعة بالفعل. تفضل بزيارة صفحة الطلب للاطلاع على التفاصيل."
+      },
+      "contact": {
+        "title": "معلومات",
+        "address_title": "العنوان",
+        "shipping_used_as_billing_notice": "سيتم استخدام هذا أيضًا كعنوان للفوترة لطلبك هذا.",
+        "delivery_option_title": "طريقة التسليم",
+        "contact_method_title": "جهات الاتصال",
+        "email_label": "بريد إلكتروني",
+        "email_rollup_accessibility_label": "خيارات البريد الإلكتروني",
+        "email_placeholder": "بريد إلكتروني",
+        "email_or_phone_label": "البريد الإلكتروني أو رقم الهاتف المحمول",
+        "email_or_phone_placeholder": "البريد الإلكتروني أو رقم الهاتف المحمول",
+        "field_saved_label": "تم الحفظ",
+        "field_tooltip_helper_text": "تستخدم لتأكيد طلبك وتذكيرات سلة التسوق",
+        "field_tooltip_accessibility_label": "مزيد من المعلومات حول كيفية استخدام معلومات الاتصال الخاصة بك",
+        "stored_addresses_label": "العناوين المحفوظة",
+        "available_addresses_label": "العناوين المتاحة",
+        "new_address_label": "استخدم عنوانًا جديدًا",
+        "first_name_label": "الاسم الأول",
+        "optional_first_name_label": "الاسم الأول (اختياري)",
+        "last_name_label": "اسم العائلة",
+        "company_label": "شركة",
+        "storefront_link": "الموقع الإلكتروني للتاجر",
+        "company_attention_label": "شركة/عناية",
+        "optional_company_attention_label": "الشركة/انتباه (اختياري)",
+        "optional_company_label": "الشركة (اختياري)",
+        "address1_label": "العنوان",
+        "optional_street_name_label": "الشارع (اختياري)",
+        "address2_label": "شقة، جناح، إلخ.",
+        "optional_address2_label": "الشقة أو الجناح، إلخ (اختياري)",
+        "subdistrict_label": "ناحية",
+        "optional_subdistrict_label": "الناحية (اختياري)",
+        "city_label": "مدينة",
+        "suburb_label": "ضاحية",
+        "country_label": "البلد/المنطقة",
+        "country_code": "رمز البلد/المنطقة",
+        "province_label": "مقاطعة",
+        "province_placeholder": "مقاطعة",
+        "county_label": "مقاطعة",
+        "county_placeholder": "مقاطعة",
+        "state_label": "ولاية",
+        "state_placeholder": "ولاية",
+        "region_label": "المنطقة",
+        "region_placeholder": "المنطقة",
+        "region_none": "لا يوجد تحديد",
+        "prefecture_label": "محافظة",
+        "prefecture_placeholder": "محافظة",
+        "governorate_label": "محافظة",
+        "governorate_placeholder": "محافظة",
+        "emirate_label": "إمارة",
+        "emirate_placeholder": "إمارة",
+        "state_and_territory_label": "الولاية/الإقليم",
+        "state_and_territory_placeholder": "الولاية/الإقليم",
+        "phone_label": "هاتف",
+        "phone_rollup_accessibility_label": "خيارات الهاتف",
+        "phone_country_code_label": "رمز البلد لرقم الهاتف",
+        "optional_phone_label": "الهاتف (اختياري)",
+        "phone_placeholder": "هاتف",
+        "phone_tooltip": "في حال احتجنا للتواصل معك بشأن طلبك",
+        "zip_code_label": "الرمز البريدي",
+        "optional_zip_code_label": "الرمز البريدي (اختياري)",
+        "zip_code_placeholder": "الرمز البريدي"
       }
     },
     "sentence": {
