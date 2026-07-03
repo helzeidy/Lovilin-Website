@@ -1184,49 +1184,10 @@
             "show_shop_reviews": false,
             "empty_state": "empty_widget"
           }
-        },
-        "judge_me_reviews_cards_carousel_AzmT3q": {
-          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "show_sample_reviews": false,
-            "reviews_selection": "all",
-            "products": [
-              "antibacterial-bottle-dish-cleanser",
-              "antibacterial-toy-surface-cleaner",
-              "baby-laundry-detergent",
-              "instant-stain-remover",
-              "one-complete-cleaning-system"
-            ],
-            "star_rating": "all",
-            "show_review_media": true,
-            "display_order": "media_first",
-            "no_image_fallback": "product_image",
-            "max_reviews": 20,
-            "review_length": "medium",
-            "text_size": "medium",
-            "image_ratio": "1.33",
-            "reviews_shown": 4,
-            "show_reviewer_name": true,
-            "show_product_name": true,
-            "hide_arrows_mobile": true,
-            "arrows_position": "sides",
-            "max_width": 1600,
-            "corner_styling": "round",
-            "header_text_color": "#071e85",
-            "text_color": "#071e85",
-            "card_color": "#f9f9f9",
-            "stars_color": "",
-            "arrows_color": "#071e85",
-            "transition_speed": 5,
-            "header_text": "Customers are saying",
-            "show_average_rating": true,
-            "rating_display": "default"
-          }
         }
       },
       "block_order": [
-        "judge_me_reviews_review_widget_zetMqG",
-        "judge_me_reviews_cards_carousel_AzmT3q"
+        "judge_me_reviews_review_widget_zetMqG"
       ],
       "settings": {
         "content_direction": "column",
@@ -2217,8 +2178,8 @@
   },
   "order": [
     "main",
-    "carousel_VWFhbd",
     "1782400845dd94d3b8",
+    "carousel_VWFhbd",
     "product_recommendations_qggXJq"
   ]
 }
