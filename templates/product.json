@@ -882,7 +882,7 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap": 8,
                 "enable_mobile_layout": false,
                 "content_direction_mobile": "row",
                 "horizontal_alignment_mobile": "flex-start",
@@ -927,7 +927,7 @@
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Size_sm_Payment_method_Mastercard.png",
-                    "width": 48,
+                    "width": 60,
                     "icon_alignment": "",
                     "icon_border_radius": 0,
                     "link": "",
@@ -941,7 +941,7 @@
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Size_sm_Payment_method_Visa.png",
-                    "width": 48,
+                    "width": 60,
                     "icon_alignment": "",
                     "icon_border_radius": 0,
                     "link": "",
@@ -955,7 +955,7 @@
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Size_sm_Payment_method_ApplePay.png",
-                    "width": 48,
+                    "width": 60,
                     "icon_alignment": "",
                     "icon_border_radius": 0,
                     "link": "",
@@ -969,7 +969,7 @@
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Size_sm_Payment_method_Meeza.png",
-                    "width": 48,
+                    "width": 60,
                     "icon_alignment": "",
                     "icon_border_radius": 0,
                     "link": "",
@@ -980,10 +980,11 @@
                 "icon_mPdap9": {
                   "type": "icon",
                   "name": "t:names.icon",
+                  "disabled": true,
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Payment_method_icon-1.png",
-                    "width": 48,
+                    "width": 60,
                     "icon_alignment": "",
                     "icon_border_radius": 0,
                     "link": "",
@@ -997,7 +998,7 @@
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Payment_method_icon-2.png",
-                    "width": 48,
+                    "width": 60,
                     "icon_alignment": "",
                     "icon_border_radius": 0,
                     "link": "",
@@ -1011,7 +1012,7 @@
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Payment_method_icon_af82403c-d6cc-4579-8456-e463b9f8cc55.png",
-                    "width": 48,
+                    "width": 60,
                     "icon_alignment": "",
                     "icon_border_radius": 0,
                     "link": "",
@@ -1025,7 +1026,7 @@
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Payment_method_icon-3.png",
-                    "width": 48,
+                    "width": 60,
                     "icon_alignment": "",
                     "icon_border_radius": 0,
                     "link": "",
