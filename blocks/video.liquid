@@ -101,7 +101,6 @@
     var root = document.querySelector('[data-video-block="{{ uid }}"]');
     if (!root) return;
     var btn = root.querySelector('[data-video-mute]');
-    if (!btn) return;
     var muted = root.querySelector('.video-block__mute-ic--muted');
     var on = root.querySelector('.video-block__mute-ic--on');
 
@@ -114,25 +113,64 @@
       if (on) on.hidden = isMuted;
     }
 
-    btn.addEventListener('click', function () {
-      var video = findVideo();
-      if (!video) return;
-      video.muted = !video.muted;
-      // Some browsers pause on unmute; make sure it keeps playing
-      if (!video.muted && video.paused) {
-        video.play().catch(function () {});
-      }
-      render(video.muted);
-    });
+    // Make autoplay reliable across browsers: browsers only autoplay muted,
+    // inline (playsinline) videos, so force those attributes on.
+    function primeVideo(video) {
+      if (!video || video.dataset.vbPrimed) return;
+      video.dataset.vbPrimed = '1';
+      video.muted = true;
+      video.setAttribute('muted', '');
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      render(true);
+    }
 
-    // Initialise the icon to match the video's starting (muted) state
-    var v = findVideo();
-    render(v ? v.muted : true);
-    // Re-check once media is ready (deferred-media may swap the element in)
-    document.addEventListener('DOMContentLoaded', function () {
-      var vv = findVideo();
-      render(vv ? vv.muted : true);
-    });
+    // Play only while visible; in carousels browsers pause off-screen videos.
+    function watchVisibility(video) {
+      if (!video) return;
+      if (!('IntersectionObserver' in window)) {
+        video.play().catch(function () {});
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            video.play().catch(function () {});
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.4 });
+      io.observe(root);
+    }
+
+    function setup() {
+      var video = findVideo();
+      if (video) {
+        primeVideo(video);
+        watchVisibility(video);
+        render(video.muted);
+      }
+    }
+
+    setup();
+    // deferred-media may insert the <video> after load — retry a couple of times
+    document.addEventListener('DOMContentLoaded', setup);
+    window.setTimeout(setup, 600);
+    window.setTimeout(setup, 1500);
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var video = findVideo();
+        if (!video) return;
+        video.muted = !video.muted;
+        if (!video.muted && video.paused) {
+          video.play().catch(function () {});
+        }
+        render(video.muted);
+      });
+    }
   })();
 </script>
 
