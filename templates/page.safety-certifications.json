@@ -9,36 +9,36 @@
  */
 {
   "sections": {
-    "slideshow_pqfN3b": {
+    "slideshow_7zXz6b": {
       "type": "slideshow",
       "blocks": {
-        "slide_MLMjfG": {
+        "slide_Dxi4he": {
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
-            "image_1": "shopify://shop_images/hero-products.jpg",
-            "image_1_mobile": "shopify://shop_images/4.jpg",
+            "image_1": "shopify://shop_images/we-certify-it.jpg",
+            "image_1_mobile": "shopify://shop_images/we-certify-it.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "flex-end",
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
             "gap": 12,
-            "inherit_color_scheme": false,
-            "color_scheme": "scheme-1",
-            "toggle_overlay": true,
-            "overlay_color": "#ffffff1f",
-            "overlay_style": "gradient",
-            "gradient_direction": "to bottom",
-            "padding-block-start": 48,
-            "padding-block-end": 48,
-            "padding-inline-start": 48,
-            "padding-inline-end": 48
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 32,
+            "padding-block-end": 96,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {
-            "group_MxYfFe": {
+            "group_w3bgQL": {
               "type": "group",
               "name": "t:names.group",
               "settings": {
@@ -47,13 +47,13 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
-                "enable_mobile_layout": false,
+                "enable_mobile_layout": true,
                 "content_direction_mobile": "column",
                 "horizontal_alignment_mobile": "flex-start",
-                "vertical_alignment_mobile": "center",
+                "vertical_alignment_mobile": "flex-start",
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -62,7 +62,7 @@
                 "custom_height_unit": "percent",
                 "custom_height": 100,
                 "custom_height_px": 400,
-                "height_mobile": "",
+                "height_mobile": "fill",
                 "custom_height_mobile_unit": "svh",
                 "custom_height_mobile": 60,
                 "custom_height_mobile_px": 300,
@@ -88,7 +88,7 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "group_74XxDL": {
+                "group_YqU4mk": {
                   "type": "group",
                   "name": "t:names.group",
                   "settings": {
@@ -97,13 +97,13 @@
                     "horizontal_alignment": "flex-start",
                     "vertical_alignment": "center",
                     "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "horizontal_alignment_flex_direction_column": "center",
                     "vertical_alignment_flex_direction_column": "center",
                     "gap": 12,
-                    "enable_mobile_layout": false,
+                    "enable_mobile_layout": true,
                     "content_direction_mobile": "column",
                     "horizontal_alignment_mobile": "flex-start",
-                    "vertical_alignment_mobile": "center",
+                    "vertical_alignment_mobile": "flex-start",
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
@@ -138,7 +138,7 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {
-                    "text_dqPt4f": {
+                    "text_3T6PmG": {
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
@@ -146,7 +146,7 @@
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
-                        "alignment_mobile": "",
+                        "alignment_mobile": "left",
                         "type_preset": "h5",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -165,15 +165,15 @@
                       },
                       "blocks": {}
                     },
-                    "text_qpgd8R": {
+                    "text_Eer4Kz": {
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
                         "text": "<h2>Products used around babies <br/>should be held to a higher standard.</h2>",
-                        "width": "100%",
+                        "width": "fit-content",
                         "max_width": "none",
                         "alignment": "left",
-                        "alignment_mobile": "",
+                        "alignment_mobile": "left",
                         "type_preset": "h2",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -194,18 +194,18 @@
                     }
                   },
                   "block_order": [
-                    "text_dqPt4f",
-                    "text_qpgd8R"
+                    "text_3T6PmG",
+                    "text_Eer4Kz"
                   ]
                 },
-                "text_h6LU8N": {
+                "text_tXHUhW": {
                   "type": "text",
                   "settings": {
                     "text": "<p><em>Not assumed safe. Proven safe.</em></p><p>We didn’t rely on category norms or minimum requirements.</p><p>Every Lovilin formula was developed through controlled testing, multi-stage validation, and certified oversight to ensure it performs safely in real use.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
-                    "alignment_mobile": "",
+                    "alignment_mobile": "left",
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -224,7 +224,7 @@
                   },
                   "blocks": {}
                 },
-                "button_hwXQiD": {
+                "button_m9XD3p": {
                   "type": "button",
                   "settings": {
                     "label": "See Certifications",
@@ -240,35 +240,35 @@
                 }
               },
               "block_order": [
-                "group_74XxDL",
-                "text_h6LU8N",
-                "button_hwXQiD"
+                "group_YqU4mk",
+                "text_tXHUhW",
+                "button_m9XD3p"
               ]
             }
           },
           "block_order": [
-            "group_MxYfFe"
+            "group_w3bgQL"
           ]
         }
       },
       "block_order": [
-        "slide_MLMjfG"
+        "slide_Dxi4he"
       ],
-      "name": "t:names.slideshow_full_frame",
+      "name": "t:names.slideshow_inset",
       "settings": {
         "display_mode": "full_frame",
-        "section_width": "full-width",
+        "section_width": "page-width",
         "full_frame_on_mobile": false,
-        "slideshow_gap": 12,
-        "corner_radius": 0,
-        "slide_height": "custom_vh",
-        "slide_height_vh": 80,
-        "slide_height_vh_mobile": 80,
-        "content_position": "on-media",
+        "slideshow_gap": 18,
+        "corner_radius": 24,
+        "slide_height": "auto",
+        "slide_height_vh": 60,
+        "slide_height_vh_mobile": 60,
+        "content_position": "below-media",
         "color_scheme": "",
         "icons_style": "arrows_large",
         "icons_shape": "none",
-        "slideshow_controls_style": "dots",
+        "slideshow_controls_style": "none",
         "autoplay": false,
         "autoplay_speed": 4,
         "padding-block-start": 0,
@@ -285,6 +285,8 @@
             "icon": "price_tag",
             "image_upload": "shopify://shop_images/14001.2015.svg",
             "width": 60,
+            "icon_alignment": "",
+            "icon_border_radius": 0,
             "link": "",
             "open_in_new_tab": false
           },
@@ -297,6 +299,8 @@
             "icon": "price_tag",
             "image_upload": "shopify://shop_images/9001.2015.svg",
             "width": 60,
+            "icon_alignment": "",
+            "icon_border_radius": 0,
             "link": "",
             "open_in_new_tab": false
           },
@@ -309,6 +313,8 @@
             "icon": "price_tag",
             "image_upload": "shopify://shop_images/45001.2018.svg",
             "width": 60,
+            "icon_alignment": "",
+            "icon_border_radius": 0,
             "link": "",
             "open_in_new_tab": false
           },
@@ -321,6 +327,8 @@
             "icon": "price_tag",
             "image_upload": "shopify://shop_images/EOS.svg",
             "width": 60,
+            "icon_alignment": "",
+            "icon_border_radius": 0,
             "link": "",
             "open_in_new_tab": false
           },
@@ -333,6 +341,8 @@
             "icon": "price_tag",
             "image_upload": "shopify://shop_images/NRC.svg",
             "width": 60,
+            "icon_alignment": "",
+            "icon_border_radius": 0,
             "link": "",
             "open_in_new_tab": false
           },
@@ -345,6 +355,8 @@
             "icon": "price_tag",
             "image_upload": "shopify://shop_images/EDA.svg",
             "width": 60,
+            "icon_alignment": "",
+            "icon_border_radius": 0,
             "link": "",
             "open_in_new_tab": false
           },
@@ -6385,7 +6397,7 @@
     }
   },
   "order": [
-    "slideshow_pqfN3b",
+    "slideshow_7zXz6b",
     "marquee_JF33qL",
     "section_wPpqEA",
     "section_6iGMe4",
