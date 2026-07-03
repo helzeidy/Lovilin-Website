@@ -729,7 +729,147 @@
         "split_shipping_option_custom": "مخصص",
         "add_shipping_address": "أضف عنوان الشحن",
         "add_new_delivery_address": "إضافة عنوان توصيل جديد",
-        "choose_new_address": "اختر عنوانًا جديدًا"
+        "choose_new_address": "اختر عنوانًا جديدًا",
+        "subscription_delivery_description": {
+          "max_cycles_base_shipping": {
+            "other": "%{count} عمليات توصيل إضافية بسعر %{shipping_price} لكل واحدة"
+          },
+          "max_cycles_base_shipping_delivery_not_included": {
+            "one": "%{count} توصيل مقابل %{shipping_price}",
+            "other": "%{count} عمليات توصيل إضافية بسعر %{shipping_price} لكل واحدة"
+          },
+          "prepaid_free_shipping_with_cycles": {
+            "one": "شحن مجاني لأول %{cycle}، يليه %{recurring_order_shipping_price}",
+            "other": "شحن مجاني لأول %{cycle}، يليه %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_one_cycle": {
+            "one": "%{shipping_price} لـ %{count} عملية توصيل إضافية",
+            "other": "%{shipping_price} مقابل %{count} عملية توصيل أخرى (%{per_delivery_cost})"
+          },
+          "prepaid_order_one_cycle_delivery_not_included": {
+            "one": "%{shipping_price} مقابل %{count} توصيل",
+            "other": "%{shipping_price} لـ %{count} عملية توصيل (%{per_delivery_cost} لكل عملية توصيل)"
+          },
+          "prepaid_order_no_cycle": {
+            "one": "%{shipping_price} لشحن %{count} إضافية، يتبعها %{recurring_order_shipping_price}",
+            "other": "%{shipping_price} لـ %{count} عملية توصيل أخرى (%{per_delivery_cost})، ثم %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_no_cycle_delivery_not_included": {
+            "one": "%{shipping_price} لعدد %{count} من عمليات التسليم، يليها %{recurring_order_shipping_price}",
+            "other": "%{shipping_price} لـ %{count} من عمليات التسليم (%{per_delivery_cost})، متبوعًا بـ %{recurring_order_shipping_price}"
+          },
+          "subscription_free_with_frequency_label": "شحن مجاني %{delivery_frequency}",
+          "prepaid_delivery_frequency": {
+            "one": "لتوصيل %{count}",
+            "other": "لـ %{count} عملية تسليم"
+          },
+          "subscription_delivery_frequency": {
+            "day": {
+              "one": "كل يوم",
+              "other": "كل %{count} أيام"
+            },
+            "week": {
+              "one": "كل أسبوع",
+              "other": "كل %{count} أسابيع"
+            },
+            "month": {
+              "one": "كل شهر",
+              "other": "كل %{count} أشهر"
+            },
+            "year": {
+              "one": "كل عام",
+              "other": "كل %{count} سنوات"
+            }
+          },
+          "multiple_subscriptions_shipping_price_label": "%{shipping_price} لكل عملية تسليم",
+          "prepaid_shipping_price_label": "%{shipping_price} لكل عملية توصيل × %{delivery_interval_count}",
+          "initial_order_discounted": "أول تكلفة شحن %{discounted_shipping_cost}، ثم %{frequency_description}",
+          "prepaid_initial_order_discounted": "تكلفة الشحن الأولى %{discounted_shipping_price} %{prepaid_delivery_frequency}",
+          "prepaid_initial_order_discounted_with_per_delivery_price": "رسوم الشحن الأولى %{discounted_shipping_price} %{prepaid_delivery_frequency} (%{discounted_cost_per_delivery})",
+          "prepaid_initial_order_discounted_with_renewal": "تكلفة الشحن الأولى %{discounted_shipping_price} %{prepaid_delivery_frequency}، ثم %{shipping_price} %{billing_cycle}",
+          "prepaid_initial_order_discounted_with_per_delivery_price_and_renewal": "تكلفة الشحن الأولى %{discounted_shipping_price} %{prepaid_delivery_frequency} (%{discounted_cost_per_delivery})، ثم %{shipping_price} %{billing_cycle}",
+          "shipping_price_included": "مضمّن",
+          "recurring_order_shipping_price": "تليها %{recurring_order_shipping_price}",
+          "first_order_shipping_price_included": "الطلب الأول مشمول، يليه %{recurring_order_shipping_price}",
+          "first_order_different_shipping_price": "%{first_order_shipping_price} (%{per_delivery_price} لكل عملية تسليم)، يتبعها %{recurring_order_shipping_price}",
+          "first_n_order_free": {
+            "one": "الطلب الأول مجاني",
+            "other": "أول %{count} طلبات مجانية"
+          },
+          "free_for_first_n_order": {
+            "one": "للرتبة الأولى",
+            "other": "لأول %{count} طلبات"
+          }
+        },
+        "one_time_purchase_shipping": "شحن لمرة واحدة",
+        "duties_and_taxes_title": "الرسوم والضرائب",
+        "shipping_information_required_notice": "معلومات الشحن مطلوبة. {{link}}.",
+        "shipping_information_redirect_link": "أدخل معلوماتك هنا",
+        "loading_progressive_rates": "البحث عن المزيد من الأسعار...",
+        "no_other_methods_available": "لا توجد طرق أخرى متاحة",
+        "duties_and_taxes_options": {
+          "ddu_title": "الدفع عند الاستلام",
+          "ddu_caption": "قد تُطبق رسوم إضافية",
+          "ddp_title": "ادفع الآن",
+          "ddp_caption": "لا توجد رسوم إضافية عند التسليم"
+        },
+        "shipping_method_combinations": {
+          "combination": "%{rest} و %{current}"
+        },
+        "shipping_used_as_billing_notice": "سيتم استخدام هذا أيضًا كعنوان للفوترة لطلبك هذا.",
+        "address_update": "تحديث العنوان",
+        "shipping_address_title": "شحن إلى",
+        "shipping_address_rollup_accessibility_label": "خيارات عنوان الشحن",
+        "third_party_address_timeout": "تعذّر تحميل العناوين. أعد المحاولة أو استخدم عنوانًا آخر.",
+        "third_party_address_error": "حدث خطأ أثناء تحميل تحديد العنوان. أدخل عنوانك يدويًا بالأسفل.",
+        "third_party_payment_timeout": "تعذر تحميل طرق الدفع. أعد المحاولة أو استخدم طريقة دفع مختلفة.",
+        "third_party_payment_error": "حدث خطأ أثناء تحميل اختيار الدفع. الرجاء استخدام طريقة دفع مختلفة.",
+        "add_address": "استخدم عنواناً مختلفاً",
+        "add_delivery_instructions": "أضف تعليمات التسليم",
+        "edit": "تعديل",
+        "delete": "حذف",
+        "back": "الظهر",
+        "address_more": "إجراءات أخرى لهذا العنوان",
+        "address_edit": "تعديل العنوان",
+        "address_delete": "حذف العنوان",
+        "address_confirm": "هل أنت متأكد أنك تريد حذف هذا العنوان من حسابك؟",
+        "address_default": "تعيين كإعداد افتراضي",
+        "address_form": {
+          "add_address": "أضف العنوان",
+          "save": "حفظ",
+          "cancel": "إلغاء",
+          "edit": "تعديل العنوان",
+          "update": "حفظ التغييرات",
+          "generic_error": "حدثت مشكلة أثناء حفظ عنوانك. حاول مرة أخرى.",
+          "one_time_address_subtitle": "استخدم عنوانًا لمرة واحدة لهذا الطلب"
+        },
+        "different_shipping_method_summary": "أدخل عنوان شحن مختلفًا لعرض طرق الشحن المتاحة",
+        "invalid_shipping_method_summary": "أدخل عنوان شحن صالحًا لعرض طرق الشحن المتاحة",
+        "invalid_shipping_method_summary_selected": "اختر عنوان شحن مختلفًا لعرض طرق الشحن المتاحة",
+        "method_summary": {
+          "incomplete_address_entered": "أدخل عنوان شحن كاملاً لعرض طرق الشحن المتاحة",
+          "incomplete_address_selected": "حدد عنوان شحن كاملاً لعرض طرق الشحن المتاحة"
+        },
+        "local_pickup": {
+          "search_address": "ابحث عن عنوان",
+          "rollup_title": "موقع الالتقاء",
+          "rollup_accessibility_label": "خيارات موقع الاستلام"
+        },
+        "missing_shipping_address": "عنوان الشحن مفقود",
+        "split_shipping_merchandise_quantity_label_standard": "%{quantity} عناصر",
+        "split_shipping_merchandise_quantity_label_additional": "+%{quantity} أخرى",
+        "split_shipping_merchandise_shipment_number": "الشحنة %{number} من %{total}",
+        "pre_order_ships_now": "السفن الآن",
+        "pre_order_ships_later": "تشحن لاحقًا",
+        "pre_order_ships_date": "سفن في %{date}",
+        "split_shipping_shipped_by_shop": "تم الشحن بواسطة %{shop_name}",
+        "split_shipping_multiple_shipment_label": "شحنات متعددة",
+        "split_shipping_shipping_label": "الأسلوب",
+        "split_shipping_shipment_notice": "سوف يصل طلبك في %{quantity_shipments}",
+        "split_shipping_first_shipment_notice": "سوف يصل طلبك الأول في %{quantity_shipments}",
+        "split_shipping_multiple_shipment_quantity_label": "%{quantity} شحنة",
+        "split_shipping_multiple_shipment_notice": "سيصل طلبك في شحنات متعددة",
+        "split_shipping_multiple_shipment_notice_one_time_purchase": "سيصل طلبك في %{quantity} شحنات."
       },
       "localized_fields": {
         "additional_information": {
@@ -1649,7 +1789,36 @@
     "B2B": {
       "locations": {
         "tax_exemption_not_applicable": "غير متوفر",
-        "tax_exemptions_modal_button_accessibility_label": "عرض جميع الإعفاءات الضريبية"
+        "tax_exemptions_modal_button_accessibility_label": "عرض جميع الإعفاءات الضريبية",
+        "contact_contact": "جهات الاتصال",
+        "contact_email": "بريد إلكتروني",
+        "contact_list_title": "الناس",
+        "contact_name": "الاسم",
+        "contact_permissions": "الأذونات",
+        "contact_phone_number": "رقم الهاتف",
+        "location_picker_label": "اسم الموقع",
+        "location_picker_accessibility_label": "اسم الموقع: {{locationName}}",
+        "net_payment_terms_description": "{{name}}: الدفعات مستحقة خلال {{numberOfDays}} يومًا",
+        "deposit_percentage": "{{percentage}} عربون",
+        "own_role_contact_name": "أنت",
+        "pagination": {
+          "load_more": "تحميل المزيد",
+          "load_more_accessibility_label": "تحميل المزيد من المواقع"
+        },
+        "payment_details_title": "تفاصيل الدفع",
+        "payment_terms": "شروط الدفع",
+        "permissions_label": "أذوناتك",
+        "permissions_title": "الأذونات",
+        "section_title": "الموقع",
+        "shipping_address_required": "أضف عنوان شحن لهذا الموقع لبدء تقديم الطلبات",
+        "staff_and_permissions_title": "الموظفون والصلاحيات",
+        "tax_details_title": "تفاصيل الضريبة",
+        "tax_id": "الرقم الضريبي",
+        "tax_exemptions": "إعفاءات ضريبية",
+        "multiple_tax_exemptions": "{{taxExemptionsCount}} أخرى",
+        "multiple_tax_exemptions_and": "و",
+        "tax_exemptions_modal_close": "إغلاق",
+        "taxes_none": "لا يوجد"
       },
       "location_selection": {
         "continue_to_store": "استمر في التخزين",
@@ -1823,6 +1992,10 @@
         "modal_po_number_input_max_length_error": "أرقام أوامر الشراء يجب ألا تتعدى {{maxLength}} حرفًا.",
         "save": "حفظ",
         "title": "أمر شراء رقم #{{poNumber}}"
+      },
+      "account_information": {
+        "company_card_name_label": "اسم الشركة",
+        "company_card_section_accessibility_label": "شركة"
       }
     },
     "payment_methods": {
@@ -2352,8 +2525,119 @@
         "resend_link_and_login": "لعرض تفاصيل طلبك، سجّل الدخول أو أرسل رابطاً جديداً إلى عنوان البريد الإلكتروني أو رقم الهاتف المُستخدَم عند الدفع.",
         "resend_link_only": "لعرض تفاصيل طلبك، أرسل رابطًا جديدًا إلى البريد الإلكتروني أو رقم الهاتف المستخدم عند إتمام عملية الشراء.",
         "log_in": "تسجيل الدخول",
-        "resend_link": "أرسل رابطًا جديدًا"
-      }
+        "resend_link": "أرسل رابطًا جديدًا",
+        "link_expired": "الرابط منتهي الصلاحية"
+      },
+      "remaining_amount": "المتبقي",
+      "marketing_section_title": "الأخبار والعروض",
+      "marketing_description": "ستصلك رسائل تسويقية عبر البريد الإلكتروني. يمكنك إلغاء الاشتراك في أي وقت.",
+      "marketing_checkbox_label": "أرسل لي عبر البريد الإلكتروني آخر الأخبار والعروض",
+      "marketing_checkmark_label": "أنت مشترك في استلام أخبار وعروض البريد الإلكتروني",
+      "marketing_pending_confirmation": "انقر على الرابط في بريدك الإلكتروني للتأكيد.",
+      "marketing_resend_email": "أعد إرسال البريد الإلكتروني",
+      "marketing_resend_email_success": "تم إرسال الرابط",
+      "returns": {
+        "expand_events_label": "عرض التفاصيل",
+        "hide_events_label": "إخفاء التفاصيل",
+        "ineligible_return_message": "لا توجد سلع في هذا الطلب مؤهلة للإرجاع.",
+        "ineligible_return_message_when_returned": "لا توجد سلع إضافية في هذا الطلب مؤهلة للإرجاع.",
+        "print_shipping_label": "طباعة ملصق الشحن",
+        "return_and_refund_modal_header": "سياسة الاسترجاع",
+        "tracking_number": "رقم التتبع:",
+        "exchange_header": "تبادل العناصر",
+        "exchange_subheader": "سيتم إضافة المنتجات المراد استبدالها إلى الطلب بمجرد اكتمال الإرجاع."
+      },
+      "shipping": {
+        "address": "عنوان الشحن",
+        "address_map_marker": "عنوان الشحن",
+        "method": "طريقة الشحن",
+        "method_short": "الأسلوب",
+        "ship_to": "شحن إلى",
+        "summary": "الشحن",
+        "free": "مجاني",
+        "free_shipping_discount": "شحن مجاني",
+        "one_time": "شحن لمرة واحدة",
+        "subscription": "شحن الاشتراك"
+      },
+      "pickup": {
+        "pickup": "التقاط",
+        "pickup_location": "موقع الالتقاء",
+        "pickup_point": "نقطة الاستلام"
+      },
+      "show_items": "عرض العناصر",
+      "total_savings": "إجمالي المدخرات",
+      "show_order_summary": "إظهار ملخص الطلب",
+      "hide_order_summary": "إخفاء ملخص الطلب",
+      "subtitle": "تم التأكيد {{date}}",
+      "subtotal": "المجموع الفرعي",
+      "subtotal_label_with_quantity": {
+        "one": "المجموع الفرعي",
+        "other": "المجموع الفرعي · {{count}} سلعة"
+      },
+      "summary_list_title_accessibility_label": "اطلب عناصر",
+      "summary_title": "ملخص الطلب",
+      "summary_totals_title_accessibility_label": "إجماليات الطلب",
+      "shop_order_tracking": {
+        "download_shop_to_track": "حمّل تطبيق المتجر لتتبع الشحنة",
+        "track_order_with_shop": "تتبع الطلب باستخدام Shop",
+        "title_header": "امسح بهاتفك",
+        "real_time_delivery_updates": "سيرسل لك المتجر تحديثات في الوقت الفعلي عن التسليم بمجرد شحن طلبك.",
+        "real_time_delivery_updates_with_gift": "احصل على تحديثات التسليم في الوقت الفعلي وهدية بقيمة {{promoAmount}} لتنفقها في تطبيق Shop.",
+        "shop_app_promo_amount_off": "احصل على هدية بقيمة {{promoAmount}}",
+        "shop_app_promo_text": "{{amountOff}} للإنفاق في تطبيق Shop"
+      },
+      "edit_summary": {
+        "added": "تمت الإضافة",
+        "added_with_quantity": "أضيف {{quantity}}",
+        "removed": "تمت الإزالة",
+        "removed_with_quantity": "تمت إزالة {{quantity}}",
+        "updated_at": "تم تحديث طلبك بتاريخ {{date}}",
+        "returned": "تمت الإعادة",
+        "returned_with_quantities": "أُعيد {{delta}} من أصل {{total}}",
+        "removed_with_quantities": "أُزيل {{delta}} من {{total}}",
+        "return_line_item_removed": "تمت إزالته من المرتجعات",
+        "return_line_item_removed_with_quantities": "تمت إزالة {{delta}} من العائد"
+      },
+      "shop_pay": {
+        "order_completed_with": "تم إكمال الطلب مع",
+        "learn_more": "تعرف على المزيد",
+        "usdc_rewards_terms": "عرض شروط مكافآت USDC"
+      },
+      "taxes": "الضرائب",
+      "taxes_included": "بما في ذلك {{amount}} في الضرائب",
+      "duties_and_taxes_included": "يشمل السعر الإجمالي الرسوم والضرائب. لا توجد رسوم إضافية عند التسليم.",
+      "duties": "الواجبات",
+      "ok_duties_tooltip": "يتم شحن هذا الطلب من بلد آخر، لذلك تمت إضافة رسوم جمركية إلى إجمالي طلبك.",
+      "error_duties_tooltip": "يتم شحن هذا الطلب من بلد آخر، لذا قد تُفرض رسوم وضرائب عند التسليم.",
+      "zero_duties_tooltip": "يتم شحن هذا الطلب من بلد آخر. لا تُفرض رسوم جمركية على الطلبات ذات هذه القيمة.",
+      "tip": "نصيحة",
+      "title": "اطلب {{name}}",
+      "total": "الإجمالي",
+      "unit_price": "{{price}}/لكل قطعة",
+      "pagination": {
+        "load_more": "تحميل المزيد",
+        "load_more_accessibility_label": "تحميل المزيد من العناصر",
+        "loading_accessibility_label": "جارٍ تحميل العناصر"
+      },
+      "login_to_view_all_order_details": "سجل الدخول لعرض كافة تفاصيل الطلب.",
+      "log_in": "تسجيل الدخول",
+      "logged_in_account_no_permission_to_order": "تم تسجيل دخولك كـ {{email}}. لا يملك هذا الحساب صلاحية إدارة هذا الطلب.",
+      "log_in_to_a_different_account": "تسجيل الدخول إلى حساب مختلف",
+      "fees": {
+        "restocking_fee": "رسوم إعادة تخزين",
+        "return_shipping_fee": "إرجاع الشحنة"
+      },
+      "vat_invoices": {
+        "label": "ضريبة القيمة المضافة",
+        "title": "فواتير ضريبة القيمة المضافة"
+      },
+      "link_sent": "تم إرسال الرابط",
+      "cash_rounding": "تقريب نقدي",
+      "adjusted_payment": "دفعة معدلة",
+      "adjusted_total": "المجموع المعدّل",
+      "due_on_date": "تاريخ الاستحقاق {{date}}",
+      "due_on_fulfillment": "مستحق عند الاستيفاء",
+      "due_on_receipt": "تستحق الدفع فور الاستلام"
     },
     "ui_components": {
       "minimumReached": "تم بلوغ الحد الأدنى وهو {{value}}",
@@ -2476,6 +2760,106 @@
         "save": "حفظ",
         "success": "تم تحديث طريقة الدفع",
         "use_new_payment_method": "+ استخدام طريقة دفع جديدة"
+      }
+    },
+    "addresses": {
+      "add_button": "أضف العنوان",
+      "add_button_text": "أضِف",
+      "add_button_accessibility_label": "أضف العنوان",
+      "back_button": "الظهر",
+      "back_button_accessibility_label": "العودة إلى تعديل العنوان {{address}}",
+      "add_address_banner": "أضف عناوين لاستخدامها عند الدفع",
+      "no_addresses_banner": "لم تتم إضافة عناوين",
+      "address_deleted_notification": "تم حذف العنوان",
+      "cancel_adding_address_accessibility_label": "إلغاء إضافة العنوان",
+      "cancel_deletion_button": "إلغاء",
+      "cancel_deletion_button_accessibility_label": "إلغاء حذف {{address}}",
+      "default_address": {
+        "badge_label": "افتراضي",
+        "title": "العنوان الافتراضي",
+        "title_accessibility_label": "العنوان الافتراضي: {{address}}"
+      },
+      "delete_button": "حذف",
+      "delete_button_accessibility_label": "حذف {{address}}",
+      "delete_confirmation_button": "حذف العنوان",
+      "delete_confirmation_button_accessibility_label": "حذف {{address}}",
+      "delete_confirmation_message": "هل تريد حذف العنوان؟ الطلبات الحالية لن تتأثر.",
+      "delete_confirmation_title": "حذف العنوان؟",
+      "delete_confirmation_description": "لا تتأثر الطلبات الحالية.",
+      "edit_button": "تعديل",
+      "edit_button_accessibility_label": "تعديل {{address}}",
+      "edit_section_accessibility_label": "تعديل {{address}}",
+      "edit_modal_title": {
+        "default": "تعديل العنوان",
+        "billing": "تعديل عنوان الفوترة",
+        "shipping": "تعديل عنوان الشحن"
+      },
+      "loading_accessibility_message": "جاري تحميل العنوان",
+      "loading_addresses_accessibility_message": "جاري تحميل العناوين",
+      "loading_billing_accessibility_message": "جارٍ تحميل عنوان الفواتير",
+      "loading_finished_accessibility_message": "تم تحميل صفحة العناوين الجديدة",
+      "loading_shipping_accessibility_message": "جاري تحميل عنوان الشحن",
+      "pagination": {
+        "load_more": "تحميل المزيد",
+        "load_more_accessibility_label": "تحميل المزيد من العناوين"
+      },
+      "save_new_address_accessibility_label": "حفظ العنوان",
+      "title": "العناوين",
+      "billing_address_dropdown_placeholder": "عنوان الفواتير"
+    },
+    "address_form": {
+      "attention": "انتباه",
+      "attention_company": "الشركة/الانتباه",
+      "attention_help_text": "اسم شخص أو قسم",
+      "auto_complete_close_accessibility_label": "إغلاق الاقتراحات",
+      "auto_complete_title": "اقتراحات",
+      "billing_address": "استخدم كعنوان للفوترة",
+      "cancel": "إلغاء",
+      "cancel_accessibility_label": "إلغاء تحرير العنوان {{address}}",
+      "creation_success_notification": "تمت إضافة العنوان",
+      "default_address": "هذا هو عنواني الافتراضي",
+      "default_address_creation_success_notification": "تمت إضافة العنوان الافتراضي",
+      "default_address_update_success_notification": "تم تحديث العنوان الافتراضي",
+      "loading_add_form_accessibility_message": "جاري تحميل نموذج العنوان الجديد",
+      "loading_edit_form_accessibility_message": "جارٍ تحميل نموذج تعديل العنوان",
+      "loading_form_accessibility_message": "تحميل نموذج العنوان",
+      "loading_finished_accessibility_message": "تم تحميل نموذج العنوان",
+      "save": "حفظ",
+      "save_accessibility_label": "حفظ العنوان {{address}}",
+      "section_title_accessibility_label": "أضف العنوان",
+      "update_success_notification": "تم تحديث العنوان"
+    },
+    "account_menu": {
+      "signed_out_state": {
+        "sheet_title": "تسجيل الدخول أو إنشاء حساب",
+        "section_divider": "طرق إضافية لتسجيل الدخول",
+        "alternate_divider": "أو",
+        "use_email_button": "استخدم البريد الإلكتروني بدلاً من ذلك",
+        "email_field_label": "بريد إلكتروني",
+        "orders_button": "الطلبات",
+        "profile_button": "الملف الشخصي",
+        "shop_login_button": "تسجيل الدخول باستخدام Shop",
+        "continue_with_google": "المتابعة باستخدام Google",
+        "continue_with_facebook": "المتابعة باستخدام فيسبوك"
+      },
+      "signed_in_state": {
+        "greeting_with_name": "مرحباً، {{first_name}}",
+        "greeting_without_name": "حساب",
+        "orders_button": "الطلبات",
+        "profile_button": "الملف الشخصي"
+      },
+      "location_picker": {
+        "sheet_title": "المواقع",
+        "search_field_placeholder": "بحث"
+      },
+      "aria_labels": {
+        "close_menu": "إغلاق القائمة",
+        "back_to_main_menu": "العودة إلى القائمة الرئيسية من {{title}}",
+        "open_submenu": "{{title}}، يفتح قائمة فرعية",
+        "loading_menu": "قائمة التحميل",
+        "account": "حساب",
+        "sign_in_with_email": "تسجيل الدخول بالبريد الإلكتروني",
+        "sign_in": "تسجيل الدخول"
       }
     }
   },
