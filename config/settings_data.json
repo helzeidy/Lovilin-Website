@@ -126,13 +126,6 @@
         "disabled": false,
         "settings": {}
       },
-      "8776485610325655785": {
-        "type": "shopify://apps/hiko-social-login/blocks/hiko-auth/3832d7e1-5bcd-4b72-91da-236b57feef8f",
-        "disabled": false,
-        "settings": {
-          "social_font": "enable"
-        }
-      },
       "12075128526103414267": {
         "type": "shopify://apps/bundlex/blocks/volume-discount-embed/c017a4b2-071a-4809-a2c2-1c5768f46bb9",
         "disabled": false,
@@ -152,10 +145,12 @@
         "disabled": true,
         "settings": {}
       },
-      "8529531577560427644": {
-        "type": "shopify://apps/otp/blocks/otp-plus/47f9f75c-53b3-4e16-ba66-80a88d275a5b",
+      "16548475241908962911": {
+        "type": "shopify://apps/oxi-social-login/blocks/social-login-embed/24ad60bc-8f09-42fa-807e-e5eda0fdae17",
         "disabled": false,
-        "settings": {}
+        "settings": {
+          "enabled_on_page": "all"
+        }
       }
     },
     "color_schemes": {
