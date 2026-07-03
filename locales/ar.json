@@ -919,6 +919,33 @@
         "footer": {
           "heading": "لا تقم بتحديث هذه الصفحة، سيتم تحديثها تلقائياً.",
           "body": "العناصر الموجودة في سلة التسوق الخاصة بك لا تُحجز حتى تكمل عملية الدفع."
+        },
+        "too_many_attempts": {
+          "message": "محاولات كثيرة جداً",
+          "description": "حاول مرة أخرى بعد بضع دقائق"
+        },
+        "line_to_check_out": "أنت في الصف للدفع",
+        "cart_summary_heading": "عربة التسوق الخاصة بك",
+        "merchandise": {
+          "available": "متاح",
+          "sold_out": "نفدت الكمية"
+        },
+        "inventory": {
+          "partial_inventory_banner": "جزء من سلة تسوقك نفد من المخزون ولن يكون متاحًا للشراء عند الدفع.",
+          "sold_out": {
+            "heading": "عربتك فارغة",
+            "storefront_body": "العودة إلى المتجر لمتابعة التسوق",
+            "no_storefront_body": "للأسف، السلعة التي ترغب في شرائها لم تعد متوفرة.",
+            "link": "العودة إلى المتجر"
+          }
+        },
+        "title": "طابور",
+        "time_to_checkout_title": "حان وقت المغادرة - {{shopName}}",
+        "estimated_wait_time": {
+          "calculating": "حساب وقت الانتظار التقديري",
+          "less_than_one": "الوقت المتوقع للانتظار: أقل من دقيقة",
+          "one": "الوقت المقدر للانتظار: {{count}} دقيقة",
+          "other": "الوقت المقدر للانتظار: {{count}} دقيقة"
         }
       },
       "cart_checkout_validation": {
@@ -1265,6 +1292,147 @@
         "shipping_address_title": "عنوان الشحن",
         "shipping_address_map_title": "خريطة Google تعرض موقع عنوان الشحن: %{address}",
         "payment_method_title": "طريقة الدفع"
+      },
+      "marketing": {
+        "sms": {
+          "disclaimer": {
+            "description_html": "بالتسجيل عبر الرسائل النصية، أنت توافق على استلام رسائل تسويقية آلية متكررة، بما في ذلك رسائل تذكير بسلة التسوق، على رقم الهاتف المقدم. الموافقة ليست شرطًا للشراء. أرسل STOP لإلغاء الاشتراك. أرسل HELP للحصول على المساعدة. يختلف تكرار الرسائل. قد يتم تطبيق رسوم الرسائل والبيانات. اطلع على %{privacy_policy_link} و %{terms_of_service_link}.",
+            "description_transactional_html": "قد تتلقى رسائل نصية متعلقة بتأكيد الطلب وتحديثات الشحن. أرسل \"STOP\" لإلغاء الاشتراك. أرسل \"HELP\" للمساعدة. يختلف تكرار الرسائل. قد تُطبق رسوم الرسائل والبيانات. اطلع على %{privacy_policy_modal_link} و %{terms_of_service_modal_link}."
+          },
+          "mobile_phone_number": "رقم الهاتف المحمول",
+          "get_offers_by_text": "احصل على عروض عبر الرسائل النصية"
+        },
+        "unsubscribe": {
+          "title": "لقد ألغيت اشتراكك",
+          "description": "لن تتلقى بعد الآن أي تذكيرات بشأن عربة التسوق منّا."
+        },
+        "accept_shop_pay_marketing_checkbox_label": "سجّلني للحصول على الأخبار والعروض من هذا المتجر"
+      },
+      "shop_policies": {
+        "policy_label": "السياسة",
+        "policies_label": "السياسات",
+        "select_policy_label": "اختر سياسة",
+        "refund_policy": "سياسة الاسترجاع",
+        "privacy_policy": "سياسة الخصوصية",
+        "terms_of_service": "شروط الخدمة",
+        "legal_notice": "إشعار قانوني",
+        "shipping_policy": "الشحن",
+        "terms_of_sale": "شروط البيع",
+        "subscription_policy": "إلغاءات",
+        "purchase_options_policy": "سياسة خيارات الشراء",
+        "contact_information": "جهات الاتصال",
+        "purchase_options_cancellation_policy": "إلغاءات",
+        "cookie_preferences": "ملفات تعريف الارتباط",
+        "terms_and_policies": "الشروط والسياسات"
+      },
+      "remote_policies": {
+        "unavailable_policy": "لم يتم تقديم %{policy_name} لهذا المتجر. لمزيد من المعلومات، اتصل بـ %{shop_name} مباشرةً."
+      },
+      "mor_policies": {
+        "terms_and_conditions": "شروط وأحكام التاجر المسجل",
+        "privacy_policy": "سياسة خصوصية التاجر المسجل"
+      },
+      "markets": {
+        "invalid_market_manager_error": "راجع معلومات الاتصال الخاصة بك قبل إتمام عملية الدفع"
+      },
+      "notifications": {
+        "title": "الإشعارات"
+      },
+      "order_payment_collection": {
+        "custom_line_item_description": "المبلغ الواجب دفعه للطلب %{order_name}",
+        "changes_summary": {
+          "added": {
+            "one": "تمت الإضافة",
+            "other": "تمت الإضافة %{count}"
+          },
+          "removed": "تمت الإزالة",
+          "subtracted": "تمت إزالة %{count}",
+          "returned": "تم إرجاع %{count}",
+          "return_line_item_removed": "تم إزالة %{count} من المرتجع"
+        },
+        "additional_payment_requested": "مطلوب دفع %{total_outstanding}",
+        "checkout_review_and_pay": "تم تحديث طلبك %{order_name}. يرجى مراجعة هذه التغييرات، ثم الدفع لتأكيد طلبك.",
+        "order_updated_on": "تم تحديث طلبك في %{last_edited_at}.",
+        "order_review_and_pay": "تم تحديث طلبك. يرجى مراجعته والدفع لتأكيد طلبك.",
+        "pay_now": "ادفع الآن"
+      },
+      "change_currency": {
+        "credit_card_will_be_charged_html": "سيتم خصم %{amount} من بطاقتك الائتمانية",
+        "payment_total_label": "إجمالي المبلغ المستحق",
+        "change_currency_link": "تغيير إلى %{currency_name}",
+        "card_provider_fx_charges_warning": "قد يفرض مزود بطاقتك رسومًا على معاملات %{currency_code}.",
+        "currency_not_supported_by_shop": "العملة التي اخترتها لم تعد متوفرة. جميع الأسعار الآن معروضة بالرمز %{currency_code}."
+      },
+      "change_country": {
+        "cart_updated_based_on_country": "تم تحديث سلة التسوق الخاصة بك بناءً على بلد الشحن الخاص بك.",
+        "cart_and_currency_updated_based_on_country": "تم تحديث سلة التسوق الخاصة بك وعملتك بناءً على بلد الشحن.",
+        "currency_updated_for_country": "تم تحديث العملة الخاصة بـ %{country}"
+      },
+      "change_cart_localization": {
+        "verify_shipping_address": "تم تحديث البلد/المنطقة الخاصة بك. أدخل عنوان الشحن الخاص بك لمتابعة عملية الدفع."
+      },
+      "tips": {
+        "title": "أضف إكرامية",
+        "description": "أظهر دعمك للفريق في %{shop_name}",
+        "presets_description": "اختر نسبة الإكرامية",
+        "custom_label": "إكرامية مخصصة",
+        "add_tip": "أضف إكرامية",
+        "update_tip": "تلميح التحديث",
+        "message": "شكرا لك، نحن نقدر ذلك.",
+        "preset_label": "%{tip_percent}٪",
+        "no_tip_label": "لا يوجد",
+        "not_available_with_spi": "غير متاح مع أقساط Shop Pay"
+      },
+      "open_graph_meta_tag": {
+        "title_with_products": {
+          "zero": "شراء %{product_name}",
+          "one": "شراء %{product_name} و %{count} سلعة أخرى",
+          "other": "اشترِ %{product_name} و %{count} سلع أخرى"
+        }
+      },
+      "subscriptions": {
+        "recurring_total_intervals": {
+          "day": {
+            "one": "يوم",
+            "other": "%{count} أيام"
+          },
+          "week": {
+            "one": "أسبوع",
+            "other": "%{count} أسابيع"
+          },
+          "month": {
+            "one": "شهر",
+            "other": "%{count} أشهر"
+          },
+          "year": {
+            "one": "عام",
+            "other": "%{count} سنوات"
+          }
+        },
+        "recurring_totals": "%{total_price} كل %{interval}",
+        "recurring_totals_with_initial_order_shipping_discount": "الدفعة الأولى %{total_price_with_discount}، ثم %{recurring_total}",
+        "recurring_totals_with_policies": {
+          "first_cycles": {
+            "one": "الدفعة الأولى %{total_price}",
+            "other": "أول %{count} دفعات بقيمة %{total_price} لكل دفعة"
+          },
+          "following_cycles": "، ثم %{total_price} كل %{interval}"
+        },
+        "recurring_totals_with_initial_order_shipping_discount_with_policies": {
+          "first_cycles": {
+            "one": "، ثم %{count} دفعة بقيمة %{total_price}",
+            "other": "، ثم %{count} دفعات بقيمة %{total_price} لكل دفعة"
+          }
+        }
+      },
+      "customer_payment_methods": {
+        "page_title": "طرق الدفع",
+        "title": "طرق الدفع",
+        "update_card_button_label": "تحديث البطاقة",
+        "delete_customer_mandate": {
+          "generic_error": "حدثت مشكلة أثناء معالجة طلبك.",
+          "success_message": "تم حذف طريقة الدفع الخاصة بك بنجاح"
+        }
       }
     },
     "sentence": {
