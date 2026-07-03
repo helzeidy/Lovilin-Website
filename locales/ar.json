@@ -2493,7 +2493,149 @@
             "header": "اطلع على إصدارات Shopify",
             "caption": "مع أكثر من 100 تحديث للمنتجات، يمكنك أن تكون أكثر إنتاجية وإبداعًا، وأقوى في التجارة مما تخيلت يومًا.",
             "link_text": "تصفح أحدث الإصدارات"
+          },
+          "store_owner": {
+            "header": "هل أنت صاحب المتجر؟",
+            "caption": "هل تواجه مشكلة في الوصول إلى متجرك؟ جرّب ميزة %{forgot_your_store_link}. إذا كنت ترغب في إعادة تنشيط متجرك، تواصل مع %{shopify_support_link}.",
+            "shopify_support_link_text": "دعم Shopify"
           }
+        }
+      }
+    },
+    "notices": {
+      "customer": {
+        "password_reset_error": "خطأ في إعادة تعيين كلمة المرور",
+        "subscribe_error": "خطأ في الاشتراك",
+        "unsubscribe_error": "خطأ في إلغاء الاشتراك",
+        "no_account_found": "لم يتم العثور على حساب بهذا البريد الإلكتروني.",
+        "invalid_credentials": "بريد إلكتروني أو كلمة مرور غير صحيحة.",
+        "denylisted_reset_password": "تعذر الوصول إلى حسابك لأن كلمة المرور الحالية غير آمنة. ستتلقى رسالة بريد إلكتروني لتحديث كلمة المرور.",
+        "signup_disabled": "تم تعطيل إنشاء حساب العميل."
+      },
+      "address": {
+        "updated": "تم تحديث العنوان بنجاح.",
+        "error_updating": "خطأ في تحديث العنوان",
+        "created": "تم إنشاء العنوان بنجاح",
+        "error_creating": "حدث خطأ أثناء إنشاء العنوان.",
+        "deleted": "تم حذف العنوان بنجاح",
+        "error_deleting": "حدث خطأ أثناء حذف العنوان."
+      },
+      "line_item": {
+        "item_status": {
+          "add_variant": "تمت إضافة %{delta}",
+          "increment_item": "تمت إضافة %{delta}",
+          "decrement_item": "تم حذف %{delta} من %{total}",
+          "decrement_fulfilled_line_item": "تم إرجاع %{delta} من %{total}",
+          "decrement_return_line_item": "تمت إزالة %{delta} من العائدات"
+        }
+      },
+      "order": {
+        "not_available": "هذا الطلب غير متاح",
+        "financial_status": {
+          "authorized": "مفوض",
+          "pending": "قيد الانتظار",
+          "paid": "مدفوع",
+          "unpaid": "غير مدفوع",
+          "voided": "ملغاة",
+          "partially_paid": "مدفوع جزئياً",
+          "partially_refunded": "تم رد جزء من المبلغ",
+          "refunded": "تم رد الأموال",
+          "expired": "انتهت صلاحيته"
+        },
+        "fulfillment_status": {
+          "fulfilled": "محققة",
+          "complete": "اكتمل",
+          "partial": "جزئي",
+          "unfulfilled": "لم يتم الوفاء به",
+          "restocked": "أعيد تخزينها"
+        },
+        "transaction_status": {
+          "success": "نجاح",
+          "pending": "قيد الانتظار",
+          "failure": "فشل",
+          "error": "خطأ"
+        },
+        "cancel_reason": {
+          "declined": "تم رفض الدفع",
+          "inventory": "العناصر غير متوفرة",
+          "fraud": "طلب احتيالي",
+          "customer": "غيّر العميل الطلب/ألغاه",
+          "staff": "خطأ من الموظفين",
+          "other": "أخرى"
+        },
+        "cash_on_delivery": "الدفع عند الاستلام"
+      },
+      "cart": {
+        "not_found": "العربة غير موجودة",
+        "only_n_items_available": "لا يمكنك إضافة سوى %{count} من %{name} إلى عربة التسوق.",
+        "too_many_items_in_cart": "لا يمكنك إضافة المزيد من %{name} إلى سلة التسوق.",
+        "only_one_added_to_cart": "تمت إضافة سلعة واحدة فقط إلى سلة التسوق الخاصة بك نظرًا لتوافرها.",
+        "only_n_added_to_cart": "تمت إضافة %{quantity} من العناصر إلى سلة التسوّق الخاصة بك بسبب توفّرها فقط.",
+        "maximum_available_quantity_reached": "لقد بلغتَ الحد الأقصى من كمية هذا المنتج في سلة التسوق الخاصة بك.",
+        "less_than_minimum": "الحد الأدنى لهذا العنصر هو %{min}.",
+        "more_than_maximum": "الحد الأقصى لهذا العنصر هو %{max}.",
+        "not_respect_step": "لا يمكنك إضافة هذا العنصر إلا بزيادات قدرها %{step}.",
+        "all_items_in_cart": "كل %{count} من %{name} موجودة في سلة مشترياتك.",
+        "empty_update": "لا يمكن تحديث سلة التسوق الفارغة",
+        "missing_parameters": "لا يوجد معرّف صالح أو معلمة سطر",
+        "generic_error": "خطأ في سلة التسوق",
+        "invalid_input": "المعلمة %{parameter} غير صالحة.",
+        "product_not_available": "المنتج غير متوفر",
+        "too_many_line_items_error": "لا يمكن أن تحتوي سلتك على أكثر من %{max} من العناصر.",
+        "link_expired": "الرابط منتهي الصلاحية",
+        "link_no_longer_exists": "الرابط لم يعد موجوداً.",
+        "stock_problems_html": "واحد أو أكثر من المنتجات غير متوفرة. لقد قمنا بتوفير <a href=\"%{link}\">عربة تسوق محدثة</a>.",
+        "changed": "تم تغيير سلة التسوق",
+        "items_changed": "لقد تغير عنصر واحد أو أكثر.",
+        "product_sold_out": "المنتج '%{name}' تم بيعه بالكامل.",
+        "variant_not_found": "تعذر العثور على المتغير",
+        "variant_requires_selling_plan": "لا يمكن شراء المتغير إلا من خلال خطة بيع.",
+        "selling_plan_not_available_for_company_locations": "تتوفر للطلبات بين الشركات (B2B) عملية شراء لمرة واحدة فقط",
+        "digital_product_not_available_for_company_locations": "لا يمكن إضافة هذا العنصر إلى طلب B2B.",
+        "buyer_cannot_purchase_for_company_locations": "لا يمكنك الشراء لهذا الموقع",
+        "selling_plan_not_applicable": "لا يمكن تطبيق خطة البيع على هذا المتغير",
+        "shipping_address_not_required": "هذه العربة لا تتطلب الشحن",
+        "shipping_address_invalid": "حدثت مشكلة أثناء حساب تكاليف الشحن. تابع عملية الدفع لاختيار طريقة الشحن قبل إتمام طلبك.",
+        "bundle_requires_components": "لا يمكن إضافة المنتج المجمع '%{name}' إلى عربة التسوق.",
+        "gift_card_with_components_not_supported": "لا يمكن إضافة المنتج المجمع '%{name}' إلى عربة التسوق.",
+        "gift_card_price_must_be_greater_than_zero": "لا يمكن إضافة المنتج المجمع '%{name}' إلى عربة التسوق.",
+        "gift_card_recipient_validation_error": "المستلم المحدد لبطاقة الهدايا غير صالح",
+        "view_lines_limit_reached": "يجب ألا تتجاوز السطور %{limit}",
+        "cart_too_large": "السلة كبيرة جدًا.",
+        "cart_attributes_error": "تحتوي سمات سلة التسوق على بيانات غير صالحة.",
+        "merchandise_line_transformers": {
+          "run_error": "حدث خطأ في سلة مشترياتك."
+        },
+        "merchandise_not_applicable": "لا يمكن شراء هذا المنتج بالتكوين المحدد."
+      },
+      "storefront": {
+        "invalid_password": "كلمة المرور غير صحيحة، يرجى المحاولة مرة أخرى."
+      },
+      "tags": {
+        "add_articles": "تضييق البحث ليشمل المقالات التي تحتوي أيضًا على الوسم %{tag}",
+        "add_products": "تضييق التحديد على المنتجات المطابقة للوسم %{tag}",
+        "remove_articles": "توسيع البحث ليشمل المقالات غير الموسومة بـ %{tag}",
+        "remove_products": "إزالة العلامة %{tag}"
+      }
+    },
+    "email_marketing": {
+      "subscribed": {
+        "confirmation": "نشكرك على الاشتراك في قائمتنا البريدية.",
+        "disclaimer": "يمكنك إلغاء الاشتراك في أي وقت.",
+        "unsubscribe": "إلغاء الاشتراك"
+      },
+      "unsubscribed": {
+        "confirmation": "لقد ألغيت اشتراكك من قائمتنا البريدية.",
+        "disclaimer": "لن تصلك أي تحديثات تسويقية أخرى منّا. يمكنك الاشتراك مرة أخرى في أي وقت.",
+        "preview": "أنت تستعرض ما سيراه العملاء عند إلغاء الاشتراك."
+      },
+      "sms_unsubscribe_confirm": {
+        "message": "هل أنت متأكد أنك تريد إلغاء الاشتراك في التسويق عبر الرسائل النصية القصيرة؟",
+        "button": "إلغاء الاشتراك"
+      },
+      "open_tracking": {
+        "opt_in": {
+          "opted_in_html": "<b>لقد وافقت على تتبع فتح البريد الإلكتروني.</b>"
         }
       }
     }
