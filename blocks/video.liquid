@@ -10,7 +10,11 @@
    --size-style-aspect-ratio: {% if block_settings.source == 'uploaded' %}{{ block_settings.video.aspect_ratio | default: 'auto' }}{% elsif block_settings.cover_image == blank %}{{ block_settings.aspect_ratio }}{% else %}auto{% endif %};
 {% endcapture %}
 
-<div class="video-block video-block--pos-{{ block_settings.mute_button_position | default: 'bottom-right' }}" data-video-block="{{ uid }}">
+<div
+  class="video-block video-block--pos-{{ block_settings.mute_button_position | default: 'bottom-right' }}"
+  data-video-block="{{ uid }}"
+  {%- if block_settings.border_radius > 0 %} style="border-radius: {{ block_settings.border_radius }}px; overflow: hidden;"{% endif %}
+>
   {% if block_settings.source == 'uploaded' %}
     {% render 'video',
       video: block_settings.video,
