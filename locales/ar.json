@@ -2220,6 +2220,138 @@
     "links": {
       "powered_by_shopify": "مدعوم بواسطة Shopify",
       "learn_more": "تعرف على المزيد"
+    },
+    "feed": {
+      "more": "المزيد"
+    },
+    "attributes": {
+      "email": "بريد إلكتروني",
+      "password": "كلمة المرور",
+      "password_confirmation": "تأكيد كلمة المرور",
+      "first_name": "الاسم الأول",
+      "last_name": "اسم العائلة",
+      "body": "الجسم",
+      "signature": "العنوان"
+    },
+    "addresses": {
+      "zip_code": "الرمز البريدي",
+      "postal_code": "الرمز البريدي",
+      "postcode": "الرمز البريدي",
+      "pincode": "الرمز البريدي",
+      "region": "المنطقة",
+      "prefecture": "محافظة",
+      "province": "مقاطعة",
+      "state": "ولاية",
+      "state_and_territory": "الولاية/الإقليم",
+      "county": "مقاطعة",
+      "emirate": "إمارة",
+      "governorate": "محافظة",
+      "confirm": "هل أنت متأكد من أنك ترغب في حذف هذا العنوان؟"
+    },
+    "collections": {
+      "sorting": {
+        "manual": "مميز",
+        "best_selling": "الأكثر مبيعاً",
+        "az": "أبجديًا، أ-ي",
+        "za": "أبجدياً، من ي-أ",
+        "price_ascending": "السعر، من الأقل للأعلى",
+        "price_descending": "السعر، من الأعلى إلى الأقل",
+        "date_ascending": "التاريخ، من الأقدم إلى الأحدث",
+        "date_descending": "تاريخ، من الأحدث إلى الأقدم",
+        "most_relevant": "الأكثر صلة"
+      }
+    },
+    "errors": {
+      "blank": "لا يمكن أن يكون فارغًا",
+      "blocked_address": "هذا الموقع غير مدعوم",
+      "credit_card_session_expired": "انتهت صلاحية تفويض بطاقة الائتمان، يرجى إعادة إدخال معلومات الدفع الخاصة بك. لم يتم خصم أي مبلغ من بطاقتك.",
+      "empty": "لا يمكن أن يكون فارغاً",
+      "invalid_email": "يجب أن يكون عنوان بريد إلكتروني صالحًا",
+      "discount_disabled": "تم تعطيل هذا الخصم",
+      "discount_expired": "هذا الخصم لم يعد صالحًا.",
+      "discount_limit_reached": "لقد وصل هذا الخصم إلى حد الاستخدام الأقصى",
+      "discount_not_found": "تعذر العثور على خصم صالح يطابق الرمز الذي أدخلته",
+      "customer_already_used_once_per_customer_discount_notice": "لقد وصل هذا الخصم إلى حد الاستخدام الأقصى",
+      "gift_card_already_applied": "تم تطبيق الرمز بالفعل على سلة مشترياتك",
+      "gift_card_code_invalid": "الرمز غير صالح",
+      "gift_card_currency_mismatch": "لا يمكن استخدام بطاقة الهدايا هذه لإتمام عملية الشراء. يُرجى الاتصال بـ %{shop_name} لإعادة إصدارها.",
+      "gift_card_depleted": "لا توجد أموال متبقية على بطاقة الهدايا هذه",
+      "gift_card_disabled": "بطاقة الهدايا معطلة",
+      "gift_card_expired": "البطاقة هدية منتهية الصلاحية",
+      "invalid": "غير صالح",
+      "bad_domain": "يحتوي على اسم نطاق غير صالح",
+      "taken": "تم الاستيلاء عليها بالفعل",
+      "contains_html_tags": "لا يمكن أن تحتوي على وسوم HTML",
+      "too_short": "أقصر مما يجب (الحد الأدنى هو %{count} من الأحرف)",
+      "too_long": "طويل جدًا (الحد الأقصى هو %{count} حرفًا)",
+      "password_mismatch": "يجب أن تطابق كلمة المرور المقدمة",
+      "contains_spaces": "يبدأ أو ينتهي بمسافات.",
+      "invalid_for_country": "غير صالح لـ %{country}",
+      "invalid_for_country_and_province": "غير صالح لـ %{province} و %{country}",
+      "invalid_province_in_country": "ليست مقاطعة صالحة في %{country}",
+      "invalid_state_in_country": "ليست ولاية صالحة في %{country}",
+      "invalid_region_in_country": "ليس منطقة صالحة في %{country}",
+      "less_than_or_equal_to": "يجب أن يكون أقل من أو يساوي %{count}",
+      "not_supported": "غير مدعوم",
+      "full_name_required": "أدخل الاسم الأول واسم العائلة",
+      "invalid_for_card_type": "غير صالح",
+      "invalid_type": "عذراً، لا نقبل بطاقات من هذا النوع.",
+      "invalid_format": "الصيغة غير صالحة",
+      "expired": "انتهت صلاحيته",
+      "invalid_start_date_or_issue_number_for_debit": "تاريخ بدء أو رقم إصدار صالح مطلوب.",
+      "invalid_expiry_year": "ليس سنة انتهاء صلاحية صالحة",
+      "reset_password_html": "عنوان البريد الإلكتروني هذا مرتبط بحساب بالفعل. إذا كان هذا الحساب يخصك، يمكنك <a href=\"/account/login#recover\">إعادة تعيين كلمة المرور الخاصة بك</a>",
+      "verify_email": "لقد أرسلنا بريدًا إلكترونيًا إلى %{customer_email}، يرجى النقر على الرابط المتضمن للتحقق من عنوان بريدك الإلكتروني.",
+      "product_not_available": "المنتج غير منشور لهذا العميل.",
+      "shop_404": {
+        "title": "أنشئ موقعًا للتجارة الإلكترونية وابدأ البيع عبر الإنترنت! برنامج التجارة الإلكترونية من Shopify",
+        "title_unavailable": "المتجر غير متاح",
+        "heros": {
+          "store_will_be_right_back": "سيعود هذا المتجر حالاً",
+          "store_unavailable": "هذا المتجر غير متاح حاليًا.",
+          "store_not_exist": "هذا المتجر غير موجود.",
+          "no_storefront": "هذا المتجر ليس لديه موقع إلكتروني بعد."
+        },
+        "subtitles": {
+          "store_will_be_right_back": "تعمل Shopify على إعادته للعمل في أقرب وقت ممكن."
+        },
+        "links": {
+          "refresh_page": "حدّث الصفحة",
+          "explore_other_stores": "استكشاف متاجر أخرى",
+          "start_free_trial": "ابدأ تجربة مجانية"
+        },
+        "status_card": {
+          "eyebrow": "مساعدة أصحاب المتاجر",
+          "header": "التحقق من حالة شوبيفاي",
+          "caption": "اكتشف ما إذا كان هناك انقطاع يؤثر على أكثر من هذا المتجر في Shopify.",
+          "link_text": "عرض حالة أنظمة Shopify"
+        },
+        "owner_ctas": {
+          "header": "هل أنت صاحب المتجر؟",
+          "fix_domain": "لإنهاء إعداد عنوان الويب الجديد الخاص بك، انتقل إلى %{domain_settings_link}. انقر فوق \"ربط النطاق\" وأدخل: %{domain}.<br>إذا كنت تواجه مشكلة في الدخول إلى متجرك، فجرّب صفحة %{forgot_your_store_link}.",
+          "fix_domain_link_text": "إعدادات النطاق الخاصة بك",
+          "forgot_your_store_link_text": "هل نسيت متجرك",
+          "add_storefront": "يمكنك إعداد موقعك عن طريق إضافة قناة المتجر عبر الإنترنت في %{admin_link}. إذا كنت تواجه مشكلة في الدخول إلى متجرك، فجرّب صفحة %{forgot_your_store_link}.",
+          "admin_link_text": "مسؤول"
+        },
+        "ctas": {
+          "sell_in_person": {
+            "header": "البيع شخصيًا",
+            "caption": "احصل على الميزات التي تحتاجها لإدارة متجرك، سواء كنت بدأت للتو أو كنت في طور التوسع.",
+            "link_text": "ابدأ التجربة المجانية"
+          },
+          "open_a_store": {
+            "header": "افتح متجر Shopify جديداً",
+            "caption": "ابدأ تجربة مجانية لمدة 3 أيام، ثم استمر بدفع 1 دولار شهريًا للأشهر الثلاثة التالية.",
+            "link_text": "سجل الآن"
+          },
+          "editions": {
+            "header": "اطلع على إصدارات Shopify",
+            "caption": "مع أكثر من 100 تحديث للمنتجات، يمكنك أن تكون أكثر إنتاجية وإبداعًا، وأقوى في التجارة مما تخيلت يومًا.",
+            "link_text": "تصفح أحدث الإصدارات"
+          }
+        }
+      }
     }
   },
   "placeholders": {
