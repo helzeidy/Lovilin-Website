@@ -44,6 +44,17 @@
       overflow: hidden;
     }
   {% endif %}
+  {% if block_settings.enable_mobile_width %}
+    @media screen and (max-width: 749px) {
+      .icon-block-{{ block.id }} {
+        width: {{ block_settings.width_mobile }}px !important;
+      }
+      /* Keep SVG icons square; images keep their natural aspect ratio */
+      svg.icon-block-{{ block.id }} {
+        height: {{ block_settings.width_mobile }}px !important;
+      }
+    }
+  {% endif %}
 {% endstyle %}
 
 {% stylesheet %}
@@ -326,12 +337,29 @@
     {
       "type": "range",
       "id": "width",
-      "label": "t:settings.width",
+      "label": "Width (desktop)",
       "min": 12,
       "max": 200,
       "step": 2,
       "unit": "px",
       "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_width",
+      "label": "Use custom mobile width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "width_mobile",
+      "label": "Width (mobile)",
+      "min": 12,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 24,
+      "visible_if": "{{ block.settings.enable_mobile_width }}"
     },
     {
       "type": "select",
