@@ -1,6 +1,660 @@
+{% doc %}
+  @prompt
+    sympl installments widget 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-sympl-widget-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+  }
+
+  .ai-sympl-widget__header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: {{ block.settings.spacing }}px;
+  }
+
+  .ai-sympl-widget__logo-{{ ai_gen_id }} {
+    height: {{ block.settings.logo_height }}px;
+    width: auto;
+  }
+
+  .ai-sympl-widget__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .ai-sympl-widget__plans-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.plan_spacing }}px;
+  }
+
+  .ai-sympl-widget__plan-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: {{ block.settings.plan_padding }}px;
+    background-color: {{ block.settings.plan_background }};
+    border-radius: {{ block.settings.plan_border_radius }}px;
+    border: 1px solid {{ block.settings.plan_border_color }};
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ai-sympl-widget__plan-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.plan_hover_background }};
+    border-color: {{ block.settings.plan_hover_border }};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-sympl-widget__plan-{{ ai_gen_id }}.selected {
+    background-color: {{ block.settings.plan_selected_background }};
+    border-color: {{ block.settings.plan_selected_border }};
+    border-width: 2px;
+  }
+
+  .ai-sympl-widget__plan-info-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ai-sympl-widget__plan-months-{{ ai_gen_id }} {
+    font-size: {{ block.settings.plan_text_size }}px;
+    color: {{ block.settings.text_color }};
+    font-weight: 600;
+  }
+
+  .ai-sympl-widget__plan-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.plan_description_size }}px;
+    color: {{ block.settings.secondary_text_color }};
+  }
+
+  .ai-sympl-widget__plan-amount-{{ ai_gen_id }} {
+    font-size: {{ block.settings.plan_amount_size }}px;
+    color: {{ block.settings.text_color }};
+    font-weight: 700;
+  }
+
+  .ai-sympl-widget__plan-amount-{{ ai_gen_id }} .currency {
+    font-size: {{ block.settings.plan_description_size }}px;
+    font-weight: 400;
+  }
+
+  .ai-sympl-widget__footer-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.spacing }}px;
+    padding-top: {{ block.settings.spacing }}px;
+    border-top: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-sympl-widget__footer-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.footer_text_size }}px;
+    color: {{ block.settings.secondary_text_color }};
+    text-align: center;
+    margin: 0;
+  }
+
+  .ai-sympl-widget__footer-text-{{ ai_gen_id }} a {
+    color: {{ block.settings.link_color }};
+    text-decoration: underline;
+  }
+
+  .ai-sympl-widget__footer-text-{{ ai_gen_id }} a:hover {
+    color: {{ block.settings.link_hover_color }};
+  }
+
+  .ai-sympl-widget__checkmark-{{ ai_gen_id }} {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid {{ block.settings.plan_border_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .ai-sympl-widget__plan-{{ ai_gen_id }}.selected .ai-sympl-widget__checkmark-{{ ai_gen_id }} {
+    background-color: {{ block.settings.plan_selected_border }};
+    border-color: {{ block.settings.plan_selected_border }};
+  }
+
+  .ai-sympl-widget__checkmark-{{ ai_gen_id }} svg {
+    width: 12px;
+    height: 12px;
+    stroke: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-sympl-widget__plan-{{ ai_gen_id }}.selected .ai-sympl-widget__checkmark-{{ ai_gen_id }} svg {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-sympl-widget-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-sympl-widget__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.9 }}px;
+    }
+
+    .ai-sympl-widget__plan-months-{{ ai_gen_id }} {
+      font-size: {{ block.settings.plan_text_size | times: 0.9 }}px;
+    }
+
+    .ai-sympl-widget__plan-amount-{{ ai_gen_id }} {
+      font-size: {{ block.settings.plan_amount_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<sympl-installments-{{ ai_gen_id }}
+  class="ai-sympl-widget-{{ ai_gen_id }}"
+  data-product-price="{{ product.price }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-sympl-widget__header-{{ ai_gen_id }}">
+    {% if block.settings.show_logo %}
+      {% if block.settings.logo %}
+        <img
+          src="{{ block.settings.logo | image_url: width: 200 }}"
+          alt="Sympl"
+          class="ai-sympl-widget__logo-{{ ai_gen_id }}"
+          loading="lazy"
+        >
+      {% else %}
+        <svg class="ai-sympl-widget__logo-{{ ai_gen_id }}" viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.5 4C6.01472 4 4 6.01472 4 8.5C4 10.9853 6.01472 13 8.5 13C10.9853 13 13 10.9853 13 8.5C13 6.01472 10.9853 4 8.5 4Z" fill="{{ block.settings.logo_color }}"/>
+          <path d="M19 4H15V20H19V4Z" fill="{{ block.settings.logo_color }}"/>
+          <path d="M28 4C25.7909 4 24 5.79086 24 8V20H28V8H32V20H36V8C36 5.79086 34.2091 4 32 4H28Z" fill="{{ block.settings.logo_color }}"/>
+          <path d="M44 4H40V20H44V13H48C50.2091 13 52 11.2091 52 9V8C52 5.79086 50.2091 4 48 4H44ZM44 8H48V9H44V8Z" fill="{{ block.settings.logo_color }}"/>
+          <path d="M60 4H56V20H68V16H60V4Z" fill="{{ block.settings.logo_color }}"/>
+        </svg>
+      {% endif %}
+    {% endif %}
+    <h3 class="ai-sympl-widget__title-{{ ai_gen_id }}">{{ block.settings.title }}</h3>
+  </div>
+
+  <div class="ai-sympl-widget__plans-{{ ai_gen_id }}">
+    {% if block.settings.show_3_months %}
+      <div class="ai-sympl-widget__plan-{{ ai_gen_id }}" data-months="3">
+        <div class="ai-sympl-widget__plan-info-{{ ai_gen_id }}">
+          <div class="ai-sympl-widget__plan-months-{{ ai_gen_id }}">3 months</div>
+          <div class="ai-sympl-widget__plan-description-{{ ai_gen_id }}">{{ block.settings.plan_3_description }}</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="ai-sympl-widget__plan-amount-{{ ai_gen_id }}">
+            <span class="currency">EGP</span> <span class="amount" data-installment="3">0</span>
+          </div>
+          <div class="ai-sympl-widget__checkmark-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_6_months %}
+      <div class="ai-sympl-widget__plan-{{ ai_gen_id }}" data-months="6">
+        <div class="ai-sympl-widget__plan-info-{{ ai_gen_id }}">
+          <div class="ai-sympl-widget__plan-months-{{ ai_gen_id }}">6 months</div>
+          <div class="ai-sympl-widget__plan-description-{{ ai_gen_id }}">{{ block.settings.plan_6_description }}</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="ai-sympl-widget__plan-amount-{{ ai_gen_id }}">
+            <span class="currency">EGP</span> <span class="amount" data-installment="6">0</span>
+          </div>
+          <div class="ai-sympl-widget__checkmark-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_12_months %}
+      <div class="ai-sympl-widget__plan-{{ ai_gen_id }}" data-months="12">
+        <div class="ai-sympl-widget__plan-info-{{ ai_gen_id }}">
+          <div class="ai-sympl-widget__plan-months-{{ ai_gen_id }}">12 months</div>
+          <div class="ai-sympl-widget__plan-description-{{ ai_gen_id }}">{{ block.settings.plan_12_description }}</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="ai-sympl-widget__plan-amount-{{ ai_gen_id }}">
+            <span class="currency">EGP</span> <span class="amount" data-installment="12">0</span>
+          </div>
+          <div class="ai-sympl-widget__checkmark-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.show_footer %}
+    <div class="ai-sympl-widget__footer-{{ ai_gen_id }}">
+      <p class="ai-sympl-widget__footer-text-{{ ai_gen_id }}">
+        {{ block.settings.footer_text }}
+        {% if block.settings.footer_link %}
+          <a href="{{ block.settings.footer_link }}" target="_blank">{{ block.settings.footer_link_text }}</a>
+        {% endif %}
+      </p>
+    </div>
+  {% endif %}
+</sympl-installments-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SymplInstallments{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.selectedPlan = null;
+      }
+
+      connectedCallback() {
+        this.productPrice = parseFloat(this.dataset.productPrice) / 100;
+        this.plans = this.querySelectorAll('.ai-sympl-widget__plan-{{ ai_gen_id }}');
+        this.calculateInstallments();
+        this.setupEventListeners();
+        
+        if (this.plans.length > 0) {
+          this.selectPlan(this.plans[0]);
+        }
+      }
+
+      calculateInstallments() {
+        const amounts = this.querySelectorAll('.amount');
+        amounts.forEach((amount) => {
+          const months = parseInt(amount.dataset.installment);
+          const installmentAmount = Math.ceil(this.productPrice / months);
+          amount.textContent = installmentAmount.toLocaleString('en-EG');
+        });
+      }
+
+      setupEventListeners() {
+        this.plans.forEach((plan) => {
+          plan.addEventListener('click', () => {
+            this.selectPlan(plan);
+          });
+        });
+      }
+
+      selectPlan(plan) {
+        this.plans.forEach((p) => p.classList.remove('selected'));
+        plan.classList.add('selected');
+        this.selectedPlan = plan.dataset.months;
+        
+        this.dispatchEvent(new CustomEvent('sympl-plan-selected', {
+          detail: {
+            months: this.selectedPlan,
+            installmentAmount: plan.querySelector('.amount').textContent
+          },
+          bubbles: true
+        }));
+      }
+    }
+
+    customElements.define('sympl-installments-{{ ai_gen_id }}', SymplInstallments{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Sympl installments",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Pay in installments"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo",
+      "label": "Show logo",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Custom logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo height",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "logo_color",
+      "label": "Default logo color",
+      "default": "#071e85"
+    },
+    {
+      "type": "header",
+      "content": "Payment plans"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_3_months",
+      "label": "Show 3 months plan",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "plan_3_description",
+      "label": "3 months description",
+      "default": "Interest-free"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_6_months",
+      "label": "Show 6 months plan",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "plan_6_description",
+      "label": "6 months description",
+      "default": "Interest-free"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_12_months",
+      "label": "Show 12 months plan",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "plan_12_description",
+      "label": "12 months description",
+      "default": "Low interest"
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer",
+      "label": "Show footer",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "footer_text",
+      "label": "Footer text",
+      "default": "No hidden fees."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "footer_link_text",
+      "label": "Link text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "footer_link",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#071e85"
+    },
+    {
+      "type": "color",
+      "id": "secondary_text_color",
+      "label": "Secondary text",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link",
+      "default": "#071e85"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover",
+      "default": "#04145d"
+    },
+    {
+      "type": "header",
+      "content": "Plan style"
+    },
+    {
+      "type": "color",
+      "id": "plan_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "plan_hover_background",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "plan_selected_background",
+      "label": "Selected background",
+      "default": "#eef2ff"
+    },
+    {
+      "type": "color",
+      "id": "plan_border_color",
+      "label": "Border",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "plan_hover_border",
+      "label": "Hover border",
+      "default": "#071e85"
+    },
+    {
+      "type": "color",
+      "id": "plan_selected_border",
+      "label": "Selected border",
+      "default": "#071e85"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Container padding",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Section spacing",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "plan_spacing",
+      "label": "Plan spacing",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "plan_padding",
+      "label": "Plan padding",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Border radius"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Container",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "plan_border_radius",
+      "label": "Plan",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "plan_text_size",
+      "label": "Plan text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "plan_description_size",
+      "label": "Description size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "plan_amount_size",
+      "label": "Amount size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "footer_text_size",
+      "label": "Footer text size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sympl installments"
+    }
+  ]
+}
 {% endschema %}
