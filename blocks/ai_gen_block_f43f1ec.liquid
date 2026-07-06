@@ -137,6 +137,137 @@
     min-height: auto !important;
     column-gap: 10px !important;
   }
+
+.flex-row {
+        display: flex;
+        flex-direction: row; }
+      
+      .flex-center {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center; }
+      
+      .items-baseline {
+        align-items: baseline; }
+      
+      .space-between {
+        justify-content: space-between; }
+      
+      .w-100 {
+        width: 100%; }
+      
+      .font-en {
+        font-family: 'sympl'; }
+      
+      .font-ar {
+        font-family: 'sympl-arabic'; }
+      
+      .offer-stamp-bg {
+        background-image: url(https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/offer_stamp.svg);
+        background-size: cover;
+        background-position: center; }
+      
+      .hide {
+        display: none; }
+      
+      .show {
+        display: flex; }
+      
+      .color-primary {
+        color: #ff395a; }
+      
+      .strong {
+        font-weight: bold; }
+      
+      .mobile {
+        display: none !important; }
+      
+      .web {
+        display: flex !important; }
+      
+      @media screen and (max-width: 480px) {
+        .web {
+          display: none !important; }
+        .mobile {
+          display: flex !important; } }
+      
+      .sympl-widget {
+        max-height: 120px;
+        min-height: 70px;
+        max-width: 500px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 9px 11px 8px 10px;
+        border-radius: 5px;
+        border: solid 1px #c1c1c1;
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 15px;
+        cursor: pointer;
+        position: relative; }
+        .sympl-widget #offer-stamp {
+          position: absolute;
+          top: 0;
+          justify-content: center;
+          align-items: center;
+          width: 40px;
+          height: 38.2px;
+          font-weight: 400;
+          font-size: 11px;
+          line-height: 13px;
+          text-align: center;
+          color: #ffffff; }
+          .sympl-widget #offer-stamp.ar {
+            left: 0;
+            transform: translate(-50%, -50%); }
+          .sympl-widget #offer-stamp.en {
+            right: 0;
+            transform: translate(50%, -50%); }
+        .sympl-widget .paragraph {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 0;
+          font-size: 14px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.5;
+          letter-spacing: 0.08px;
+          text-align: start;
+          color: #000; }
+          .sympl-widget .paragraph a {
+            text-decoration: underline; }
+          .sympl-widget .paragraph span.hint {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 0.06px; }
+        .sympl-widget img {
+          width: 70px;
+          object-fit: contain; }
+      
+      @media screen and (max-width: 480px) {
+        .sympl-widget {
+          max-width: 400px; }
+          .sympl-widget #offer-stamp {
+            width: 35px;
+            height: 33.44px;
+            font-size: 9px;
+            line-height: 7px; }
+          .sympl-widget .paragraph {
+            font-size: 12px;
+            line-height: 15px;
+            letter-spacing: -0.23px; }
+          .sympl-widget img {
+            width: 60px;
+            object-fit: contain; }
+          .sympl-widget span.hint {
+            font-size: 10px; } }
 {% endstyle %}
 
 <modal-opener-{{ ai_gen_id }}
