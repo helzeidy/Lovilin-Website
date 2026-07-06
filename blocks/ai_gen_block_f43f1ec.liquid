@@ -128,18 +128,36 @@
       width: 100%;
     }
   }
+  .sympl-widget{
+    border: 1px solid #e8e8e8 !important;
+    border-radius: 6px !important;
+    background: #fafafa !important;
+    padding: 10px 14px !important;
+    max-height: none !important;
+    min-height: auto !important;
+    column-gap: 10px !important;
+  }
 {% endstyle %}
 
 <modal-opener-{{ ai_gen_id }}
   class="ai-modal-opener-{{ ai_gen_id }}"
   {{ block.shopify_attributes }}
 >
-  <button
-    class="ai-modal-trigger-{{ ai_gen_id }}"
-    aria-label="{{ block.settings.button_text }}"
-  >
-    {{ block.settings.button_text }}
-  </button>
+
+  <div class="sympl-widget ai-modal-trigger-{{ ai_gen_id }}">
+    <div id="offer-stamp" class="hide"></div>
+    <div class="paragraph">
+            <div style="display:inline;">
+              Split into 5 payments of <strong id="price" class="color-primary">475 EGP </strong>
+            </div>
+            <div style="display:inline;">
+              <span class="strong">0 interest. 0 registration.</span>
+              <a id="learn-more" style="margin-left:4px;">learn more.</a>
+            </div>
+          </div>
+
+    <img src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/sympl-logo.svg" alt="Sympl logo">
+  </div>
 
   <div class="ai-modal-overlay-{{ ai_gen_id }}"></div>
 
