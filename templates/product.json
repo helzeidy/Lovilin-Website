@@ -784,6 +784,7 @@
             },
             "ai_gen_block_f43f1ec_mzXwVp": {
               "type": "ai_gen_block_f43f1ec",
+              "disabled": true,
               "settings": {
                 "button_text": "Open modal",
                 "button_font_size": 16,
