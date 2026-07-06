@@ -110,7 +110,9 @@
 .modal-content .steps {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    {% comment %} justify-content: space-between; {% endcomment %}
+        justify-content: center;
+    gap: 10px;
     flex-wrap:wrap;
     align-items:center;
 }
