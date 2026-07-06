@@ -829,7 +829,7 @@
                 "modal_border_color": "#efefef",
                 "modal_border_radius": 14,
                 "overlay_color": "#00000080",
-                "show_footer": false,
+                "show_footer": true,
                 "modal_footer_content": "<p>Footer content goes here</p>"
               },
               "blocks": {}
