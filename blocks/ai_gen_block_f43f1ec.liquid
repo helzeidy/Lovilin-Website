@@ -140,6 +140,14 @@
     max-width:120px;
   }
 
+ .ai-modal-header-details-{{ ai_gen_id }}{
+     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction:column;
+    gap:8px;
+}
+
   .ai-modal-title-{{ ai_gen_id }} {
     margin: 0;
     font-size: {{ block.settings.modal_title_size }}px;
@@ -302,7 +310,7 @@
     aria-labelledby="ai-modal-title-{{ ai_gen_id }}"
   >
     <div class="ai-modal-header-{{ ai_gen_id }}">
-    <div>
+    <div "ai-modal-header-details-{{ ai_gen_id }}">
     <img class="logo" src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/sympl-logo-2.svg" alt="Sympl logo">
      <p>Buy now & Split your payments with Sympl
 using your debit or credit card
