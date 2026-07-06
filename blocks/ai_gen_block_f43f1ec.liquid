@@ -419,7 +419,7 @@ using your debit or credit card
     {% if block.settings.show_footer %}
       <div class="ai-modal-footer-{{ ai_gen_id }}">
         <button
-        class="ai-modal-close-{{ ai_gen_id }}"
+        class="ai-modal-close-footer-{{ ai_gen_id }}"
         aria-label="Close modal"
       > 
         continue shopping
@@ -441,6 +441,7 @@ using your debit or credit card
         this.overlay = this.querySelector('.ai-modal-overlay-{{ ai_gen_id }}');
         this.modal = this.querySelector('.ai-modal-container-{{ ai_gen_id }}');
         this.closeButton = this.querySelector('.ai-modal-close-{{ ai_gen_id }}');
+        this.footercloseButton = this.querySelector('.ai-modal-close-footer-{{ ai_gen_id }}');
 
         this.setupEventListeners();
       }
@@ -448,6 +449,7 @@ using your debit or credit card
       setupEventListeners() {
         this.trigger.addEventListener('click', () => this.openModal());
         this.closeButton.addEventListener('click', () => this.closeModal());
+        this.footercloseButton.addEventListener('click', () => this.closeModal());
         this.overlay.addEventListener('click', () => this.closeModal());
 
         document.addEventListener('keydown', (e) => {
