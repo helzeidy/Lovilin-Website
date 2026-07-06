@@ -92,26 +92,13 @@
     margin-top: 17px;
 }
 
-  @media (max-width:768px){
-    .plan .vertical-line,.plan .horizontal-line{
-    display:none;
-    }
-
-    .plan{
-      flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    }
-  }
-
 .modal-content {
   text-align: center;
 }
 .modal-content .steps {
     display: flex;
     flex-direction: row;
-    {% comment %} justify-content: space-between; {% endcomment %}
-        justify-content: center;
+    justify-content: space-between;
     gap: 10px;
     flex-wrap:wrap;
     align-items:center;
@@ -127,6 +114,22 @@
 .modal-container img {
     object-fit: contain;
 }
+
+  @media (max-width:768px){
+    .plan .vertical-line,.plan .horizontal-line{
+    display:none;
+    }
+
+    .plan{
+      flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    }
+    .modal-content .steps {
+    justify-content: center;
+
+    }
+  }
 
   .ai-modal-overlay-{{ ai_gen_id }} {
     position: fixed;
