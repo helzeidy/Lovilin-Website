@@ -69,6 +69,15 @@
     margin-bottom: 10px;
 }
 
+.plan .vertical-line {
+    flex-shrink: 0;
+    width: 1px;
+    height: 64px;
+    border-radius: 1px;
+    background-color: #d8d8d8;
+    margin: 0 16px;
+}
+
 .modal-content .steps {
     display: flex;
     flex-direction: row;
@@ -346,7 +355,7 @@ using your debit or credit card
     <div class="ai-modal-body-{{ ai_gen_id }}">
       <div class="modal-content">
           <div class="w-100" id="planfig"><div class="plan w-100">
-  <div class="flex-col web">
+  <div class="">
     <img class="oval" src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/plans/down-payment.svg" alt="down">
     <div id="down-payment" class="plan-text color-primary">{{ product.price | divided_by: 4.0 | money }} </div>
     <div class="flex-row items-baseline">
@@ -354,7 +363,7 @@ using your debit or credit card
       <div data-i18n-key="downPayment" class="plan-text plan-text--sm"> (Down payment)</div>
     </div>
   </div>
-  <div class="flex-col mobile">
+  <div class="">
     <img class="oval" src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/plans/down-payment.svg" alt="down">
     <div data-i18n-key="downPayment-mobile" class="plan-text plan-text--normal"> Down payment</div>
     <div class="flex-row items-baseline">
@@ -363,19 +372,19 @@ using your debit or credit card
     </div>
   </div>
   <div class="vertical-line"></div>
-  <div class="flex-col">
+  <div>
     <div class="pie twenty"></div>
     <div id="installment" class="plan-text">{{ product.price | divided_by: 4.0 | money }} </div>
     <span data-i18n-key="firstPayment" class="plan-text plan-text--normal">In 1 month</span>
   </div>
   <div class="horizontal-line"></div>
-  <div class="flex-col">
+  <div>
     <div class="pie fourty"></div>
     <div id="installment" class="plan-text">{{ product.price | divided_by: 4.0 | money }} </div>
     <span data-i18n-key="secondPayment" class="plan-text plan-text--normal">In 2 months</span>
   </div>
   <div class="horizontal-line"></div>
-  <div class="flex-col">
+  <div>
     <div class="pie sixty"></div>
     <div id="installment" class="plan-text">{{ product.price | divided_by: 4.0 | money }} </div>
     <span data-i18n-key="thirdPayment" class="plan-text plan-text--normal">In 3 months</span>
