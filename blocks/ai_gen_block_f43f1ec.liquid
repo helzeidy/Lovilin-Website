@@ -10,7 +10,7 @@
     width: 100%;
   }
 
-  .ai-modal-trigger-{{ ai_gen_id }} {
+  {% comment %} .ai-modal-trigger-{{ ai_gen_id }} {
     padding: 12px 24px;
     background-color: {{ block.settings.button_color }};
     color: {{ block.settings.button_text_color }};
@@ -30,7 +30,7 @@
     background-color: {{ block.settings.button_hover_color }};
     color: {{ block.settings.button_hover_text_color }};
     border-color: {{ block.settings.button_hover_border_color }};
-  }
+  } {% endcomment %}
 
   .ai-modal-overlay-{{ ai_gen_id }} {
     position: fixed;
