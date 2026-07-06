@@ -336,7 +336,12 @@ using your debit or credit card
 
     {% if block.settings.show_footer %}
       <div class="ai-modal-footer-{{ ai_gen_id }}">
-        {{ block.settings.modal_footer_content }}
+        <button
+        class="ai-modal-close-{{ ai_gen_id }}"
+        aria-label="Close modal"
+      > 
+        continue shopping
+        </button>
       </div>
     {% endif %}
   </div>
