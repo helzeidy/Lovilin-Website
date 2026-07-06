@@ -134,7 +134,7 @@
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.9);
-    width: 80%;
+    width: 98%;
     max-width: 90vw;
     max-height: 80vh;
     background-color: {{ block.settings.modal_background_color }};
@@ -147,6 +147,12 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+  }
+
+  @media (min-width:768px){
+  .ai-modal-container-{{ ai_gen_id }} {
+  width:80%;
+  }
   }
 
   .ai-modal-container-{{ ai_gen_id }}.active {
