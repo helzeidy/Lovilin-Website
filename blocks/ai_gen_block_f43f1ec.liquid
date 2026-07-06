@@ -246,11 +246,15 @@
     aria-labelledby="ai-modal-title-{{ ai_gen_id }}"
   >
     <div class="ai-modal-header-{{ ai_gen_id }}">
+    <img class="logo" src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/sympl-logo-2.svg" alt="Sympl logo">
+     <p>Buy now & Split your payments with Sympl
+using your debit or credit card
+</p>
       <h2
         id="ai-modal-title-{{ ai_gen_id }}"
         class="ai-modal-title-{{ ai_gen_id }}"
       >
-        {{ block.settings.modal_title }}
+        No Interest, No Process
       </h2>
       <button
         class="ai-modal-close-{{ ai_gen_id }}"
@@ -274,7 +278,60 @@
     </div>
 
     <div class="ai-modal-body-{{ ai_gen_id }}">
-      {{ block.settings.modal_content }}
+      <div class="modal-content">
+          <div class="w-100" id="planfig"><div class="plan w-100">
+  <div class="flex-col web">
+    <img class="oval" src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/plans/down-payment.svg" alt="down">
+    <div id="down-payment" class="plan-text color-primary">{{ product.price | divided_by: 4 }} EGP </div>
+    <div class="flex-row items-baseline">
+      <div data-i18n-key="today" class="plan-text">Today</div>
+      <div data-i18n-key="downPayment" class="plan-text plan-text--sm"> (Down payment)</div>
+    </div>
+  </div>
+  <div class="flex-col mobile">
+    <img class="oval" src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/plans/down-payment.svg" alt="down">
+    <div data-i18n-key="downPayment-mobile" class="plan-text plan-text--normal"> Down payment</div>
+    <div class="flex-row items-baseline">
+      <div id="down-payment" class="plan-text color-primary">{{ product.price | divided_by: 4 }} EGP </div>
+      <div data-i18n-key="today-mobile" class="plan-text plan-text--sm">(Today)</div>
+    </div>
+  </div>
+  <div class="vertical-line"></div>
+  <div class="flex-col">
+    <div class="pie twenty"></div>
+    <div id="installment" class="plan-text">{{ product.price | divided_by: 4 }} EGP </div>
+    <span data-i18n-key="firstPayment" class="plan-text plan-text--normal">In 1 month</span>
+  </div>
+  <div class="horizontal-line"></div>
+  <div class="flex-col">
+    <div class="pie fourty"></div>
+    <div id="installment" class="plan-text">{{ product.price | divided_by: 4 }} EGP </div>
+    <span data-i18n-key="secondPayment" class="plan-text plan-text--normal">In 2 months</span>
+  </div>
+  <div class="horizontal-line"></div>
+  <div class="flex-col">
+    <div class="pie sixty"></div>
+    <div id="installment" class="plan-text">{{ product.price | divided_by: 4 }} EGP </div>
+    <span data-i18n-key="thirdPayment" class="plan-text plan-text--normal">In 3 months</span>
+  </div>
+</div>
+</div>
+          <h3 id="howto" data-i18n-key="modalHowTo">How to split with sympl?</h3>
+          <div class="steps">
+            <div class="step">
+              <img src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/Step_1.png">
+              <p data-i18n-key="firstStep">Add your favorite product to your cart</p>
+            </div>
+            <div class="step">
+              <img src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/Step_2.png">
+              <p data-i18n-key="secondStep">From the payment methods, choose “Paymob Accept” then choose Sympl</p>
+            </div>
+            <div class="step">
+              <img src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/Step_3.png">
+              <p data-i18n-key="thirdStep">Add your ID and card info then choose the payment plans you prefer</p>
+            </div>
+          </div>
+        </div>
     </div>
 
     {% if block.settings.show_footer %}
