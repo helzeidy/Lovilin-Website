@@ -62,6 +62,12 @@
     align-items: flex-start;
 }
 
+.centered{
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+}
+
 .plan .oval {
     width: 36px;
     height: 36px;
@@ -368,7 +374,7 @@ using your debit or credit card
   <div class="">
     <img class="oval" src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/plans/down-payment.svg" alt="down">
     <div id="down-payment" class="plan-text color-primary">{{ product.price | divided_by: 4.0 | money }} </div>
-    <div class="flex-row items-baseline">
+    <div class="centered">
       <div data-i18n-key="today" class="plan-text">Today</div>
       <div data-i18n-key="downPayment" class="plan-text plan-text--sm"> (Down payment)</div>
     </div>
@@ -376,32 +382,32 @@ using your debit or credit card
   <div class="">
     <img class="oval" src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/plans/down-payment.svg" alt="down">
     <div data-i18n-key="downPayment-mobile" class="plan-text plan-text--normal"> Down payment</div>
-    <div class="flex-row items-baseline">
+    <div class="centered">
       <div id="down-payment" class="plan-text color-primary">{{ product.price | divided_by: 4.0 | money }} </div>
       <div data-i18n-key="today-mobile" class="plan-text plan-text--sm">(Today)</div>
     </div>
   </div>
   <div class="vertical-line"></div>
-  <div>
+  <div class="centered">
     <div class="pie twenty"></div>
     <div id="installment" class="plan-text">{{ product.price | divided_by: 4.0 | money }} </div>
     <span data-i18n-key="firstPayment" class="plan-text plan-text--normal">In 1 month</span>
   </div>
   <div class="horizontal-line"></div>
-  <div>
+  <div class="centered">
     <div class="pie fourty"></div>
     <div id="installment" class="plan-text">{{ product.price | divided_by: 4.0 | money }} </div>
     <span data-i18n-key="secondPayment" class="plan-text plan-text--normal">In 2 months</span>
   </div>
   <div class="horizontal-line"></div>
-  <div>
+  <div class="centered">
     <div class="pie sixty"></div>
     <div id="installment" class="plan-text">{{ product.price | divided_by: 4.0 | money }} </div>
     <span data-i18n-key="thirdPayment" class="plan-text plan-text--normal">In 3 months</span>
   </div>
 </div>
 </div>
-          <h5 id="howto" data-i18n-key="modalHowTo" style="margin:8px 0;">How to split with sympl?</h5>
+          <h5 id="howto" data-i18n-key="modalHowTo" style="margin:16px 0;">How to split with sympl?</h5>
           <div class="steps">
             <div class="step">
               <img src="https://assets.sympl.ai/widgets/ecom-prod-dtls/assets/Step_1.png">
