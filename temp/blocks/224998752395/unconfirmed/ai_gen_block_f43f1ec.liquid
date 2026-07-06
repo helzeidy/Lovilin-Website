@@ -1,6 +1,421 @@
+{% doc %}
+  @prompt
+    a button with no details that open a modal i'll add all the required details inside the liquid code i just want a ready modal opener widget 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-modal-opener-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-modal-trigger-{{ ai_gen_id }} {
+    padding: 12px 24px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-modal-trigger-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+
+  .ai-modal-overlay-{{ ai_gen_id }} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.overlay_color }};
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 9998;
+  }
+
+  .ai-modal-overlay-{{ ai_gen_id }}.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .ai-modal-container-{{ ai_gen_id }} {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: {{ block.settings.modal_width }}%;
+    max-width: 90vw;
+    max-height: 90vh;
+    background-color: {{ block.settings.modal_background_color }};
+    border-radius: {{ block.settings.modal_border_radius }}px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ai-modal-container-{{ ai_gen_id }}.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .ai-modal-header-{{ ai_gen_id }} {
+    padding: 20px 24px;
+    border-bottom: 1px solid {{ block.settings.modal_border_color }};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ai-modal-title-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.modal_title_size }}px;
+    color: {{ block.settings.modal_text_color }};
+  }
+
+  .ai-modal-close-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: {{ block.settings.modal_text_color }};
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .ai-modal-close-{{ ai_gen_id }}:hover {
+    opacity: 1;
+  }
+
+  .ai-modal-body-{{ ai_gen_id }} {
+    padding: 24px;
+    overflow-y: auto;
+    flex-grow: 1;
+    color: {{ block.settings.modal_text_color }};
+  }
+
+  .ai-modal-footer-{{ ai_gen_id }} {
+    padding: 20px 24px;
+    border-top: 1px solid {{ block.settings.modal_border_color }};
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-modal-container-{{ ai_gen_id }} {
+      width: 95%;
+    }
+
+    .ai-modal-trigger-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<modal-opener-{{ ai_gen_id }}
+  class="ai-modal-opener-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <button
+    class="ai-modal-trigger-{{ ai_gen_id }}"
+    aria-label="{{ block.settings.button_text }}"
+  >
+    {{ block.settings.button_text }}
+  </button>
+
+  <div class="ai-modal-overlay-{{ ai_gen_id }}"></div>
+
+  <div
+    class="ai-modal-container-{{ ai_gen_id }}"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="ai-modal-title-{{ ai_gen_id }}"
+  >
+    <div class="ai-modal-header-{{ ai_gen_id }}">
+      <h2
+        id="ai-modal-title-{{ ai_gen_id }}"
+        class="ai-modal-title-{{ ai_gen_id }}"
+      >
+        {{ block.settings.modal_title }}
+      </h2>
+      <button
+        class="ai-modal-close-{{ ai_gen_id }}"
+        aria-label="Close modal"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="ai-modal-body-{{ ai_gen_id }}">
+      {{ block.settings.modal_content }}
+    </div>
+
+    {% if block.settings.show_footer %}
+      <div class="ai-modal-footer-{{ ai_gen_id }}">
+        {{ block.settings.modal_footer_content }}
+      </div>
+    {% endif %}
+  </div>
+</modal-opener-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ModalOpener{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.trigger = this.querySelector('.ai-modal-trigger-{{ ai_gen_id }}');
+        this.overlay = this.querySelector('.ai-modal-overlay-{{ ai_gen_id }}');
+        this.modal = this.querySelector('.ai-modal-container-{{ ai_gen_id }}');
+        this.closeButton = this.querySelector('.ai-modal-close-{{ ai_gen_id }}');
+
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.trigger.addEventListener('click', () => this.openModal());
+        this.closeButton.addEventListener('click', () => this.closeModal());
+        this.overlay.addEventListener('click', () => this.closeModal());
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+            this.closeModal();
+          }
+        });
+      }
+
+      openModal() {
+        this.overlay.classList.add('active');
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      closeModal() {
+        this.overlay.classList.remove('active');
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    customElements.define('modal-opener-{{ ai_gen_id }}', ModalOpener{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Modal opener",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Open modal"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Background color",
+      "default": "#071e85"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border color",
+      "default": "#071e85"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Hover background color",
+      "default": "#1a2158"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border color",
+      "default": "#071e85"
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Modal"
+    },
+    {
+      "type": "text",
+      "id": "modal_title",
+      "label": "Title",
+      "default": "Modal title"
+    },
+    {
+      "type": "range",
+      "id": "modal_title_size",
+      "label": "Title size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "richtext",
+      "id": "modal_content",
+      "label": "Content",
+      "default": "<p>Add your modal content here. You can include text, images, forms, or any other HTML content.</p>"
+    },
+    {
+      "type": "range",
+      "id": "modal_width",
+      "label": "Width",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "modal_background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "modal_text_color",
+      "label": "Text color",
+      "default": "#071e85"
+    },
+    {
+      "type": "color",
+      "id": "modal_border_color",
+      "label": "Border color",
+      "default": "#efefef"
+    },
+    {
+      "type": "range",
+      "id": "modal_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "rgba(0, 0, 0, 0.5)"
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer",
+      "label": "Show footer",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "modal_footer_content",
+      "label": "Footer content",
+      "default": "<p>Footer content goes here</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Modal opener"
+    }
+  ]
+}
 {% endschema %}
