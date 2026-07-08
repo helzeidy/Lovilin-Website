@@ -4478,7 +4478,7 @@
                       "name": "t:names.heading",
                       "settings": {
                         "text": "<h3>We Put Safety First.<br/>Every Detail. Every Time.</h3>",
-                        "width": "100%",
+                        "width": "fit-content",
                         "max_width": "none",
                         "alignment": "left",
                         "alignment_mobile": "",
@@ -4509,7 +4509,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Every Lovilin formula is built for real touchpoints—what your baby touches and what touches their skin—tested, certified, and designed to work without compromise.</p>",
-                    "width": "100%",
+                    "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
                     "alignment_mobile": "",
