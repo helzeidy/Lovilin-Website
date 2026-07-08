@@ -1099,7 +1099,8 @@
         }
       },
       "custom_css": [
-        "@media screen and (max-width: 749px) {.resource-list__slide {width: 90% !important; max-width: 90% !important; flex: 0 0 90% !important; }}"
+        "@media screen and (max-width: 749px) {.resource-list__slide {width: 90% !important; max-width: 90% !important; flex: 0 0 90% !important; }}",
+        ".group-block-content h3,.group-block-content h5 {text-align: start !important;}"
       ],
       "name": "Featured collection",
       "settings": {
