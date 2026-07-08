@@ -35,6 +35,21 @@
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
 
+    {%- comment -%} Arabic typography: load Tajawal and override font families on Arabic pages only {%- endcomment -%}
+    {%- if request.locale.iso_code == 'ar' -%}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap">
+      <style>
+        html[lang="ar"] {
+          --font-body--family: 'Tajawal', sans-serif;
+          --font-subheading--family: 'Tajawal', sans-serif;
+          --font-heading--family: 'Tajawal', sans-serif;
+          --font-accent--family: 'Tajawal', sans-serif;
+        }
+      </style>
+    {%- endif -%}
+
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
     {% endif %}
