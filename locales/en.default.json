@@ -352,7 +352,7 @@
   "shopify": {
     "checkout": {
       "order_summary": {
-        "confirmation_number_label": "Confirmation #{{ order.confirmation_number }}"
+        "confirmation_number_label": "Confirmation #{{order.confirmation_number}}"
       }
     }
   }
