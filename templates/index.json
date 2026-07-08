@@ -957,7 +957,7 @@
                   "name": "t:names.heading",
                   "settings": {
                     "text": "<h4>{{ closest.product.title }}</h4>",
-                    "width": "100%",
+                    "width": "fit-content",
                     "max_width": "none",
                     "alignment": "left",
                     "alignment_mobile": "",
@@ -1057,8 +1057,8 @@
                   "name": "t:names.text",
                   "settings": {
                     "text": "<p>{{ closest.product.metafields.custom.small_description | metafield_tag }}</p>",
-                    "width": "100%",
-                    "max_width": "normal",
+                    "width": "fit-content",
+                    "max_width": "none",
                     "alignment": "left",
                     "alignment_mobile": "",
                     "type_preset": "paragraph",
