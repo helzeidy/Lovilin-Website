@@ -348,12 +348,5 @@
       "default_title": "Default Title",
       "sticky_add_to_cart": "Quick add to cart bar"
     }
-  },
-  "shopify": {
-    "checkout": {
-      "order_summary": {
-        "confirmation_number_label": "Confirmation #{{order.confirmation_number}}"
-      }
-    }
   }
 }
