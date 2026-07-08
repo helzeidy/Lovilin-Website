@@ -957,7 +957,7 @@
                   "name": "t:names.heading",
                   "settings": {
                     "text": "<h4>{{ closest.product.title }}</h4>",
-                    "width": "fit-content",
+                    "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
                     "alignment_mobile": "",
@@ -1057,7 +1057,7 @@
                   "name": "t:names.text",
                   "settings": {
                     "text": "<p>{{ closest.product.metafields.custom.small_description | metafield_tag }}</p>",
-                    "width": "fit-content",
+                    "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
                     "alignment_mobile": "",
@@ -1092,7 +1092,7 @@
                 "show_installments": false,
                 "show_tax_info": false,
                 "type_preset": "h4",
-                "width": "100%",
+                "width": "fit-content",
                 "alignment": "left",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
