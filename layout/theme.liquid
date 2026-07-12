@@ -47,6 +47,20 @@
           --font-heading--family: 'Rubik', sans-serif;
           --font-accent--family: 'Rubik', sans-serif;
         }
+
+        /* RTL fixes — the theme is not fully RTL-ready */
+        /* Stop stray horizontal scroll caused by full-bleed (100vw) sections in RTL.
+           overflow-x: clip does not create a scroll container, so sticky headers keep working. */
+        html[lang="ar"],
+        html[lang="ar"] body {
+          overflow-x: clip;
+          max-width: 100%;
+        }
+
+        /* Mirror carousel arrow order so prev/next feel correct in RTL */
+        .rtl-layout slideshow-arrows {
+          flex-direction: row-reverse;
+        }
       </style>
     {%- endif -%}
 
