@@ -5405,6 +5405,32 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "text_kFWPAh": {
+              "type": "text",
+              "settings": {
+                "text": "<p>The Result </p>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "left",
+                "alignment_mobile": "",
+                "type_preset": "h5",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "group_8M7KnM": {
               "type": "group",
               "name": "t:names.group",
@@ -5455,11 +5481,38 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "text_Uxp8dR": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<p><em>Not a mix of ingredients.</em></p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "alignment_mobile": "",
+                    "type_preset": "custom",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "1.25rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
                 "text_VVNwbq": {
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p><strong>Ready To Join?</strong></p>",
+                    "text": "<p><strong>A system that works.</strong></p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -5484,30 +5537,34 @@
                 }
               },
               "block_order": [
+                "text_Uxp8dR",
                 "text_VVNwbq"
               ]
             },
-            "forms_inline_hpJEX3": {
-              "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+            "logo_BxPKqG": {
+              "type": "logo",
+              "name": "t:names.logo",
               "settings": {
-                "form_id": "1070032",
-                "text_color": "#071E85",
-                "button_background_color": "#071E85",
-                "button_label_color": "#FFFFFF",
-                "links_color": "#1878B9",
-                "errors_color": "#E02229",
-                "text_alignment": "center",
-                "form_alignment": "center",
-                "padding_top": 0,
-                "padding_bottom": 24,
-                "padding_right": 0,
-                "padding_left": 0
-              }
+                "inverse": false,
+                "font": "heading",
+                "unit": "pixel",
+                "percent_width": 100,
+                "pixel_height": 96,
+                "custom_mobile_size": false,
+                "unit_mobile": "percent",
+                "percent_width_mobile": 100,
+                "pixel_height_mobile": 120,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             },
             "text_6bJChD": {
               "type": "text",
               "settings": {
-                "text": "<p>Your next favorite collaboration might start here.<br/></p>",
+                "text": "<p>Built on science. <br/>Designed for real life.</p>",
                 "width": "fit-content",
                 "max_width": "none",
                 "alignment": "left",
@@ -5529,12 +5586,28 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "button_7FzLQK": {
+              "type": "button",
+              "settings": {
+                "label": "Explore System",
+                "link": "shopify://pages/our-system",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
             }
           },
           "block_order": [
+            "text_kFWPAh",
             "group_8M7KnM",
-            "forms_inline_hpJEX3",
-            "text_6bJChD"
+            "logo_BxPKqG",
+            "text_6bJChD",
+            "button_7FzLQK"
           ]
         }
       },
@@ -5543,12 +5616,12 @@
       ],
       "name": "t:names.image_with_text",
       "settings": {
-        "content_direction": "column",
+        "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 32,
         "section_width": "page-width",

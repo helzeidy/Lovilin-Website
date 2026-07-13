@@ -172,11 +172,11 @@
         grid-template-columns: 1fr min(50vw, var(--sidebar-width));
 
         .product-information__media {
-          padding-right: calc(var(--gap, 0) / 2);
+          padding-inline-end: calc(var(--gap, 0) / 2);
         }
 
         .product-details {
-          padding-left: calc(var(--gap, 0) / 2);
+          padding-inline-start: calc(var(--gap, 0) / 2);
         }
 
         &:has(.media-gallery--extend) {
@@ -189,12 +189,12 @@
         grid-template-columns: min(50vw, var(--sidebar-width)) 1fr;
 
         .product-information__media {
-          padding-left: calc(var(--gap, 0) / 2);
+          padding-inline-start: calc(var(--gap, 0) / 2);
           order: 1;
         }
 
         .product-details {
-          padding-right: calc(var(--gap, 0) / 2);
+          padding-inline-end: calc(var(--gap, 0) / 2);
           order: 0;
         }
 

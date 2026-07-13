@@ -61,21 +61,6 @@
         .rtl-layout slideshow-arrows {
           flex-direction: row-reverse;
         }
-
-        /* Mirror any element that still sets a physical text alignment (left/right)
-           via the --text-align custom property, so text follows the RTL reading order. */
-        html[lang="ar"] [style*="--text-align: left"] {
-          --text-align: right !important;
-        }
-        html[lang="ar"] [style*="--text-align: right"] {
-          --text-align: left !important;
-        }
-
-        /* Catch elements that hard-code text-align: left/right in the RTL context. */
-        html[lang="ar"] .text-block > *[style*="text-align: left"],
-        html[lang="ar"] .text-block > *[style*="text-align:left"] {
-          text-align: right;
-        }
       </style>
     {%- endif -%}
 
