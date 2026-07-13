@@ -3494,7 +3494,7 @@
                 "custom_width": 100,
                 "width_mobile": "fill",
                 "custom_width_mobile": 100,
-                "height": "fit",
+                "height": "fill",
                 "custom_height_unit": "percent",
                 "custom_height": 100,
                 "custom_height_px": 400,
