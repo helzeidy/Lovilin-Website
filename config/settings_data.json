@@ -142,11 +142,6 @@
       },
       "6174324309569838175": {
         "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
-        "disabled": true,
-        "settings": {}
-      },
-      "11502817661673146621": {
-        "type": "shopify://apps/releasit-cod-fee/blocks/app-embed/019a066b-bc34-792e-8460-8aae1d0bdf53",
         "disabled": false,
         "settings": {}
       }
