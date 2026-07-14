@@ -62,17 +62,6 @@
           flex-direction: row-reverse;
         }
 
-        /* Slideshow scroll positioning: the JS assumes LTR scroll math, which breaks
-           in RTL (slides land between snap points / content shows on the wrong slide).
-           Keep the scroll track LTR so snapping stays correct, and restore RTL inside
-           each slide so its text/content still reads right-to-left. */
-        .rtl-layout slideshow-slides {
-          direction: ltr;
-        }
-        .rtl-layout slideshow-slide {
-          direction: rtl;
-        }
-
         /* Mirror any element that still sets a physical text alignment (left/right)
            via the --text-align custom property, so text follows the RTL reading order. */
         html[lang="ar"] [style*="--text-align: left"] {
