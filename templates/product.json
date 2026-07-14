@@ -755,7 +755,6 @@
             "divider_VJhene": {
               "type": "_divider",
               "name": "t:names.divider",
-              "disabled": true,
               "settings": {
                 "thickness": 1,
                 "corner_radius": "square",
@@ -794,18 +793,6 @@
               },
               "blocks": {}
             },
-            "divider_ijVBhC": {
-              "type": "_divider",
-              "name": "t:names.divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
             "ai_gen_block_f43f1ec_mzXwVp": {
               "type": "ai_gen_block_f43f1ec",
               "settings": {
@@ -831,6 +818,18 @@
                 "overlay_color": "#00000080",
                 "show_footer": true,
                 "modal_footer_content": "<p>Footer content goes here</p>"
+              },
+              "blocks": {}
+            },
+            "divider_ijVBhC": {
+              "type": "_divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
               },
               "blocks": {}
             },
@@ -1171,8 +1170,8 @@
             "group_icgrde",
             "divider_VJhene",
             "bundle_selector_WmWzRd",
-            "divider_ijVBhC",
             "ai_gen_block_f43f1ec_mzXwVp",
+            "divider_ijVBhC",
             "buy_buttons_eYQEYi",
             "group_JwDJEa",
             "tabs_studio_product_tabs_block_y7YmaL"
