@@ -3392,6 +3392,7 @@
             "text_qqReY4": {
               "type": "text",
               "name": "t:names.text",
+              "disabled": true,
               "settings": {
                 "text": "<p><strong>What We Look For</strong></p>",
                 "width": "100%",
@@ -3420,7 +3421,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p><strong>The Principles Behind Every Formula</strong></p>",
+                "text": "<p><strong>How It Works</strong></p>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -3585,29 +3586,26 @@
                 "padding-inline-end": 32
               },
               "blocks": {
-                "image_Gmeztm": {
-                  "type": "image",
-                  "name": "t:names.image",
+                "text_CfmwjB": {
+                  "type": "text",
+                  "name": "t:names.heading",
                   "settings": {
-                    "image": "shopify://shop_images/Layer_1-2.jpg",
-                    "link": "",
-                    "image_ratio": "adapt",
-                    "width": "custom",
-                    "custom_width": 12,
-                    "width_mobile": "custom",
-                    "custom_width_mobile": 12,
-                    "height": "fit",
-                    "custom_height_unit": "px",
-                    "custom_height": 100,
-                    "custom_height_px": 400,
-                    "height_mobile": "",
-                    "custom_height_mobile_unit": "px",
-                    "custom_height_mobile": 60,
-                    "custom_height_mobile_px": 300,
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 12,
+                    "text": "<p><strong>1.</strong></p>",
+                    "width": "fit-content",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "type_preset": "h1",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
@@ -3669,7 +3667,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p><strong>Targeted Cleaning</strong></p>",
+                        "text": "<p><strong>Apply</strong></p>",
                         "width": "fit-content",
                         "max_width": "none",
                         "alignment": "left",
@@ -3696,7 +3694,7 @@
                       "type": "text",
                       "name": "t:names.description",
                       "settings": {
-                        "text": "<p>Each ingredient has a defined role.</p>",
+                        "text": "<p>Tell us a little about yourself.</p>",
                         "width": "100%",
                         "max_width": "none",
                         "alignment": "left",
@@ -3727,7 +3725,7 @@
                 }
               },
               "block_order": [
-                "image_Gmeztm",
+                "text_CfmwjB",
                 "group_fdEaaN"
               ]
             },
@@ -3781,29 +3779,26 @@
                 "padding-inline-end": 32
               },
               "blocks": {
-                "image_NiKzJB": {
-                  "type": "image",
-                  "name": "t:names.image",
+                "text_FWUWxU": {
+                  "type": "text",
+                  "name": "t:names.heading",
                   "settings": {
-                    "image": "shopify://shop_images/Layer_1-4.jpg",
-                    "link": "",
-                    "image_ratio": "adapt",
-                    "width": "custom",
-                    "custom_width": 12,
-                    "width_mobile": "custom",
-                    "custom_width_mobile": 12,
-                    "height": "fit",
-                    "custom_height_unit": "px",
-                    "custom_height": 100,
-                    "custom_height_px": 400,
-                    "height_mobile": "",
-                    "custom_height_mobile_unit": "px",
-                    "custom_height_mobile": 60,
-                    "custom_height_mobile_px": 300,
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 12,
+                    "text": "<p><strong>2.</strong></p>",
+                    "width": "fit-content",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "type_preset": "h1",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
@@ -3865,7 +3860,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p><strong>Surface Compatibility</strong></p>",
+                        "text": "<p><strong>Get Reviewed</strong></p>",
                         "width": "fit-content",
                         "max_width": "none",
                         "alignment": "left",
@@ -3892,7 +3887,7 @@
                       "type": "text",
                       "name": "t:names.description",
                       "settings": {
-                        "text": "<p>Safe interaction with fabrics, bottles, and baby-contact materials.</p>",
+                        "text": "<p>We’ll review your application and social profiles.</p>",
                         "width": "100%",
                         "max_width": "none",
                         "alignment": "left",
@@ -3923,7 +3918,7 @@
                 }
               },
               "block_order": [
-                "image_NiKzJB",
+                "text_FWUWxU",
                 "group_t4FYar"
               ]
             }
@@ -4033,29 +4028,26 @@
                 "padding-inline-end": 32
               },
               "blocks": {
-                "image_JDpXPh": {
-                  "type": "image",
-                  "name": "t:names.image",
+                "text_bbrhty": {
+                  "type": "text",
+                  "name": "t:names.heading",
                   "settings": {
-                    "image": "shopify://shop_images/Layer_1_d50dcbb3-1de5-4107-ae89-1748fb73a312.jpg",
-                    "link": "",
-                    "image_ratio": "adapt",
-                    "width": "custom",
-                    "custom_width": 12,
-                    "width_mobile": "custom",
-                    "custom_width_mobile": 12,
-                    "height": "fit",
-                    "custom_height_unit": "px",
-                    "custom_height": 100,
-                    "custom_height_px": 400,
-                    "height_mobile": "",
-                    "custom_height_mobile_unit": "px",
-                    "custom_height_mobile": 60,
-                    "custom_height_mobile_px": 300,
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 12,
+                    "text": "<p><strong>3.</strong></p>",
+                    "width": "fit-content",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "type_preset": "h1",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
@@ -4117,7 +4109,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p><strong>Residue Control</strong></p>",
+                        "text": "<p><strong>Join The Club</strong></p>",
                         "width": "fit-content",
                         "max_width": "none",
                         "alignment": "left",
@@ -4144,7 +4136,7 @@
                       "type": "text",
                       "name": "t:names.description",
                       "settings": {
-                        "text": "<p>Formulas rinse clean. They don’t coat.</p>",
+                        "text": "<p>Selected members will receive invitations to future campaigns, product launches, and exclusive experiences.</p>",
                         "width": "100%",
                         "max_width": "none",
                         "alignment": "left",
@@ -4175,7 +4167,7 @@
                 }
               },
               "block_order": [
-                "image_JDpXPh",
+                "text_bbrhty",
                 "group_jCnMEP"
               ]
             },
@@ -4199,7 +4191,7 @@
                 "custom_width": 100,
                 "width_mobile": "fill",
                 "custom_width_mobile": 100,
-                "height": "fit",
+                "height": "fill",
                 "custom_height_unit": "percent",
                 "custom_height": 100,
                 "custom_height_px": 400,
@@ -4229,29 +4221,26 @@
                 "padding-inline-end": 32
               },
               "blocks": {
-                "image_MjXhBi": {
-                  "type": "image",
-                  "name": "t:names.image",
+                "text_ArdrUP": {
+                  "type": "text",
+                  "name": "t:names.heading",
                   "settings": {
-                    "image": "shopify://shop_images/Layer_1-1.jpg",
-                    "link": "",
-                    "image_ratio": "adapt",
-                    "width": "custom",
-                    "custom_width": 12,
-                    "width_mobile": "custom",
-                    "custom_width_mobile": 12,
-                    "height": "fit",
-                    "custom_height_unit": "px",
-                    "custom_height": 100,
-                    "custom_height_px": 400,
-                    "height_mobile": "",
-                    "custom_height_mobile_unit": "px",
-                    "custom_height_mobile": 60,
-                    "custom_height_mobile_px": 300,
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 12,
+                    "text": "<p><strong>4.</strong></p>",
+                    "width": "fit-content",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "type_preset": "h1",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
@@ -4313,7 +4302,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p><strong>Performance Stability</strong></p>",
+                        "text": "<p><strong>Enjoy Exclusive Access</strong></p>",
                         "width": "fit-content",
                         "max_width": "none",
                         "alignment": "left",
@@ -4340,7 +4329,7 @@
                       "type": "text",
                       "name": "t:names.description",
                       "settings": {
-                        "text": "<p>Consistent results, every use, over time.</p>",
+                        "text": "<p>Be the first to experience, create, and share.</p>",
                         "width": "100%",
                         "max_width": "none",
                         "alignment": "left",
@@ -4371,7 +4360,7 @@
                 }
               },
               "block_order": [
-                "image_MjXhBi",
+                "text_ArdrUP",
                 "group_G347JW"
               ]
             }
@@ -4467,32 +4456,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "text_kFWPAh": {
-              "type": "text",
-              "settings": {
-                "text": "<p>The Result </p>",
-                "width": "fit-content",
-                "max_width": "narrow",
-                "alignment": "left",
-                "alignment_mobile": "",
-                "type_preset": "h5",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "group_8M7KnM": {
               "type": "group",
               "name": "t:names.group",
@@ -4543,38 +4506,11 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "text_Uxp8dR": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p><em>Not a mix of ingredients.</em></p>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "alignment_mobile": "",
-                    "type_preset": "custom",
-                    "font": "var(--font-subheading--family)",
-                    "font_size": "1.25rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
                 "text_VVNwbq": {
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p><strong>A system that works.</strong></p>",
+                    "text": "<p><strong>Ready To Join?</strong></p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -4596,37 +4532,60 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "text_t7wYxV": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Fill in your details below and tell us why you’d be a great fit for Lovilin Club.</p>",
+                    "width": "fit-content",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "alignment_mobile": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
-                "text_Uxp8dR",
-                "text_VVNwbq"
+                "text_VVNwbq",
+                "text_t7wYxV"
               ]
             },
-            "logo_BxPKqG": {
-              "type": "logo",
-              "name": "t:names.logo",
+            "forms_inline_TCRpCQ": {
+              "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
               "settings": {
-                "inverse": false,
-                "font": "heading",
-                "unit": "pixel",
-                "percent_width": 100,
-                "pixel_height": 96,
-                "custom_mobile_size": false,
-                "unit_mobile": "percent",
-                "percent_width_mobile": 100,
-                "pixel_height_mobile": 120,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
+                "form_id": "",
+                "text_color": "#202020",
+                "button_background_color": "#202020",
+                "button_label_color": "#FFFFFF",
+                "links_color": "#1878B9",
+                "errors_color": "#E02229",
+                "text_alignment": "center",
+                "form_alignment": "center",
+                "padding_top": 0,
+                "padding_bottom": 24,
+                "padding_right": 0,
+                "padding_left": 0
+              }
             },
-            "text_6bJChD": {
+            "text_XzLqRB": {
               "type": "text",
               "settings": {
-                "text": "<p>Built on science. <br/>Designed for real life.</p>",
+                "text": "<p>Fill in your details below and tell us why you’d be a great fit for Lovilin Club.</p>",
                 "width": "fit-content",
                 "max_width": "none",
                 "alignment": "left",
@@ -4648,28 +4607,12 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "button_7FzLQK": {
-              "type": "button",
-              "settings": {
-                "label": "Explore System",
-                "link": "shopify://pages/our-system",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
             }
           },
           "block_order": [
-            "text_kFWPAh",
             "group_8M7KnM",
-            "logo_BxPKqG",
-            "text_6bJChD",
-            "button_7FzLQK"
+            "forms_inline_TCRpCQ",
+            "text_XzLqRB"
           ]
         }
       },
