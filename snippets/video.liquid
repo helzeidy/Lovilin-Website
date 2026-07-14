@@ -114,7 +114,19 @@
         | external_video_tag: data-video-type: 'vimeo'
       }}
     {% else %}
-      {{ video | video_tag: image_size: '2500x', autoplay: true, loop: video_loop, muted: true, controls: controls }}
+      <video
+        playsinline
+        muted
+        autoplay
+        preload="auto"
+        {% if video_loop %}loop{% endif %}
+        {% if controls %}controls{% endif %}
+        {% if video.preview_image != blank %}poster="{{ video.preview_image | image_url: width: 2500 }}"{% endif %}
+      >
+        {%- for source in video.sources -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endfor -%}
+      </video>
     {% endif %}
   {% endcapture %}
 {% endif %}
