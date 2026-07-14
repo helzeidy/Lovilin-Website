@@ -16,7 +16,7 @@
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
-            "image_1": "shopify://shop_images/Untitled-1.jpg",
+            "image_1": "shopify://shop_images/Artboard_5_879db7c8-9cb5-499d-ab7d-3de19f3b5f9d.png",
             "image_1_mobile": "shopify://shop_images/M.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -141,6 +141,7 @@
                     "text_Ncy7J9": {
                       "type": "text",
                       "name": "t:names.text",
+                      "disabled": true,
                       "settings": {
                         "text": "<p>Formulation Science</p>",
                         "width": "fit-content",
@@ -169,7 +170,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p><strong>Formula built from the science up. <br/>Not the standard down.</strong></p>",
+                        "text": "<p><strong>Join Lovilin Club</strong></p>",
                         "width": "fit-content",
                         "max_width": "none",
                         "alignment": "left",
@@ -201,7 +202,7 @@
                 "text_f7hJ64": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We didn’t inherit a category. We rebuilt it.<br/>Not by asking what exists—but by asking what should exist.</p>",
+                    "text": "<p>More than a program, it’s a partnership.</p><p>Lovilin Club is a community of parents, creators, and trusted voices who get to experience Lovilin before everyone else.</p><p>If you love discovering new products, sharing real experiences, and being part of a growing brand, you’re in the right place.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -226,10 +227,9 @@
                 },
                 "button_bwnTka": {
                   "type": "button",
-                  "disabled": true,
                   "settings": {
-                    "label": "See Certifications",
-                    "link": "shopify://pages/our-system",
+                    "label": "Apply Now",
+                    "link": "shopify://pages/lovilin-club",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
@@ -333,7 +333,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p><strong>A system, not separate formulas</strong></p>",
+                "text": "<p><strong>Is Lovilin Club For You?</strong></p>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -359,8 +359,9 @@
             "text_pFGQDR": {
               "type": "text",
               "name": "t:names.text",
+              "disabled": true,
               "settings": {
-                "text": "<p>Every Lovilin product is built on the same scientific foundation—a structured formulation system designed for hygiene, stability, and real-life performance.</p><p>We don’t create isolated products.<br/>We engineer one system that adapts.</p>",
+                "text": "<p>Do you:</p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -513,7 +514,7 @@
                 "color_scheme": "scheme-6",
                 "background_media": "image",
                 "background_image": "shopify://shop_images/white_bg.jpg",
-                "aspect_ratio": "adapt",
+                "aspect_ratio": "square",
                 "toggle_overlay": true,
                 "overlay_color": "#7d54d782",
                 "overlay_style": "gradient",
@@ -529,12 +530,12 @@
                 "text_hAerLA": {
                   "type": "text",
                   "settings": {
-                    "text": "<h1>1</h1>",
+                    "text": "<p>Do you love creating content?</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
                     "alignment_mobile": "",
-                    "type_preset": "custom",
+                    "type_preset": "h3",
                     "font": "var(--font-heading--family)",
                     "font_size": "11.5rem",
                     "line_height": "normal",
@@ -654,8 +655,9 @@
                       "blocks": {
                         "text_PTLwNH": {
                           "type": "text",
+                          "disabled": true,
                           "settings": {
-                            "text": "<p><strong>LIFT</strong></p>",
+                            "text": "<p>Do you love creating content?</p>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "left",
@@ -685,6 +687,7 @@
                     },
                     "text_UP6in9": {
                       "type": "text",
+                      "disabled": true,
                       "settings": {
                         "text": "<p>A precisely balanced surfactant architecture removes dirt, oils, and residue from surfaces and fabrics.</p>",
                         "width": "100%",
@@ -737,7 +740,7 @@
                 "color_scheme": "scheme-6",
                 "background_media": "image",
                 "background_image": "shopify://shop_images/white_bg.jpg",
-                "aspect_ratio": "adapt",
+                "aspect_ratio": "square",
                 "toggle_overlay": true,
                 "overlay_color": "#00b09b85",
                 "overlay_style": "gradient",
@@ -753,12 +756,12 @@
                 "text_mYW9ei": {
                   "type": "text",
                   "settings": {
-                    "text": "<h1>2</h1>",
+                    "text": "<p>Do you enjoy sharing products you genuinely use?</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
                     "alignment_mobile": "",
-                    "type_preset": "custom",
+                    "type_preset": "h3",
                     "font": "var(--font-heading--family)",
                     "font_size": "11.5rem",
                     "line_height": "normal",
@@ -829,6 +832,7 @@
                     "group_dWYz3Y": {
                       "type": "group",
                       "name": "t:names.group",
+                      "disabled": true,
                       "settings": {
                         "content_direction": "column",
                         "vertical_on_mobile": true,
@@ -909,6 +913,7 @@
                     },
                     "text_qLa3aD": {
                       "type": "text",
+                      "disabled": true,
                       "settings": {
                         "text": "<p>Targeted actives (enzymes / solvents / antibacterials) break down stains, milk film, and microbial buildup at the source.</p>",
                         "width": "100%",
@@ -961,7 +966,7 @@
                 "color_scheme": "scheme-6",
                 "background_media": "image",
                 "background_image": "shopify://shop_images/white_bg.jpg",
-                "aspect_ratio": "adapt",
+                "aspect_ratio": "square",
                 "toggle_overlay": true,
                 "overlay_color": "#f8c70e87",
                 "overlay_style": "gradient",
@@ -977,12 +982,12 @@
                 "text_EWTDGw": {
                   "type": "text",
                   "settings": {
-                    "text": "<h1>3</h1>",
+                    "text": "<p>Do you believe real experiences matter more than perfect ads?</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
                     "alignment_mobile": "",
-                    "type_preset": "custom",
+                    "type_preset": "h3",
                     "font": "var(--font-heading--family)",
                     "font_size": "11.5rem",
                     "line_height": "normal",
@@ -1053,6 +1058,7 @@
                     "group_HMdJxR": {
                       "type": "group",
                       "name": "t:names.group",
+                      "disabled": true,
                       "settings": {
                         "content_direction": "column",
                         "vertical_on_mobile": true,
@@ -1133,6 +1139,7 @@
                     },
                     "text_E49GTh": {
                       "type": "text",
+                      "disabled": true,
                       "settings": {
                         "text": "<p>pH regulators and structural agents maintain formula integrity, ensuring consistent performance over time</p>",
                         "width": "100%",
@@ -1185,7 +1192,7 @@
                 "color_scheme": "scheme-6",
                 "background_media": "image",
                 "background_image": "shopify://shop_images/white_bg.jpg",
-                "aspect_ratio": "adapt",
+                "aspect_ratio": "square",
                 "toggle_overlay": true,
                 "overlay_color": "#df3e958c",
                 "overlay_style": "gradient",
@@ -1201,12 +1208,12 @@
                 "text_Y3RLPB": {
                   "type": "text",
                   "settings": {
-                    "text": "<h1>4</h1>",
+                    "text": "<p>Do you want early access to new launches and exclusive opportunities?</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
                     "alignment_mobile": "",
-                    "type_preset": "custom",
+                    "type_preset": "h3",
                     "font": "var(--font-heading--family)",
                     "font_size": "11.5rem",
                     "line_height": "normal",
@@ -1277,6 +1284,7 @@
                     "group_QGdHq7": {
                       "type": "group",
                       "name": "t:names.group",
+                      "disabled": true,
                       "settings": {
                         "content_direction": "column",
                         "vertical_on_mobile": true,
@@ -1357,6 +1365,7 @@
                     },
                     "text_YGKMzf": {
                       "type": "text",
+                      "disabled": true,
                       "settings": {
                         "text": "<p>Low-residue design ensures nothing stays behind—no film, no interference, no buildup.</p>",
                         "width": "100%",
