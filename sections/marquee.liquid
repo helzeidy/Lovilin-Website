@@ -56,6 +56,14 @@
     overflow: hidden;
   }
 
+  /* In RTL the track is right-aligned, which leaves empty space until content
+     scrolls in. Force the track LTR so it fills from the start (the scroll
+     direction is still flipped for Arabic via --marquee-direction). */
+  .rtl-layout marquee-component,
+  html[lang="ar"] marquee-component {
+    direction: ltr;
+  }
+
   .marquee__wrapper {
     display: flex;
     gap: var(--marquee-gap);
