@@ -160,6 +160,24 @@
     window.setTimeout(setup, 600);
     window.setTimeout(setup, 1500);
 
+    // Mobile (esp. iOS) often refuses muted autoplay until the user interacts once.
+    // Retry playback on the first touch/scroll/tap anywhere on the page.
+    var gestureEvents = ['touchstart', 'pointerdown', 'scroll', 'click'];
+    function gestureUnlock() {
+      var video = findVideo();
+      if (video) {
+        primeVideo(video);
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+      }
+      gestureEvents.forEach(function (ev) {
+        window.removeEventListener(ev, gestureUnlock);
+      });
+    }
+    gestureEvents.forEach(function (ev) {
+      window.addEventListener(ev, gestureUnlock, { once: true, passive: true });
+    });
+
     if (btn) {
       btn.addEventListener('click', function () {
         var video = findVideo();

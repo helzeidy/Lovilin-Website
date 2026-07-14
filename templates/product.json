@@ -302,7 +302,7 @@
                     "show_installments": false,
                     "show_tax_info": false,
                     "type_preset": "h3",
-                    "width": "fit-content",
+                    "width": "100%",
                     "alignment": "left",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -794,6 +794,46 @@
               },
               "blocks": {}
             },
+            "divider_ijVBhC": {
+              "type": "_divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "ai_gen_block_f43f1ec_mzXwVp": {
+              "type": "ai_gen_block_f43f1ec",
+              "settings": {
+                "button_text": "Open modal",
+                "button_font_size": 16,
+                "button_color": "#071e85",
+                "button_text_color": "#ffffff",
+                "button_border_color": "#071e85",
+                "button_hover_color": "#1a2158",
+                "button_hover_text_color": "#ffffff",
+                "button_hover_border_color": "#071e85",
+                "button_border_width": 0,
+                "button_border_radius": 100,
+                "desktop_width_percent": 30,
+                "modal_title": "Modal title",
+                "modal_title_size": 24,
+                "modal_content": "<p>Add your modal content here. You can include text, images, forms, or any other HTML content.</p>",
+                "modal_width": 50,
+                "modal_background_color": "#ffffff",
+                "modal_text_color": "#071e85",
+                "modal_border_color": "#efefef",
+                "modal_border_radius": 14,
+                "overlay_color": "#00000080",
+                "show_footer": true,
+                "modal_footer_content": "<p>Footer content goes here</p>"
+              },
+              "blocks": {}
+            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -1110,58 +1150,6 @@
                 "icon_YYkMb6"
               ]
             },
-            "divider_ijVBhC": {
-              "type": "_divider",
-              "name": "t:names.divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
-            "ai_gen_block_f43f1ec_mzXwVp": {
-              "type": "ai_gen_block_f43f1ec",
-              "settings": {
-                "button_text": "Open modal",
-                "button_font_size": 16,
-                "button_color": "#071e85",
-                "button_text_color": "#ffffff",
-                "button_border_color": "#071e85",
-                "button_hover_color": "#1a2158",
-                "button_hover_text_color": "#ffffff",
-                "button_hover_border_color": "#071e85",
-                "button_border_width": 0,
-                "button_border_radius": 100,
-                "desktop_width_percent": 30,
-                "modal_title": "Modal title",
-                "modal_title_size": 24,
-                "modal_content": "<p>Add your modal content here. You can include text, images, forms, or any other HTML content.</p>",
-                "modal_width": 50,
-                "modal_background_color": "#ffffff",
-                "modal_text_color": "#071e85",
-                "modal_border_color": "#efefef",
-                "modal_border_radius": 14,
-                "overlay_color": "#00000080",
-                "show_footer": true,
-                "modal_footer_content": "<p>Footer content goes here</p>"
-              },
-              "blocks": {}
-            },
-            "divider_d3GQQj": {
-              "type": "_divider",
-              "name": "t:names.divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
             "tabs_studio_product_tabs_block_y7YmaL": {
               "type": "shopify://apps/tabs-studio/blocks/product_tabs_block/19980fb9-f2ca-4ada-ad36-c0364c3318b8",
               "settings": {
@@ -1183,11 +1171,10 @@
             "group_icgrde",
             "divider_VJhene",
             "bundle_selector_WmWzRd",
-            "buy_buttons_eYQEYi",
-            "group_JwDJEa",
             "divider_ijVBhC",
             "ai_gen_block_f43f1ec_mzXwVp",
-            "divider_d3GQQj",
+            "buy_buttons_eYQEYi",
+            "group_JwDJEa",
             "tabs_studio_product_tabs_block_y7YmaL"
           ]
         }
@@ -2124,7 +2111,7 @@
                 "show_installments": false,
                 "show_tax_info": false,
                 "type_preset": "h4",
-                "width": "fit-content",
+                "width": "100%",
                 "alignment": "left",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",

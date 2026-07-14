@@ -62,18 +62,6 @@
           flex-direction: row-reverse;
         }
 
-        /* Hero slideshow ONLY: in RTL the scroll track is right-aligned, which
-           leaves white space on the left until the first slide scrolls in.
-           Force the track LTR so it fills from the start. Scoped to
-           .slideshow-section so product/testimonial carousels keep normal
-           RTL behavior (they don't use this class). */
-        .rtl-layout .slideshow-section slideshow-slides {
-          direction: ltr;
-        }
-        .rtl-layout .slideshow-section slideshow-slide {
-          direction: rtl;
-        }
-
         /* Mirror any element that still sets a physical text alignment (left/right)
            via the --text-align custom property, so text follows the RTL reading order. */
         html[lang="ar"] [style*="--text-align: left"] {
