@@ -15,7 +15,30 @@
   data-video-block="{{ uid }}"
   style="--size-style-width: {{ block_settings.custom_width }}%; --size-style-width-mobile: {{ block_settings.custom_width_mobile }}%;{% if block_settings.border_radius > 0 %} border-radius: {{ block_settings.border_radius }}px; overflow: hidden;{% endif %}"
 >
-  {% if block_settings.source == 'uploaded' %}
+  {%- liquid
+    assign mp4_source = null
+    if block_settings.source == 'uploaded' and block_settings.video != blank
+      assign mp4_source = block_settings.video.sources | where: 'format', 'mp4' | first
+    endif
+  -%}
+  {% if block_settings.video_autoplay and mp4_source %}
+    {%- comment -%} Plain autoplay video: reliable muted+inline autoplay on mobile (no deferred-media) {%- endcomment -%}
+    <video
+      class="video-block__video spacing-style size-style border-style"
+      style="{{ video_style }}"
+      autoplay
+      muted
+      loop
+      playsinline
+      webkit-playsinline
+      preload="metadata"
+      poster="{{ block_settings.video.preview_image | image_url: width: 1200 }}"
+      {% unless block_settings.hide_controls %}controls{% endunless %}
+      {{ block.shopify_attributes }}
+    >
+      <source src="{{ mp4_source.url }}" type="video/mp4">
+    </video>
+  {% elsif block_settings.source == 'uploaded' %}
     {% render 'video',
       video: block_settings.video,
       video_class: 'spacing-style size-style border-style',
@@ -23,6 +46,7 @@
       video_style: video_style,
       video_preview_image: block_settings.video.preview_image,
       disable_controls: block_settings.hide_controls,
+      video_autoplay: block_settings.video_autoplay,
       additional_attributes: block.shopify_attributes
     %}
   {% else %}
@@ -35,6 +59,7 @@
       video_alt: block_settings.alt,
       video_preview_image: block_settings.cover_image,
       disable_controls: block_settings.hide_controls,
+      video_autoplay: block_settings.video_autoplay,
       additional_attributes: block.shopify_attributes
     %}
   {% endif %}
