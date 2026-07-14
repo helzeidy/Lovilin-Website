@@ -8,16 +8,28 @@
 
 {% assign gap_between_elements = section.settings.gap_between_elements %}
 
+{%- liquid
+  # Flip the marquee animation direction in RTL so it scrolls the correct way
+  # and doesn't leave an empty gap.
+  assign marquee_direction = section.settings.movement_direction
+  if request.locale.iso_code == 'ar'
+    if marquee_direction == 'reverse'
+      assign marquee_direction = 'normal'
+    else
+      assign marquee_direction = 'reverse'
+    endif
+  endif
+-%}
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <marquee-component
   class="section spacing-style gap-style color-{{ section.settings.color_scheme }}"
   style="
     {%- render 'spacing-style', settings: section.settings %};
     {% render 'gap-style', value: gap_between_elements, name: 'marquee-gap' %}
-    --marquee-direction: {{ section.settings.movement_direction }};
+    --marquee-direction: {{ marquee_direction }};
   "
   data-speed-factor="25"
-  data-movement-direction="{{ section.settings.movement_direction }}"
+  data-movement-direction="{{ marquee_direction }}"
 >
   <div
     class="marquee__wrapper"
