@@ -4536,6 +4536,7 @@
                 },
                 "text_t7wYxV": {
                   "type": "text",
+                  "disabled": true,
                   "settings": {
                     "text": "<p>Fill in your details below and tell us why you’d be a great fit for Lovilin Club.</p>",
                     "width": "fit-content",
