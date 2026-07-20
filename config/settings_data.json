@@ -154,6 +154,11 @@
         "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
         "settings": {}
+      },
+      "11759115219689901962": {
+        "type": "shopify://apps/delightchat-whatsapp-marketing/blocks/abandoned-cart/61838639-20a5-450c-957a-d2ac660a5776",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
