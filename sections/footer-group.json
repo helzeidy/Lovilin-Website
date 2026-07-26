@@ -1769,6 +1769,7 @@
             "icon_PrDKpk": {
               "type": "icon",
               "name": "t:names.icon",
+              "disabled": true,
               "settings": {
                 "icon": "none",
                 "image_upload": "shopify://shop_images/Payment_method_icon-1.png",
@@ -1785,6 +1786,7 @@
             "icon_3rHYT9": {
               "type": "icon",
               "name": "t:names.icon",
+              "disabled": true,
               "settings": {
                 "icon": "none",
                 "image_upload": "shopify://shop_images/Payment_method_icon-2.png",
@@ -1818,6 +1820,7 @@
             "icon_8kUhNT": {
               "type": "icon",
               "name": "t:names.icon",
+              "disabled": true,
               "settings": {
                 "icon": "none",
                 "image_upload": "shopify://shop_images/Payment_method_icon-3.png",
