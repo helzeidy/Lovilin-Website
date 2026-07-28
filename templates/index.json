@@ -4917,7 +4917,7 @@
         "group_QPrk8c"
       ],
       "custom_css": [
-        "html[lang=\"ar\"] .group-block {display: grid; grid-template-columns: 1fr 1fr;}"
+        "@media(min-width:750px){html[lang=\"ar\"] .group-block {display: grid; grid-template-columns: 1fr 1fr; } }"
       ],
       "name": "Milk film Section",
       "settings": {
