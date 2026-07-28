@@ -437,6 +437,9 @@
         "slide_hbQq66",
         "slide_7LUfCR"
       ],
+      "custom_css": [
+        "@media screen and (min-width: 750px) {.slideshow-slide:nth-of-type(2) .group-block-content.layout-panel-flex:not( .group-block-content.layout-panel-flex .group-block-content.layout-panel-flex ) {padding-right: 50% !important; }}"
+      ],
       "name": "t:names.slideshow_full_frame",
       "settings": {
         "display_mode": "full_frame",
