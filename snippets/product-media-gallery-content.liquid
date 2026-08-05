@@ -118,6 +118,32 @@
   else
     assign sorted_media = selected_product.media
   endif
+
+  # Locale-aware media. Shopify has no native per-language product images, so
+  # the language is carried in each media item's alt text:
+  #   [ar] -> shows only on the Arabic storefront
+  #   [en] -> shows only on the English storefront
+  #   untagged -> language-neutral, shows in both
+  # If filtering would leave the product with no media at all (e.g. every image
+  # is tagged for the other language) we keep the unfiltered list instead.
+  assign locale_media_exclude = '[ar]'
+  if request.locale.iso_code == 'ar'
+    assign locale_media_exclude = '[en]'
+  endif
+
+  assign locale_media = '' | split: ','
+  for media in sorted_media
+    assign media_alt_tag = media.alt | default: '' | downcase
+    unless media_alt_tag contains locale_media_exclude
+      assign found_locale_media = selected_product.media | where: 'id', media.id
+      assign locale_media = locale_media | concat: found_locale_media
+    endunless
+  endfor
+
+  if locale_media.size > 0
+    assign sorted_media = locale_media
+  endif
+
   assign has_image_drop = sorted_media | has: 'media_type', 'image'
 
   # Determine if we're in single column mode (carousel or grid with one column)
@@ -554,7 +580,7 @@
                         loading: 'lazy',
                         sizes: 'auto, 110, (min-width: 750px) 160',
                         widths: '240, 352, 832, 1200',
-                        alt: media.alt,
+                        alt: media.alt | default: '' | replace: '[ar]', '' | replace: '[AR]', '' | replace: '[en]', '' | replace: '[EN]', '' | strip,
                         style: focal_point_style
                       | escape
                     }}

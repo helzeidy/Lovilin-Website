@@ -94,7 +94,31 @@
       assign other_media = product.media | reject: 'src', product.featured_media
       assign media_list_to_show = product.featured_media | concat: other_media
 
-      if product.media.size > 2 and generic_media_size > 0
+      # Locale-aware media — see product-media-gallery-content.liquid for the
+      # full explanation. [ar] in a media item's alt text limits it to the
+      # Arabic storefront, [en] to English, untagged shows in both. Applied
+      # after the featured-media sort so the first surviving image becomes the
+      # card's cover in each language.
+      assign locale_media_exclude = '[ar]'
+      if request.locale.iso_code == 'ar'
+        assign locale_media_exclude = '[en]'
+      endif
+
+      assign locale_media = '' | split: ','
+      for media in media_list_to_show
+        assign media_alt_tag = media.alt | default: '' | downcase
+        unless media_alt_tag contains locale_media_exclude
+          assign found_locale_media = product.media | where: 'id', media.id
+          assign locale_media = locale_media | concat: found_locale_media
+        endunless
+      endfor
+
+      if locale_media.size > 0
+        assign media_list_to_show = locale_media
+        assign generic_media_size = media_list_to_show.size | minus: variant_images.size
+      endif
+
+      if media_list_to_show.size > 2 and generic_media_size > 0
         assign show_arrows = true
       endif
 
