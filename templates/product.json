@@ -914,7 +914,6 @@
                 "icon_mMBGaa": {
                   "type": "icon",
                   "name": "t:names.icon",
-                  "disabled": true,
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Size_sm_Payment_method_ApplePay.png",
@@ -947,7 +946,6 @@
                 "icon_mPdap9": {
                   "type": "icon",
                   "name": "t:names.icon",
-                  "disabled": true,
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Payment_method_icon-1.png",
@@ -964,7 +962,6 @@
                 "icon_jJLDr3": {
                   "type": "icon",
                   "name": "t:names.icon",
-                  "disabled": true,
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Payment_method_icon-2.png",
@@ -981,7 +978,6 @@
                 "icon_NiPBXd": {
                   "type": "icon",
                   "name": "t:names.icon",
-                  "disabled": true,
                   "settings": {
                     "icon": "none",
                     "image_upload": "shopify://shop_images/Payment_method_icon_af82403c-d6cc-4579-8456-e463b9f8cc55.png",
