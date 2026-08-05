@@ -572,6 +572,11 @@
                       if media.presentation.focal_point != blank
                         assign focal_point_style = 'object-position: ' | append: media.presentation.focal_point | append: ';'
                       endif
+
+                      # Strip the [ar] / [en] language routing tags from alt text.
+                      # Must be precomputed — Liquid can't parse a filter chain
+                      # inline as an image_tag argument value.
+                      assign media_alt_clean = media.alt | default: '' | replace: '[ar]', '' | replace: '[AR]', '' | replace: '[en]', '' | replace: '[EN]', '' | strip
                     %}
                     {{
                       media.preview_image
@@ -580,7 +585,7 @@
                         loading: 'lazy',
                         sizes: 'auto, 110, (min-width: 750px) 160',
                         widths: '240, 352, 832, 1200',
-                        alt: media.alt | default: '' | replace: '[ar]', '' | replace: '[AR]', '' | replace: '[en]', '' | replace: '[EN]', '' | strip,
+                        alt: media_alt_clean,
                         style: focal_point_style
                       | escape
                     }}
