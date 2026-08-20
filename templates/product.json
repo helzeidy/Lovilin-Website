@@ -317,6 +317,26 @@
                   },
                   "blocks": {}
                 },
+                "sku_XBUgLn": {
+                  "type": "sku",
+                  "name": "t:names.product_sku",
+                  "settings": {
+                    "type_preset": "",
+                    "width": "100%",
+                    "alignment": "left",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "color": "var(--color-foreground)",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
                 "group_6kWm6D": {
                   "type": "group",
                   "name": "t:names.group",
@@ -749,6 +769,7 @@
                 "text_xrnftG",
                 "text_A4M886",
                 "price_RtHxjW",
+                "sku_XBUgLn",
                 "group_6kWm6D"
               ]
             },
