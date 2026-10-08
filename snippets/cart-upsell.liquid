@@ -1,0 +1,195 @@
+{%- doc -%}
+  Renders the cart cross-sell / upsell carousel.
+
+  Recommendations are resolved client-side in this order:
+    1. complementary products (set in the Search & Discovery app)
+    2. related products (automatic), when the fallback setting is on
+    3. the fallback collection chosen in theme settings
+
+  Products already in the cart are excluded.
+
+  @example
+  {% render 'cart-upsell' %}
+{%- enddoc -%}
+
+{%- if settings.cart_upsell_enabled and cart.item_count > 0 -%}
+  {%- liquid
+    # Base recommendations on the most recently added item.
+    assign anchor_product = cart.items.last.product
+
+    assign excluded_ids = ''
+    for item in cart.items
+      assign excluded_ids = excluded_ids | append: item.product.id
+      unless forloop.last
+        assign excluded_ids = excluded_ids | append: ','
+      endunless
+    endfor
+
+    assign fallback_collection = settings.cart_upsell_collection
+  -%}
+
+  <script
+    src="{{ 'cart-upsell.js' | asset_url }}"
+    type="module"
+  ></script>
+
+  <cart-upsell
+    class="cart-upsell"
+    hidden
+    data-url="{{ routes.product_recommendations_url }}.json"
+    data-product-id="{{ anchor_product.id }}"
+    data-exclude="{{ excluded_ids }}"
+    data-intent="{{ settings.cart_upsell_intent }}"
+    data-fallback-related="{% if settings.cart_upsell_fallback_related %}true{% else %}false{% endif %}"
+    data-limit="{{ settings.cart_upsell_max }}"
+    data-per-page="{{ settings.cart_upsell_per_page }}"
+    data-heading="{{ settings.cart_upsell_heading | escape }}"
+    data-add-label="{{ 'actions.add' | t | escape }}"
+    data-money-format="{{ shop.money_format | strip_html | escape }}"
+    data-currency="{{ cart.currency.iso_code }}"
+  >
+    {%- if fallback_collection != blank -%}
+      <script type="application/json" data-upsell-fallback>
+        [
+          {%- for product in fallback_collection.products limit: settings.cart_upsell_max -%}
+            {%- unless forloop.first %},{% endunless -%}
+            {{ product | json }}
+          {%- endfor -%}
+        ]
+      </script>
+    {%- endif -%}
+  </cart-upsell>
+
+  {% stylesheet %}
+    .cart-upsell {
+      display: block;
+      padding-block: var(--padding-md, 1rem);
+      border-block-start: 1px solid rgb(from var(--color-foreground) r g b / 12%);
+    }
+
+    .cart-upsell[hidden] {
+      display: none;
+    }
+
+    .cart-upsell__heading {
+      margin: 0 0 var(--padding-sm, 0.75rem);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .cart-upsell__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--padding-sm, 0.75rem);
+    }
+
+    .cart-upsell__item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: var(--padding-sm, 0.75rem);
+    }
+
+    .cart-upsell__image {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: var(--border-radius, 8px);
+    }
+
+    .cart-upsell__image--empty {
+      background: rgb(from var(--color-foreground) r g b / 8%);
+    }
+
+    .cart-upsell__info {
+      min-width: 0;
+    }
+
+    .cart-upsell__title {
+      margin: 0;
+      font-size: 0.875rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .cart-upsell__price {
+      margin: 0.125rem 0 0;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.375rem;
+    }
+
+    .cart-upsell__compare {
+      opacity: 0.55;
+      font-size: 0.8125rem;
+    }
+
+    .cart-upsell__variant {
+      display: block;
+      margin-block-start: 0.375rem;
+    }
+
+    .cart-upsell__variant-label {
+      display: block;
+      font-size: 0.6875rem;
+      opacity: 0.65;
+      margin-block-end: 0.125rem;
+    }
+
+    .cart-upsell__select {
+      width: 100%;
+      max-width: 12rem;
+      font: inherit;
+      font-size: 0.8125rem;
+      padding: 0.25rem 0.375rem;
+      border: 1px solid rgb(from var(--color-foreground) r g b / 25%);
+      border-radius: var(--border-radius, 6px);
+      background: transparent;
+      color: inherit;
+    }
+
+    .cart-upsell__add {
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .cart-upsell__add[disabled] {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    .cart-upsell__nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--padding-sm, 0.75rem);
+      margin-block-start: var(--padding-sm, 0.75rem);
+    }
+
+    .cart-upsell__arrow {
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 1.25rem;
+      line-height: 1;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    .cart-upsell__arrow:hover {
+      opacity: 1;
+    }
+
+    .cart-upsell__count {
+      font-size: 0.8125rem;
+      opacity: 0.7;
+      font-variant-numeric: tabular-nums;
+    }
+  {% endstylesheet %}
+{%- endif -%}

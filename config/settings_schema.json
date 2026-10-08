@@ -1946,6 +1946,71 @@
         "step": 1,
         "unit": "px",
         "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Cross-sell and upsell"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_upsell_enabled",
+        "label": "Show product recommendations in cart",
+        "info": "Displays add-on products in the cart drawer and cart page. Hidden automatically when there is nothing to recommend.",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_heading",
+        "label": "Heading",
+        "default": "A little extra style before you pay"
+      },
+      {
+        "type": "select",
+        "id": "cart_upsell_intent",
+        "label": "Recommendation source",
+        "info": "Complementary products are the pairings you set per product in the free Search & Discovery app.",
+        "options": [
+          {
+            "value": "complementary",
+            "label": "Complementary products"
+          },
+          {
+            "value": "related",
+            "label": "Related products (automatic)"
+          }
+        ],
+        "default": "complementary"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_upsell_fallback_related",
+        "label": "Fall back to related products",
+        "info": "Used when a product has no complementary products set.",
+        "default": true
+      },
+      {
+        "type": "collection",
+        "id": "cart_upsell_collection",
+        "label": "Fallback collection",
+        "info": "Optional. Shown only when no recommendations are found."
+      },
+      {
+        "type": "range",
+        "id": "cart_upsell_max",
+        "label": "Maximum products",
+        "min": 2,
+        "max": 12,
+        "step": 1,
+        "default": 6
+      },
+      {
+        "type": "range",
+        "id": "cart_upsell_per_page",
+        "label": "Products shown at a time",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "default": 2
       }
     ]
   },
