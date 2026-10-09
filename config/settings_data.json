@@ -73,7 +73,7 @@
     "show_cart_note": false,
     "show_add_discount_code": true,
     "cart_upsell_heading": "More essential products",
-    "cart_upsell_intent": "related",
+    "cart_upsell_intent": "complementary",
     "cart_upsell_collection": "fabric-care",
     "cart_upsell_per_page": 4,
     "drawer_drop_shadow": true,
