@@ -12,17 +12,49 @@ import { formatMoney } from '@theme/money-formatting';
  *   3. a collection    - rendered into the element as JSON (optional fallback)
  *
  * Products already in the cart are never shown.
+ *
+ * The cart drawer and page are updated by morphing in server-rendered HTML. The
+ * element is marked `data-skip-subtree-update`, so morphing leaves the rendered
+ * products alone and only syncs the data attributes; when the cart contents
+ * change, `attributeChangedCallback` reloads the recommendations.
  */
 class CartUpsell extends HTMLElement {
+  static observedAttributes = ['data-product-id', 'data-exclude'];
+
   /** @type {Array<Object>} */
   #products = [];
+  /** @type {Array<Object> | null} */
+  #fallback = null;
   #page = 0;
   #started = false;
+  #loadId = 0;
+  /** @type {ReturnType<typeof setTimeout> | undefined} */
+  #reloadTimer;
 
   connectedCallback() {
     if (this.#started) return;
     this.#started = true;
     this.#load();
+  }
+
+  disconnectedCallback() {
+    clearTimeout(this.#reloadTimer);
+  }
+
+  /**
+   * @param {string} _name
+   * @param {string | null} oldValue
+   * @param {string | null} newValue
+   */
+  attributeChangedCallback(_name, oldValue, newValue) {
+    if (!this.#started || oldValue === newValue) return;
+
+    // A morph can change several attributes in a row; reload once.
+    clearTimeout(this.#reloadTimer);
+    this.#reloadTimer = setTimeout(() => {
+      this.#page = 0;
+      this.#load();
+    });
   }
 
   get #perPage() {
@@ -45,7 +77,19 @@ class CartUpsell extends HTMLElement {
     return Math.max(1, Math.ceil(this.#products.length / this.#perPage));
   }
 
+  /** The container this element renders into, kept beside the fallback JSON. */
+  get #inner() {
+    let inner = this.querySelector(':scope > .cart-upsell__inner');
+    if (!inner) {
+      inner = document.createElement('div');
+      inner.className = 'cart-upsell__inner';
+      this.append(inner);
+    }
+    return inner;
+  }
+
   async #load() {
+    const loadId = ++this.#loadId;
     const { productId, url } = this.dataset;
     let products = [];
 
@@ -60,6 +104,9 @@ class CartUpsell extends HTMLElement {
     }
 
     if (!products.length) products = this.#fallbackProducts();
+
+    // A newer load started while this one was waiting on the network.
+    if (loadId !== this.#loadId) return;
 
     const excluded = this.#excluded;
     this.#products = products
@@ -89,14 +136,16 @@ class CartUpsell extends HTMLElement {
 
   /** Products from the merchant-selected fallback collection, if any. */
   #fallbackProducts() {
+    if (this.#fallback) return this.#fallback;
+
     const script = this.querySelector('[data-upsell-fallback]');
-    if (!script) return [];
     try {
-      const parsed = JSON.parse(script.textContent || '[]');
-      return Array.isArray(parsed) ? parsed : [];
+      const parsed = JSON.parse(script?.textContent || '[]');
+      this.#fallback = Array.isArray(parsed) ? parsed : [];
     } catch {
-      return [];
+      this.#fallback = [];
     }
+    return this.#fallback;
   }
 
   /**
@@ -115,14 +164,12 @@ class CartUpsell extends HTMLElement {
   }
 
   #render() {
-    // Nothing to recommend: stay invisible rather than leaving an empty heading.
+    // Nothing to recommend: remove the content so the element collapses.
     if (!this.#products.length) {
-      this.hidden = true;
-      this.replaceChildren();
+      this.querySelector(':scope > .cart-upsell__inner')?.remove();
       return;
     }
 
-    this.hidden = false;
     if (!this.querySelector('[data-upsell-list]')) this.#renderShell();
     this.#renderPage();
   }
@@ -134,7 +181,7 @@ class CartUpsell extends HTMLElement {
    * outside the drawer and closes it.
    */
   #renderShell() {
-    this.innerHTML = `
+    this.#inner.innerHTML = `
       <h3 class="cart-upsell__heading">${this.#escape(this.dataset.heading || '')}</h3>
       <ul class="cart-upsell__list" role="list" data-upsell-list></ul>
       <div class="cart-upsell__nav" data-upsell-nav>
@@ -182,6 +229,7 @@ class CartUpsell extends HTMLElement {
     const variant = variants[0];
     if (!variant) return '';
 
+    const url = this.#escape(product.url || `/products/${product.handle}`);
     const image = this.#imageUrl(product.featured_image || product.images?.[0] || null, 200);
     const onSale = product.compare_at_price && product.compare_at_price > product.price;
 
@@ -196,7 +244,7 @@ class CartUpsell extends HTMLElement {
 
     return `
       <li class="cart-upsell__item" data-upsell-card data-product-id="${product.id}">
-        <a class="cart-upsell__media" href="${this.#escape(product.url || `/products/${product.handle}`)}" tabindex="-1">
+        <a class="cart-upsell__media" href="${url}" tabindex="-1">
           ${
             image
               ? `<img class="cart-upsell__image" src="${image}" alt="${this.#escape(product.title)}" loading="lazy" width="64" height="64">`
@@ -204,7 +252,7 @@ class CartUpsell extends HTMLElement {
           }
         </a>
         <div class="cart-upsell__info">
-          <a class="cart-upsell__title" href="${this.#escape(product.url || `/products/${product.handle}`)}">${this.#escape(product.title)}</a>
+          <a class="cart-upsell__title" href="${url}">${this.#escape(product.title)}</a>
           <p class="cart-upsell__price">
             <span data-upsell-price>${this.#money(variant.price)}</span>
             ${onSale ? `<s class="cart-upsell__compare">${this.#money(product.compare_at_price)}</s>` : ''}
@@ -276,6 +324,10 @@ class CartUpsell extends HTMLElement {
 
       if (result.status) throw new Error(result.description || result.message);
 
+      // Drop it right away; the cart re-render then reloads fresh recommendations.
+      this.#products = this.#products.filter((product) => String(product.id) !== String(productId));
+      this.#render();
+
       const cart = await fetch(`${Theme.routes.cart_url}.js`)
         .then((res) => (res.ok ? res.json() : undefined))
         .catch(() => undefined);
@@ -289,10 +341,6 @@ class CartUpsell extends HTMLElement {
           sections: result.sections,
         })
       );
-
-      // Drop it from the list in case the cart doesn't re-render this element.
-      this.#products = this.#products.filter((product) => String(product.id) !== String(productId));
-      this.#render();
     } catch (error) {
       console.error('Cart upsell add failed:', error);
       button.disabled = false;

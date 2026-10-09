@@ -119,6 +119,14 @@
       type="module"
       fetchpriority="low"
     ></script>
+    {%- if settings.cart_upsell_enabled -%}
+      {% # Loaded up front: the upsell is morphed into the drawer after add to cart, and morphed scripts never run. %}
+      <script
+        src="{{ 'cart-upsell.js' | asset_url }}"
+        type="module"
+        fetchpriority="low"
+      ></script>
+    {%- endif -%}
 
     {% capture empty_cart_drawer_content %}
       <div class="cart-drawer__header">

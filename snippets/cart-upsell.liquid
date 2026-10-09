@@ -12,6 +12,14 @@
   {% render 'cart-upsell' %}
 {%- enddoc -%}
 
+{%- if settings.cart_upsell_enabled -%}
+  {% # Always load the component: when the cart starts empty, the upsell is morphed in later and scripts inserted by a morph never run. %}
+  <script
+    src="{{ 'cart-upsell.js' | asset_url }}"
+    type="module"
+  ></script>
+{%- endif -%}
+
 {%- if settings.cart_upsell_enabled and cart.item_count > 0 -%}
   {%- liquid
     # Base recommendations on the most recently added item.
@@ -28,14 +36,9 @@
     assign fallback_collection = settings.cart_upsell_collection
   -%}
 
-  <script
-    src="{{ 'cart-upsell.js' | asset_url }}"
-    type="module"
-  ></script>
-
   <cart-upsell
     class="cart-upsell"
-    hidden
+    data-skip-subtree-update
     data-url="{{ routes.product_recommendations_url }}.json"
     data-product-id="{{ anchor_product.id }}"
     data-exclude="{{ excluded_ids }}"
@@ -66,12 +69,12 @@
 {% stylesheet %}
   .cart-upsell {
     display: block;
-    padding-block: var(--padding-lg) var(--padding-md);
-    border-block-start: 1px solid var(--color-border, rgb(from var(--color-foreground) r g b / 12%));
   }
 
-  .cart-upsell[hidden] {
-    display: none;
+  /* Rendered by the component; absent when there is nothing to recommend. */
+  .cart-upsell__inner {
+    padding-block: var(--padding-lg) var(--padding-md);
+    border-block-start: 1px solid var(--color-border, rgb(from var(--color-foreground) r g b / 12%));
   }
 
   /*
@@ -88,7 +91,7 @@
   }
 
   /* Keep a gap between the last cart item and the upsell when content is tall. */
-  .cart-drawer__content:has(.cart-upsell:not([hidden])) .cart-drawer__items {
+  .cart-drawer__content:has(.cart-upsell__inner) .cart-drawer__items {
     padding-block-end: var(--gap-xl);
   }
 
@@ -97,7 +100,7 @@
     margins the free space is split, leaving a gap under the upsell. Let the
     upsell take all of it so it sits flush on top of the summary.
   */
-  .cart-drawer__content:has(.cart-upsell:not([hidden])) .cart-drawer__summary {
+  .cart-drawer__content:has(.cart-upsell__inner) .cart-drawer__summary {
     margin-top: 0;
   }
 
