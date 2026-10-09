@@ -25,8 +25,9 @@ class CartUpsell extends HTMLElement {
   #products = [];
   /** @type {Array<Object> | null} */
   #fallback = null;
-  #page = 0;
   #started = false;
+  /** @type {number | undefined} */
+  #scrollFrame;
   #loadId = 0;
   /** @type {ReturnType<typeof setTimeout> | undefined} */
   #reloadTimer;
@@ -51,14 +52,12 @@ class CartUpsell extends HTMLElement {
 
     // A morph can change several attributes in a row; reload once.
     clearTimeout(this.#reloadTimer);
-    this.#reloadTimer = setTimeout(() => {
-      this.#page = 0;
-      this.#load();
-    });
+    this.#reloadTimer = setTimeout(() => this.#load());
   }
 
-  get #perPage() {
-    return Math.max(1, Number.parseInt(this.dataset.perPage || '2', 10));
+  /** How many products are visible at once in the carousel. */
+  get #perView() {
+    return Math.max(1, Number.parseInt(this.dataset.perPage || '1', 10));
   }
 
   get #limit() {
@@ -73,8 +72,9 @@ class CartUpsell extends HTMLElement {
       .filter(Boolean);
   }
 
-  get #pageCount() {
-    return Math.max(1, Math.ceil(this.#products.length / this.#perPage));
+  /** Number of snap positions: the last one shows the final `perView` products. */
+  get #positions() {
+    return Math.max(1, this.#products.length - this.#perView + 1);
   }
 
   /** The container this element renders into, kept beside the fallback JSON. */
@@ -171,12 +171,12 @@ class CartUpsell extends HTMLElement {
     }
 
     if (!this.querySelector('[data-upsell-list]')) this.#renderShell();
-    this.#renderPage();
+    this.#renderItems();
   }
 
   /**
-   * Builds the heading, list and pagination once. Paging only swaps the list
-   * contents: replacing the arrow that was clicked would detach the click
+   * Builds the heading, track and arrows once. Only the track's items are
+   * re-rendered: replacing an arrow that was clicked would detach the click
    * target, and the cart drawer treats clicks on detached nodes as clicks
    * outside the drawer and closes it.
    */
@@ -195,32 +195,75 @@ class CartUpsell extends HTMLElement {
       </div>
     `;
 
-    this.querySelector('[data-upsell-prev]')?.addEventListener('click', () => this.#goTo(this.#page - 1));
-    this.querySelector('[data-upsell-next]')?.addEventListener('click', () => this.#goTo(this.#page + 1));
+    this.querySelector('[data-upsell-prev]')?.addEventListener('click', () => this.#goTo(this.#index - 1));
+    this.querySelector('[data-upsell-next]')?.addEventListener('click', () => this.#goTo(this.#index + 1));
+
+    // Swiping is native scrolling; keep the counter in sync with it.
+    this.querySelector('[data-upsell-list]')?.addEventListener(
+      'scroll',
+      () => {
+        if (this.#scrollFrame) return;
+        this.#scrollFrame = requestAnimationFrame(() => {
+          this.#scrollFrame = undefined;
+          this.#updateCount();
+        });
+      },
+      { passive: true }
+    );
   }
 
-  /** @param {number} page */
-  #goTo(page) {
-    this.#page = (page + this.#pageCount) % this.#pageCount;
-    this.#renderPage();
-  }
-
-  #renderPage() {
-    this.#page = Math.min(this.#page, this.#pageCount - 1);
-
-    const start = this.#page * this.#perPage;
-    const visible = this.#products.slice(start, start + this.#perPage);
-
+  #renderItems() {
     const list = this.querySelector('[data-upsell-list]');
-    if (list) list.innerHTML = visible.map((product) => this.#card(product)).join('');
+    if (!(list instanceof HTMLElement)) return;
+
+    list.style.setProperty('--cart-upsell-per-view', String(this.#perView));
+    list.innerHTML = this.#products.map((product) => this.#card(product)).join('');
+    list.scrollLeft = 0;
 
     const nav = this.querySelector('[data-upsell-nav]');
-    if (nav instanceof HTMLElement) nav.hidden = this.#pageCount <= 1;
+    if (nav instanceof HTMLElement) nav.hidden = this.#positions <= 1;
 
-    const count = this.querySelector('[data-upsell-count]');
-    if (count) count.textContent = `${this.#page + 1}/${this.#pageCount}`;
-
+    this.#updateCount();
     this.#bindCards();
+  }
+
+  get #list() {
+    const list = this.querySelector('[data-upsell-list]');
+    return list instanceof HTMLElement ? list : null;
+  }
+
+  /** Distance between the starts of two neighbouring items. */
+  get #step() {
+    const list = this.#list;
+    const [first, second] = list ? Array.from(list.children) : [];
+    if (!(first instanceof HTMLElement)) return 0;
+    if (second instanceof HTMLElement) return Math.abs(second.offsetLeft - first.offsetLeft);
+    return first.offsetWidth;
+  }
+
+  /** Index of the first visible item. RTL scrolls into negative values, hence `abs`. */
+  get #index() {
+    const step = this.#step;
+    const list = this.#list;
+    if (!step || !list) return 0;
+    return Math.min(this.#positions - 1, Math.round(Math.abs(list.scrollLeft) / step));
+  }
+
+  /** @param {number} index */
+  #goTo(index) {
+    const list = this.#list;
+    if (!list) return;
+
+    const target = (index + this.#positions) % this.#positions;
+    const direction = getComputedStyle(list).direction === 'rtl' ? -1 : 1;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    list.scrollTo({ left: target * this.#step * direction, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+
+  #updateCount() {
+    const count = this.querySelector('[data-upsell-count]');
+    if (count) count.textContent = `${this.#index + 1}/${this.#positions}`;
   }
 
   /** @param {Object} product */

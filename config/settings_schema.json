@@ -1965,6 +1965,22 @@
         "default": "A little extra style before you pay"
       },
       {
+        "type": "range",
+        "id": "cart_upsell_heading_size",
+        "label": "Heading size",
+        "min": 12,
+        "max": 32,
+        "step": 1,
+        "unit": "px",
+        "default": 14
+      },
+      {
+        "type": "color",
+        "id": "cart_upsell_heading_color",
+        "label": "Heading color",
+        "info": "Leave empty to use the cart's text color."
+      },
+      {
         "type": "select",
         "id": "cart_upsell_intent",
         "label": "Recommendation source",
@@ -2022,11 +2038,12 @@
       {
         "type": "range",
         "id": "cart_upsell_per_page",
-        "label": "Products shown at a time",
+        "label": "Products visible at once",
+        "info": "Shoppers swipe or use the arrows to see the rest.",
         "min": 1,
         "max": 4,
         "step": 1,
-        "default": 2
+        "default": 1
       }
     ]
   },
