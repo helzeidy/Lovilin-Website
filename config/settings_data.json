@@ -75,7 +75,7 @@
     "cart_upsell_heading": "More essential products",
     "cart_upsell_intent": "complementary",
     "cart_upsell_collection": "fabric-care",
-    "cart_upsell_per_page": 4,
+    "cart_upsell_per_page": 2,
     "drawer_drop_shadow": true,
     "icon_stroke": "default",
     "input_border_width": 1,
