@@ -118,25 +118,62 @@ class CartUpsell extends HTMLElement {
     // Nothing to recommend: stay invisible rather than leaving an empty heading.
     if (!this.#products.length) {
       this.hidden = true;
-      this.innerHTML = '';
+      this.replaceChildren();
       return;
     }
 
     this.hidden = false;
+    if (!this.querySelector('[data-upsell-list]')) this.#renderShell();
+    this.#renderPage();
+  }
+
+  /**
+   * Builds the heading, list and pagination once. Paging only swaps the list
+   * contents: replacing the arrow that was clicked would detach the click
+   * target, and the cart drawer treats clicks on detached nodes as clicks
+   * outside the drawer and closes it.
+   */
+  #renderShell() {
+    this.innerHTML = `
+      <h3 class="cart-upsell__heading">${this.#escape(this.dataset.heading || '')}</h3>
+      <ul class="cart-upsell__list" role="list" data-upsell-list></ul>
+      <div class="cart-upsell__nav" data-upsell-nav>
+        <button type="button" class="cart-upsell__arrow" data-upsell-prev aria-label="Previous">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <span class="cart-upsell__count" data-upsell-count aria-live="polite"></span>
+        <button type="button" class="cart-upsell__arrow" data-upsell-next aria-label="Next">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    `;
+
+    this.querySelector('[data-upsell-prev]')?.addEventListener('click', () => this.#goTo(this.#page - 1));
+    this.querySelector('[data-upsell-next]')?.addEventListener('click', () => this.#goTo(this.#page + 1));
+  }
+
+  /** @param {number} page */
+  #goTo(page) {
+    this.#page = (page + this.#pageCount) % this.#pageCount;
+    this.#renderPage();
+  }
+
+  #renderPage() {
     this.#page = Math.min(this.#page, this.#pageCount - 1);
 
     const start = this.#page * this.#perPage;
     const visible = this.#products.slice(start, start + this.#perPage);
 
-    this.innerHTML = `
-      <h3 class="cart-upsell__heading">${this.#escape(this.dataset.heading || '')}</h3>
-      <ul class="cart-upsell__list" role="list">
-        ${visible.map((product) => this.#card(product)).join('')}
-      </ul>
-      ${this.#pageCount > 1 ? this.#pagination() : ''}
-    `;
+    const list = this.querySelector('[data-upsell-list]');
+    if (list) list.innerHTML = visible.map((product) => this.#card(product)).join('');
 
-    this.#bind();
+    const nav = this.querySelector('[data-upsell-nav]');
+    if (nav instanceof HTMLElement) nav.hidden = this.#pageCount <= 1;
+
+    const count = this.querySelector('[data-upsell-count]');
+    if (count) count.textContent = `${this.#page + 1}/${this.#pageCount}`;
+
+    this.#bindCards();
   }
 
   /** @param {Object} product */
@@ -145,64 +182,43 @@ class CartUpsell extends HTMLElement {
     const variant = variants[0];
     if (!variant) return '';
 
-    const image = this.#imageUrl(product.featured_image || product.images?.[0] || null, 160);
+    const image = this.#imageUrl(product.featured_image || product.images?.[0] || null, 200);
     const onSale = product.compare_at_price && product.compare_at_price > product.price;
 
     const variantSelect =
       variants.length > 1
-        ? `<label class="cart-upsell__variant">
-             <span class="cart-upsell__variant-label">${this.#escape(product.options?.[0] || 'Variant')}</span>
-             <select class="cart-upsell__select" data-upsell-variant>
-               ${variants
-                 .map((v) => `<option value="${v.id}" data-price="${v.price}">${this.#escape(v.title)}</option>`)
-                 .join('')}
-             </select>
-           </label>`
+        ? `<select class="cart-upsell__select" data-upsell-variant aria-label="${this.#escape(product.options?.[0] || 'Variant')}">
+             ${variants
+               .map((v) => `<option value="${v.id}" data-price="${v.price}">${this.#escape(v.title)}</option>`)
+               .join('')}
+           </select>`
         : '';
 
     return `
       <li class="cart-upsell__item" data-upsell-card data-product-id="${product.id}">
-        ${
-          image
-            ? `<img class="cart-upsell__image" src="${image}" alt="${this.#escape(product.title)}" loading="lazy" width="80" height="80">`
-            : '<div class="cart-upsell__image cart-upsell__image--empty"></div>'
-        }
+        <a class="cart-upsell__media" href="${this.#escape(product.url || `/products/${product.handle}`)}" tabindex="-1">
+          ${
+            image
+              ? `<img class="cart-upsell__image" src="${image}" alt="${this.#escape(product.title)}" loading="lazy" width="64" height="64">`
+              : '<span class="cart-upsell__image cart-upsell__image--empty"></span>'
+          }
+        </a>
         <div class="cart-upsell__info">
-          <p class="cart-upsell__title">${this.#escape(product.title)}</p>
+          <a class="cart-upsell__title" href="${this.#escape(product.url || `/products/${product.handle}`)}">${this.#escape(product.title)}</a>
           <p class="cart-upsell__price">
             <span data-upsell-price>${this.#money(variant.price)}</span>
             ${onSale ? `<s class="cart-upsell__compare">${this.#money(product.compare_at_price)}</s>` : ''}
           </p>
           ${variantSelect}
         </div>
-        <button type="button" class="button cart-upsell__add" data-upsell-add data-variant-id="${variant.id}">
+        <button type="button" class="${this.#escape(this.dataset.buttonClass || 'button')} cart-upsell__add" data-upsell-add data-variant-id="${variant.id}">
           ${this.#escape(this.dataset.addLabel || 'Add')}
         </button>
       </li>
     `;
   }
 
-  #pagination() {
-    return `
-      <div class="cart-upsell__nav">
-        <button type="button" class="cart-upsell__arrow" data-upsell-prev aria-label="Previous">&#8249;</button>
-        <span class="cart-upsell__count">${this.#page + 1}/${this.#pageCount}</span>
-        <button type="button" class="cart-upsell__arrow" data-upsell-next aria-label="Next">&#8250;</button>
-      </div>
-    `;
-  }
-
-  #bind() {
-    this.querySelector('[data-upsell-prev]')?.addEventListener('click', () => {
-      this.#page = (this.#page - 1 + this.#pageCount) % this.#pageCount;
-      this.#render();
-    });
-
-    this.querySelector('[data-upsell-next]')?.addEventListener('click', () => {
-      this.#page = (this.#page + 1) % this.#pageCount;
-      this.#render();
-    });
-
+  #bindCards() {
     // Keep the price and the add button in sync with the chosen variant.
     this.querySelectorAll('[data-upsell-variant]').forEach((select) => {
       select.addEventListener('change', (event) => {

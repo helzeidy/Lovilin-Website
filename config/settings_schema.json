@@ -2004,6 +2004,22 @@
         "default": 6
       },
       {
+        "type": "select",
+        "id": "cart_upsell_button_style",
+        "label": "Add button style",
+        "options": [
+          {
+            "value": "primary",
+            "label": "Filled"
+          },
+          {
+            "value": "secondary",
+            "label": "Outline"
+          }
+        ],
+        "default": "secondary"
+      },
+      {
         "type": "range",
         "id": "cart_upsell_per_page",
         "label": "Products shown at a time",
