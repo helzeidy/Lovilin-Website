@@ -74,14 +74,22 @@
     display: none;
   }
 
-  /* Line up with the cart items and summary in the drawer. */
+  /*
+    In the drawer, sit at the bottom of the scrolling area, directly above the
+    sticky summary (discount, totals, checkout), and line up with the items.
+  */
   .cart-drawer .cart-upsell {
+    margin-block-start: auto;
     padding-inline: var(--cart-drawer-padding);
-    margin-block-start: var(--gap-xl);
 
     @media screen and (min-width: 750px) {
       padding-inline: var(--cart-drawer-padding-desktop);
     }
+  }
+
+  /* Keep a gap between the last cart item and the upsell when content is tall. */
+  .cart-drawer__content:has(.cart-upsell:not([hidden])) .cart-drawer__items {
+    padding-block-end: var(--gap-xl);
   }
 
   .cart-upsell__heading {
