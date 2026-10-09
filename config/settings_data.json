@@ -74,6 +74,7 @@
     "show_add_discount_code": true,
     "cart_upsell_intent": "related",
     "cart_upsell_collection": "fabric-care",
+    "cart_upsell_per_page": 4,
     "drawer_drop_shadow": true,
     "icon_stroke": "default",
     "input_border_width": 1,
