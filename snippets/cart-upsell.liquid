@@ -92,6 +92,15 @@
     padding-block-end: var(--gap-xl);
   }
 
+  /*
+    The summary also uses margin-top: auto to stick to the bottom. With two auto
+    margins the free space is split, leaving a gap under the upsell. Let the
+    upsell take all of it so it sits flush on top of the summary.
+  */
+  .cart-drawer__content:has(.cart-upsell:not([hidden])) .cart-drawer__summary {
+    margin-top: 0;
+  }
+
   .cart-upsell__heading {
     margin: 0 0 var(--padding-md);
     font-size: var(--font-size--sm, 0.875rem);
