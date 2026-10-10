@@ -26,8 +26,6 @@ class CartUpsell extends HTMLElement {
   /** @type {Array<Object> | null} */
   #fallback = null;
   #started = false;
-  /** @type {number | undefined} */
-  #scrollFrame;
   #loadId = 0;
   /** @type {ReturnType<typeof setTimeout> | undefined} */
   #reloadTimer;
@@ -70,11 +68,6 @@ class CartUpsell extends HTMLElement {
       .split(',')
       .map((id) => id.trim())
       .filter(Boolean);
-  }
-
-  /** Number of snap positions: the last one shows the final `perView` products. */
-  get #positions() {
-    return Math.max(1, this.#products.length - this.#perView + 1);
   }
 
   /** The container this element renders into, kept beside the fallback JSON. */
@@ -220,42 +213,12 @@ class CartUpsell extends HTMLElement {
     this.#renderItems();
   }
 
-  /**
-   * Builds the heading, track and arrows once. Only the track's items are
-   * re-rendered: replacing an arrow that was clicked would detach the click
-   * target, and the cart drawer treats clicks on detached nodes as clicks
-   * outside the drawer and closes it.
-   */
+  /** Builds the heading and the swipeable track once; only the track's items re-render. */
   #renderShell() {
     this.#inner.innerHTML = `
       <h3 class="cart-upsell__heading">${this.#escape(this.dataset.heading || '')}</h3>
       <ul class="cart-upsell__list" role="list" data-upsell-list></ul>
-      <div class="cart-upsell__nav" data-upsell-nav>
-        <button type="button" class="cart-upsell__arrow" data-upsell-prev aria-label="Previous">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <span class="cart-upsell__count" data-upsell-count aria-live="polite"></span>
-        <button type="button" class="cart-upsell__arrow" data-upsell-next aria-label="Next">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
-      </div>
     `;
-
-    this.querySelector('[data-upsell-prev]')?.addEventListener('click', () => this.#goTo(this.#index - 1));
-    this.querySelector('[data-upsell-next]')?.addEventListener('click', () => this.#goTo(this.#index + 1));
-
-    // Swiping is native scrolling; keep the counter in sync with it.
-    this.querySelector('[data-upsell-list]')?.addEventListener(
-      'scroll',
-      () => {
-        if (this.#scrollFrame) return;
-        this.#scrollFrame = requestAnimationFrame(() => {
-          this.#scrollFrame = undefined;
-          this.#updateCount();
-        });
-      },
-      { passive: true }
-    );
   }
 
   #renderItems() {
@@ -266,50 +229,7 @@ class CartUpsell extends HTMLElement {
     list.innerHTML = this.#products.map((product) => this.#card(product)).join('');
     list.scrollLeft = 0;
 
-    const nav = this.querySelector('[data-upsell-nav]');
-    if (nav instanceof HTMLElement) nav.hidden = this.#positions <= 1;
-
-    this.#updateCount();
     this.#bindCards();
-  }
-
-  get #list() {
-    const list = this.querySelector('[data-upsell-list]');
-    return list instanceof HTMLElement ? list : null;
-  }
-
-  /** Distance between the starts of two neighbouring items. */
-  get #step() {
-    const list = this.#list;
-    const [first, second] = list ? Array.from(list.children) : [];
-    if (!(first instanceof HTMLElement)) return 0;
-    if (second instanceof HTMLElement) return Math.abs(second.offsetLeft - first.offsetLeft);
-    return first.offsetWidth;
-  }
-
-  /** Index of the first visible item. RTL scrolls into negative values, hence `abs`. */
-  get #index() {
-    const step = this.#step;
-    const list = this.#list;
-    if (!step || !list) return 0;
-    return Math.min(this.#positions - 1, Math.round(Math.abs(list.scrollLeft) / step));
-  }
-
-  /** @param {number} index */
-  #goTo(index) {
-    const list = this.#list;
-    if (!list) return;
-
-    const target = (index + this.#positions) % this.#positions;
-    const direction = getComputedStyle(list).direction === 'rtl' ? -1 : 1;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    list.scrollTo({ left: target * this.#step * direction, behavior: reduceMotion ? 'auto' : 'smooth' });
-  }
-
-  #updateCount() {
-    const count = this.querySelector('[data-upsell-count]');
-    if (count) count.textContent = `${this.#index + 1}/${this.#positions}`;
   }
 
   /** @param {Object} product */
@@ -326,7 +246,7 @@ class CartUpsell extends HTMLElement {
 
     const variantSelect =
       variants.length > 1
-        ? `<select class="cart-upsell__select" data-upsell-variant aria-label="${this.#escape(product.options?.[0] || 'Variant')}">
+        ? `<select class="cart-upsell__select" data-upsell-variant hidden aria-label="${this.#escape(product.options?.[0] || 'Variant')}">
              ${variants
                .map((v) => `<option value="${v.id}" data-price="${v.price}">${this.#escape(v.title)}</option>`)
                .join('')}
@@ -348,8 +268,10 @@ class CartUpsell extends HTMLElement {
           <p class="cart-upsell__price" data-upsell-price-block>${this.#priceHtml(variant.price, product)}</p>
           ${variantSelect}
         </div>
-        <button type="button" class="${this.#escape(this.dataset.buttonClass || 'button')} cart-upsell__add" data-upsell-add data-variant-id="${variant.id}">
-          ${this.#escape(this.dataset.addLabel || 'Add')}
+        <button type="button" class="${this.#escape(this.dataset.buttonClass || 'button')} cart-upsell__add" data-upsell-add data-variant-id="${variant.id}"${
+          variants.length > 1 ? ' data-upsell-choose' : ''
+        }>
+          ${this.#escape(variants.length > 1 ? this.dataset.chooseLabel || 'Choose' : this.dataset.addLabel || 'Add')}
         </button>
       </li>
     `;
@@ -375,8 +297,35 @@ class CartUpsell extends HTMLElement {
     });
 
     this.querySelectorAll('[data-upsell-add]').forEach((button) => {
-      button.addEventListener('click', (event) => this.#add(event));
+      button.addEventListener('click', (event) => {
+        if (button instanceof HTMLElement && button.hasAttribute('data-upsell-choose')) {
+          this.#revealVariants(button);
+        } else {
+          this.#add(event);
+        }
+      });
     });
+  }
+
+  /**
+   * First tap on "Choose": show the variant picker in the card and turn the
+   * button into "Add". The button stays in place so the drawer remains open.
+   * @param {HTMLElement} button
+   */
+  #revealVariants(button) {
+    const select = button.closest('[data-upsell-card]')?.querySelector('[data-upsell-variant]');
+    if (!(select instanceof HTMLSelectElement)) return;
+
+    select.hidden = false;
+    button.removeAttribute('data-upsell-choose');
+    button.textContent = this.dataset.addLabel || 'Add';
+
+    select.focus();
+    try {
+      select.showPicker?.();
+    } catch {
+      // Not supported everywhere (or not allowed); the visible, focused select is enough.
+    }
   }
 
   /** @param {Event} event */

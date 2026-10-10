@@ -57,6 +57,7 @@
     data-per-page="{{ settings.cart_upsell_per_page }}"
     data-heading="{{ settings.cart_upsell_heading | escape }}"
     data-add-label="{{ 'actions.add' | t | escape }}"
+    data-choose-label="{{ 'actions.choose' | t | escape }}"
     data-discount-percent="{{ settings.cart_upsell_discount_percent }}"
     data-discount-label="{{ settings.cart_upsell_discount_label | escape }}"
     data-discount-products="{{ discount_ids }}"
@@ -145,10 +146,17 @@
     display: none;
   }
 
+  /*
+    Cards are sized so part of the next one peeks in, hinting that the row
+    swipes. --cart-upsell-peek is the fraction of a card left visible.
+  */
   .cart-upsell__item {
+    --cart-upsell-peek: 0.15;
+
     flex: 0 0
       calc(
-        (100% - (var(--cart-upsell-per-view, 1) - 1) * var(--cart-upsell-gap)) / var(--cart-upsell-per-view, 1)
+        (100% - var(--cart-upsell-per-view, 1) * var(--cart-upsell-gap)) /
+          (var(--cart-upsell-per-view, 1) + var(--cart-upsell-peek))
       );
     scroll-snap-align: start;
     box-sizing: border-box;
@@ -159,6 +167,10 @@
     padding: var(--padding-sm);
     border: 1px solid rgb(from var(--color-foreground) r g b / 10%);
     border-radius: var(--style-border-radius-inputs, 8px);
+  }
+
+  .cart-upsell__item:only-child {
+    flex-basis: 100%;
   }
 
   .cart-upsell__media {
@@ -229,6 +241,10 @@
     background: var(--color-primary-button-background, currentcolor);
   }
 
+  .cart-upsell__select[hidden] {
+    display: none;
+  }
+
   .cart-upsell__select {
     width: 100%;
     max-width: 11rem;
@@ -254,47 +270,4 @@
     pointer-events: none;
   }
 
-  .cart-upsell__nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--padding-sm);
-    margin-block-start: var(--padding-md);
-  }
-
-  .cart-upsell__nav[hidden] {
-    display: none;
-  }
-
-  .cart-upsell__arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border: 1px solid rgb(from var(--color-foreground) r g b / 15%);
-    border-radius: 50%;
-    background: transparent;
-    color: inherit;
-    cursor: pointer;
-    transition: border-color var(--animation-speed, 0.2s) ease;
-  }
-
-  .cart-upsell__arrow:hover {
-    border-color: currentcolor;
-  }
-
-  .cart-upsell__count {
-    min-width: 2.5rem;
-    text-align: center;
-    font-size: var(--font-size--xs, 0.8125rem);
-    opacity: 0.7;
-    font-variant-numeric: tabular-nums;
-  }
-
-  /* Arabic / RTL: point the arrows the right way. */
-  [dir='rtl'] .cart-upsell__arrow svg {
-    transform: scaleX(-1);
-  }
 {% endstylesheet %}

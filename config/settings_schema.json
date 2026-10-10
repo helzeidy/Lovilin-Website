@@ -2063,7 +2063,7 @@
         "type": "range",
         "id": "cart_upsell_per_page",
         "label": "Products visible at once",
-        "info": "Shoppers swipe or use the arrows to see the rest.",
+        "info": "Part of the next product peeks in; shoppers swipe to see the rest.",
         "min": 1,
         "max": 4,
         "step": 1,
