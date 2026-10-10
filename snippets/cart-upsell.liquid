@@ -37,7 +37,11 @@
 
     # Products the cart offer applies to (blank collection = every recommended product).
     assign discount_ids = ''
-    if settings.cart_upsell_discount_percent > 0 and settings.cart_upsell_discount_collection != blank
+    assign offer_on = false
+    if settings.cart_upsell_discount_percent > 0 or settings.cart_upsell_discount_code != blank
+      assign offer_on = true
+    endif
+    if offer_on and settings.cart_upsell_discount_collection != blank
       for discount_product in settings.cart_upsell_discount_collection.products limit: 50
         assign discount_ids = discount_ids | append: discount_product.id | append: ','
       endfor
@@ -61,6 +65,7 @@
     data-discount-percent="{{ settings.cart_upsell_discount_percent }}"
     data-discount-label="{{ settings.cart_upsell_discount_label | escape }}"
     data-discount-products="{{ discount_ids }}"
+    data-discount-code="{{ settings.cart_upsell_discount_code | strip | escape }}"
     data-button-class="{% if settings.cart_upsell_button_style == 'secondary' %}button button-secondary{% else %}button{% endif %}"
     data-money-format="{{ shop.money_format | strip_html | escape }}"
     data-currency="{{ cart.currency.iso_code }}"

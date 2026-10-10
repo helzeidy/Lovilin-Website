@@ -2023,12 +2023,18 @@
         "type": "range",
         "id": "cart_upsell_discount_percent",
         "label": "Cart offer discount",
-        "info": "Shows a discounted price on recommended products. Only changes the display: create a matching Buy X get Y automatic discount in Discounts so the price is actually reduced. Set to 0% to turn off.",
+        "info": "Shown on recommended products as the discounted price and badge. Use the same percentage as the discount code below. Set to 0% to hide.",
         "min": 0,
         "max": 50,
         "step": 1,
         "unit": "%",
         "default": 0
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_discount_code",
+        "label": "Cart offer discount code",
+        "info": "Create a discount code in Discounts and enter it here. It is applied automatically only when a shopper adds a product from these recommendations, never when the product is added elsewhere on the site."
       },
       {
         "type": "text",
@@ -2041,7 +2047,7 @@
         "type": "collection",
         "id": "cart_upsell_discount_collection",
         "label": "Discounted products",
-        "info": "Use the same collection as the discount's \"Customer gets\" products, so the badge only shows where the discount applies. Leave empty if the discount covers all products."
+        "info": "Use the same products as your discount code. The badge and the code only apply to products in this collection. Leave empty to cover all recommended products."
       },
       {
         "type": "select",

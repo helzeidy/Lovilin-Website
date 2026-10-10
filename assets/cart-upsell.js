@@ -175,11 +175,15 @@ class CartUpsell extends HTMLElement {
     );
   }
 
-  /** @param {Object} product */
-  #isDiscounted(product) {
-    if (!this.#discountPercent) return false;
+  /** Whether the cart offer covers this product (an empty list covers every product). */
+  #isEligible(product) {
     const ids = this.#discountIds;
     return ids.size === 0 || ids.has(String(product.id));
+  }
+
+  /** @param {Object} product */
+  #isDiscounted(product) {
+    return this.#discountPercent > 0 && this.#isEligible(product);
   }
 
   /**
@@ -338,6 +342,7 @@ class CartUpsell extends HTMLElement {
 
     const card = button.closest('[data-upsell-card]');
     const productId = card instanceof HTMLElement ? card.dataset.productId : undefined;
+    const product = this.#products.find((item) => String(item.id) === String(productId));
 
     // Keep the label (it's translated) and signal progress via state only.
     button.disabled = true;
@@ -367,9 +372,21 @@ class CartUpsell extends HTMLElement {
       this.#products = this.#products.filter((product) => String(product.id) !== String(productId));
       this.#render();
 
-      const cart = await fetch(`${Theme.routes.cart_url}.js`)
+      let sections = result.sections;
+      let cart = await fetch(`${Theme.routes.cart_url}.js`)
         .then((res) => (res.ok ? res.json() : undefined))
         .catch(() => undefined);
+
+      // The offer is only for items added here, so the code is applied here and
+      // never when the same product is added elsewhere on the site.
+      const code = (this.dataset.discountCode || '').trim();
+      if (code && product && this.#isEligible(product)) {
+        const updated = await this.#applyDiscountCode(code, cart, sectionIds);
+        if (updated) {
+          cart = updated;
+          sections = updated.sections ?? sections;
+        }
+      }
 
       this.dispatchEvent(
         new CartAddEvent(cart ?? {}, this.id || 'cart-upsell', {
@@ -377,13 +394,53 @@ class CartUpsell extends HTMLElement {
           itemCount: 1,
           productId,
           variantId,
-          sections: result.sections,
+          sections,
         })
       );
     } catch (error) {
       console.error('Cart upsell add failed:', error);
       button.disabled = false;
       button.removeAttribute('aria-busy');
+    }
+  }
+
+  /**
+   * Adds the cart offer code to the cart, keeping codes already applied.
+   * If Shopify reports it as not applicable, the previous codes are restored so
+   * the cart doesn't show a code that does nothing.
+   * @param {string} code
+   * @param {{ discount_codes?: Array<{ code: string }> } | undefined} cart
+   * @param {Array<string | null | undefined>} sectionIds
+   * @returns {Promise<(Object & { sections?: Record<string, string> }) | null>} The updated cart, or null if unchanged
+   */
+  async #applyDiscountCode(code, cart, sectionIds) {
+    const existing = (cart?.discount_codes || []).map((discount) => discount.code).filter(Boolean);
+    if (existing.some((existingCode) => existingCode.toLowerCase() === code.toLowerCase())) return null;
+
+    /** @param {Array<string>} codes */
+    const updateCodes = async (codes) => {
+      const response = await fetch(Theme.routes.cart_update_url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ discount: codes.join(','), sections: sectionIds.filter(Boolean) }),
+      });
+      if (!response.ok) throw new Error(`Discount update failed (${response.status})`);
+      return response.json();
+    };
+
+    try {
+      const updated = await updateCodes([...existing, code]);
+      const rejected = (updated.discount_codes || []).some(
+        (/** @type {{ code: string; applicable: boolean }} */ discount) =>
+          discount.code.toLowerCase() === code.toLowerCase() && discount.applicable === false
+      );
+      if (!rejected) return updated;
+
+      console.warn(`Cart upsell: discount code "${code}" does not apply to this cart; check its settings.`);
+      return await updateCodes(existing);
+    } catch (error) {
+      console.error('Cart upsell: could not apply discount code:', error);
+      return null;
     }
   }
 
