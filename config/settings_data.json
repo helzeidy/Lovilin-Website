@@ -76,6 +76,8 @@
     "cart_upsell_heading_size": 16,
     "cart_upsell_intent": "complementary",
     "cart_upsell_collection": "fabric-care",
+    "cart_upsell_discount_percent": 2,
+    "cart_upsell_discount_collection": "fabric-care",
     "cart_upsell_per_page": 1,
     "drawer_drop_shadow": true,
     "icon_stroke": "default",
