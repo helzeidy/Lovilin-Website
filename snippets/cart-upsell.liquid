@@ -34,6 +34,14 @@
     endfor
 
     assign fallback_collection = settings.cart_upsell_collection
+
+    # Products the cart offer applies to (blank collection = every recommended product).
+    assign discount_ids = ''
+    if settings.cart_upsell_discount_percent > 0 and settings.cart_upsell_discount_collection != blank
+      for discount_product in settings.cart_upsell_discount_collection.products limit: 50
+        assign discount_ids = discount_ids | append: discount_product.id | append: ','
+      endfor
+    endif
   -%}
 
   <cart-upsell
@@ -49,6 +57,9 @@
     data-per-page="{{ settings.cart_upsell_per_page }}"
     data-heading="{{ settings.cart_upsell_heading | escape }}"
     data-add-label="{{ 'actions.add' | t | escape }}"
+    data-discount-percent="{{ settings.cart_upsell_discount_percent }}"
+    data-discount-label="{{ settings.cart_upsell_discount_label | escape }}"
+    data-discount-products="{{ discount_ids }}"
     data-button-class="{% if settings.cart_upsell_button_style == 'secondary' %}button button-secondary{% else %}button{% endif %}"
     data-money-format="{{ shop.money_format | strip_html | escape }}"
     data-currency="{{ cart.currency.iso_code }}"
@@ -200,6 +211,22 @@
 
   .cart-upsell__compare {
     opacity: 0.6;
+  }
+
+  .cart-upsell__sale {
+    font-weight: 600;
+  }
+
+  /* Cart offer badge, e.g. "Save 15%". */
+  .cart-upsell__badge {
+    align-self: flex-start;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-primary-button-text, #fff);
+    background: var(--color-primary-button-background, currentcolor);
   }
 
   .cart-upsell__select {

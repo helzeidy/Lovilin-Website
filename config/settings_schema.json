@@ -2020,6 +2020,30 @@
         "default": 6
       },
       {
+        "type": "range",
+        "id": "cart_upsell_discount_percent",
+        "label": "Cart offer discount",
+        "info": "Shows a discounted price on recommended products. Only changes the display: create a matching Buy X get Y automatic discount in Discounts so the price is actually reduced. Set to 0% to turn off.",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "%",
+        "default": 0
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_discount_label",
+        "label": "Discount badge text",
+        "info": "Shown before the percentage, e.g. Save 15%.",
+        "default": "Save"
+      },
+      {
+        "type": "collection",
+        "id": "cart_upsell_discount_collection",
+        "label": "Discounted products",
+        "info": "Use the same collection as the discount's \"Customer gets\" products, so the badge only shows where the discount applies. Leave empty if the discount covers all products."
+      },
+      {
         "type": "select",
         "id": "cart_upsell_button_style",
         "label": "Add button style",

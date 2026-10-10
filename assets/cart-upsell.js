@@ -163,6 +163,52 @@ class CartUpsell extends HTMLElement {
     return formatMoney(cents, this.dataset.moneyFormat || '${{amount}}', this.dataset.currency || 'USD');
   }
 
+  /**
+   * Percentage off shown on recommended products. This is display only: the
+   * price is actually reduced by an automatic discount set up in the admin.
+   */
+  get #discountPercent() {
+    const percent = Number.parseInt(this.dataset.discountPercent || '0', 10);
+    return Number.isFinite(percent) ? Math.min(Math.max(percent, 0), 100) : 0;
+  }
+
+  /** Product ids the discount applies to; empty means every recommended product. */
+  get #discountIds() {
+    return new Set(
+      (this.dataset.discountProducts || '')
+        .split(',')
+        .map((id) => id.trim())
+        .filter(Boolean)
+    );
+  }
+
+  /** @param {Object} product */
+  #isDiscounted(product) {
+    if (!this.#discountPercent) return false;
+    const ids = this.#discountIds;
+    return ids.size === 0 || ids.has(String(product.id));
+  }
+
+  /**
+   * @param {number} price - Variant price in minor units
+   * @param {Object} product
+   */
+  #priceHtml(price, product) {
+    if (this.#isDiscounted(product)) {
+      const discounted = Math.round((price * (100 - this.#discountPercent)) / 100);
+      return `
+        <span class="cart-upsell__sale" data-upsell-price>${this.#money(discounted)}</span>
+        <s class="cart-upsell__compare">${this.#money(price)}</s>
+      `;
+    }
+
+    const onSale = product.compare_at_price && product.compare_at_price > price;
+    return `
+      <span data-upsell-price>${this.#money(price)}</span>
+      ${onSale ? `<s class="cart-upsell__compare">${this.#money(product.compare_at_price)}</s>` : ''}
+    `;
+  }
+
   #render() {
     // Nothing to recommend: remove the content so the element collapses.
     if (!this.#products.length) {
@@ -274,7 +320,9 @@ class CartUpsell extends HTMLElement {
 
     const url = this.#escape(product.url || `/products/${product.handle}`);
     const image = this.#imageUrl(product.featured_image || product.images?.[0] || null, 200);
-    const onSale = product.compare_at_price && product.compare_at_price > product.price;
+    const badge = this.#isDiscounted(product)
+      ? `<span class="cart-upsell__badge">${this.#escape(this.dataset.discountLabel || 'Save')} ${this.#discountPercent}%</span>`
+      : '';
 
     const variantSelect =
       variants.length > 1
@@ -295,11 +343,9 @@ class CartUpsell extends HTMLElement {
           }
         </a>
         <div class="cart-upsell__info">
+          ${badge}
           <a class="cart-upsell__title" href="${url}">${this.#escape(product.title)}</a>
-          <p class="cart-upsell__price">
-            <span data-upsell-price>${this.#money(variant.price)}</span>
-            ${onSale ? `<s class="cart-upsell__compare">${this.#money(product.compare_at_price)}</s>` : ''}
-          </p>
+          <p class="cart-upsell__price" data-upsell-price-block>${this.#priceHtml(variant.price, product)}</p>
           ${variantSelect}
         </div>
         <button type="button" class="${this.#escape(this.dataset.buttonClass || 'button')} cart-upsell__add" data-upsell-add data-variant-id="${variant.id}">
@@ -322,8 +368,9 @@ class CartUpsell extends HTMLElement {
         const addButton = card.querySelector('[data-upsell-add]');
         if (addButton instanceof HTMLElement) addButton.dataset.variantId = target.value;
 
-        const price = card.querySelector('[data-upsell-price]');
-        if (price) price.textContent = this.#money(Number(option.dataset.price));
+        const priceBlock = card.querySelector('[data-upsell-price-block]');
+        const product = this.#products.find((item) => String(item.id) === card.getAttribute('data-product-id'));
+        if (priceBlock && product) priceBlock.innerHTML = this.#priceHtml(Number(option.dataset.price), product);
       });
     });
 
