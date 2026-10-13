@@ -817,6 +817,7 @@
             },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
+              "disabled": true,
               "settings": {
                 "stacking": true,
                 "show_pickup_availability": false,
@@ -849,6 +850,33 @@
                 }
               },
               "block_order": []
+            },
+            "text_HJTWFD": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h4>Coming Soon !</h4>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "alignment_mobile": "",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             },
             "group_JwDJEa": {
               "type": "group",
@@ -1205,6 +1233,7 @@
             "divider_VJhene",
             "bundle_selector_WmWzRd",
             "buy_buttons_eYQEYi",
+            "text_HJTWFD",
             "group_JwDJEa",
             "divider_ijVBhC",
             "ai_gen_block_f43f1ec_mzXwVp",
