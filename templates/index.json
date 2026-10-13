@@ -1168,7 +1168,7 @@
         "collection": "shop-all",
         "layout_type": "carousel",
         "carousel_on_mobile": true,
-        "max_products": 16,
+        "max_products": 15,
         "columns": 3,
         "mobile_columns": "1",
         "mobile_card_size": "85cqw",
