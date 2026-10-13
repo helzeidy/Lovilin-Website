@@ -106,7 +106,29 @@
       {% if block_settings.padding-block-end > 0 %}--zoom-out-padding-block-end: min(var(--padding-xs), {{ block_settings.padding-block-end | times: 0.7}}px);{% endif %}
     "
   >
-    {% assign featured_collection = product.collections | first %}
+    {%- liquid
+      # Pick the collection shown in the badge. `product.collections | first` is often a
+      # catch-all like "Shop All", so prefer a category, then any non-generic collection.
+      assign category_handles = 'fabric-care,surface-disinfection,feeding-hygiene,stain-treatment' | split: ','
+      assign generic_handles = 'all,shop-all,frontpage,home,homepage,home-page' | split: ','
+      assign featured_collection = nil
+
+      for product_collection in product.collections
+        if category_handles contains product_collection.handle
+          assign featured_collection = product_collection
+          break
+        endif
+      endfor
+
+      unless featured_collection
+        for product_collection in product.collections
+          unless generic_handles contains product_collection.handle
+            assign featured_collection = product_collection
+            break
+          endunless
+        endfor
+      endunless
+    -%}
 {% if featured_collection %}
   {% comment %}
     =============================================
