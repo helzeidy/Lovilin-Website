@@ -1165,7 +1165,7 @@
       ],
       "name": "Featured collection",
       "settings": {
-        "collection": "all",
+        "collection": "shop-all",
         "layout_type": "carousel",
         "carousel_on_mobile": true,
         "max_products": 8,
