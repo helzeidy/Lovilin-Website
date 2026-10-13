@@ -162,6 +162,11 @@
         "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": true,
         "settings": {}
+      },
+      "8035815586522894503": {
+        "type": "shopify://apps/tek-labs-gifts-upsell/blocks/free-gift.embed/f616e94d-36ae-45cb-9d98-57804196c7a7",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
