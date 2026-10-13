@@ -128,8 +128,21 @@
           endunless
         endfor
       endunless
+
+      # Products only in catch-all collections (e.g. Shop All) are the bundles.
+      if featured_collection
+        assign badge_title = featured_collection.title
+      elsif product.collections.size > 0
+        if request.locale.iso_code == 'ar'
+          assign badge_title = 'باقة'
+        else
+          assign badge_title = 'Bundle'
+        endif
+      else
+        assign badge_title = ''
+      endif
     -%}
-{% if featured_collection %}
+{% if badge_title != blank %}
   {% comment %}
     =============================================
     COLLECTION BADGE COLORS — EASY TO CUSTOMIZE!
@@ -169,7 +182,7 @@
     border-radius: 100px;
     z-index: 10;
     pointer-events: none;
-  ">{{ featured_collection.title }}</span>
+  ">{{ badge_title }}</span>
 {% endif %}
 
 
