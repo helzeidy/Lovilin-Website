@@ -163,13 +163,8 @@
         "disabled": true,
         "settings": {}
       },
-      "8035815586522894503": {
-        "type": "shopify://apps/tek-labs-gifts-upsell/blocks/free-gift.embed/f616e94d-36ae-45cb-9d98-57804196c7a7",
-        "disabled": false,
-        "settings": {}
-      },
-      "15247839323734551960": {
-        "type": "shopify://apps/tek-labs-gifts-upsell/blocks/cart-goal.embed/f616e94d-36ae-45cb-9d98-57804196c7a7",
+      "8146928938815853587": {
+        "type": "shopify://apps/essential-free-gifts/blocks/app-embed/019dad42-b5e4-708e-b27c-0dd45d7a0eb5",
         "disabled": false,
         "settings": {}
       }
