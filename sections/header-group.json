@@ -16,9 +16,8 @@
       "blocks": {
         "announcement_BxgCk9": {
           "type": "_announcement",
-          "disabled": true,
           "settings": {
-            "text": "Free shipping on orders $60",
+            "text": "FREE COLOR CATCHER SHEETS ON ORDERS OF 850+ EGP",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
