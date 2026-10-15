@@ -16,8 +16,8 @@
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
-            "image_1": "shopify://shop_images/Banner-desktop.jpg",
-            "image_1_mobile": "shopify://shop_images/Banner-mobile.jpg",
+            "image_1": "shopify://shop_images/Banner-desktop-EN.jpg",
+            "image_1_mobile": "shopify://shop_images/hero-products-Banner-mobile-EN.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -142,7 +142,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<h2>It's not one product. <br/>It's a system.</h2>",
+                        "text": "<p>FREE COLOR<br/>CATCHER SHEETS</p>",
                         "width": "100%",
                         "max_width": "none",
                         "alignment": "left",
@@ -173,7 +173,7 @@
                 "text_BXkG6K": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Four targeted formulas. One complete system covering everything your baby interacts with daily.</p>",
+                    "text": "<p>With every order of 850 EGP or more.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -199,8 +199,8 @@
                 "button_difbct": {
                   "type": "button",
                   "settings": {
-                    "label": "Explore System",
-                    "link": "shopify://pages/our-system",
+                    "label": "LIMITED TIME",
+                    "link": "shopify://collections/shop-all",
                     "open_in_new_tab": false,
                     "style_class": "button",
                     "width": "fit-content",
