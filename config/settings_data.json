@@ -167,6 +167,11 @@
         "type": "shopify://apps/tek-labs-gifts-upsell/blocks/free-gift.embed/f616e94d-36ae-45cb-9d98-57804196c7a7",
         "disabled": false,
         "settings": {}
+      },
+      "15247839323734551960": {
+        "type": "shopify://apps/tek-labs-gifts-upsell/blocks/cart-goal.embed/f616e94d-36ae-45cb-9d98-57804196c7a7",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
