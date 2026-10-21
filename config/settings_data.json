@@ -163,16 +163,9 @@
         "disabled": false,
         "settings": {}
       },
-      "7639604639754351684": {
-        "type": "shopify://apps/yaki-buy-x-get-y-free-gift/blocks/main/019cdbe3-e40b-70ae-a198-47eca6775a29",
+      "14041968213898805026": {
+        "type": "shopify://apps/aov-ai-free-gift-bxgy/blocks/app-embed-free-gift/de98edfe-90fa-4145-8a57-1055e0058723",
         "disabled": false,
-        "settings": {
-          "custom_css": ""
-        }
-      },
-      "8146928938815853587": {
-        "type": "shopify://apps/essential-free-gifts/blocks/app-embed/019dad42-b5e4-708e-b27c-0dd45d7a0eb5",
-        "disabled": true,
         "settings": {}
       }
     },
