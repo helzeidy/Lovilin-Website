@@ -1183,6 +1183,10 @@
               },
               "blocks": {}
             },
+            "aov_ai_free_gift_bxgy_avada_progress_bar_Kztbb8": {
+              "type": "shopify://apps/aov-ai-free-gift-bxgy/blocks/avada-progress-bar/de98edfe-90fa-4145-8a57-1055e0058723",
+              "settings": {}
+            },
             "tabs_studio_product_tabs_block_y7YmaL": {
               "type": "shopify://apps/tabs-studio/blocks/product_tabs_block/19980fb9-f2ca-4ada-ad36-c0364c3318b8",
               "settings": {
@@ -1209,6 +1213,7 @@
             "divider_ijVBhC",
             "ai_gen_block_f43f1ec_mzXwVp",
             "divider_d3GQQj",
+            "aov_ai_free_gift_bxgy_avada_progress_bar_Kztbb8",
             "tabs_studio_product_tabs_block_y7YmaL"
           ]
         }
