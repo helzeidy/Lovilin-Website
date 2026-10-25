@@ -1,12 +1,11 @@
 <div id="cart-progress-bar-component" class="cart-progress-banner">
-  <div class="cart-progress-message" id="cart-progress-text">Checking cart progress...</div>
+  <div class="cart-progress-message" id="cart-progress-text"></div>
   
   <div class="cart-progress-bar-wrapper">
     <div class="cart-progress-bar-container">
       <div class="cart-progress-bar-fill" id="cart-progress-fill" style="width: 0%;"></div>
     </div>
     
-    <!-- Product node with plus sign at the end of the bar -->
     <div class="cart-progress-gift-node" id="cart-gift-node" title="Add Color Catcher Sheets">
       <img id="cart-gift-img" src="" alt="Color Catcher Sheets" style="display:none;" />
       <div class="cart-gift-plus-badge" id="cart-gift-badge">+</div>
@@ -144,7 +143,6 @@
         const remaining = Math.max(0, GOAL - qualifyingTotal);
         const formatMoney = (cents) => (cents / 100).toFixed(2) + ' EGP';
 
-        // Update visual states for the node badge
         if (giftInCart) {
           nodeEl.classList.add('is-added');
           badgeEl.textContent = '✓';
@@ -152,8 +150,7 @@
         } else {
           nodeEl.classList.remove('is-added');
           badgeEl.textContent = '+';
-          if (imgEl && !imgEl.src) imgEl.style.display = 'none';
-          else if (imgEl && imgEl.src) imgEl.style.display = 'block';
+          if (imgEl && imgEl.src) imgEl.style.display = 'block';
         }
 
         if (qualifyingTotal >= GOAL) {
@@ -172,7 +169,6 @@
       }
     }
 
-    // Handle click event on the product node to add item smoothly without closing drawer
     document.addEventListener('click', async function(e) {
       const giftNode = e.target.closest('#cart-gift-node');
       if (giftNode) {
@@ -187,29 +183,21 @@
           });
           
           if (addRes.ok) {
-            // Trigger native theme update events so side drawer refreshes its contents seamlessly
             document.dispatchEvent(new CustomEvent('cart:build', { bubbles: true }));
             document.dispatchEvent(new CustomEvent('cart:updated', { bubbles: true }));
             document.dispatchEvent(new CustomEvent('shopify:cart:changed', { bubbles: true }));
             
-            // Re-run progress check immediately without reloading the window
             await updateProgressBar();
             
-            // If the theme has a global cart refresh trigger or global function, dispatch it
-            if (window.Shopify && typeof window.Shopify.getCart === 'function') {
-              window.Shopify.getCart();
-            } else {
-              // Fallback dispatch for generic drawer refresh routes
-              fetch(window.location.href).then(res => res.text()).then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const newDrawer = doc.querySelector('.cart-drawer__inner');
-                const currentDrawer = document.querySelector('.cart-drawer__inner');
-                if (newDrawer && currentDrawer) {
-                  currentDrawer.innerHTML = newDrawer.innerHTML;
-                }
-              });
-            }
+            fetch(window.location.href).then(res => res.text()).then(html => {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
+              const newDrawer = doc.querySelector('.cart-drawer__inner');
+              const currentDrawer = document.querySelector('.cart-drawer__inner');
+              if (newDrawer && currentDrawer) {
+                currentDrawer.innerHTML = newDrawer.innerHTML;
+              }
+            });
           }
         } catch (err) {
           console.error('Failed to add gift item:', err);
@@ -219,7 +207,6 @@
       }
     });
 
-    // Listen to container changes or cart events to sync progress smoothly
     initGiftData();
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
       updateProgressBar();
@@ -229,6 +216,5 @@
     
     document.addEventListener('cart:updated', updateProgressBar);
     document.addEventListener('shopify:cart:changed', updateProgressBar);
-    window.addEventListener('popstate', updateProgressBar);
   })();
 </script>
