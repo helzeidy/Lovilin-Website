@@ -3,10 +3,10 @@
 
   Renders the header actions.
 
-  @param {object} [section] - The section object providing settings such as actions_font.
-  @param {block} [block] - The block object, used for Shopify editor attributes.
-  @param {string} [display_style] - Controls display mode for header actions: 'icon' or 'text'.
-  @param {string} [customer_account_menu] - The menu handle passed to the shopify-account component.
+-   @param {object} [section] The section object providing settings such as actions_font.
+-   @param {block} [block] The block object, used for Shopify editor attributes.
+-   @param {string} [display_style] Controls display mode for header actions: 'icon' or 'text'.
+-   @param {string} [customer_account_menu] The menu handle passed to the shopify-account component.
 
   @example
   {% render 'header-actions', section: section %}
@@ -223,6 +223,11 @@
                     {{- 'icon-close.svg' | inline_asset_content -}}
                   </span>
                 </button>
+              </div>
+
+              <!-- Progress bar rendered inside the drawer right below the header -->
+              <div style="padding: 0 var(--cart-drawer-padding);">
+                {% render 'cart-progress-bar' %}
               </div>
 
               <scroll-hint
