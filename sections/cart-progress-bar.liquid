@@ -1,0 +1,123 @@
+{%- liquid
+  assign goal = 85000
+  assign cart_total = cart.total_price
+  assign target_handle = 'color-catcher-sheets'
+  
+  assign gift_in_cart = false
+  assign gift_variant_id = ''
+  assign qualifying_total = 0
+  
+  for item in cart.items
+    if item.product.handle == target_handle
+      assign gift_in_cart = true
+      assign gift_variant_id = item.variant_id
+    else
+      assign qualifying_total = qualifying_total | plus: item.original_line_price
+    endif
+  endfor
+
+  assign percent = qualifying_total | times: 100 | divided_by: goal
+  if percent > 100
+    assign percent = 100
+  endif
+
+  assign remaining = goal | minus: qualifying_total
+  if remaining < 0
+    assign remaining = 0
+  endif
+  
+  assign remaining_formatted = remaining | money
+  assign goal_formatted = goal | money
+-%}
+
+<div class="cart-progress-banner" data-qualifying-total="{{ qualifying_total }}" data-goal="{{ goal }}" data-gift-in-cart="{% if gift_in_cart %}true{% else %}false{% endif %}" data-gift-variant-id="{{ gift_variant_id }}">
+  <div class="cart-progress-message">
+    {%- if qualifying_total >= goal -%}
+      <span>🎉 You unlocked your free Color Catcher Sheets!</span>
+    {%- else -%}
+      <span>Add <strong>{{ remaining_formatted }}</strong> more to get Free Color Catcher Sheets! (Goal: {{ goal_formatted }})</span>
+    {%- endif -%}
+  </div>
+  
+  <div class="cart-progress-bar-container">
+    <div class="cart-progress-bar-fill" style="width: {{ percent }}%;"></div>
+  </div>
+</div>
+
+<style>
+  .cart-progress-banner {
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(var(--color-foreground), 0.03);
+    border-radius: var(--border-radius-shape, 8px);
+    border: 1px solid rgba(var(--color-foreground), 0.08);
+  }
+  .cart-progress-message {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .cart-progress-bar-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(var(--color-foreground), 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .cart-progress-bar-fill {
+    height: 100%;
+    background: rgb(var(--color-button, 0, 0, 0));
+    width: 0%;
+    transition: width 0.4s ease-in-out;
+  }
+</style>
+
+<script>
+  (async function() {
+    const banner = document.currentScript.previousElementSibling || document.querySelector('.cart-progress-banner');
+    if (!banner) return;
+
+    const qualifyingTotal = parseInt(banner.dataset.qualifyingTotal, 10);
+    const goal = parseInt(banner.dataset.goal, 10);
+    const giftInCart = banner.dataset.giftInCart === 'true';
+    const targetHandle = "{{ target_handle }}";
+
+    try {
+      if (qualifyingTotal >= goal && !giftInCart) {
+        const res = await fetch(`/products/${targetHandle}.js`);
+        if (res.ok) {
+          const product = await res.json();
+          const variantId = product.variants[0].id;
+          
+          await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: variantId, quantity: 1 })
+          });
+          window.location.reload();
+        }
+      } else if (qualifyingTotal < goal && giftInCart) {
+        const cartRes = await fetch('/cart.js');
+        const cartData = await cartRes.json();
+        
+        let lineKey = null;
+        cartData.items.forEach((item) => {
+          if (item.handle === targetHandle) {
+            lineKey = item.key;
+          }
+        });
+
+        if (lineKey) {
+          await fetch('/cart/change.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: lineKey, quantity: 0 })
+          });
+          window.location.reload();
+        }
+      }
+    } catch (e) {
+      console.error('Auto add/remove gift error:', e);
+    }
+  })();
+</script>
