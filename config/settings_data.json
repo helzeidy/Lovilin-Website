@@ -163,12 +163,10 @@
         "disabled": true,
         "settings": {}
       },
-      "10605408327587305396": {
-        "type": "shopify://apps/eg-auto-add-to-cart/blocks/app-embed/0f7d4f74-1e89-4820-aec4-6564d7e535d2",
+      "14808536273768958909": {
+        "type": "shopify://apps/hue-free-gift-upsell/blocks/alpha/3c57bfdc-648f-48a1-a3a2-f62f80094e4f",
         "disabled": false,
-        "settings": {
-          "version": "v3"
-        }
+        "settings": {}
       }
     },
     "color_schemes": {
