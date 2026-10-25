@@ -1,5 +1,3 @@
-
-
 {% capture cart_page_more_blocks_content %}
   <div class="cart-page__more-blocks">
     {%- content_for 'blocks' -%}
@@ -16,6 +14,9 @@
         class="cart-page spacing-style{% if cart.empty? %} cart-page--empty{% endif %}"
         style="{% render 'spacing-style', settings: section.settings %}"
       >
+        <!-- Render Progress Bar at the top even for empty cart if desired, or keep it inside main view -->
+        {% render 'cart-progress-bar' %}
+
         <div class="cart-page__title">
           {%- content_for 'block', id: 'cart-page-title', type: '_cart-title', force_empty: true %}
         </div>
@@ -27,7 +28,7 @@
     </div>
   </template>
 
-  {% # theme-check-disable UniqueStaticBlockId %}
+  {% comment %} # theme-check-disable UniqueStaticBlockId {% endcomment %}
   <div class="section-background color-{{ section.settings.color_scheme }}"></div>
   <div
     class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}"
@@ -36,6 +37,9 @@
       class="cart-page spacing-style{% if cart.empty? %} cart-page--empty{% endif %}"
       style="{% render 'spacing-style', settings: section.settings %}"
     >
+      <!-- Render Progress Bar right at the top of the cart container -->
+      {% render 'cart-progress-bar' %}
+
       <div class="cart-page__title">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
@@ -55,7 +59,7 @@
       {{ cart_page_more_blocks_content }}
     </div>
   </div>
-  {% # theme-check-enable UniqueStaticBlockId %}
+  {% comment %} # theme-check-enable UniqueStaticBlockId {% endcomment %}
 {% endcapture %}
 {% render 'cart-items-component', children: cart_items_children, section_id: section.id %}
 
