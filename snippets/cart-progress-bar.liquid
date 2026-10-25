@@ -1,46 +1,7 @@
-{%- liquid
-  assign goal = 85000
-  assign cart_total = cart.total_price
-  assign target_handle = 'color-catcher-sheets'
-  
-  assign gift_in_cart = false
-  assign gift_variant_id = ''
-  assign qualifying_total = 0
-  
-  for item in cart.items
-    if item.product.handle == target_handle
-      assign gift_in_cart = true
-      assign gift_variant_id = item.variant_id
-    else
-      assign qualifying_total = qualifying_total | plus: item.original_line_price
-    endif
-  endfor
-
-  assign percent = qualifying_total | times: 100 | divided_by: goal
-  if percent > 100
-    assign percent = 100
-  endif
-
-  assign remaining = goal | minus: qualifying_total
-  if remaining < 0
-    assign remaining = 0
-  endif
-  
-  assign remaining_formatted = remaining | money
-  assign goal_formatted = goal | money
--%}
-
-<div class="cart-progress-banner" data-qualifying-total="{{ qualifying_total }}" data-goal="{{ goal }}" data-gift-in-cart="{% if gift_in_cart %}true{% else %}false{% endif %}" data-gift-variant-id="{{ gift_variant_id }}">
-  <div class="cart-progress-message">
-    {%- if qualifying_total >= goal -%}
-      <span>🎉 You unlocked your free Color Catcher Sheets!</span>
-    {%- else -%}
-      <span>Add <strong>{{ remaining_formatted }}</strong> more to get Free Color Catcher Sheets! (Goal: {{ goal_formatted }})</span>
-    {%- endif -%}
-  </div>
-  
+<div id="cart-progress-bar-component" class="cart-progress-banner" style="display:none;">
+  <div class="cart-progress-message" id="cart-progress-text"></div>
   <div class="cart-progress-bar-container">
-    <div class="cart-progress-bar-fill" style="width: {{ percent }}%;"></div>
+    <div class="cart-progress-bar-fill" id="cart-progress-fill" style="width: 0%;"></div>
   </div>
 </div>
 
@@ -51,6 +12,7 @@
     background: rgba(var(--color-foreground), 0.03);
     border-radius: var(--border-radius-shape, 8px);
     border: 1px solid rgba(var(--color-foreground), 0.08);
+    grid-column: 1 / -1; /* Span full width in grid layouts */
   }
   .cart-progress-message {
     font-size: 0.95rem;
@@ -64,7 +26,7 @@
     border-radius: 4px;
     overflow: hidden;
   }
-  .cart-progress-bar-fill {
+  .cart-progress-fill {
     height: 100%;
     background: rgb(var(--color-button, 0, 0, 0));
     width: 0%;
@@ -73,51 +35,104 @@
 </style>
 
 <script>
-  (async function() {
-    const banner = document.currentScript.previousElementSibling || document.querySelector('.cart-progress-banner');
-    if (!banner) return;
+  (function() {
+    const GOAL = 85000; // 850 EGP in cents
+    const TARGET_HANDLE = 'color-catcher-sheets';
 
-    const qualifyingTotal = parseInt(banner.dataset.qualifyingTotal, 10);
-    const goal = parseInt(banner.dataset.goal, 10);
-    const giftInCart = banner.dataset.giftInCart === 'true';
-    const targetHandle = "{{ target_handle }}";
-
-    try {
-      if (qualifyingTotal >= goal && !giftInCart) {
-        const res = await fetch(`/products/${targetHandle}.js`);
-        if (res.ok) {
-          const product = await res.json();
-          const variantId = product.variants[0].id;
-          
-          await fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: variantId, quantity: 1 })
-          });
-          window.location.reload();
-        }
-      } else if (qualifyingTotal < goal && giftInCart) {
-        const cartRes = await fetch('/cart.js');
-        const cartData = await cartRes.json();
+    async function updateProgressBar() {
+      try {
+        const res = await fetch('/cart.js');
+        const cart = await res.json();
         
-        let lineKey = null;
-        cartData.items.forEach((item) => {
-          if (item.handle === targetHandle) {
-            lineKey = item.key;
+        const banner = document.getElementById('cart-progress-bar-component');
+        const textEl = document.getElementById('cart-progress-text');
+        const fillEl = document.getElementById('cart-progress-fill');
+        if (!banner || !textEl || !fillEl) return;
+
+        // Calculate total excluding the gift itself so adding it doesn't skew thresholds
+        let qualifyingTotal = 0;
+        let giftItem = null;
+
+        cart.items.forEach(item => {
+          if (item.handle === TARGET_HANDLE) {
+            giftItem = item;
+          } else {
+            qualifyingTotal += item.final_line_price; // Uses final price accounting for discounts
           }
         });
 
-        if (lineKey) {
-          await fetch('/cart/change.js', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: lineKey, quantity: 0 })
-          });
-          window.location.reload();
+        // Determine percentage & formatting
+        let percent = (qualifyingTotal / GOAL) * 100;
+        if (percent > 100) percent = 100;
+
+        const remaining = Math.max(0, GOAL - qualifyingTotal);
+        const formatMoney = (cents) => {
+          return (cents / 100).toFixed(2) + ' EGP';
+        };
+
+        if (qualifyingTotal >= GOAL) {
+          textEl.innerHTML = `<span>🎉 You unlocked your free Color Catcher Sheets!</span>`;
+          fillEl.style.width = '100%';
+          banner.style.display = 'block';
+
+          // Auto-add if goal reached but gift not in cart
+          if (!giftItem) {
+            await addGiftProduct();
+          }
+        } else {
+          textEl.innerHTML = `<span>Add <strong>${formatMoney(remaining)}</strong> more to get Free Color Catcher Sheets!</span>`;
+          fillEl.style.width = percent + '%';
+          banner.style.display = 'block';
+
+          // Auto-remove if cart drops below threshold and gift is in cart
+          if (giftItem) {
+            await removeGiftProduct(giftItem.key);
+          }
         }
+      } catch (e) {
+        console.error('Cart progress bar error:', e);
       }
-    } catch (e) {
-      console.error('Auto add/remove gift error:', e);
+    }
+
+    async function addGiftProduct() {
+      try {
+        const prodRes = await fetch(`/products/${TARGET_HANDLE}.js`);
+        if (!prodRes.ok) return;
+        const product = await prodRes.json();
+        const variantId = product.variants[0].id;
+
+        await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: variantId, quantity: 1 })
+        });
+        
+        // Trigger cart update event or reload to sync UI
+        window.location.reload();
+      } catch (err) {
+        console.error('Failed to add gift:', err);
+      }
+    }
+
+    async function removeGiftProduct(itemKey) {
+      try {
+        await fetch('/cart/change.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: itemKey, quantity: 0 })
+        });
+        
+        window.location.reload();
+      } catch (err) {
+        console.error('Failed to remove gift:', err);
+      }
+    }
+
+    // Run on initial page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', updateProgressBar);
+    } else {
+      updateProgressBar();
     }
   })();
 </script>
