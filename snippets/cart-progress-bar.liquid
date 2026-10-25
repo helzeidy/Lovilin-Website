@@ -1,5 +1,5 @@
-<div id="cart-progress-bar-component" class="cart-progress-banner" style="display:none;">
-  <div class="cart-progress-message" id="cart-progress-text"></div>
+<div id="cart-progress-bar-component" class="cart-progress-banner">
+  <div class="cart-progress-message" id="cart-progress-text">Calculating progress...</div>
   <div class="cart-progress-bar-container">
     <div class="cart-progress-bar-fill" id="cart-progress-fill" style="width: 0%;"></div>
   </div>
@@ -12,7 +12,7 @@
     background: rgba(var(--color-foreground), 0.03);
     border-radius: var(--border-radius-shape, 8px);
     border: 1px solid rgba(var(--color-foreground), 0.08);
-    grid-column: 1 / -1; /* Span full width in grid layouts */
+    grid-column: 1 / -1;
   }
   .cart-progress-message {
     font-size: 0.95rem;
@@ -30,7 +30,7 @@
     height: 100%;
     background: rgb(var(--color-button, 0, 0, 0));
     width: 0%;
-    transition: width 0.4s ease-in-out;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 </style>
 
@@ -38,18 +38,23 @@
   (function() {
     const GOAL = 85000; // 850 EGP in cents
     const TARGET_HANDLE = 'color-catcher-sheets';
+    let isUpdating = false;
 
     async function updateProgressBar() {
+      if (isUpdating) return;
+      isUpdating = true;
+
       try {
-        const res = await fetch('/cart.js');
+        const res = await fetch('/cart.js', { headers: { 'Accept': 'application/json' } });
         const cart = await res.json();
         
-        const banner = document.getElementById('cart-progress-bar-component');
         const textEl = document.getElementById('cart-progress-text');
         const fillEl = document.getElementById('cart-progress-fill');
-        if (!banner || !textEl || !fillEl) return;
+        if (!textEl || !fillEl) {
+          isUpdating = false;
+          return;
+        }
 
-        // Calculate total excluding the gift itself so adding it doesn't skew thresholds
         let qualifyingTotal = 0;
         let giftItem = null;
 
@@ -57,40 +62,37 @@
           if (item.handle === TARGET_HANDLE) {
             giftItem = item;
           } else {
-            qualifyingTotal += item.final_line_price; // Uses final price accounting for discounts
+            qualifyingTotal += item.final_line_price;
           }
         });
 
-        // Determine percentage & formatting
         let percent = (qualifyingTotal / GOAL) * 100;
         if (percent > 100) percent = 100;
 
         const remaining = Math.max(0, GOAL - qualifyingTotal);
-        const formatMoney = (cents) => {
-          return (cents / 100).toFixed(2) + ' EGP';
-        };
+        const formatMoney = (cents) => (cents / 100).toFixed(2) + ' EGP';
 
         if (qualifyingTotal >= GOAL) {
           textEl.innerHTML = `<span>🎉 You unlocked your free Color Catcher Sheets!</span>`;
           fillEl.style.width = '100%';
-          banner.style.display = 'block';
 
-          // Auto-add if goal reached but gift not in cart
           if (!giftItem) {
             await addGiftProduct();
+            return;
           }
         } else {
           textEl.innerHTML = `<span>Add <strong>${formatMoney(remaining)}</strong> more to get Free Color Catcher Sheets!</span>`;
           fillEl.style.width = percent + '%';
-          banner.style.display = 'block';
 
-          // Auto-remove if cart drops below threshold and gift is in cart
           if (giftItem) {
             await removeGiftProduct(giftItem.key);
+            return;
           }
         }
       } catch (e) {
         console.error('Cart progress bar error:', e);
+      } finally {
+        isUpdating = false;
       }
     }
 
@@ -107,10 +109,10 @@
           body: JSON.stringify({ id: variantId, quantity: 1 })
         });
         
-        // Trigger cart update event or reload to sync UI
         window.location.reload();
       } catch (err) {
         console.error('Failed to add gift:', err);
+        isUpdating = false;
       }
     }
 
@@ -125,14 +127,19 @@
         window.location.reload();
       } catch (err) {
         console.error('Failed to remove gift:', err);
+        isUpdating = false;
       }
     }
 
-    // Run on initial page load
+    // Initialize immediately on load and listen to modern Shopify cart change events
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', updateProgressBar);
     } else {
       updateProgressBar();
     }
+
+    // Listen to theme custom cart update events if supported
+    document.addEventListener('cart:updated', updateProgressBar);
+    document.addEventListener('shopify:cart:changed', updateProgressBar);
   })();
 </script>
