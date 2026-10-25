@@ -1,7 +1,16 @@
 <div id="cart-progress-bar-component" class="cart-progress-banner">
   <div class="cart-progress-message" id="cart-progress-text">Checking cart progress...</div>
-  <div class="cart-progress-bar-container">
-    <div class="cart-progress-bar-fill" id="cart-progress-fill" style="width: 0%;"></div>
+  
+  <div class="cart-progress-bar-wrapper">
+    <div class="cart-progress-bar-container">
+      <div class="cart-progress-bar-fill" id="cart-progress-fill" style="width: 0%;"></div>
+    </div>
+    
+    <!-- Product node with plus sign at the end of the bar -->
+    <div class="cart-progress-gift-node" id="cart-gift-node" title="Add Color Catcher Sheets">
+      <img id="cart-gift-img" src="" alt="Color Catcher Sheets" style="display:none;" />
+      <div class="cart-gift-plus-badge">+</div>
+    </div>
   </div>
 </div>
 
@@ -16,21 +25,62 @@
   }
   .cart-progress-message {
     font-size: 0.95rem;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     text-align: center;
+  }
+  .cart-progress-bar-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-right: 20px; /* Space for the node badge */
   }
   .cart-progress-bar-container {
     width: 100%;
     height: 8px;
     background: rgba(var(--color-foreground), 0.1);
     border-radius: 4px;
-    overflow: hidden;
+    overflow: visible;
   }
-  .cart-progress-fill {
+  .cart-progress-bar-fill {
     height: 100%;
     background: rgb(var(--color-button, 0, 0, 0));
     width: 0%;
+    border-radius: 4px;
     transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .cart-progress-gift-node {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    background: var(--color-background, #fff);
+    border: 2px solid rgb(var(--color-button, 0, 0, 0));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .cart-progress-gift-node:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+  .cart-progress-gift-node img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cart-gift-plus-badge {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    color: rgb(var(--color-button, 0, 0, 0));
   }
 </style>
 
@@ -38,30 +88,42 @@
   (function() {
     const GOAL = 85000; // 850 EGP in cents
     const TARGET_HANDLE = 'color-catcher-sheets';
-    let isUpdating = false;
+    let productVariantId = null;
+
+    async function initGiftData() {
+      try {
+        const res = await fetch(`/products/${TARGET_HANDLE}.js`);
+        if (res.ok) {
+          const product = await res.json();
+          productVariantId = product.variants[0].id;
+          
+          const imgEl = document.getElementById('cart-gift-img');
+          if (imgEl && product.featured_image) {
+            imgEl.src = product.featured_image;
+            imgEl.style.display = 'block';
+          }
+        }
+      } catch (e) {
+        console.error('Error fetching gift product info:', e);
+      }
+    }
 
     async function updateProgressBar() {
-      if (isUpdating) return;
-      isUpdating = true;
-
-      const textEl = document.getElementById('cart-progress-text');
-      const fillEl = document.getElementById('cart-progress-fill');
-      if (!textEl || !fillEl) {
-        isUpdating = false;
-        return;
-      }
-
       try {
         const res = await fetch('/cart.js', { headers: { 'Accept': 'application/json' } });
         if (!res.ok) throw new Error('Failed to fetch cart');
         const cart = await res.json();
         
+        const textEl = document.getElementById('cart-progress-text');
+        const fillEl = document.getElementById('cart-progress-fill');
+        if (!textEl || !fillEl) return;
+
         let qualifyingTotal = 0;
-        let giftItem = null;
+        let giftInCart = false;
 
         cart.items.forEach(item => {
           if (item.handle === TARGET_HANDLE) {
-            giftItem = item;
+            giftInCart = true;
           } else {
             qualifyingTotal += item.final_line_price;
           }
@@ -74,72 +136,44 @@
         const formatMoney = (cents) => (cents / 100).toFixed(2) + ' EGP';
 
         if (qualifyingTotal >= GOAL) {
-          textEl.innerHTML = `<span>🎉 You unlocked your free Color Catcher Sheets!</span>`;
+          if (giftInCart) {
+            textEl.innerHTML = `<span>🎉 Color Catcher Sheets is in your cart!</span>`;
+          } else {
+            textEl.innerHTML = `<span>🎉 Goal reached! Click the product icon to claim your gift!</span>`;
+          }
           fillEl.style.width = '100%';
-
-          if (!giftItem) {
-            await addGiftProduct();
-            return;
-          }
         } else {
-          textEl.innerHTML = `<span>Add <strong>${formatMoney(remaining)}</strong> more to get Free Color Catcher Sheets!</span>`;
+          textEl.innerHTML = `<span>Add <strong>${formatMoney(remaining)}</strong> more to unlock Color Catcher Sheets!</span>`;
           fillEl.style.width = percent + '%';
-
-          if (giftItem) {
-            await removeGiftProduct(giftItem.key);
-            return;
-          }
         }
       } catch (e) {
         console.error('Cart progress bar error:', e);
-        textEl.innerHTML = `<span>Add more items to unlock Free Color Catcher Sheets!</span>`;
-      } finally {
-        isUpdating = false;
       }
     }
 
-    async function addGiftProduct() {
-      try {
-        const prodRes = await fetch(`/products/${TARGET_HANDLE}.js`);
-        if (!prodRes.ok) return;
-        const product = await prodRes.json();
-        const variantId = product.variants[0].id;
-
-        await fetch('/cart/add.js', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: variantId, quantity: 1 })
-        });
-        
-        window.location.reload();
-      } catch (err) {
-        console.error('Failed to add gift:', err);
-        isUpdating = false;
+    // Handle click event on the product node to add item manually via plus sign
+    document.addEventListener('click', async function(e) {
+      if (e.target.closest('#cart-gift-node')) {
+        if (!productVariantId) return;
+        try {
+          await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: productVariantId, quantity: 1 })
+          });
+          window.location.reload();
+        } catch (err) {
+          console.error('Failed to add gift item:', err);
+        }
       }
-    }
+    });
 
-    async function removeGiftProduct(itemKey) {
-      try {
-        await fetch('/cart/change.js', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: itemKey, quantity: 0 })
-        });
-        
-        window.location.reload();
-      } catch (err) {
-        console.error('Failed to remove gift:', err);
-        isUpdating = false;
-      }
-    }
-
-    // Run execution immediately if DOM is ready, or hook onto load events
+    initGiftData();
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
       updateProgressBar();
     } else {
       document.addEventListener('DOMContentLoaded', updateProgressBar);
     }
-    
     window.addEventListener('load', updateProgressBar);
   })();
 </script>
