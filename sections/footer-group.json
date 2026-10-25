@@ -2045,6 +2045,53 @@
         "color_scheme": "",
         "corner_radius": 24
       }
+    },
+    "1792937680f28a31fe": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_0d4dd92_ckJeBx": {
+          "type": "ai_gen_block_0d4dd92",
+          "settings": {
+            "desktop_width_percent": 100,
+            "threshold_amount": 850,
+            "offer_product": "color-catcher-sheets-1",
+            "heading": "GET FREE COLOR CATCHER SHEETS NOW !",
+            "message": "Your cart has reached 850 EGP. Add color catcher sheets to your order to get it for free.",
+            "button_label": "Add to Cart"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_0d4dd92_ckJeBx"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
@@ -2054,6 +2101,7 @@
     "footer_m9NzUG",
     "section_kbQjDk",
     "footer_utilities_jLGE8U",
-    "welcome_popup"
+    "welcome_popup",
+    "1792937680f28a31fe"
   ]
 }
