@@ -1,5 +1,5 @@
 <div id="cart-progress-bar-component" class="cart-progress-banner">
-  <div class="cart-progress-message" id="cart-progress-text">Calculating progress...</div>
+  <div class="cart-progress-message" id="cart-progress-text">Checking cart progress...</div>
   <div class="cart-progress-bar-container">
     <div class="cart-progress-bar-fill" id="cart-progress-fill" style="width: 0%;"></div>
   </div>
@@ -44,17 +44,18 @@
       if (isUpdating) return;
       isUpdating = true;
 
+      const textEl = document.getElementById('cart-progress-text');
+      const fillEl = document.getElementById('cart-progress-fill');
+      if (!textEl || !fillEl) {
+        isUpdating = false;
+        return;
+      }
+
       try {
         const res = await fetch('/cart.js', { headers: { 'Accept': 'application/json' } });
+        if (!res.ok) throw new Error('Failed to fetch cart');
         const cart = await res.json();
         
-        const textEl = document.getElementById('cart-progress-text');
-        const fillEl = document.getElementById('cart-progress-fill');
-        if (!textEl || !fillEl) {
-          isUpdating = false;
-          return;
-        }
-
         let qualifyingTotal = 0;
         let giftItem = null;
 
@@ -91,6 +92,7 @@
         }
       } catch (e) {
         console.error('Cart progress bar error:', e);
+        textEl.innerHTML = `<span>Add more items to unlock Free Color Catcher Sheets!</span>`;
       } finally {
         isUpdating = false;
       }
@@ -131,15 +133,13 @@
       }
     }
 
-    // Initialize immediately on load and listen to modern Shopify cart change events
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', updateProgressBar);
-    } else {
+    // Run execution immediately if DOM is ready, or hook onto load events
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
       updateProgressBar();
+    } else {
+      document.addEventListener('DOMContentLoaded', updateProgressBar);
     }
-
-    // Listen to theme custom cart update events if supported
-    document.addEventListener('cart:updated', updateProgressBar);
-    document.addEventListener('shopify:cart:changed', updateProgressBar);
+    
+    window.addEventListener('load', updateProgressBar);
   })();
 </script>
