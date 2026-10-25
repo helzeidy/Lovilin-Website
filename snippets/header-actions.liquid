@@ -225,8 +225,6 @@
                 </button>
               </div>
 
-              
-
               <scroll-hint
                 class="cart-drawer__content"
                 aria-label="{{ 'accessibility.cart' | t }}"
@@ -270,6 +268,9 @@
     data-testid="cart-count-live-region"
   ></span>
 </header-actions>
+
+<!-- Render your Cart Popup Snippet here -->
+{% render 'cart-popup' %}
 
 <script
   type="module"
