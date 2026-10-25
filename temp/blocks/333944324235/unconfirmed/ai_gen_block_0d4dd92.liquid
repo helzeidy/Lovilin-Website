@@ -1,6 +1,211 @@
+{% doc %}
+  @prompt
+    a popup that appears when people reach 850 egp in cart that has color catcher sheet product and an add to cart plus button
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign offer_product = block.settings.offer_product %}
+
+{% style %}
+  .ai-cart-threshold-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+  }
+  .ai-cart-threshold-{{ ai_gen_id }}__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, .55);
+  }
+  .ai-cart-threshold-{{ ai_gen_id }}__overlay.is-visible { display: flex; }
+  .ai-cart-threshold-{{ ai_gen_id }}__dialog {
+    position: relative;
+    width: min(100%, 460px);
+    max-height: 90vh;
+    overflow: auto;
+    padding: 28px;
+    border-radius: 14px;
+    background: #fff;
+    color: #071e85;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .24);
+  }
+  .ai-cart-threshold-{{ ai_gen_id }}__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background: #f2f3f8;
+    color: #071e85;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .ai-cart-threshold-{{ ai_gen_id }}__title { margin: 0 42px 8px 0; color: #071e85; font-size: 24px; line-height: 1.25; }
+  .ai-cart-threshold-{{ ai_gen_id }}__copy { margin: 0 0 20px; color: #26345f; line-height: 1.5; }
+  .ai-cart-threshold-{{ ai_gen_id }}__product { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+  .ai-cart-threshold-{{ ai_gen_id }}__image, .ai-cart-threshold-{{ ai_gen_id }}__placeholder { flex: 0 0 88px; width: 88px; height: 88px; overflow: hidden; border-radius: 8px; background: #f4f5f8; }
+  .ai-cart-threshold-{{ ai_gen_id }}__image { object-fit: cover; }
+  .ai-cart-threshold-{{ ai_gen_id }}__placeholder svg { display: block; width: 100%; height: 100%; }
+  .ai-cart-threshold-{{ ai_gen_id }}__product-title { margin: 0 0 6px; color: #071e85; font-size: 16px; }
+  .ai-cart-threshold-{{ ai_gen_id }}__price { color: #26345f; }
+  .ai-cart-threshold-{{ ai_gen_id }}__add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 999px;
+    background: #071e85;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .ai-cart-threshold-{{ ai_gen_id }}__add:focus-visible, .ai-cart-threshold-{{ ai_gen_id }}__close:focus-visible { outline: 3px solid #d59d00; outline-offset: 3px; }
+  .ai-cart-threshold-{{ ai_gen_id }}__add[disabled] { opacity: .65; cursor: wait; }
+  .ai-cart-threshold-{{ ai_gen_id }}__message { min-height: 1.4em; margin: 10px 0 0; color: #26345f; font-size: 14px; }
+  @media (max-width: 600px) { .ai-cart-threshold-{{ ai_gen_id }}__dialog { padding: 24px 20px; } }
+{% endstyle %}
+
+<cart-threshold-offer-{{ ai_gen_id }} class="ai-cart-threshold-{{ ai_gen_id }}" data-threshold="{{ block.settings.threshold_amount | times: 100 }}" data-product-id="{% if offer_product != blank %}{{ offer_product.id }}{% endif %}" data-variant-id="{% if offer_product != blank and offer_product.selected_or_first_available_variant %}{{ offer_product.selected_or_first_available_variant.id }}{% endif %}" data-currency="{{ cart.currency.iso_code | default: shop.currency }}" {{ block.shopify_attributes }}>
+  <div class="ai-cart-threshold-{{ ai_gen_id }}__overlay" hidden>
+    <section class="ai-cart-threshold-{{ ai_gen_id }}__dialog" role="dialog" aria-modal="true" aria-labelledby="ai-cart-threshold-title-{{ ai_gen_id }}" aria-describedby="ai-cart-threshold-copy-{{ ai_gen_id }}">
+      <button class="ai-cart-threshold-{{ ai_gen_id }}__close" type="button" aria-label="Close offer">&times;</button>
+      <h2 class="ai-cart-threshold-{{ ai_gen_id }}__title" id="ai-cart-threshold-title-{{ ai_gen_id }}">{{ block.settings.heading | escape }}</h2>
+      <p class="ai-cart-threshold-{{ ai_gen_id }}__copy" id="ai-cart-threshold-copy-{{ ai_gen_id }}">{{ block.settings.message | escape }}</p>
+      {% if offer_product != blank %}
+        <div class="ai-cart-threshold-{{ ai_gen_id }}__product">
+          {% if offer_product.featured_image %}
+            <img class="ai-cart-threshold-{{ ai_gen_id }}__image" src="{{ offer_product.featured_image | image_url: width: 176 }}" alt="{{ offer_product.featured_image.alt | default: offer_product.title | escape }}" width="88" height="88" loading="lazy">
+          {% else %}
+            <div class="ai-cart-threshold-{{ ai_gen_id }}__placeholder">{{ 'product-apparel-1' | placeholder_svg_tag }}</div>
+          {% endif %}
+          <div>
+            <h3 class="ai-cart-threshold-{{ ai_gen_id }}__product-title">{{ offer_product.title | escape }}</h3>
+            <span class="ai-cart-threshold-{{ ai_gen_id }}__price">{{ offer_product.selected_or_first_available_variant.price | money }}</span>
+          </div>
+        </div>
+        <button class="ai-cart-threshold-{{ ai_gen_id }}__add" type="button" {% unless offer_product.available %}disabled{% endunless %}>
+          <span aria-hidden="true">+</span><span>{{ block.settings.button_label | escape }}</span>
+        </button>
+        <p class="ai-cart-threshold-{{ ai_gen_id }}__message" aria-live="polite"></p>
+      {% else %}
+        <p class="ai-cart-threshold-{{ ai_gen_id }}__message">Choose the color catcher sheet product in this block's settings.</p>
+      {% endif %}
+    </section>
+  </div>
+  <script type="application/json" class="ai-cart-threshold-{{ ai_gen_id }}__config">{"dismissKey":"cart-threshold-dismissed-{{ ai_gen_id }}"}</script>
+</cart-threshold-offer-{{ ai_gen_id }}>
+
+<script>
+  (() => {
+    const tagName = 'cart-threshold-offer-{{ ai_gen_id }}';
+    if (customElements.get(tagName)) return;
+    class CartThresholdOffer extends HTMLElement {
+      connectedCallback() {
+        this.overlay = this.querySelector('.ai-cart-threshold-{{ ai_gen_id }}__overlay');
+        this.dialog = this.querySelector('.ai-cart-threshold-{{ ai_gen_id }}__dialog');
+        this.closeButton = this.querySelector('.ai-cart-threshold-{{ ai_gen_id }}__close');
+        this.addButton = this.querySelector('.ai-cart-threshold-{{ ai_gen_id }}__add');
+        this.message = this.querySelector('.ai-cart-threshold-{{ ai_gen_id }}__message');
+        this.dismissKey = 'cart-threshold-dismissed-{{ ai_gen_id }}';
+        this.wasShown = false;
+        this.onClick = this.onClick.bind(this);
+        this.onKeydown = this.onKeydown.bind(this);
+        this.addEventListener('click', this.onClick);
+        document.addEventListener('keydown', this.onKeydown);
+        this.checkCart();
+        this.poll = window.setInterval(() => this.checkCart(), 1800);
+      }
+      disconnectedCallback() {
+        this.removeEventListener('click', this.onClick);
+        document.removeEventListener('keydown', this.onKeydown);
+        window.clearInterval(this.poll);
+      }
+      async checkCart() {
+        if (this.wasShown || !this.overlay || this.dataset.variantId === '') return;
+        try {
+          const response = await fetch(`${window.Shopify?.routes?.root || '/'}cart.js`, { headers: { Accept: 'application/json' } });
+          if (!response.ok) return;
+          const cart = await response.json();
+          const threshold = Number(this.dataset.threshold);
+          const inCart = cart.items.some(item => String(item.variant_id) === String(this.dataset.variantId));
+          if (cart.total_price >= threshold && !inCart && sessionStorage.getItem(this.dismissKey) !== '1') this.open();
+        } catch (error) {}
+      }
+      open() {
+        this.wasShown = true;
+        this.overlay.hidden = false;
+        this.overlay.classList.add('is-visible');
+        this.closeButton.focus();
+      }
+      close() {
+        this.overlay.classList.remove('is-visible');
+        this.overlay.hidden = true;
+        sessionStorage.setItem(this.dismissKey, '1');
+      }
+      onClick(event) {
+        if (event.target === this.overlay || event.target === this.closeButton) this.close();
+        if (event.target.closest('.ai-cart-threshold-{{ ai_gen_id }}__add')) this.addOffer();
+      }
+      onKeydown(event) {
+        if (!this.overlay || this.overlay.hidden) return;
+        if (event.key === 'Escape') this.close();
+        if (event.key === 'Tab') {
+          const focusable = [...this.dialog.querySelectorAll('button:not([disabled]), a[href]')];
+          if (focusable.length && event.shiftKey && document.activeElement === focusable[0]) { event.preventDefault(); focusable[focusable.length - 1].focus(); }
+          else if (focusable.length && !event.shiftKey && document.activeElement === focusable[focusable.length - 1]) { event.preventDefault(); focusable[0].focus(); }
+        }
+      }
+      async addOffer() {
+        const variantId = Number(this.dataset.variantId);
+        if (!variantId || !this.addButton) return;
+        this.addButton.disabled = true;
+        if (this.message) this.message.textContent = 'Adding to cart…';
+        try {
+          const root = window.Shopify?.routes?.root || '/';
+          const response = await fetch(`${root}cart/add.js`, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }] }) });
+          if (!response.ok) throw new Error('Could not add product');
+          await response.json();
+          if (this.message) this.message.textContent = 'Added to your cart.';
+          this.close();
+          document.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+          document.dispatchEvent(new CustomEvent('cart:update', { bubbles: true }));
+          window.setTimeout(() => window.location.reload(), 500);
+        } catch (error) {
+          this.addButton.disabled = false;
+          if (this.message) this.message.textContent = 'Could not add this product. Please try again.';
+        }
+      }
+    }
+    customElements.define(tagName, CartThresholdOffer);
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Cart threshold offer",
+  "settings": [
+    { "type": "header", "content": "Offer details" },
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "range", "id": "threshold_amount", "label": "Cart threshold", "min": 100, "max": 5000, "step": 50, "unit": "EGP", "default": 850 },
+    { "type": "product", "id": "offer_product", "label": "Color catcher sheet product" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A little extra for your laundry" },
+    { "type": "text", "id": "message", "label": "Message", "default": "Your cart has reached 850 EGP. Add color catcher sheets to your order?" },
+    { "type": "text", "id": "button_label", "label": "Add button label", "default": "Add to cart" }
+  ],
+  "presets": [{ "name": "Cart threshold offer" }],
+  "tag": null,
+  "class": "cart-threshold-offer"
+}
 {% endschema %}
