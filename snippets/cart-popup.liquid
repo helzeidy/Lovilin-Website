@@ -1,0 +1,258 @@
+<div id="cart-reward-modal" class="reward-popup-overlay" style="display: none;">
+  <div class="reward-popup-card">
+    <button type="button" class="reward-popup-close" id="reward-close-btn" aria-label="Close">&times;</button>
+    
+    <div class="reward-popup-header">
+      <span class="reward-badge-tag">🎉 Free Gift Unlocked!</span>
+      <h3>Claim Your Free Gift</h3>
+      <p>You've spent over 850 EGP! Add your free Color Catcher Sheets below.</p>
+    </div>
+
+    <div class="reward-product-box">
+      <img id="reward-prod-img" src="" alt="Color Catcher Sheets" style="display: none;" />
+      <div class="reward-product-info">
+        <h4 id="reward-prod-title">Color Catcher Sheets</h4>
+        <span class="reward-prod-price"><strike>100.00 EGP</strike> <span class="free-text">FREE</span></span>
+      </div>
+      <button type="button" class="reward-add-btn" id="reward-add-btn" title="Add to cart">
+        <span>+</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .reward-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: rewardFadeIn 0.3s ease forwards;
+  }
+  @keyframes rewardFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .reward-popup-card {
+    background: var(--color-background, #fff);
+    color: var(--color-foreground, #000);
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--border-radius-shape, 12px);
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: rewardScaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+  @keyframes rewardScaleUp {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .reward-popup-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: inherit;
+    line-height: 1;
+  }
+  .reward-badge-tag {
+    display: inline-block;
+    background: rgba(var(--color-button, 0, 0, 0), 0.1);
+    color: rgb(var(--color-button, 0, 0, 0));
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+  .reward-popup-header h3 {
+    margin: 0 0 6px 0;
+    font-size: 1.25rem;
+  }
+  .reward-popup-header p {
+    margin: 0 0 20px 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  .reward-product-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(var(--color-foreground, 0, 0, 0), 0.03);
+    border: 1px solid rgba(var(--color-foreground, 0, 0, 0), 0.08);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: left;
+  }
+  .reward-product-box img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  .reward-product-info {
+    flex-grow: 1;
+  }
+  .reward-product-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 0.95rem;
+  }
+  .reward-prod-price {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+  .free-text {
+    color: #2e7d32;
+    font-weight: bold;
+    margin-left: 4px;
+  }
+  .reward-add-btn {
+    width: 40px;
+    height: 40px;
+    background: rgb(var(--color-button, 0, 0, 0));
+    color: rgb(var(--color-button-text, 255, 255, 255));
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    flex-shrink: 0;
+  }
+  .reward-add-btn:hover {
+    transform: scale(1.08);
+  }
+</style>
+
+<script>
+  (function() {
+    const GOAL = 85000; // 850 EGP in cents
+    const TARGET_HANDLE = 'color-catcher-sheets';
+    let productVariantId = null;
+
+    async function initRewardData() {
+      try {
+        const res = await fetch(`/products/${TARGET_HANDLE}.js`);
+        if (res.ok) {
+          const product = await res.json();
+          productVariantId = product.variants[0].id;
+          
+          const imgEl = document.getElementById('reward-prod-img');
+          const titleEl = document.getElementById('reward-prod-title');
+          if (titleEl) titleEl.textContent = product.title;
+          if (imgEl && product.featured_image) {
+            imgEl.src = product.featured_image;
+            imgEl.style.display = 'block';
+          }
+        }
+      } catch (e) {
+        console.error('Error fetching reward product:', e);
+      }
+    }
+
+    async function checkCartForReward() {
+      try {
+        const res = await fetch('/cart.js', { headers: { 'Accept': 'application/json' } });
+        if (!res.ok) return;
+        const cart = await res.json();
+
+        let qualifyingTotal = 0;
+        let giftInCart = false;
+
+        cart.items.forEach(item => {
+          if (item.handle === TARGET_HANDLE) {
+            giftInCart = true;
+          } else {
+            qualifyingTotal += item.final_line_price;
+          }
+        });
+
+        const modal = document.getElementById('cart-reward-modal');
+        if (!modal) return;
+
+        // Show popup if threshold reached, gift isn't already added, and user hasn't dismissed it this session
+        const dismissed = sessionStorage.getItem('reward_popup_dismissed') === 'true';
+        if (qualifyingTotal >= GOAL && !giftInCart && !dismissed) {
+          modal.style.display = 'flex';
+        } else {
+          modal.style.display = 'none';
+        }
+      } catch (e) {
+        console.error('Reward popup check error:', e);
+      }
+    }
+
+    // Event listeners for closing & adding
+    document.addEventListener('click', async function(e) {
+      const modal = document.getElementById('cart-reward-modal');
+      
+      // Close modal on X or clicking outside backdrop
+      if (e.target.id === 'reward-close-btn' || e.target === modal) {
+        if (modal) modal.style.display = 'none';
+        sessionStorage.setItem('reward_popup_dismissed', 'true');
+      }
+
+      // Add item to cart via plus sign
+      if (e.target.closest('#reward-add-btn')) {
+        const addBtn = e.target.closest('#reward-add-btn');
+        if (!productVariantId) return;
+
+        try {
+          addBtn.style.opacity = '0.6';
+          const addRes = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: productVariantId, quantity: 1 })
+          });
+
+          if (addRes.ok) {
+            if (modal) modal.style.display = 'none';
+            sessionStorage.setItem('reward_popup_dismissed', 'true');
+
+            // Trigger theme cart updates to sync drawer seamlessly
+            document.dispatchEvent(new CustomEvent('cart:build', { bubbles: true }));
+            document.dispatchEvent(new CustomEvent('cart:updated', { bubbles: true }));
+            document.dispatchEvent(new CustomEvent('shopify:cart:changed', { bubbles: true }));
+
+            // Refresh drawer HTML silently
+            fetch(window.location.href).then(res => res.text()).then(html => {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
+              const newDrawer = doc.querySelector('.cart-drawer__inner');
+              const currentDrawer = document.querySelector('.cart-drawer__inner');
+              if (newDrawer && currentDrawer) {
+                currentDrawer.innerHTML = newDrawer.innerHTML;
+              }
+            });
+          }
+        } catch (err) {
+          console.error('Failed to add reward item:', err);
+        } finally {
+          addBtn.style.opacity = '1';
+        }
+      }
+    });
+
+    initRewardData();
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      checkCartForReward();
+    } else {
+      document.addEventListener('DOMContentLoaded', checkCartForReward);
+    }
+
+    document.addEventListener('cart:updated', checkCartForReward);
+    document.addEventListener('shopify:cart:changed', checkCartForReward);
+  })();
+</script>
