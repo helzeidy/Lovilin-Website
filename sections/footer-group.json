@@ -2051,6 +2051,7 @@
       "blocks": {
         "ai_gen_block_0d4dd92_ckJeBx": {
           "type": "ai_gen_block_0d4dd92",
+          "disabled": true,
           "settings": {
             "desktop_width_percent": 100,
             "threshold_amount": 850,
