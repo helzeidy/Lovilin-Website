@@ -16,6 +16,7 @@
       "blocks": {
         "announcement_BxgCk9": {
           "type": "_announcement",
+          "disabled": true,
           "settings": {
             "text": "FREE COLOR CATCHER SHEETS ON ORDERS OF 850+ EGP",
             "link": "",
